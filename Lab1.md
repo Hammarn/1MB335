@@ -20,7 +20,6 @@ When you connect to a system you usally end up in your home directory. To see th
 
 ```
 pwd
-
 ```
 it should return something like:
 
@@ -106,8 +105,28 @@ Just `cd` with no options takes you to your home directory.
 
 
 
+#### Working remotely 
+The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
+To connect to a remote Unix server the protocol `ssh` is typically used.
+
+Given that you have an account with Uppmax do the following to connect to Rackham:
+
+```
+ssh your_user_name@rackham.uppmax.uu.se
+```
+
+After entering that you command you will be prompted to enter your password.
 
 
+
+### 
+
+```
+w3m -dump https://en.wikipedia.org/wiki/Principal_component_analysis > PCA.txt
+```
+
+
+The above command reads the wikipedia page for Principal Component Analysis and extracts the body text and saves it to the file `PCA.txt`.
 
 
 
