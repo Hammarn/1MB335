@@ -28,12 +28,12 @@ it should return something like:
 ```
 As you move around in the systems directories this will of course change.
 
-to make a directory (called folders on other systems) use the command `mkdir`, try the following out:
+To make a directory (called folders on other systems) use the command `mkdir`, try the following out:
 
 ```
 mkdir directory1
 ```
-to figure out what happend use the `ls` command which lists the content of the current working directory:
+In order to figure out what happend use the `ls` command which lists the content of the current working directory:
 
 ```
 ls
@@ -119,14 +119,81 @@ After entering that you command you will be prompted to enter your password.
 
 
 
-### 
+### Playing around with files
 
 ```
 w3m -dump https://en.wikipedia.org/wiki/Principal_component_analysis > PCA.txt
 ```
 
 
-The above command reads the wikipedia page for Principal Component Analysis and extracts the body text and saves it to the file `PCA.txt`.
+The above command reads the wikipedia page for Principal Component Analysis and extracts the body text and saves it to the file `PCA.txt`. The `>` is used to redirect output to a file.
+
+
+Now that we have some text to work here are some tools for inspecting files, try them out on `PCA.txt`.
+
+```
+cat - concatenates the file contents to standars out (the screen)
+less - a nice and easy file viewer, press q to quit!
+head - look at the head of a file, by default the first 10 lines.
+tail - looks at the tail of a file, by default the 10 last lines.
+```
+
+It turns out that the PCA article is quite big, how big?
+Counting is something that is hard and slow for humans, but incredibly easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
+
+What did you get? How many lines and words?
+
+Hmm, it's not that clear is it? Have a look at the manual for `wc` to try and figure it out. 
+All core unix commands have an inbuilt manual you can access it thorugh the `man` command:
+
+```
+man wc 
+```
+
+Now that you figured that out, use the manual for `head` to figure out how to save the first 100 lines of `PCA.txt` and save them into `short_pca.txt`.
+
+You can use `wc` to figure out if you did it correctly.
+
+#### grep
+`grep` is a usful tool that prints lines matching a provided pattern.
+In our example we can use it to figue out how many lines contain the word `PCA`:
+
+```
+grep PCA short_pca.txt
+``` 
+
+
+### Pipes and multiple commands
+One of the fundamental concepts behind UNIX from the beginning was an ephasis on small task specific programs. These programs could then be chained together into pipelines to perform more complex tasks.
+
+Imagine that you have a machine that cuts down trees, de-barks them and cuts them into planks. If you have trees and wants planks then this is fine, but what happens if you want to cut down the tree and keep the whole log? Your big fancy machine only makes planks.
+In the unix worl your one machine would consist of smaller machines chained together. One that cuts down tree, one that removed the bark and one that cuts into planks. 
+If you get a pile of logs from your neighbor then you can use one of your machines to make planks, etc.
+
+This type of chaining together is called piping in unix and is done by the pipe character `|`. E.g.
+
+```
+command 1 | command 2 | command3 > output_file
+```
+
+By using `grep`, `pipe`, and `wc` we can now easily figure out how many liines of the Wikipedia article about Principle Component Analysis that contains the word `PCA`:
+
+```
+grep PCA short_pca.txt | wc -l
+```
+
+Try it for the full article as well!
+Write down the answers!
+
+
+
+Ok time for something perhaps a bit more fun. Some genetic data!
+
+
+
+
+
+
 
 
 
