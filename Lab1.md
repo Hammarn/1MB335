@@ -105,17 +105,6 @@ Just `cd` with no options takes you to your home directory.
 
 
 
-#### Working remotely 
-The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
-To connect to a remote Unix server the protocol `ssh` is typically used.
-
-Given that you have an account with Uppmax do the following to connect to Rackham:
-
-```
-ssh your_user_name@rackham.uppmax.uu.se
-```
-
-After entering that you command you will be prompted to enter your password.
 
 
 
@@ -187,13 +176,78 @@ Write down the answers!
 
 
 
+
+#### Working remotely 
+The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
+To connect to a remote Unix server the protocol `ssh` is typically used.
+
+Given that you have an account with Uppmax do the following to connect to Rackham:
+
+```
+ssh your_user_name@rackham.uppmax.uu.se
+```
+
+After entering that you command you will be prompted to enter your password.
+
+
+
+
+
 Ok time for something perhaps a bit more fun. Some genetic data!
 
 
+#### Manipulate blastoutput? 
+
+### bam files
+
+In directory XX/XX you have a `.bam` file. The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+If you want to read more about the file format(s) you can have a look at the official documentation:
+ https://samtools.github.io/hts-specs/SAMv1.pdf
+
+If you want a simpler (and easier to read) text to give you an overview have a look at the wikipedia article: 
+https://en.wikipedia.org/wiki/SAM_(file_format)
+
+The main tool for working with SAM/BAM files is called `samtools` and it's installed through the module system on uppmax. To get acces to it:
+
+```
+module load bioinfo-tools
+module load samtools/1.9
+```
+
+Before using it have a look at the file sizes of the two different formats.
+
+```
+ls -lh 
+```
+
+With that information you can probably see why it's a generaly good idea to store data in binary formats as much as possible. 
+
+##### The `.bam` file is just for a small part of the genome, which ones? 
+use `samtools view` and `head` and `tail` to figure out the first and last position.
+ 
+
+##### Use `cut` to extract only the name and nucleotide sequence from the `.bam` file. 
+
+First figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
 
+#### More uppmax stuff
+Possible things:
 
+```
+ - modules 
+ - uquota
+ - jobinfo
+ - interactive window
+ - x11 evince etc.
+ - slurm, submitting jobs. 
+```
 
-
+ file/directory architecture?
+ Lab1 , Lab2
+ bash loop?
+ 
+ 
+ toy examples of a bash script?
 
 
