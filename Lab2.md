@@ -1,8 +1,8 @@
 # Lab 2 - Python
-
+In this lab, you will get an introduction to the programming language Python. 
 ## Introduction 
 
-The wikipedia article for python has the following to say about it:
+The Wikipedia article for python has the following to say about it:
 
 ```
 Python is an interpreted, high-level, general-purpose programming language.
@@ -36,7 +36,7 @@ print "Answer"
 print "False"
 ```
 
-In many other programing languages (such as Java & C) `;` denotes a linebreak, while it is possible to use it in Python the prefered way of denoting a new line is simply a text line break (i.e hitting enter on your keyboard. )
+In many other programming languages (such as Java & C) `;` denotes a linebreak, while it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e hitting enter on your keyboard. )
 
 
 ### Hello world
@@ -56,7 +56,7 @@ python hello.py
 
 
 ### Datatypes 
-There are three types fo numeric data in Python:
+There are three types of numeric data in Python:
 
 ```
 Integer: Positive or negative whole numbers
@@ -87,15 +87,15 @@ We can use the inbuilt `type` function to see what types of data the above thing
 
 The next type of data are booleans, i.e. `True` or `False` (note the capital letters)
 
-Next we have sequence types:
+Next, we have sequence types:
 
 ```
 String: A string value is a collection of one or more characters put in single, double or triple quotes. 
-List : A list object is an ordered collection of one or more data items, not necessarily of the same type, put in square brackets.
+List: A list object is an ordered collection of one or more data items, not necessarily of the same type, put in square brackets.
 Tuple: A Tuple object is an ordered collection of one or more data items, not necessarily of the same type, put in parentheses.
 ```
 
-Strings are as you can see just characters, such as our "Hello world" example above. 
+Strings are, as you can see just characters, such as our "Hello world" example above. 
 
 They can be assigned as such:
 
@@ -119,12 +119,12 @@ Both lists and strings can be sliced and indexed:
 
 As you can see Python is 0 indexed. 
 You can use `[-1]` to get the last item of a list or string, and `[-2]` to get the second last et cetera.  
-It's even possible to acces intervals(range)of indexes. This is used with the colon `:`. For instance:
+It's even possible to access intervals(range)of indexes. This is used with the colon `:`. For instance:
 
 ```
 my_string[:-1]
 ```
-Returns everything exept the last index. 
+Returns everything except the last index. 
 
 ```
 my_string[1:-1]
@@ -136,17 +136,17 @@ Python lists contains many unbuilt methods for interacting with lists. As they a
 
 |Method | Description|
 ---|:---|
-|.append()|	Adds an element at the end of the list|
-|.clear()|	Removes all the elements from the list|
-|.copy()|		Returns a copy of the list|
-|.count()|	Returns the number of elements with the specified value|
-|.extend()|	Add the elements of a list (or any iterable), to the end of the current list|
-|.index()|	Returns the index of the first element with the specified value|
-|.insert()|	Adds an element at the specified position|
-|.pop()|		Removes the element at the specified position|
-|.remove()|	Removes the first item with the specified value|
-|.reverse()|	Reverses the order of the list|
-|.sort()|		Sorts the list|
+|.append()|    Adds an element at the end of the list|
+|.clear()|    Removes all the elements from the list|
+|.copy()|        Returns a copy of the list|
+|.count()|    Returns the number of elements with the specified value|
+|.extend()|    Add the elements of a list (or any iterable), to the end of the current list|
+|.index()|    Returns the index of the first element with the specified value|
+|.insert()|    Adds an element at the specified position|
+|.pop()|        Removes the element at the specified position|
+|.remove()|    Removes the first item with the specified value|
+|.reverse()|    Reverses the order of the list|
+|.sort()|        Sorts the list|
 Used in practise:
 
 ```
@@ -160,14 +160,14 @@ Used in practise:
 
 
 
-The main difference between tuples and lists is that list are mutable, which means that you can add or delete items to a list once it is created. Tuples are unmutable and cannot be changed once created. This fact can be utilized to sometimes improve perfomance, typically if you are storing the same value as different variables as they will then point to a single memory adress instead of one each which would be the case for lists.  
+The main difference between tuples and lists is that lists are mutable, which means that you can add or delete items to a list once it is created. Tuples are unmutable and cannot be changed once created. This fact can be utilized to sometimes improve performance, typically if you are storing the same value as different variables as they will then point to a single memory address instead of one each which would be the case for lists.  
 
 
 #### Dictionaries
 Dictionaries are unordered collections of data in key:value pairs. Curly brackets are used to define dictionaries:
 
 ```
-thisdict =	{
+thisdict =    {
   "brand": "Ford",
   "model": "Mustang",
   "year": 1964
@@ -205,7 +205,7 @@ len(schedule['Gwenna'])
 ``` 
 `len()` returns the lenght of the provided object (string, list, dict etc.)
 
-Dictionaries has several inbuild methods some of these are:
+Dictionaries have several inbuild methods some of these are:
 
 |Method | Description|
 ---|---
@@ -225,15 +225,15 @@ Dictionaries has several inbuild methods some of these are:
 ```
 counter = 1
 while counter < 5:
-	print(counter)
-	counter+=1
+    print(counter)
+    counter+=1
 ```
 
 
 
 
-### Formating Fasta files
-The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets it's name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater than sign (>) indicates the start of the header and the following line(s) is the sequence. 
+### Formatting Fasta files
+The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater-than sign (>) indicates the start of the header and the following line(s) is the sequence. 
 
 Example sequence:
 
@@ -243,10 +243,10 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
 FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
-Your task is to write a python program that take a file which contains a sequence like the one above where the sequence spans over multiple lines and convert it into a one where the sequence is stored on a single line. 
+Your task is to write a python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines and convert it into a one where the sequence is stored on a single line. 
 
 ### Reverse complement
-A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequnced it's basically random in which orientation your sequence it. Thus is is important to be able to reverse complement your sequence. 
+A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it's basically random in which orientation your sequence it. Thus it is important to be able to reverse complement your sequence. 
 
 Task:
 Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output. 
