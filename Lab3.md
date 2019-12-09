@@ -1,39 +1,10 @@
 # Lab 3 - prepare your mitochondrial genome
 
-## Overview of the labs
-
-You are now starting a series of eight computer labs, each lasting four hours. The goals of these labs are to familiarize you with bioinformatics tools and practices, and to complete a project that is relatively close to some questions bioinformaticians and biologists are working with today. We made an effort to link the labs to each other; however should you have troubles to complete one lab we will help you (for example by providing intermediate results) so you are not penalized for the following labs.
-
-The first two labs are for you to learn basics which you will come back during the entire course: familiarize you with the unix system and command line, bash scripting, python etc. You will also start to manipulate some of the files and learn about file formats that you will use throughout the course (such as fasta files).
-
-Labs 3 to 5 focus on the mitochondrial genome. Mitochondrial genomes come in a lot of flavours, but we selected short and circular mitochondrial genomes from a few model species such as fruit fly, nematodes, mouse and humans. You will circularize a mitochondrial genome, annotate it using different tools, and finally compare the results for the different species. These three labs are based on a course described in 'A CURE-based approach to teaching genomics using mitochondrial genomes, CourseSource 2019, Pogoda et al' and the accompanying document 'A guide to organellar genome assembly and annotation', Pogoda et al.
-
-Labs 6 to 8 form a project during which you will receive a question of evolutionary interest (for example, is species X more related to species Y or to species Z?). To answer that question, you will have to select mitochondrial and autosomal sequences from relevant species, choose an appropriate outgroup, and compare your sequences in appropriate ways, for example by building phylogenetic trees. You will re-use data that you created during labs 3 to 5.
-
-We ask you to work on your own, as we know from experience that when two or more people work on the same computer, the one who gets most of it is the person typing. However we want you to communicate with each other and help each other out, as we also know from experience that explaining something to someone else (for example) is a very efficient way of learning! To this end we included several moments in the labs where you should discuss your results with colleagues.
-
-We will use different ways of grading the labs - these will be described in the respective protocols. Keep in mind that the reports are mostly for us to make sure that you go through the tutorials and that you understood what you did. We encourage you to submit the reports as we progress through the labs, that way you will get the most out of the labs and out of your teachers!
-<!-- If we include a 'bioinformatic good practices check-list' it should be mentioned here.) -->
-
-Finally, the labs you are working with this year are new or have been substantially modified compared to previous versions of this course. We did our best to make them informative and interesting, and for them to run smoothly. We welcome any comment and suggestions for improvement - do not hesitate to write them down as we go along as you might have forgotten a lot of comments by the time you fill the course evaluation! This will be very helpful for the teachers and future students. Thank you!
-
-
-<!-- I think we should keep the same structure for all the labs, with for example: goal of the particular lab + how it fits with the other labs; background information if necessary; input (what they receive); outputs (what they create - which can also be input for other steps obviously); tools they will use; steps; format of report; something else? further reading? link to specific notions in the course? (both bioinformatics and genomics parts) In one of the later labs, we could even have them fill some of the steps e.g. output and tools as a task. -->
-
-## General introduction to labs 3 to 5
-
-<!-- Complete and improve! -->
-In these three labs, you will focus on the mitochondrial genome. Mitochondria are present in all eukaryotic organisms (for a review, see 'Origin and diversification of mitochondria', Roger et al.). Mitochondria supply the cells with energy. However, this is not what we are interested in here. We will focus on the mitochondrial genome. Mitochondrial genomes come in many different flavours, vary in size, shape (circular, linear, several pieces), content etc. However, some protein-coding genes, as well as rRNA and tRNA are very commonly found in mitochondrial genomes, making them useful for establishing phylogenies (more on that in labs 6-8). Mitochondrial genomes are usually quite short (16,000 base pairs in humans), and present in many copies in the cells; thus, they are easy to sequence even in extreme cases like environmental DNA or ancient DNA studies.
-
-Your main task is to annotate the mitochondrial genome of one of the following organisms: human, mouse, fruit fly or nematode. You will first need to assemble the mitochondrial genome, and in the end you will work with colleagues who annotated the mitochondrial genomes of the three other species and identify similarities and differences. You will need what you learned during labs 1 and 2 to complete your tasks, and you will use some parts of your annotated mitochondrial genome and that of your colleagues during labs 6 to 8.
-
-The steps you will follow in labs 3 (assembling the genome) and 4 (annotation) are similar to what you would do if you were to annotate a new mitochondrial genome. However as the goal of these labs is to familiarize you with bioinformatics rather than with annotation in particular, we chose to work with model organisms, for which annotated genomes are already annotated. This means that your task will be greatly simplified. However, you should be able to use the same tools to annotate a new mitochondrial genome if you wish too!
-
 ## Introduction / Background information to lab 3
 
-You received a whole genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genomes). In order to do that, you will use different types of blast as well as a very useful command, 'grep'. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). Once all of this is done, you will be all set for starting annotating in lab 4!
+You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). Once all of this is done, you will be all set for starting annotating in lab 4!
 
-<!-- I tried with two assemblied of C elegans and there was a single long mitochondrial contig. I will write a comment about that in the tutorial. Later we can either find fragmented assemblies or fragment them ourselves (?). -->
+<!-- I tried with two assemblies of C elegans and there was a single long mitochondrial contig. I will write a comment about that in the tutorial. Later we can either find fragmented assemblies or fragment them ourselves (?). -->
 
 ## Goals
 
@@ -42,9 +13,9 @@ You received a whole genome assembly comprising nuclear and mitochondrial contig
 
 ## Input(s)
 
-  + an assembly (format: fasta) for your species of interest. This assembly consists of contigs which need to be assembled (in your case you are only interested in the mitochondria, so you will need to identify the mitochondrial contigs).
+  + an assembly (format: `fasta`) for your species of interest. This assembly consists of contigs which need to be assembled (in your case you are only interested in the mitochondria, so you will need to identify the mitochondrial contigs).
   + a set of proteins from a close relative of your species of interest. This will be used to identify the contigs belonging to the mitochondria in the assembly.
-  + a library of short reads (format: fastq) for an individual for your species of interest. This will be used to bridge the mitochondrial contigs.
+  + a library of short reads (format: `fastq`) for an individual for your species of interest. This will be used to bridge the mitochondrial contigs.
   <!--I choose to work with the coding sequences not the gene features for the protein set-->
 
 ## Output(s)
@@ -61,19 +32,19 @@ You received a whole genome assembly comprising nuclear and mitochondrial contig
   
 ## Steps
 
-  + blastx: blast the assembly to the set of mitochondrial proteins to identify the mitochondrial contigs.
+  + `blastx`: blast the assembly to the set of mitochondrial proteins to identify the mitochondrial contigs.
   + validate via web-based blast that the identified contigs are mitochondrial.
   + create a new fasta file with mitochondrial contigs
   + tiling
-  + orient to canonical start location in the mitochondrial genome (cox1).
+  + orient to the canonical start location in the mitochondrial genome (cox1).
 
 ## Details
 
 ### Identify the mitochondrial contigs in your assembly    
 
-For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavours, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
+For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavors, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
 
-**Question** Are the sequences for the assembly and for the set of proteins in nucleotides or in amino acids? What is the format of these files? <!-- obviously nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
+**Question** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files? <!-- obviously nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
 Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in labs 1 and 2) and load the corresponding module:
 
@@ -87,9 +58,9 @@ Then, adapt and run the following command:
 makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl <!-- the dbtype could also be prot -->
 ```
 
-**Question** How many new files are created? Can you read them? <!-- three files: .nhr, .nin, .nsq All binary. nhr is the header, nin the index and nsq the sequence file, see here: https://www.biostars.org/p/111501/ . -->
+**Question** How many new files are created? Can you read them? <!-- three files: `.nhr`, `.nin`, `.nsq` All binary `.nhr` is the header, `.nin` the index and `.nsq` is  the sequence file, see here: https://www.biostars.org/p/111501/ . -->
 
-Now we are going to blast. We are going to use tblastx, but you can also try other types of blast and see what happens. <!--Or we have them try different blast and compare results - e.g. blastn can be done with the same inputs. --> Adapt and run the following command:
+Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. <!--Or we have them try different blast and compare results - e.g. `blastn` can be done with the same inputs. --> Adapt and run the following command:
 
 ```
 tblastx -query path_to_the_assembly/assembly.fna -db path_to_the_protein_set/protein_set.fasta -outfmt 6 -out outfile_name.blast
@@ -103,7 +74,7 @@ We are interested in column 11, as the best hits will have a low e-value. Adapt 
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |wc -l
 ```
 
-Now you have to identify which contigs have many regions with good hits. To do this you can adapt and run the following command (think about the previous command output to define the evalue threshold). You can also come up with different strategies if you like.
+Now you have to identify which contigs have many regions with good hits. To do this you can adapt and run the following command (think about the previous command output to define the e-value threshold). You can also come up with different strategies if you like.
 
 ```
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
@@ -123,11 +94,13 @@ Different BLAST:
 
 <!--Is that the step where we also have added a mitochondrial contig from a distant relative and they should notice that?-->
 
-Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command 'grep' to find the contig in the assembly file. You will need the -A tag as well. <!--Do they already know about grep? Also, for this step it might be easier to have one-lined fasta.--> Select a good chunk of the contig.
+Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. <!--Do they already know about grep? Also, for this step it might be easier to have one-lined fasta.--> Select a good chunk of the contig.
 
-Caution! Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the grep command above. Normally you should have a python script from labs 1 and 2 that does just that. You will use the sequential fasta in the next step too. 
+Caution! Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. Normally you should have a python script from labs 1 and 2 that does just that. You will use the sequential fasta in the next step too. 
 
-We will take a little detour as it is the first time that you work with NCBI in this course. <!--Possibly this should go somewhere else... At the beginning?--> You will find NCBI main page here: https://www.ncbi.nlm.nih.gov/ This webpage provides a lot of resources, databases, programs etc. It is easy to get lost... So before you start working with it you will perform a few tasks to get familiar with it and get an idea of what it can offer you.
+We will take a little detour as it is the first time that you work with NCBI in this course. <!--Possibly this should go somewhere else... At the beginning?--> You will find NCBI main page here: 
+https://www.ncbi.nlm.nih.gov 
+This webpage provides a lot of resources, databases, programs etc. It is easy to get lost... So before you start working with it you will perform a few tasks to get familiar with it and get an idea of what it can offer you.
 
 **Question** First, click on 'Analyze' in the middle of the page. Check the available tools and make a list of the tools that you think will be useful for this course.
 
@@ -143,21 +116,21 @@ Repeat this which each of the contigs that you identified at the previous step. 
 
 ### Create a new fasta file with mitochondrial contigs
 
-You have identified one or several contigs (usually one to four) belonging to the mitochondrial genome of your species of interest. The next step is to get a continuous DNA sequence. This will be done in this and the next step. Even if you have already a single contig at this stage, please go through the steps! In this step you will prepare a fasta file which will allow you to perform the next step - 'tiling'.
+You have identified one or several contigs (usually one to four) belonging to the mitochondrial genome of your species of interest. The next step is to get a continuous DNA sequence. This will be done in this and the next step. Even if you have already a single contig at this stage, please go through the steps! In this step, you will prepare a fasta file that will allow you to perform the next step - 'tiling'.
 
-First, create a fasta file for each of the mitochondrial contigs. The fasta file should include a header and the sequence. Adapt and modify the following command: <!--How often should we stress that they have to think about how they name the output files? and pay attention to the files structure? Should we add questions suggesting to do it in a way or another?--> 
+First, create a fasta file for each of the mitochondrial contigs. The fasta file should include a header and the sequence. Adapt and modify the following command: <!--How often should we stress that they have to think about how they name the output files? and pay attention to the file structure? Should we add questions suggesting to do it in a way or another?--> 
 
 ```
 grep -A1 name_of_contig path_to_the_assembly/assembly.fna > path_to_output/contig.fna
 ```
 
-Second, create a single fasta file with the different contigs fasta files. You can for example use the command 'cat'. <!-- cat contig1 contig2 > allcontigs.fna--> If you have a single contig, try to create a file with several copies of that contig (do not use it for the next steps though, it is only for training!).
+Second, create a single fasta file with the different contigs fasta files. You can, for example, use the command 'cat'. <!-- cat contig1 contig2 > allcontigs.fna--> If you have a single contig, try to create a file with several copies of that contig (do not use it for the next steps though, it is only for training!).
 
 ### Tiling
 
-You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. It is possible that your contigs come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this webpage: https://www.bioinformatics.org/sms/rev_comp.html <!--Or that could be one of the scripts they write?--> Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
+You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. Your contigs may come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of the tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this webpage: https://www.bioinformatics.org/sms/rev_comp.html <!--Or that could be one of the scripts they write?--> Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
 
-You are ready to connect the different contigs! For that you will use another resource: short reads data from an individual of your species of interest. Indeed, it is possible that there are gaps between the contigs that you have now. In order to get a continuous molecule, you need to fill these gaps. This is schematized in Figure X.
+You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure X.
 
 ![Figure X: An illustration of tiling. Let’s say you have three assembled contigs that you have identified as mitochondrial: Node 12, Node 26, and Node 83 (black lines). You will use reads from the .fastq file (purple lines) to bridge the gap between these three contigs. The blue lines are the sequence that you identified and used to attach the respective contigs to each other for a complete, but not yet circularized mitochondrial genome. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.](/home/gwennabreton/Documents/PhD/Teaching/1MB335_improve/Pogoda_CUREmtannotationcourse/Figure_1.2.png)
 
@@ -165,13 +138,13 @@ Your task now is to select a library of short reads for an individual of your sp
 
 **Question** Search for your species of interest. How many results do you get?
 
-Most likely your first search resulted in a lot of results. This is expected as you work with model organisms! On the left side of the result page you have different categories of data and information about the number of results in each of these categories.
+Most likely your first search resulted in a lot of results. This is expected as you work with model organisms! On the left side of the result page, you have different categories of data and information about the number of results in each of these categories.
 
-**Question** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? You can test different combinations of criteria. For those working with human data, make sure to sure to choose 'Public' in the 'Access' field. <!-- Should we give the 'answer'? or guide more the choice? or ask them to justify the choice? In the end it won't matter too much because I am not sure that we will really do the tiling. But it is a good way to get an idea of what is available I find. For example, I think that Source: DNA, Type: genome, Library layout: single, Platform: Illumina, File Type: fastq makes sense. But for D melanogaster this combination gives few results...-->
+**Question** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? You can test different combinations of criteria. For those working with human data, make sure to choose 'Public' in the 'Access' field. <!-- Should we give the 'answer'? or guide more the choice? or ask them to justify the choice? In the end it won't matter too much because I am not sure that we will really do the tiling. But it is a good way to get an idea of what is available I find. For example, I think that Source: DNA, Type: genome, Library layout: single, Platform: Illumina, File Type: `fastq` makes sense. But for D melanogaster this combination gives few results...-->
 
 Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
 
-<!--Maybe it would be easier to have them in the end use an archive that we selected. There is a lot of not straight-forward results... Moreover if we work on Uppmax, it will be easier in terms of space management. It could also be a moment where the students discuss because the different organisms give different results.-->
+<!--Maybe it would be easier to have them, in the end, use an archive that we selected. There is a lot of not straight-forward results... Moreover if we work on Uppmax, it will be easier in terms of space management. It could also be a moment where the students discuss because the different organisms give different results.-->
 
 As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. <!--It would be good to have them use fastq-dump though... Maybe we can do that at another point.--> You will find it here: XX.
 
@@ -183,13 +156,13 @@ You are now ready to perform tiling. For that, you will select a short section o
 grep AATTTGGGTTTACTAG path_to_short_reads_library/library.fastq
 ```
 
-You should see in the terminal a series of reads which contain exactly that sequence. If everything went right, the sequence just after your short sequence (which should be highlighted in the results) is the continuation of your contig. See whether it seems to be the same sequence in all or most of the selected reads. If it is the case, choose one hit where the search 'word' is towards the beginning (caution! invert if you choose a word at the beginning not at the end of the contig) and select the sequence that comes after the highlighted word. Copy that sequence into your fasta file below the entry of the contig that you selected the word from. Don't forget to add a header!
+You should see in the terminal a series of reads which contain exactly that sequence. If everything went right, the sequence just after your short sequence (which should be highlighted in the results) is the continuation of your contig. See whether it seems to be the same sequence in all or most of the selected reads. If it is the case, choose one hit where the search 'word' is towards the beginning (caution! invert if you choose a word at the beginning, not at the end of the contig) and select the sequence that comes after the highlighted word. Copy that sequence into your fasta file below the entry of the contig that you selected the word from. Don't forget to add a header!
 
 Repeat this twice - but this time the 'word' in the grep command is from the end of the sequence you just added.
 
 <!--This part can be adapted depending on the data we choose to work with. But it's still might be worth it that they try - if we limit it, e.g. to nine trials and then they are "allowed" to move on.--> 
 
-You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contig. Reorganize your fasta file so that it goes: first contig ; new sequences 1 to 3; contig which connects to new sequence. Remove the overlap if there is some. Now you can continue with the end of the second contig.
+You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some. Now you can continue with the end of the second contig.
 
 If it does not connect, you have to continue a bit. Take about 30 bp from the end of the last sequence you added, and grep for it in the short reads library. Add the new piece of sequence, repeat two more times. Then grep in your fasta file. Does it connect? If yes, proceed as the previous paragraph. If not, repeat the process in this paragraph one last time. If it still does not connect, have a closer look at your data. Do you see many repeats?
 
@@ -199,13 +172,13 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 
 <!--Do we want to include the part about error correction, which involves mapping and visualization? I have not tried to run it yet, but if it works properly it should be interesting for the students.-->
 
-### Orient to canonical start location in the mitochondrial genome (*cox1*).
+### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
-Congratulations! You now have a circular mitochondrial genome. The last step today is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. <!--Does that not apply to model organisms?--> To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open a NCBI blast window and select nucleotide blast. Paste your mitochondrial sequence.
+Congratulations! You now have a circular mitochondrial genome. The last step today is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. <!--Does that not apply to model organisms?--> To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste your mitochondrial sequence.
 
 **Question** To which organism does the best hits belong too?
 
-Since you are working with model organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more intersting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. <!--Does that sound too lame?--> You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
+Since you are working with model organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. <!--Does that sound too lame?--> You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
 
 Model organism | Close relative
 ---------------|---------------
@@ -220,13 +193,13 @@ In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Org
 
 **Question** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers) <!--Info should be easy to find in the table. Give NC number, sometimes also e.g. KY.-->
 
-Then click on the identifier. You should be taken to a page which looks like that one: https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4, except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises many information, including annotations. You want the sequence of the *cox 1* gene. Search for it in the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria, but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that one: https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4, except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises much information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
-Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) by several different ways, using different identifiers etc.
+Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
-**Question** Estimate the length of the **cox 1** coding sequence with the command wc -m. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
+**Question** Estimate the length of the **cox 1** coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
 
-**The next step is described in great details in the manual from C Pogoda, p14 to 16. I will modify and summarize it here later. The process should not take too long for the students.**
+**The next step is described in great detail in the manual from C Pogoda, p14 to 16. I will modify and summarize it here later. The process should not take too long for the students.**
 
 <!--At the moment and considering the part missing above, Lab 4 is about 3000 words long.-->
   
@@ -235,3 +208,4 @@ Comment about NCBI: as you might start to notice, you can access a given page of
 <!--make a cartoon of different blast? Submit answers to two or three of the questions?-->
 
 TO DECIDE.
+
