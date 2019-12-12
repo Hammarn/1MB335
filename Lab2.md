@@ -229,6 +229,45 @@ while counter < 5:
     counter+=1
 ```
 
+#### Writing and Opening files
+Opening files in python is done with the `open` function, it takes the file name and a 'mode' as input. I.e. if you want to read(`'r'`) or write(`'w'`)  to/from the file.
+
+```
+fh = open(“hello.txt”, “r”) 
+```
+If you just want to print the contents of the file:
+
+```
+Fh = open(“hello.txt”, “r”) 
+print fh.read() 
+```
+and to read a line at a time use `readline`:
+
+```
+fh = open(“hello.text”, “r”) 
+print fh.readline() 
+```
+
+Writing is then done with `.write()`
+
+
+```
+#Need to open the file for wr
+fh = open("output.txt",'w')
+fh.write("Stuff you write here get's added to the file")
+fh.write("Writing another line")
+```
+
+
+#### With open
+The with open syntax is generally recomended as you get a clear syntax and files will be automatically closed:
+
+```
+with open('output.txt', 'w') as file:  # Use file to refer to the file object
+    file.write('Hi there!')
+```
+
+In the above code the filehandle is only open during the loop, so there is no risk of leaving a file open. This is ususally not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could possibly cause a problem.
 
 
 
