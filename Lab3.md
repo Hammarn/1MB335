@@ -4,8 +4,6 @@
 
 You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in lab 4!
 
-<!-- I tried with two assemblies of C elegans and there was a single long mitochondrial contig. I will write a comment about that in the tutorial. Later we can either find fragmented assemblies or fragment them ourselves (?). -->
-
 ## Goals
 
   + Prepare a circular, orientated mitochondrial genome for annotation.
@@ -199,14 +197,14 @@ Congratulations! You now have a circular mitochondrial genome. The last step tod
 
 **Question** To which organism does the best hits belong too?
 
-Since you are working with model organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. <!--Does that sound too lame?--> You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
+Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
 
-Model organism | Close relative
+Study organism | Close relative (Model organism)
 ---------------|---------------
-Caenorhabditis elegans      | Caenorhabditis remanei
-Mus musculus   | ?
-Drosophila melanogaster | ?
-Homo sapiens   | Chimp?
+Caenorhabditis remanei | Caenorhabditis elegans
+? | Mus musculus
+? | Drosophila melanogaster
+Chimp? | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
@@ -214,7 +212,7 @@ In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Org
 
 **Question** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers) <!--Info should be easy to find in the table. Give NC number, sometimes also e.g. KY.-->
 
-Then click on the identifier. You should be taken to a page that looks like that one: https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4, except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises much information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that one: https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4, except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
@@ -222,7 +220,7 @@ Comment about NCBI: as you might start to notice, you can access a given page of
 
 **The next step is described in great detail in the manual from C Pogoda, p14 to 16. I will modify and summarize it here later. The process should not take too long for the students.**
 
-<!--At the moment and considering the part missing above, Lab 4 is about 3000 words long.-->
+<!--At the moment and considering the part missing above, Lab 3 is about 3000 words long.-->
   
 ## Report:
 
