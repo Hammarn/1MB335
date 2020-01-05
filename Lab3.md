@@ -2,7 +2,7 @@
 
 ## Introduction / Background information to lab 3
 
-You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). Once all of this is done, you will be all set for starting annotating in lab 4!
+You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in lab 4!
 
 <!-- I tried with two assemblies of C elegans and there was a single long mitochondrial contig. I will write a comment about that in the tutorial. Later we can either find fragmented assemblies or fragment them ourselves (?). -->
 
@@ -22,7 +22,7 @@ You received a whole-genome assembly comprising nuclear and mitochondrial contig
 
 <!-- what do we consider to be an output? for example, is the blast output one? or only the circularized mitochondria?-->
 
-  + a circularized, orientated mitochondria for your species of interest (format: fasta).
+  + a circularized, orientated mitochondria for your species of interest (format: `fasta`).
   
 ## Tools
 
@@ -32,19 +32,36 @@ You received a whole-genome assembly comprising nuclear and mitochondrial contig
   
 ## Steps
 
-  + `blastx`: blast the assembly to the set of mitochondrial proteins to identify the mitochondrial contigs.
-  + validate via web-based blast that the identified contigs are mitochondrial.
-  + create a new fasta file with mitochondrial contigs
-  + tiling
+  + `blastx`: blast the assembly to the set of mitochondrial proteins to identify the mitochondrial contigs,
+  + validate via web-based blast that the identified contigs are mitochondrial,
+  + create a new fasta file with mitochondrial contigs,
+  + tile,
   + orient to the canonical start location in the mitochondrial genome (cox1).
 
 ## Details
+
+### Set up your working space
+
+If you have not done so before, now is a good time to set up your working space on the cluster.
+
+The course is accessible at: `/proj/g2019029/private/`
+
+You will find data in: `/proj/g2019029/private/DATA/` and scripts in `/proj/g2019029/private/SCRIPTS`.
+
+Create your own folder under: `/proj/g2019029/private/RESULTS` (for example: `firstname_lastname`). Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
 
 ### Identify the mitochondrial contigs in your assembly    
 
 For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavors, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
 
-**Question** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files? <!-- obviously nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
+The assemblies are in subfolders of: `/proj/g2019029/private/DATA/assemblies`
+
+The set of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
+
+**Question** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files?
+
+Comment: the assembly file is compressed; use for example `zcat` to visualize it.
+<!-- nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
 Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in labs 1 and 2) and load the corresponding module:
 
@@ -52,19 +69,23 @@ Before running BLAST, you need to make a database out of the set of proteins. On
 module load bioinfo-tools blast/2.9.0+
 ```
 
-Then, adapt and run the following command:
+You are going to modify file so you should make a copy to your own folder (of the set of proteins) and work on that copy. Then, adapt and run the following command:
 
 ```
-makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl <!-- the dbtype could also be prot -->
+makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl 
 ```
+
+<!-- the dbtype could also be prot -->
 
 **Question** How many new files are created? Can you read them? <!-- three files: `.nhr`, `.nin`, `.nsq` All binary `.nhr` is the header, `.nin` the index and `.nsq` is  the sequence file, see here: https://www.biostars.org/p/111501/ . -->
 
-Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. <!--Or we have them try different blast and compare results - e.g. `blastn` can be done with the same inputs. --> Adapt and run the following command:
+Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. <!--Or we have them try different blast and compare results - e.g. `blastn` can be done with the same inputs. --> Adapt and run the following command, which might take a few minutes to complete:
 
 ```
-tblastx -query path_to_the_assembly/assembly.fna -db path_to_the_protein_set/protein_set.fasta -outfmt 6 -out outfile_name.blast
+gzip -dc path_to_the_assembly/assembly.fna.gz | tblastx -query - -db path_to_the_protein_set/protein_set.fasta -outfmt 6 -out outfile_name.blast
 ```
+
+Comment: the first part of the command (`gzip -dc`) is because we need to decompress the assembly file before running blast.
 
 **Question** Open the output file. What do you see? Can you make sense of the different columns? <!-- col1: query contig; col2: match in the database; etc. See here for example: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6 -->
 
@@ -146,7 +167,7 @@ Now that you narrowed down your search, open a few of the results and read the i
 
 <!--Maybe it would be easier to have them, in the end, use an archive that we selected. There is a lot of not straight-forward results... Moreover if we work on Uppmax, it will be easier in terms of space management. It could also be a moment where the students discuss because the different organisms give different results.-->
 
-As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. <!--It would be good to have them use fastq-dump though... Maybe we can do that at another point.--> You will find it here: XX.
+As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. <!--It would be good to have them use fastq-dump though... Maybe we can do that at another point.--> You will find it in a subfolder of: `/proj/g2019029/private/DATA/sra/`.
 
 **Question** What is the format of the file? Do you understand what the different lines are? How long are the reads? <!--FASTQ - header - starts with @, raw sequence letter, optional header - starts with +, quality value for each of the bases in line 2. For the length of the reads they can use $wc -m.-->  
 
@@ -168,7 +189,7 @@ If it does not connect, you have to continue a bit. Take about 30 bp from the en
 
 If you have a single contig from the beginning, follow the instructions nevertheless. Does the beginning and end of your contig connect or do you need to add sequences from the short reads?
 
-At this stage, make a copy of your fasta file to keep a record of what you did. Then clean up your fasta file, i.e. remove the headers and sequences of the fragments that you are not using (e.g. the reverse complements of contigs) and make a single sequence of all the contigs and extra bits which belong together (see Figure X - you only want the black and the blue segments). Alternatively, use the ready fasta file here: XX. <!--We might need them to use the ready one actually - e.g. for C elegans the contig I found missed a few base pairs...--> <!--or we make a fake short read library.-->
+At this stage, make a copy of your fasta file to keep a record of what you did. Then clean up your fasta file, i.e. remove the headers and sequences of the fragments that you are not using (e.g. the reverse complements of contigs) and make a single sequence of all the contigs and extra bits which belong together (see Figure X - you only want the black and the blue segments). Alternatively, use the ready fasta file here: `/proj/g2019029/private/DATA/mitochondrial_genomes`.
 
 <!--Do we want to include the part about error correction, which involves mapping and visualization? I have not tried to run it yet, but if it works properly it should be interesting for the students.-->
 
