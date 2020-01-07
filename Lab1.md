@@ -174,8 +174,14 @@ grep PCA short_pca.txt | wc -l
 Try it for the full article as well!
 Write down the answers!
 
+--
 
+### Hidden word exercise 
+Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md).
 
+Do not continue with the next part until you are down with it. 
+
+--
 
 #### Working remotely 
 The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
@@ -198,7 +204,7 @@ Ok time for something perhaps a bit more fun. Some genetic data!
 
 #### Manipulate blastoutput? 
 
-### bam files
+### BAM files
 
 In directory XX/XX you have a `.bam` file. The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
 If you want to read more about the file format(s) you can have a look at the official documentation:
@@ -220,7 +226,7 @@ Before using it have a look at the file sizes of the two different formats.
 ls -lh 
 ```
 
-With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. 
+With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file is 117 GB.
 
 ##### The `.bam` file is just for a small part of the genome, which ones? 
 use `samtools view` and `head` and `tail` to figure out the first and last position.
