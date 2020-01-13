@@ -196,13 +196,11 @@ ssh your_user_name@rackham.uppmax.uu.se
 After entering that you command you will be prompted to enter your password.
 
 
-
+---
 
 
 Ok time for something perhaps a bit more fun. Some genetic data!
 
-
-#### Manipulate blastoutput? 
 
 ### BAM files
 
@@ -220,16 +218,22 @@ module load bioinfo-tools
 module load samtools/1.9
 ```
 
+The **BAM** files can found here:
+
+```
+/proj/g2019029/private/DATA/BAM
+```
+
 Before using it have a look at the file sizes of the two different formats.
 
 ```
 ls -lh 
 ```
 
-With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file is 117 GB.
+With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was 117 GB for reference.
 
 ##### The `.bam` file is just for a small part of the genome, which ones? 
-use `samtools view` and `head` and `tail` to figure out the first and last position.
+use `samtools view` and `head` and `tail` to **figure out the first and last position**.
  
 
 ##### Use `cut` to extract only the name and nucleotide sequence from the `.bam` file. 
@@ -237,23 +241,39 @@ use `samtools view` and `head` and `tail` to figure out the first and last posit
 First, figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
 
-#### More uppmax stuff
-Possible things:
+
+###Basic bash scripting for future reference 
+Bash is a programming language in itself so it is possible to set up quite advanced workflows with it. The most simple bash script is just a normal command you would type on the command line saved to a file. Or more realistically you might want to run a couple of things that takes a few minutes or hours after each other.
+This is something that you definetly will do in your future bioinformatic career.
+
+An example of something like that:
 
 ```
- - modules 
- - uquota
- - jobinfo
- - interactive window
- - x11 evince etc.
- - slurm, submitting jobs. 
+
+echo “Wait for 5 seconds”
+sleep 5
+echo “Completed”
+
 ```
 
- file/directory architecture?
- Lab1 , Lab2
- bash loop?
- 
- 
- toy examples of a bash script?
+Add the above text to a file called `sleep.sh` and the execute it with
+
+```
+./ sleep.sh
+```
+You can see that the code is executed sequentially, it does not progress to the next line until the previous one has finished.
+
+A an example of use case could be that you have data on a local server that you want to transfere to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
+
+
+```
+### Standing at the remote server copy the local files there
+scp my_user@remote_server:local_file .
+### Do the analysis
+run_analysis.sh local_file > output_file
+### Copy results back
+scp output_file my_user@remote_server:
+```
+
 
 
