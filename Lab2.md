@@ -217,10 +217,47 @@ Dictionaries have several inbuild methods some of these are:
 ### Loops
 
 #### If
+The most simple condition in python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
+
+*Remember that Python uses white spaces to define blocks of code and new lines*
+
+```
+x = 10
+y = 200
+if x > y:
+  print("x is bigger than y")
+```
+
+#### elif
+elif is the pythonic way of saying "if the previous conditions were not true, then try this condition"
+
+```
+x = 10
+y = 200
+if x > y:
+  print("x is bigger than y")
+elif x==y
+	print ("x is equal to y")
+
+```
+
+### Else
+An Else block is only entered if none of the preceeding blocks where entered (i.e. true):
+
+```
+x = 10
+y = 200
+if x > y:
+  print("x is bigger than y")
+elif x==y:
+	print ("x is equal to y")
+else:
+	print("x is smaller than y")
+```
 
 
 #### While 
-
+Execution stays within a block **while** the condition is true. That
 
 ```
 counter = 1
@@ -229,10 +266,49 @@ while counter < 5:
     counter+=1
 ```
 
+#### Writing and Opening files
+Opening files in python is done with the `open` function, it takes the file name and a 'mode' as input. I.e. if you want to read(`'r'`) or write(`'w'`)  to/from the file.
+
+```
+fh = open(“hello.txt”, “r”) 
+```
+If you just want to print the contents of the file:
+
+```
+Fh = open(“hello.txt”, “r”) 
+print fh.read() 
+```
+and to read a line at a time use `readline`:
+
+```
+fh = open(“hello.text”, “r”) 
+print fh.readline() 
+```
+
+Writing is then done with `.write()`
+
+
+```
+#Need to open the file for wr
+fh = open("output.txt",'w')
+fh.write("Stuff you write here get's added to the file")
+fh.write("Writing another line")
+```
+
+
+#### With open
+The with open syntax is generally recomended as you get a clear syntax and files will be automatically closed:
+
+```
+with open('output.txt', 'w') as file:  # Use file to refer to the file object
+    file.write('Hi there!')
+```
+
+In the above code the filehandle is only open during the loop, so there is no risk of leaving a file open. This is ususally not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could possibly cause a problem.
 
 
 
-### Formatting Fasta files
+### Formating Fasta files
 The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater-than sign (>) indicates the start of the header and the following line(s) is the sequence. 
 
 Example sequence:
@@ -266,6 +342,7 @@ Code skeleton here:
 
 
 ### Extract position 20 etc..
+
 
 
 ### Reformat files, biopython 
