@@ -1,4 +1,4 @@
-# Lab 1 - basic command line tutorial
+# Session 1 - basic command line tutorial
 
 ### What is UNIX?
 
