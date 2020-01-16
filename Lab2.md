@@ -1,4 +1,4 @@
-# Lab 2 - Python
+# Session 2 - Python
 In this lab, you will get an introduction to the programming language Python. 
 ## Introduction 
 
