@@ -61,7 +61,7 @@ The set of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
 Comment: the assembly file is compressed; use for example `zcat` to visualize it.
 <!-- nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
-Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in labs 1 and 2) and load the corresponding module:
+Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in Sessions 1 and 2) and load the corresponding module:
 
 ```
 module load bioinfo-tools blast/2.9.0+
@@ -115,7 +115,7 @@ Different BLAST:
 
 Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. <!--Do they already know about grep? Also, for this step it might be easier to have one-lined fasta.--> Select a good chunk of the contig.
 
-Caution! Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. Normally you should have a python script from labs 1 and 2 that does just that. You will use the sequential fasta in the next step too. 
+Caution! Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. Normally you should have a python script from Sessions 1 and 2 that does just that. You will use the sequential fasta in the next step too. 
 
 We will take a little detour as it is the first time that you work with NCBI in this course. <!--Possibly this should go somewhere else... At the beginning?--> You will find NCBI main page here: 
 https://www.ncbi.nlm.nih.gov 
