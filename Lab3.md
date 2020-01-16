@@ -1,8 +1,17 @@
 # Session 3 - Prepare your mitochondrial genome
 
-## Introduction / Background information to Session 3
+## General introduction to sessions 3 to 5
 
-You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in lab 4!
+<!-- Complete and improve! -->
+In these three labs, you will work with mitochondrial genomes. Mitochondria are present in all eukaryotic cells (for a review, see 'Origin and diversification of mitochondria', Roger et al.), where among many other functions it supplies the cells with chemical energy (ATP). Here, we will focus on the genomes present in mitochondria; mitochondrial genomes present the advantage of being relatively small compared to nuclear genomes (e.g. 16,000 base pairs in humans), thus facilitating bioinformatic operations in the labs. They are also present in many copies in the cells, thus they are relatively easy to sequence even in extreme cases where DNA is often limited such as environmental DNA or ancient DNA studies. Although mitochondrial genomes can take many different forms depending on the species, they all contain a series of conserved protein-coding genes as well as rRNA and tRNA; this makes mitochondrial genomes good candidates for comparative analyses between different species.
+
+During these three sessions, your main task will be to annotate the mitochondrial genome of one of the following organisms: great apes, mouse, fruit fly or nematode. When you each have annotated the genome of your organism, you will compare and contrast your annotations with those from other students who worked on the other species. To complete this task, you will need what you learned during sessions 1 and 2, and you will use some parts of your annotated mitochondrial genome and that of your colleagues during sessions 6 to 8.
+
+The steps you will follow in sessions 3 (assembling the genome) and 4 (annotation) are similar to what you would do if you were to annotate *de novo* an unknown mitochondrial genome. However, as the goal of these labs is mainly to familiarize yourself with bioinformatics rather than with annotation, we chose to work with model organisms (or close relatives of model organisms) for which annotated genomes are already available. This means that your task will be greatly simplified. However, you should be able to use the same tools to annotate a new mitochondrial genome if you wish too!
+
+## Introduction / Background information to session 3
+
+You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in session 4!
 
 ## Goals
 
@@ -61,7 +70,7 @@ The set of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
 Comment: the assembly file is compressed; use for example `zcat` to visualize it.
 <!-- nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
-Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in Sessions 1 and 2) and load the corresponding module:
+Before running BLAST, you need to make a database out of the set of proteins. On Uppmax you will first have to start an interactive window (refer to instructions in sessions 1 and 2) and load the corresponding module:
 
 ```
 module load bioinfo-tools blast/2.9.0+
