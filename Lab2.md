@@ -310,7 +310,7 @@ In the above code the filehandle is only open during the loop, so there is no ri
 
 
 ### Formating Fasta files
-The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater-than sign (>) indicates the start of the header and the following line(s) is the sequence. 
+The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. 
 
 Example sequence:
 
@@ -320,15 +320,16 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
 FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
-Your task is to write a python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines and convert it into a one where the sequence is stored on a single line. 
+**Task**:
+Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the sequence is stored on a single line ("sequential"). 
 
 ### Reverse complement
-A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it's basically random in which orientation your sequence it. Thus it is important to be able to reverse complement your sequence. 
+A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it is basically random in which orientation your sequence is. Thus it is important to be able to reverse complement your sequence. 
 
-Task:
-Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output. 
+**Task:**
+Write a program that takes a nucleotide fasta file as input and returns a reverse complemented file as output. 
 
-E.G
+E.g.
 
 ```
 >NC_011137.1:5899-7440 Homo sapiens neanderthalensis mitochondrion, complete genome
