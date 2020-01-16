@@ -1,6 +1,6 @@
-# Lab 3 - prepare your mitochondrial genome
+# Session 3 - Prepare your mitochondrial genome
 
-## Introduction / Background information to lab 3
+## Introduction / Background information to Session 3
 
 You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in lab 4!
 
