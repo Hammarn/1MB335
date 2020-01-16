@@ -183,7 +183,7 @@ Do not continue with the next part until you are down with it.
 
 --
 
-#### Working remotely 
+### Working remotely 
 The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
 To connect to a remote Unix server the protocol `ssh` is typically used.
 
