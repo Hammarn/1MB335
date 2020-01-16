@@ -1,4 +1,4 @@
-# Lab 5 - compare with genomes from other species
+# Session 5 - compare with genomes from other species
 
 START HERE
 
@@ -12,7 +12,7 @@ Comment: discovery that organelles have separate DNA: in the sixties.-->
 
 <!--In the worst case use the alignment tutorial from last year (for pairwise alignment).-->
 
-## Introduction / Background information to lab 4
+## Introduction / Background information to Session 4
 
 ## Goals
 
