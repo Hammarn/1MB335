@@ -4,7 +4,8 @@ _This exercise was modifed from  an original idea by Kristian Rother, see www.ac
 
 ## Introduction
 
-The goal of this exerice is to use and test what you have learned today about interacting with the command line on Unix/Linux
+The goal of this exercice is to use and test what you have learned today about interacting with the command line on Unix/Linux.
+
 You will have to:
 
 * Navigate directories and files
@@ -17,10 +18,10 @@ You will have to:
 Before starting, the [hidden\_word\_exercise.zip](hidden_word_exercise.zip) file with the exercise material must be downloaded to a Linux computer, and unpacked in your home directory.
 
 ### Task
-In this exercise, you will be searching for 12 characters making 2 words. All characters are hidden in the exercises below. All exercises should be solved using the Unix command line only.
+In this exercise, you will be searching for 12 characters making two words. All characters are hidden in the exercises below. All exercises should be solved using the Unix command line only.
 Write down the letters you acquire!
 
-NOTE: In these exercises, you will run several small Perl scripts. If you are curious, don`t hesitate to open them and try to understand what they do.
+NOTE: In these exercises, you will run several small Perl scripts. If you are curious, don't hesitate to open them and try to understand what they do.
 
 
 
@@ -43,7 +44,7 @@ In the directory `exercise_2/`, you will find the text file `solution_2.1.txt`. 
 
 
 ### 2.2 Edit text files
-To find character number six, you will need to create a text file in the `ex- ercise_2` directory. On Linux and MacOS, you can do this using for example the editor `nano`. You can start this program by typing the name of the program followed by the name of the file you want to create (we will name this file solution_2.2.txt): 
+To find character number six, you will need to create a text file in the `exercise_2` directory. On Linux and MacOS, you can do this using for example the editor `nano`. You can start this program by typing the name of the program followed by the name of the file you want to create (we will name this file solution_2.2.txt): 
 ```
 nano solution_2.2.txt
 ```
@@ -70,5 +71,5 @@ see, it is a rather long file with 269 lines (you can run the command `wc -l tex
 To discover the last 2 hidden characters, you need to run the Perl program `get_last2char.pl`, which requires as argument on the command line the number of lines in `text.txt` that contain the word `bioinformatics`. Combine `grep` and `wc` to help you find this number (hint: the `|` symbol can be used to combine commands).
 Now you should have all the letters you need to make out the hidden word. Show it the assistants to be done with this exercise.
 
-Voila! This is the end of this tutorial.
+Voilà! This is the end of this tutorial.
 
