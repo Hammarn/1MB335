@@ -100,12 +100,12 @@ Strings are, as you can see just characters, such as our "Hello world" example a
 They can be assigned as such:
 
 ```
->>>my_string = "Hello"
+my_string = "Hello"
 ```
 And lists:
 
 ```
->>>my_list = ['Hello', 'word']
+my_list = ['Hello', 'world']
 ```
 
 Both lists and strings can be sliced and indexed:
@@ -152,10 +152,11 @@ Used in practise:
 ```
 >>> my_list.append("cool beans")
 >>> my_list
-['Hello', 'word', 'cool beans']
+['Hello', 'world', 'cool beans']
 >>>my_list.pop()
 'cool beans'
 >>> my_list
+>>> ['Hello', 'world']
 ```
 
 
@@ -257,7 +258,7 @@ else:
 
 
 #### While 
-Execution stays within a block **while** the condition is true. That
+Execution stays within a block **while** the condition is true. Keep in mind that this can lead to the program becoming stuck in an endless loop. 
 
 ```
 counter = 1
@@ -276,7 +277,7 @@ If you just want to print the contents of the file:
 
 ```
 Fh = open(“hello.txt”, “r”) 
-print fh.read() 
+print(fh.read()) 
 ```
 and to read a line at a time use `readline`:
 
@@ -293,6 +294,8 @@ Writing is then done with `.write()`
 fh = open("output.txt",'w')
 fh.write("Stuff you write here get's added to the file")
 fh.write("Writing another line")
+# Closing the file
+fh.close()
 ```
 
 
@@ -305,6 +308,20 @@ with open('output.txt', 'w') as file:  # Use file to refer to the file object
 ```
 
 In the above code the filehandle is only open during the loop, so there is no risk of leaving a file open. This is ususally not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could possibly cause a problem.
+
+
+Something that might be of use to you while doing the exercises below is the `.strip()` method. If invoked on a string it will by default remove white spaces from the begining and end of strings:
+
+```
+>>>some_string = "   hello this is a string    "
+>>>some_string.strip()
+'hello this is a string'
+## Can be used to remove other characters as well:
+another_string = ",,,,,Lorem ipsum dolor sit amet, consectetur adipiscing elit...."
+another_string.strip(",.")
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+
+```
 
 
 
@@ -346,10 +363,5 @@ Code skeleton here:
 
 
 ### Reformat files, biopython 
-
-
-
-### save and upload files from a remote server
-SFTP - scp - rsync
 
 
