@@ -323,7 +323,18 @@ another_string.strip(",.")
 
 ```
 
+### Importing libraries
+One of the strenghts of Python is the many libraries, both built in others that you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programing chances are quite high that someone else have had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be avare of are `numpy` for handling numbers and `pandas` for data analys, such as reading files and storing them in more clever formats that pythons built in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than useing just base python. 
 
+How it import a library then. It's rather simple. You just type `import` followed by the name of the library.
+
+**Question**
+Run the code below, what happens? What do you think is the purpose of it?
+
+``` 
+import this
+```
+______
 
 ### Formating Fasta files
 The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater-than sign (>) indicates the start of the header and the following line(s) is the sequence. 
@@ -338,11 +349,16 @@ DIDGDGQVNYEEFVQMMTAK*
 ```
 Your task is to write a python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines and convert it into a one where the sequence is stored on a single line. 
 
+
+
 ### Reverse complement
 A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it's basically random in which orientation your sequence it. Thus it is important to be able to reverse complement your sequence. 
 
-Task:
-Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output. 
+##### Question:
+
+**Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output.** 
+
+You can take use [this example file as input](example_data/fasta_file.fasta).
 
 E.G
 
@@ -355,13 +371,71 @@ ATGTTCGCCGACCGTTGACTATTCTCTACAAACCACAAAGACATTGGAACACTATACCTACTATTCGGCGCATGAGCTGG
 GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTAGAGAATAGTCAACGGTCGGCGAACAT
 ```
 
-Code skeleton here: 
+### Regular expressions
+If you are unfamiliar with regular expressions, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
 
 
-### Extract position 20 etc..
+`>\w*` 
+
+matches `>NC_011137` in the title string from the fasta example above. > is just the character  > \w* means any "word" character repeating, without the star the match would be only `>N`.
+
+Regular expressions or regex are in python handled my the built in `re` library it can be accessed as such:
+
+```
+import re
+```
+
+To then actually use it you have to first compile the regex you want to use and then search it in a string.
+Then you use one of the matching options `.findall()`, `.search()` or `.match()`. 
+We can use `findall` to count the numer of 'PCA' in the PCA article from Lab1. Findall returns a list of all the matches(in this case just 'PCA'):
+
+```
+import re
+
+with open('example_data/PCA.txt', 'r') as f:
+    text = f.read()
+
+pattern = re.compile(r"PCA")
+result = pattern.findall(text)
+print("There are {} instances of the word 'PCA' in the wikipedia article about PCA".format(len(result)) )
+```
+If you run it then it returns:
+
+`There are 162 instances of the word 'PCA' in the wikipedia article about PCA`
+ 
+Another useful way of doing regex matches is the `.search()` method. It returns a `Match` object which can be used to get out information about the match such as position:
+
+Method | Description
+---|---
+.span()| returns a tuple containing the start-, and end positions of the match.|
+.string |returns the string passed into the function |
+.group() |[returns the part of the string where there was a match | 
+
+```
+import re
+#Fasta sequence from above
+target ="ATGTTCGCCGACCGTTGACTATTCTCTACAAACCACAAAGACATTGGAACACTATACCTACTATTCGGCGCATGAGCTGGAGTCCTAGGCACAGCTCTAAGCCTCC"
+pattern = re.compile("TATA")
+
+match = pattern.search(target)
+
+print("The TATA box is between base {} and base {}".format(match.span()[0],match.span()[1]))
+
+```
+Which returns:
+`The TATA box is between base 52 and base 56`
+
+If you really want to dig down into `re` and regexes in python you can have a look at the [python3 documentation](https://docs.python.org/3/library/re.html). 
 
 
+#### Your task:
 
-### Reformat files, biopython 
+Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.fasta) and saves the gene name (eg ATP6 ) as the key in a **dictionary** with the sequence as the value. 
+The script should then print out, with some nice padding text:
+
+ * The number of total sequences in the file.
+ * The names of all genes/features in the file.
+ * The name each gene followed by it's lenght.
 
 
+You can use wich ever method descibed in this lab. 
