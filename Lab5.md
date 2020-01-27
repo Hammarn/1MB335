@@ -1,27 +1,39 @@
 # Session 5 - compare with genomes from other species
 
-START HERE
+## Introduction / Background information to Session 5
 
-<!--Maybe we should add genomes from species which are actually quite different (on top of the four) (e.g. Saccharomyces cerevisiae as that would be one more model organism). Then fill a table (which genes in which species). Then do alignments and possibly compare different genes e.g. cytb versus another one? (versus a nuclear gene?)
-Is it the right moment to compare to NUMTs? See this paper: Mitochondrial DNA-like sequences in the nucleus (NUMTs): insights into our African origins and the mechanism of foreign DNA integration [there is a table listing the genes in which they found NUMT based on similarity with mtDNA. And coordinates for where the NUMT are in these genes. But not sure which reference genome they used...]. Some NUMT are present in more than one copy. Different ages of NUMTS. They could each choose a NUMT from the table of the paper (if we know how to convert to the right reference genome that is...). Actually blast seem to be strategy to identify NUMT (see also Bensasson et al 2001) so fits well with the whole tutorial. But there are other approaches, e.g. in this 2019 paper: A Novel Phylogenetic Approach for De Novo Discovery of Putative Nuclear Mitochondrial (pNumt) Haplotypes [the total of putative NUMT does not change dramatically though - a few hundreds]. Or Sanger sequencing (coverage, double peaks etc).
-There is also a list here: https://www.mitomap.org/foswiki/bin/view/MITOMAP/PseudogeneList (a bit more recent) (and https://www.mitomap.org/foswiki/bin/view/MITOMAP/WebHome has a lot of resources but will be down this Friday). If we want to make a connection to diseases it could be here (see wikipedia page for a first overview).
-
-Which alignment tool should we use? So many questions... I'm going to stop for today.
-
-Comment: discovery that organelles have separate DNA: in the sixties.-->
-
-<!--In the worst case use the alignment tutorial from last year (for pairwise alignment).-->
-
-## Introduction / Background information to Session 4
+In this session you will focus on aligments. As you have seen in the lecture, it is possible to align two sequences (pairwise alignments) and multiple sequences (multiple alignments). You will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligments, you will go back to working with the mitochondrial genomes from sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences!
 
 ## Goals
 
+  + Perform local and global pairwise alignments with different algorithms
+  + Explore parameters of pairwise alignments
+  + Perform multiple alignments with different softwares
+
 ## Input(s)
+
+  + Mitochondrial genomes from the following species: XX
 
 ## Output(s)
 
+  + An alignment of XX mitochondrial genome
+  + A table of mitochondrial features for X genomes
+  + Some kind of visual representation of the alignment
+
 ## Tools
+
+  + Online alignment tools : https://www.ebi.ac.uk/Tools/psa/
+  + Online tool to randomly shuffle a protein sequence: http://www.bioinformatics.org/sms2/shuffle_protein.html
 
 ## Steps
 
+  + Start by doing the pairwise alignment exercise.
+  + 
+
 ## Details
+
+### Pairwise alignment
+
+Please go through the tutorial on this page: http://teaching.bioinformatics.dtu.dk/teaching/index.php/Exercise:_Pairwise_alignment
+
+Questions are numbered from 1 to 14. For the report, you need to submit written answers to the following questions: 9, 11, 14, **more?**.
