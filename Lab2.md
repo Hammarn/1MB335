@@ -427,6 +427,9 @@ Which returns:
 
 If you really want to dig down into `re` and regexes in python you can have a look at the [python3 documentation](https://docs.python.org/3/library/re.html). 
 
+Have a look at [this cheetsheet](https://www.debuggex.com/cheatsheet/regex/python). There are many more ways of matching with regexes. 
+
+Before writing code with regexes it's usually a good idea to actually check that the expression you wrote actually does what you think it does. Have a look at [https://regex101.com/](https://regex101.com/) for a place to test them out. 
 
 #### Your task:
 
