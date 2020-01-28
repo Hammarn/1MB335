@@ -1,12 +1,12 @@
-# Lab 4 - annotate your mitochondrial genome
+# Session 4 - annotate your mitochondrial genome
 
-## Introduction / Background information to lab 4
+## Introduction / Background information to Session 4
 
 <!--How much we write here depends on how much they learn about annotation during the lectures.-->
   
-  During lab 3, you assembled a circular, orientated mitochondrial genome - basically a sequence of nucleotides. In this lab you will make sense of these nucleotides. The mitochondrial genome, like the nuclear genome, codes for proteins, transfer RNA (tRNA) and ribosomal RNA (rRNA). These elements are necessary for the function of the mitochondria. For example, the proteins are involved in ATP synthesis and protein synthesis; the tRNA are necessary for the translation from RNA to protein; and the rRNA are necessary to assemble the ribosomes. Other elements also necessary to the mitochondria' function are coded for in the nucleus.
+  During Session 3, you assembled a circular, orientated mitochondrial genome - basically a sequence of nucleotides. In this session you will make sense of these nucleotides. The mitochondrial genome, like the nuclear genome, codes for proteins, transfer RNA (tRNA) and ribosomal RNA (rRNA). These elements are necessary for the function of the mitochondria. For example, the proteins are involved in ATP synthesis and protein synthesis; the tRNA are necessary for the translation from RNA to protein; and the rRNA are necessary to assemble the ribosomes. Other elements also necessary to the mitochondria' function are coded for in the nucleus.
 
-'Annotation' means finding the location of the different elements in the genomes. This can be done in different ways. For example, one can look for conserved sequences between different species. It is also possible to predict the location of protein coding gene by searching for start codon and promoters. <!--Add more background if needed.--> Once you have annotated the genome and know where a given gene is, it is easy to extract that gene and e.g. use it for comparative approaches (lab 5) or to build phylogenies (labs 6-8). <!--Say something that it would be more difficult if they did not have model organisms, and that we are going to cheat a bit?-->
+'Annotation' means finding the location of the different elements in the genomes. This can be done in different ways. For example, one can look for conserved sequences between different species. It is also possible to predict the location of protein coding gene by searching for start codon and promoters. <!--Add more background if needed.--> Once you have annotated the genome and know where a given gene is, it is easy to extract that gene and e.g. use it for comparative approaches (Session 5) or to build phylogenies (like you will do in the bioinformatics project: Sessions 6-8). <!--Say something that it would be more difficult if they did not have model organisms, and that we are going to cheat a bit?-->
 
 ## Goals
 
@@ -16,7 +16,7 @@
 
 ## Input(s)
 
-+ the circularized, orientated mitochondria for your species of interest (format: fasta), from lab 3.
++ the circularized, orientated mitochondria for your species of interest (format: fasta), from Session 3.
 + a list of the features that you should find in the mitochondrial genome.
 
 ## Output(s)

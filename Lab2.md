@@ -1,4 +1,4 @@
-# Lab 2 - Python
+# Session 2 - Python
 In this lab, you will get an introduction to the programming language Python. 
 ## Introduction 
 
@@ -17,13 +17,13 @@ Python is often described as a "batteries included" language due to its comprehe
 https://en.wikipedia.org/wiki/Python\_(programming\_language)
 
 
-As you might have gathered from the above excerpt, Python as an explicit goal of readability. The use of indentation to denote code blocks forces the programmer to properly indent their code. Take a look at the example below:
+As you might have gathered from the above excerpt, Python has an explicit goal of readability. The use of indentation to denote code blocks forces the programmer to properly indent their code. Take a look at the example below:
 
 ```
 if True:
    print("True")
 else:
-   print)"False")
+   print("False")
 ```
 as compared to the code below which will result in an error:
 
@@ -36,19 +36,19 @@ print "Answer"
 print "False"
 ```
 
-In many other programming languages (such as Java & C) `;` denotes a linebreak, while it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e hitting enter on your keyboard. )
+In many other programming languages (such as Java & C) `;` denotes a linebreak. While it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e. hitting enter on your keyboard. )
 
 
 ### Hello world
 
-Now it's time for you to write your first python program. We will start with the iconic "Hello world".
-Create a file in which you call the inbuilt print function with the text "Hello World".
-Save the below text to a file (hello.py) and call it:
+Now it's time for you to write your first Python program. We will start with the iconic "Hello world".
+Create a file in which you call the inbuilt `print` function with the text "Hello World".
+Save the below text to a file (hello.py): 
 
 ```
 print("hello world")
 ```
-
+Now call it:
 
 ```
 python hello.py
@@ -66,7 +66,7 @@ Complex number: A number with a real and imaginary component represented as x+yj
 
 Integer and float are the only two we need to care about right now.
 
-Open the python interpreter and try the following out:
+Open the python interpreter (type `python` in the terminal) and try the following out:
 
 ```
 >>> x = 4
@@ -85,7 +85,7 @@ We can use the inbuilt `type` function to see what types of data the above thing
 <class 'float'>
 ```
 
-The next type of data are booleans, i.e. `True` or `False` (note the capital letters)
+The next type of data are booleans, i.e. `True` or `False` (note the capital letters).
 
 Next, we have sequence types:
 
@@ -119,19 +119,19 @@ Both lists and strings can be sliced and indexed:
 
 As you can see Python is 0 indexed. 
 You can use `[-1]` to get the last item of a list or string, and `[-2]` to get the second last et cetera.  
-It's even possible to access intervals(range)of indexes. This is used with the colon `:`. For instance:
+It is even possible to access intervals (ranges) of indexes. This is used with the colon `:`. For instance...
 
 ```
 my_string[:-1]
 ```
-Returns everything except the last index. 
+... returns everything except the last index. 
 
 ```
 my_string[1:-1]
 ```
-Returns everything except the first and last index. 
+... returns everything except the first and last index. 
 
-Python lists contains many unbuilt methods for interacting with lists. As they are mutable it's possible to add and remove items. Such methods are called on the list with dot notation as such:
+Python lists contain many unbuilt methods for interacting with lists. As they are mutable it's possible to add and remove items. Such methods are called on the list with dot (`.`) notation as such:
 
 
 |Method | Description|
@@ -143,11 +143,12 @@ Python lists contains many unbuilt methods for interacting with lists. As they a
 |.extend()|    Add the elements of a list (or any iterable), to the end of the current list|
 |.index()|    Returns the index of the first element with the specified value|
 |.insert()|    Adds an element at the specified position|
-|.pop()|        Removes the element at the specified position|
+|.pop()|        Removes and returns the element at the specified position; if no index is specified, removes and returns last element of the list.|
 |.remove()|    Removes the first item with the specified value|
 |.reverse()|    Reverses the order of the list|
 |.sort()|        Sorts the list|
-Used in practise:
+
+Used in practice:
 
 ```
 >>> my_list.append("cool beans")
@@ -197,16 +198,16 @@ If we then want access the items:
 Since that is a list we can use methods that works on lists on that expression:
 
 ```
-schedule['Gwenna'][0]
+>>> schedule['Gwenna'][0]
 'Tuesday'
 >>> schedule['Gwenna'][-1]
 'Friday'
-len(schedule['Gwenna'])
+>>> len(schedule['Gwenna'])
 4
 ``` 
 `len()` returns the lenght of the provided object (string, list, dict etc.)
 
-Dictionaries have several inbuild methods some of these are:
+Dictionaries have several inbuild methods. Some of these are:
 
 |Method | Description|
 ---|---
@@ -218,38 +219,38 @@ Dictionaries have several inbuild methods some of these are:
 ### Loops
 
 #### If
-The most simple condition in python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
+The most simple condition in Python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
 
-*Remember that Python uses white spaces to define blocks of code and new lines*
-
-```
-x = 10
-y = 200
-if x > y:
-  print("x is bigger than y")
-```
-
-#### elif
-elif is the pythonic way of saying "if the previous conditions were not true, then try this condition"
+*Remember that Python uses white spaces to define blocks of code and new lines.*
 
 ```
 x = 10
 y = 200
 if x > y:
   print("x is bigger than y")
-elif x==y
+```
+
+#### Elif
+elif is the pythonic way of saying "if the previous conditions were not true, then try this condition".
+
+```
+x = 10
+y = 200
+if x > y:
+	print("x is bigger than y")
+elif x == y:
 	print ("x is equal to y")
 
 ```
 
 ### Else
-An Else block is only entered if none of the preceeding blocks where entered (i.e. true):
+An Else block is only entered if none of the preceeding blocks were entered (i.e. true):
 
 ```
 x = 10
 y = 200
 if x > y:
-  print("x is bigger than y")
+	print("x is bigger than y")
 elif x==y:
 	print ("x is equal to y")
 else:
@@ -267,11 +268,11 @@ while counter < 5:
     counter+=1
 ```
 
-#### Writing and Opening files
-Opening files in python is done with the `open` function, it takes the file name and a 'mode' as input. I.e. if you want to read(`'r'`) or write(`'w'`)  to/from the file.
+#### Opening and writing files
+Opening files in Python is done with the `open` function, it takes the file name and a 'mode' as input, depending on whether you want to read (`'r'`) or write(`'w'`)  from/to the file. It creates a file object.
 
 ```
-fh = open(“hello.txt”, “r”) 
+fh = open("hello.txt", "r") 
 ```
 If you just want to print the contents of the file:
 
@@ -282,7 +283,7 @@ print(fh.read())
 and to read a line at a time use `readline`:
 
 ```
-fh = open(“hello.text”, “r”) 
+fh = open("hello.txt", "r") 
 print fh.readline() 
 ```
 
@@ -290,7 +291,7 @@ Writing is then done with `.write()`
 
 
 ```
-#Need to open the file for wr
+#Need to open the file for writing
 fh = open("output.txt",'w')
 fh.write("Stuff you write here get's added to the file")
 fh.write("Writing another line")
@@ -300,7 +301,7 @@ fh.close()
 
 
 #### With open
-The with open syntax is generally recomended as you get a clear syntax and files will be automatically closed:
+The `with open` syntax is generally recomended as you get a clear syntax and files will be automatically closed:
 
 ```
 with open('output.txt', 'w') as file:  # Use file to refer to the file object
@@ -337,7 +338,7 @@ import this
 ______
 
 ### Formating Fasta files
-The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete but the format lives on. It's a plain text format where the greater-than sign (>) indicates the start of the header and the following line(s) is the sequence. 
+The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. 
 
 Example sequence:
 
@@ -347,12 +348,14 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
 FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
-Your task is to write a python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines and convert it into a one where the sequence is stored on a single line. 
+**Task**:
+Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the sequence is stored on a single line ("sequential"). 
 
 
 
 ### Reverse complement
-A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it's basically random in which orientation your sequence it. Thus it is important to be able to reverse complement your sequence. 
+A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it is basically random in which orientation your sequence is. Thus it is important to be able to reverse complement your sequence. 
+
 
 ##### Question:
 
@@ -360,7 +363,7 @@ A very common problem that arises when working with sequence files is that seque
 
 You can take use [this example file as input](example_data/fasta_file.fasta).
 
-E.G
+E.g.
 
 ```
 >NC_011137.1:5899-7440 Homo sapiens neanderthalensis mitochondrion, complete genome
