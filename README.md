@@ -11,9 +11,10 @@ Sessions 6 to 8 form a project during which you will receive a main question to 
 You will have to work individually, as we know from experience that when two or more people work together on the same computer,only the active student is really engaged. However, we will encourage you to communicate with each other and help each other out, as we also know from experience that explaining something to someone else is a very efficient way of learning! To this end, we included several moments in the labs where you should discuss your results with colleagues.
 
 We will use different ways of grading the labs - these will be described in the respective protocols. We encourage you to submit the reports as we progress through the sessions, so that you will get the most out of the labs and out of your teachers!
-<!-- If we include a 'bioinformatic good practices check-list' it should be mentioned here.) -->
 
 Finally, the labs you are working with this year are new or have been substantially modified compared to previous versions of this course. We did our best to make them informative and interesting, and for them to run smoothly. We welcome any comments and suggestions for improvement - do not hesitate to write them down as we go along as you might have forgotten a lot of comments by the time you fill the course evaluation! This will be very helpful for the teachers and future students. Thank you!
+
+During the course, we will use resources from SNIC-UPPMAX in the form of a course project (storage and computing hours). We hereby thank SNIC-UPPMAX for these resources.
 
 
 <!-- I think we should keep the same structure for all the labs, with for example: goal of the particular lab + how it fits with the other labs; background information if necessary; input (what they receive); outputs (what they create - which can also be input for other steps obviously); tools they will use; steps; format of report; something else? further reading? link to specific notions in the course? (both bioinformatics and genomics parts) In one of the later labs, we could even have them fill some of the steps e.g. output and tools as a task. -->
