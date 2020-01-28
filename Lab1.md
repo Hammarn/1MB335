@@ -1,4 +1,4 @@
-# Lab 1 - basic command line tutorial
+# Session 1 - basic command line tutorial
 
 ### What is UNIX?
 Unix is an operating system that was originally developed at Bell labs in the 1970s. It is based around a "modular design" where tools do very distinct and narrrow tasks. To complete more complex tasks multiple modules are then combined through the use of "pipes" - more about those later. 
@@ -181,7 +181,7 @@ Do not continue with the next part until you are down with it.
 
 --
 
-#### Working remotely 
+### Working remotely 
 The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
 To connect to a remote Unix server the protocol `ssh` is typically used.
 
@@ -203,6 +203,7 @@ Ok time for something perhaps a bit more fun. Some genetic data!
 ### BAM files
 
 The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+
 If you want to read more about the file format(s) you can have a look at the official documentation:
 https://samtools.github.io/hts-specs/SAMv1.pdf
 
@@ -216,7 +217,7 @@ module load bioinfo-tools
 module load samtools/1.9
 ```
 
-The **BAM** files can found here:
+The **BAM** file and corresponding **SAM** file can be found here:
 
 ```
 /proj/g2019029/private/DATA/BAM
@@ -240,7 +241,7 @@ First, figure out which fields it is that you want and then investigate `man cut
 
 
 
-###Basic bash scripting for future reference 
+### Basic bash scripting for future reference 
 Bash is a programming language in itself so it is possible to set up quite advanced workflows with it. The most simple bash script is just a normal command you would type on the command line saved to a file. Or more realistically you might want to run a couple of things that takes a few minutes or hours after each other.
 This is something that you definetly will do in your future bioinformatic career.
 
@@ -257,11 +258,11 @@ echo “Completed”
 Add the above text to a file called `sleep.sh` and the execute it with
 
 ```
-./ sleep.sh
+bash sleep.sh
 ```
 You can see that the code is executed sequentially, it does not progress to the next line until the previous one has finished.
 
-A an example of use case could be that you have data on a local server that you want to transfere to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
+An example of use case could be that you have data on a local server that you want to transfere to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
 
 
 ```
