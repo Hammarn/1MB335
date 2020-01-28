@@ -100,12 +100,12 @@ Strings are, as you can see just characters, such as our "Hello world" example a
 They can be assigned as such:
 
 ```
->>>my_string = "Hello"
+my_string = "Hello"
 ```
 And lists:
 
 ```
->>>my_list = ['Hello', 'word']
+my_list = ['Hello', 'world']
 ```
 
 Both lists and strings can be sliced and indexed:
@@ -153,10 +153,11 @@ Used in practice:
 ```
 >>> my_list.append("cool beans")
 >>> my_list
-['Hello', 'word', 'cool beans']
+['Hello', 'world', 'cool beans']
 >>>my_list.pop()
 'cool beans'
 >>> my_list
+>>> ['Hello', 'world']
 ```
 
 
@@ -258,7 +259,7 @@ else:
 
 
 #### While 
-Execution stays within a block **while** the condition is true. That
+Execution stays within a block **while** the condition is true. Keep in mind that this can lead to the program becoming stuck in an endless loop. 
 
 ```
 counter = 1
@@ -276,8 +277,8 @@ fh = open("hello.txt", "r")
 If you just want to print the contents of the file:
 
 ```
-fh = open("hello.txt", "r") 
-print fh.read() 
+Fh = open(“hello.txt”, “r”) 
+print(fh.read()) 
 ```
 and to read a line at a time use `readline`:
 
@@ -294,6 +295,8 @@ Writing is then done with `.write()`
 fh = open("output.txt",'w')
 fh.write("Stuff you write here get's added to the file")
 fh.write("Writing another line")
+# Closing the file
+fh.close()
 ```
 
 
@@ -308,6 +311,31 @@ with open('output.txt', 'w') as file:  # Use file to refer to the file object
 In the above code the filehandle is only open during the loop, so there is no risk of leaving a file open. This is ususally not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could possibly cause a problem.
 
 
+Something that might be of use to you while doing the exercises below is the `.strip()` method. If invoked on a string it will by default remove white spaces from the begining and end of strings:
+
+```
+>>>some_string = "   hello this is a string    "
+>>>some_string.strip()
+'hello this is a string'
+## Can be used to remove other characters as well:
+another_string = ",,,,,Lorem ipsum dolor sit amet, consectetur adipiscing elit...."
+another_string.strip(",.")
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+
+```
+
+### Importing libraries
+One of the strenghts of Python is the many libraries, both built in others that you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programing chances are quite high that someone else have had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be avare of are `numpy` for handling numbers and `pandas` for data analys, such as reading files and storing them in more clever formats that pythons built in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than useing just base python. 
+
+How it import a library then. It's rather simple. You just type `import` followed by the name of the library.
+
+**Question**
+Run the code below, what happens? What do you think is the purpose of it?
+
+``` 
+import this
+```
+______
 
 ### Formating Fasta files
 The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. 
@@ -323,11 +351,17 @@ DIDGDGQVNYEEFVQMMTAK*
 **Task**:
 Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the sequence is stored on a single line ("sequential"). 
 
+
+
 ### Reverse complement
 A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it is basically random in which orientation your sequence is. Thus it is important to be able to reverse complement your sequence. 
 
-**Task:**
-Write a program that takes a nucleotide fasta file as input and returns a reverse complemented file as output. 
+
+##### Question:
+
+**Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output.** 
+
+You can take use [this example file as input](example_data/fasta_file.fasta).
 
 E.g.
 
@@ -340,18 +374,74 @@ ATGTTCGCCGACCGTTGACTATTCTCTACAAACCACAAAGACATTGGAACACTATACCTACTATTCGGCGCATGAGCTGG
 GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTAGAGAATAGTCAACGGTCGGCGAACAT
 ```
 
-Code skeleton here: 
+### Regular expressions
+If you are unfamiliar with regular expressions, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
 
 
-### Extract position 20 etc..
+`>\w*` 
+
+matches `>NC_011137` in the title string from the fasta example above. > is just the character  > \w* means any "word" character repeating, without the star the match would be only `>N`.
+
+Regular expressions or regex are in python handled my the built in `re` library it can be accessed as such:
+
+```
+import re
+```
+
+To then actually use it you have to first compile the regex you want to use and then search it in a string.
+Then you use one of the matching options `.findall()`, `.search()` or `.match()`. 
+We can use `findall` to count the numer of 'PCA' in the PCA article from Lab1. Findall returns a list of all the matches(in this case just 'PCA'):
+
+```
+import re
+
+with open('example_data/PCA.txt', 'r') as f:
+    text = f.read()
+
+pattern = re.compile(r"PCA")
+result = pattern.findall(text)
+print("There are {} instances of the word 'PCA' in the wikipedia article about PCA".format(len(result)) )
+```
+If you run it then it returns:
+
+`There are 162 instances of the word 'PCA' in the wikipedia article about PCA`
+ 
+Another useful way of doing regex matches is the `.search()` method. It returns a `Match` object which can be used to get out information about the match such as position:
+
+Method | Description
+---|---
+.span()| returns a tuple containing the start-, and end positions of the match.|
+.string |returns the string passed into the function |
+.group() |[returns the part of the string where there was a match | 
+
+```
+import re
+#Fasta sequence from above
+target ="ATGTTCGCCGACCGTTGACTATTCTCTACAAACCACAAAGACATTGGAACACTATACCTACTATTCGGCGCATGAGCTGGAGTCCTAGGCACAGCTCTAAGCCTCC"
+pattern = re.compile("TATA")
+
+match = pattern.search(target)
+
+print("The TATA box is between base {} and base {}".format(match.span()[0],match.span()[1]))
+
+```
+Which returns:
+`The TATA box is between base 52 and base 56`
+
+If you really want to dig down into `re` and regexes in python you can have a look at the [python3 documentation](https://docs.python.org/3/library/re.html). 
+
+Have a look at [this cheetsheet](https://www.debuggex.com/cheatsheet/regex/python). There are many more ways of matching with regexes. 
+
+Before writing code with regexes it's usually a good idea to actually check that the expression you wrote actually does what you think it does. Have a look at [https://regex101.com/](https://regex101.com/) for a place to test them out. 
+
+#### Your task:
+
+Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.fasta) and saves the gene name (eg ATP6 ) as the key in a **dictionary** with the sequence as the value. 
+The script should then print out, with some nice padding text:
+
+ * The number of total sequences in the file.
+ * The names of all genes/features in the file.
+ * The name each gene followed by it's lenght.
 
 
-
-### Reformat files, biopython 
-
-
-
-### save and upload files from a remote server
-SFTP - scp - rsync
-
-
+You can use wich ever method descibed in this lab. 

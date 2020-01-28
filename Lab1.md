@@ -1,13 +1,16 @@
 # Session 1 - basic command line tutorial
 
 ### What is UNIX?
-
+Unix is an operating system that was originally developed at Bell labs in the 1970s. It is based around a "modular design" where tools do very distinct and narrrow tasks. To complete more complex tasks multiple modules are then combined through the use of "pipes" - more about those later. 
+If you are interested in learing more about UNIX then you can have a look at the [wikipedia article](https://en.wikipedia.org/wiki/Unix) for UNIX, it's quite thorough and well written.  
 ### Why are Unix systems so popular in science?
+While there is no strightforward answer to this question there are some things that are often brought up. UNIX (and unix-like systems) in it's design is quite simple and is nowadays very portable. This has lead to it being used to run anything from massive high perfomance computer clusters to tiny single board computers such as arduinos & raspberry pis. This ubiquity and popularity is probably one reason to why it is still so popular. Since the year 2000 Mac computers are also running on apples own Unix system, another popular unix-like system is the Android mobile operating system. 
+While the original UNIX operating system is a comercial system there are many Unix-like operating systems such as Linux which are free and open source (_these are generally based on the Linux kernel_).
+The ecosystem of open source and free distribution suits the academic world very well. It is not really research if you aren't charing your findings and how you came to your conclusions - that generally includes your code. 
 
 
 
-
-#### 
+#### Using UNIX
 Interaction with UNIX-style systems is typically done through a command-line interface (CLI) - a `terminal` of some sort. There is generally no GUI (graphical user interface), though there exist protocols to display graphics through the terminal such as `X11`.
 
 To communicate with the system there needs something to interpret the user's command. In a UNIX-like system, this is called a `shell`, one of the most common ones - and the one found on `Uppmax` is called Bourn-Again shell or simply `bash`.
@@ -51,12 +54,8 @@ Now try to create another directory called `directory 2`
 ```
 mkdir directory 2
 ```
-Take a look at what you did with `ls`.
+Take a look at what you did using the `ls` command.
 
-```
-ls
-2        directory
-```
 Looks like you created two directories, one called `2` and another called `directory`. Since the basic syntax for UNIX commands is:
 
 ```
@@ -64,7 +63,7 @@ command option1 option2 option3
 ```
 Each extra option to the command is separated by a space, which means that spaces and other white characters, such as tabs, are not allowed in file or directory names!
 
-To fix this issue use `rm` for, you guessed it remove.
+To fix this issue use `rm` for, you guessed it - remove.
 We can remove both at the same time:
 
 ```
@@ -107,7 +106,6 @@ Just `cd` with no options takes you to your home directory.
 
 
 
-
 ### Playing around with files
 
 ```
@@ -128,9 +126,9 @@ tail - looks at the tail of a file, by default the 10 last lines.
 ```
 
 It turns out that the PCA article is quite big, how big?
-Counting is something that is hard and slow for humans, but incredibly easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
+Counting is something that is hard and slow for humans, but easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
 
-What did you get? How many lines and words?
+**Question: What did you get? How many lines and words?**
 
 Hmm, it's not that clear, is it? Have a look at the manual for `wc` to try and figure it out. 
 All core UNIX commands have an inbuilt manual you can access it through the `man` command:
