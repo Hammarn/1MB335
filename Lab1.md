@@ -202,9 +202,10 @@ Ok time for something perhaps a bit more fun. Some genetic data!
 
 ### BAM files
 
-In this part you will work with a `.bam` file. The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+
 If you want to read more about the file format(s) you can have a look at the official documentation:
- https://samtools.github.io/hts-specs/SAMv1.pdf
+https://samtools.github.io/hts-specs/SAMv1.pdf
 
 If you want a simpler (and easier to read) text to give you an overview have a look at the Wikipedia article: 
 https://en.wikipedia.org/wiki/SAM_(file_format)
