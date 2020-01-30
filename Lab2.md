@@ -375,7 +375,7 @@ GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTA
 ```
 
 ### Regular expressions
-If you are unfamiliar with regular expressions, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
+If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
 
 
 `>\w*` 
