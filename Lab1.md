@@ -194,6 +194,20 @@ ssh your_user_name@rackham.uppmax.uu.se
 
 After entering that you command you will be prompted to enter your password.
 
+Our teaching project is called `g2019029`
+
+Navigate to the RESULTS folder (using `cd`):
+to:
+
+```
+/proj/g2019029/private/RESULTS
+```
+
+There you need to make a directory for you to work in. Call it your firstname underscore your last name:
+
+`FirstName_LastName`
+
+For the rest of your exercises you should be working in that directory. I.e copy data there and work on it. 
 
 ---
 
@@ -324,7 +338,8 @@ scp output_file my_user@remote_server:
 
 ---
 
-This is the end of the lab, please make sure that you did and wrote down the answers to all of the 
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
 
 
 
