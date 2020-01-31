@@ -15,7 +15,13 @@ You will have to:
 
 
 ### Requirements
-Before starting, the [hidden\_word\_exercise.zip](hidden_word_exercise.zip) file with the exercise material must be downloaded to a Linux computer, and unpacked in your home directory.
+Before starting, the [hidden\_word\_exercise.zip](hidden_word_exercise.zip) file with the exercise material must be downloaded to a Linux computer, and unpacked in your home directory. Use `unzip` on the command line to extract it: 
+
+```
+unzip hidden_word_exercise.zip  
+```
+
+This will create the folder `unix_tutorial_modified`
 
 ### Task
 In this exercise, you will be searching for 12 characters making two words. All characters are hidden in the exercises below. All exercises should be solved using the Unix command line only.
