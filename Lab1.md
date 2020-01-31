@@ -254,6 +254,9 @@ With that information, you can probably see why it's a generally good idea to st
 
 First, figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
+**Question:** Write down the command you used to extract the name and nucleotide sequence!
+
+
 
 
 ### sed and regex
