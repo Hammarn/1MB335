@@ -76,9 +76,17 @@ The boundaries (i.e. start and end) identified by GeSeq for the different featur
 
 First you will verify the boundaries of *cox2*. Then you will perform the same thing for two more genes of your choice. Here are the instructions for *cox2*: Open the `blastx` page of NCBI and select 'Align two or more sequences'. Within the text file you just downloaded from NCBI, search for the string “cox2” and copy the amino acid sequence for this gene. Return to your blastx window. Now paste your copied *cox2* sequence into the bottom of the two dialog windows. Now either paste in or upload your .fasta sequence into the top dialog window. Note that we chose a file rather than pasting a nucleotide sequence into the window. Also, note that you must choose the correct genetic code, otherwise your results will be inaccurate. This will vary according to the taxon and the locus. Depending on your species, you will choose from: Vertebrate mitochondrial or invertebrate mitochondrial. You can find more information about the different genetic code on this [wikipedia page] (https://en.wikipedia.org/wiki/List_of_genetic_codes) (which suggests the alternative code 14 for nematodes - those of you working with nematodes can go ahead and try!).
 
-Also, choose 'Show results in a new window' - this will allow you to change parameters more easily if you need to. **Start here** 
+Also, choose 'Show results in a new window' - this will allow you to change parameters more easily if you need to. Now, submit the blast. Like you did in session 3 when looking for the start of the mitochondria, go to the 'Dot plot' tab. If you have one solid large line spanning the entire vertical span (or most) of the dot matrix that is an indicator that the gene is complete and in one exon. *Here we could include Figure 3.4 from the tutorial.* Then look at the 'Alignments' tab.
 
-### Use web-based blast to confirm annotations and locate rRNA
+**Question 3. Is the gene complete and in one exon? If not, how does it look like? About the alignment: what is the first amino acid position of the reference ('Sbjct') which align well to your mitochondrial genome?**
+
+If the first amino acid position which aligns well to the reference is not 1, it could be that the start amino acid (usually a methionine) is upstream of the corresponding position in your mitochondrial genome *Should we have the figure to make it easier to understand?*. Have a look at your mitochondrial genome and try to find a start codon (ATG for vertebrates, ATA for invertebrates). Look at the end of the alignment too. Does it correspond to the end position inferred by GeSeq? (there might be a difference due to incorporating or not the stop codon)
+
+Now, choose two more genes from the list of coding sequences that you downloaded for your reference genome and repeat the steps you just performed for *cox2*.
+
+**Question 4. Which two genes did you choose? Do they have one or several exons? Do the boundaries match with the GeSeq boundaries? If not, list the GeSeq and the blast boundaries. Does the alignment start at position 1 of the subject? If not, make an hypothesis concerning the location of the start codon in your own genome.**
+
+### Locate rRNA
 
 **todo write** In the manual they use that to validate the features boundaries. It is a long process, involving pairwise alignement, looking at the dot matrixes and possibly inverting the sequences if needed etc. The other reason they use it is to locate the rRNA - process similar to locating *cox 1*. Apparently there are methods to locate RNA genes (but not specifically rRNA) e.g. http://eddylab.org/infernal/ or http://rfam.xfam.org/, and see this too: http://ensemblgenomes.org/info/data/ncrna. Or NCBI local blast against Rfam. Or RNAmmer http://www.cbs.dtu.dk/services/RNAmmer/ (but from what I can read does not look for mitochondrial rRNA?). Lots of tools here too: https://services.healthtech.dtu.dk/ (including prediction of protein structure)   
 
