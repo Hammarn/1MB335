@@ -102,7 +102,7 @@ We are interested in column 11, as the best hits will have a low e-value. Adapt 
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |wc -l
 ```
 
-Now you have to identify which contigs have many regions with good hits. To do this you can adapt and run the following command (think about the previous command output to define the e-value threshold). You can also come up with different strategies if you like.
+Now you have to identify which contigs have many regions with good hits. To do this you run the following command (think about the previous command output to define the e-value threshold - you might need a higher or a smaller value). You can also come up with different strategies if you like.
 
 ```
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
