@@ -12,13 +12,13 @@ In this session you will focus on aligments. As you have seen in the lecture, it
 
 ## Input(s)
 
-  + 13 complete mitochondrial genomes
-  + 12 sequences for the ribosomal large subunit
+  + 14 complete mitochondrial genomes
+  + 13 sequences for the ribosomal large subunit
 
 ## Output(s)
 
-  + An alignment of 12 mitochondrial genome
-  + A table of mitochondrial features for 12 genomes
+  + An alignment of 13 mitochondrial genome
+  + A table of mitochondrial features for 13 genomes
   + Some kind of visual representation of the alignment
 
 ## Tools
@@ -37,21 +37,21 @@ In this session you will focus on aligments. As you have seen in the lecture, it
 
 Please go through the tutorial on this page: http://teaching.bioinformatics.dtu.dk/teaching/index.php/Exercise:_Pairwise_alignment
 
-Questions are numbered from 1 to 14. For the report, you need to submit written answers to the following questions: 9, 11, 14, **more?**.
+Questions are numbered from 1 to 14. For the report, you need to submit written answers to the following questions: 9, 11, 14, *more?*.
 
 ### Multiple alignment
 
 #### Step 1: Identify the mitochondrial genomes
 
-Start by login in to Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes` you will find 13 complete mitochondrial genomes that were downloaded from NCBI. They are named `Seq1.fasta` to `Seq13.fasta`. Your first task is to identify which species the sequences belong to. Look at the content of the files and think about tools you used in sessions 3 and 4. Once you have identified the species, copy the fasta files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`) to your own directory. Then modify the fasta header with the same information than in `Seq2.fasta` (in particular, sequence identification number and species name). **Should we include example of bash commands? Mention nano or sed?**
+Start by login in to Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named `Seq1.fasta` to `Seq13.fasta`. Your first task is to identify which species the sequences belong to. Look at the content of the files and think about tools you used in sessions 3 and 4. Once you have identified the species, copy the fasta files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`) to your own directory. Then modify the fasta header with the same information than in `Seq2.fasta` (in particular, sequence identification number and species name). *Should we include example of bash commands? Mention nano or sed?*
 
 **There is an odd sequence. Write down the name of the corresponding fasta file, the species name and the type of sequence. How did you identify it?** 
 
-Possibly: Look up taxonomy information for at least two of the species (prepare bioinformatic project). **todo write**
+Possibly: Look up taxonomy information for at least two of the species (prepare bioinformatic project). *todo write*
 
 #### Step 2: Fill a table of mitochondrial features
 
-Before aligning sequences, it is useful to have an idea of how much the sequences might differ. In this case, it is possible to take advantage of the fact that the sequences of interest are well annotated. Complete the following features table for the 12 species. In particular, we are interested in the presence / absence of certain genes and in the length of the mitochondrial genome. **Could they write a script to get the length of the genome? Or simply use wc -c**
+Before aligning sequences, it is useful to have an idea of how much the sequences might differ. In this case, it is possible to take advantage of the fact that the sequences of interest are well annotated. Complete the following features table for the 13 species. In particular, we are interested in the presence / absence of certain genes and in the length of the mitochondrial genome. *Could they write a script to get the length of the genome? Or simply use wc -c*
 
 **todo start to fill the table below**
 
@@ -84,7 +84,7 @@ Once you have managed the task above, you can delete the fasta file with the lon
 
 #### Step 4: Align the entire mitochondria
 
-Finally, it is time to align your 12 mitochondrial genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
+Finally, it is time to align your 13 mitochondrial genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
 ```
 module spider mafft
 ```
@@ -100,12 +100,15 @@ Then, just type `mafft`. You will be asked a number of questions, for example: i
 
 Now, launch the alignment. It will take a while. In the meantime, you can work on the next step, which is another alignment, of a single sequence. It is also a good time to take a break!
 
-#### Step 5: Align the sequence for *16S*
+#### Step 5: Align the sequence for the large mitochondrial ribosomal RNA (rRNA)
 
-*TODO figure out the corresponding genes for yeast. 16S is part of the 30S subunit (=the small subunit).*
+Nowadays there is an abundance of genomic data available, for organelles and for entire genomes, for a large number of species. This is why in this session and in the bioinformatic project, you are aligning the entire mitochondria. However for a long time, it was more common to work with alignment of single genes (and in some cases, for example when exploring the diversity in a given environment, it is still a common approach). Aligning single genes might also be a good approach when working with diverse species.
 
-Nowadays there is an abundance of genomic data available, for organelles and for entire genomes, for a large number of species. This is why in this session and in the bioinformatic project, you are aligning the entire mitochondria. However for a long time, it was more common to work with alignment of single genes (and in some cases, for example when exploring the diversity in a given environment, it is still the normal approach). Aligning single genes might also be a good approach when working with diverse species. The 16S ribosomal RNA is - and has been - used a lot in phylogenetic inferences, as it is a slowly evolving. *Name in yeast?*
-In folder `/proj/g2019029/private/DATA/session5/XXX` you will find 12 fasta files, corresponding to the sequence of interest for the same 12 species than in the previous steps. Prepare the alignment input in the same way: create a fasta file with the 12 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command like the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
+The  mitochondrial ribosomal RNA (rRNA) which is part of the large subunit of the ribosome (in the mitochondria) is - and has been - used a lot in phylogenetic inferences, as it is a slowly evolving. Depending on the species you are working with, this RNA might have different names, for example 16S, rnl, l-RNA, 21S etc.
+
+In folder `/proj/g2019029/private/DATA/session5/XXX` you will find nine fasta files, corresponding to the sequence of interest for nine of the species from the previous step. Start by finding the corresponding sequence for the four remaining species (go to ncbi, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one).
+
+Then, prepare the alignment input in the same way like in steps 3 and 5: create a fasta file with the 13 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command like the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
 
 ```
 (echo '#!/bin/bash -l'
@@ -121,9 +124,9 @@ Now, have a look at the alignment *Still need to decide how they will do that*. 
 
 #### Step 6: Find a new *16S* sequence and align one more time
 
-The strange alignment from Step 5 is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, was submitted.
+The strange alignment from step 5 is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, was submitted.
 
-**Find the *16S* sequence for AY463959.1. Perform the alignment again (see Step 5). Visualize it. Is the issue solved? Show it to a teaching assistant.**
+**Find the *16S* sequence for AY463959.1. Perform the alignment again (see step 5). Visualize it. Is the issue solved? Show it to a teaching assistant.**
 
 The main take-home message from this step is that it is important to examine well your alignments. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
 
