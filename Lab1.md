@@ -170,15 +170,16 @@ grep PCA short_pca.txt | wc -l
 ```
 
 Try it for the full article as well!
-Write down the answers!
+**Question:** Write down the answer to the occurrences of the phrase `PCA` in both the full `PCA.txt` and the `short_pca.txt`.
 
 --
 
 ### Hidden word exercise 
+**Question:**
 Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md).
 
-Do not continue with the next part until you are down with it. 
-
+Do not continue with the next part until you are done with it. 
+Make sure to report the answer to the question to one of the lab assistants. 
 --
 
 ### Working remotely 
@@ -193,6 +194,20 @@ ssh your_user_name@rackham.uppmax.uu.se
 
 After entering that you command you will be prompted to enter your password.
 
+Our teaching project is called `g2019029`
+
+Navigate to the RESULTS folder (using `cd`):
+to:
+
+```
+/proj/g2019029/private/RESULTS
+```
+
+There you need to make a directory for you to work in. Call it your firstname underscore your last name:
+
+`FirstName_LastName`
+
+For the rest of your exercises you should be working in that directory. I.e copy data there and work on it. 
 
 ---
 
@@ -202,9 +217,10 @@ Ok time for something perhaps a bit more fun. Some genetic data!
 
 ### BAM files
 
-In this part you will work with a `.bam` file. The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+The SAM/BAM (Sequence Alignment/Map & Binary Alignment Map) format is a very popular format for storing nucleotide data that is aligned to a reference. 
+
 If you want to read more about the file format(s) you can have a look at the official documentation:
- https://samtools.github.io/hts-specs/SAMv1.pdf
+https://samtools.github.io/hts-specs/SAMv1.pdf
 
 If you want a simpler (and easier to read) text to give you an overview have a look at the Wikipedia article: 
 https://en.wikipedia.org/wiki/SAM_(file_format)
@@ -231,13 +247,61 @@ ls -lh
 With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was 117 GB for reference.
 
 ##### The `.bam` file is just for a small part of the genome, which ones? 
-use `samtools view` and `head` and `tail` to **figure out the first and last position**.
+**Question:** use `samtools view` and `head` and `tail` to **figure out the first and last position in the file**. Also include the exact command you used!
  
 
 ##### Use `cut` to extract only the name and nucleotide sequence from the `.bam` file. 
 
 First, figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
+**Question:** Write down the command you used to extract the name and nucleotide sequence!
+
+
+
+
+### sed and regex
+Regular expressions(regex) are used to catch and match certain words or phrases. E.g
+^
+`^P[0-9]+` will match in the begining of a line(`^`) the letter P literally, any  number (`[0-9]`) repeating (`+`)
+it will thus catch the top line but not the second:
+
+```
+P674353
+454646464 P 
+```
+These types of expression can be very useful and powerful 
+
+
+`sed` is a powerful tool for editing streams of files. It is a common way of using rexes in unix. It's often used to replace one thing with another:
+
+if `My_file.txt ` contains:
+
+`dog dog dog`
+
+Then:
+
+```
+sed 's/dog/cat/' My_file.txt. # s is for substitute
+cat dog dog
+```
+the first instance of `dog` is replaced with `cat`. We can also replace all instances using the `g` global flag:
+
+```
+sed 's/dog/cat/g' My_file.txt. # sg - substitute globally
+cat cat cat
+```
+
+
+You can use `sed` on piped output from another program or straight on a single file. For a short summary of some things that you can do with it have a look at [this link](https://github.com/tldr-pages/tldr/blob/master/pages/common/sed.md).
+
+
+
+**Question:**
+You have been given a that has been exported from excel in an odd format (something that is all to commomn in the life of a bioinformatican). Your task is to transform the file [orange.csv](example_data/orange.csv) into a normally formated `.csv`-file. That is the decimal point should be a `.` and the delimiter (what separates one column from another) should be `,`. It also looks like someone has accidentally inserted some letters among the numbers, they also need to be removed.
+
+Submit what `sed` command(s) you used to clean the file. (Make sure that it looks correct)
+
+_You will probably have to look up more information on how to do this. You can use `man sed` or `info sed` for mor information, or google your way to it. As long as you know what your command does_
 
 
 ### Basic bash scripting for future reference 
@@ -259,6 +323,7 @@ Add the above text to a file called `sleep.sh` and the execute it with
 ```
 bash sleep.sh
 ```
+
 You can see that the code is executed sequentially, it does not progress to the next line until the previous one has finished.
 
 An example of use case could be that you have data on a local server that you want to transfere to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
@@ -272,6 +337,13 @@ run_analysis.sh local_file > output_file
 ### Copy results back
 scp output_file my_user@remote_server:
 ```
+
+
+---
+
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+
 
 
 

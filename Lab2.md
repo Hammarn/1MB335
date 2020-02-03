@@ -375,7 +375,7 @@ GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTA
 ```
 
 ### Regular expressions
-If you are unfamiliar with regular expressions, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
+If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
 
 
 `>\w*` 
@@ -445,3 +445,10 @@ The script should then print out, with some nice padding text:
 
 
 You can use wich ever method descibed in this lab. 
+
+
+--- 
+
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Upload the scripts that you were asked to submit to stundetportalen. In the original format, no `pdf` or word files!
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
