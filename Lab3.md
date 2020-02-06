@@ -214,34 +214,30 @@ Congratulations! You now have a circular mitochondrial genome. The last step tod
 
 Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
 
-Study organism | Close relative 
+Study organism ("start species") | Close relative 
 ---------------|---------------
-Caenorhabditis remanei | Caenorhabditis elegans
-? | Mus musculus
-? | Drosophila melanogaster
-Chimp? | Homo sapiens
+Caenorhabditis remanei (nematode) | Caenorhabditis elegans (nematode)
+Phodopus sungorus (hamster) | Mus musculus (mouse)
+Drosophila simulans (fly) | Drosophila melanogaster (fly)
+Pongo abelii (orangutan) | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
 In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. 
 
-**Question 13.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers) <!--Info should be easy to find in the table. Give NC number, sometimes also e.g. KY.-->
+**Question 13.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
-Then click on the identifier. You should be taken to a page that looks like that one: https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4, except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
-**Question 14.** Estimate the length of the **cox 1** coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
+**Question 14.** Estimate the length of the *cox 1* coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
 
-**The next step is described in great detail in the manual from C Pogoda, p14 to 16. I will modify and summarize it here later. The process should not take too long for the students.**
+Now you are ready to orient the mitochondrial genome of your "study species" with the *cox1* gene you just obtained. Once again, go to NCBI webpage, choose BLAST and then 'tblastx'. Then choose "align two or more sequences". In the top dialog box, copy or upload the mitochondrial genome of your study species. In the bottom dialog box, copy or upload the *cox1* fasta file. Then choose the option "open results in new window" next to the BLAST button and blast. In the new window there are different tabs. Choose the tab dot-matrix
 
-<!--At the moment and considering the part missing above, Lab 3 is about 3000 words long.-->
   
 ## Report:
 
-<!--make a cartoon of different blast? Submit answers to two or three of the questions?-->
-
-TO DECIDE.
 
 ---
 
