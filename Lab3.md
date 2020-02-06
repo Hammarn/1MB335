@@ -4,7 +4,6 @@ OBS! Protocol in progress.
 
 ## General introduction to sessions 3 to 5
 
-<!-- Complete and improve! -->
 In these three labs, you will work with mitochondrial genomes. Mitochondria are present in all eukaryotic cells (for a review, see 'Origin and diversification of mitochondria', Roger et al.), where among many other functions it supplies the cells with chemical energy (ATP). Here, we will focus on the genomes present in mitochondria; mitochondrial genomes present the advantage of being relatively small compared to nuclear genomes (e.g. 16,000 base pairs in humans), thus facilitating bioinformatic operations in the labs. They are also present in many copies in the cells, thus they are relatively easy to sequence even in extreme cases where DNA is often limited such as environmental DNA or ancient DNA studies. Although mitochondrial genomes can take many different forms depending on the species, they all contain a series of conserved protein-coding genes as well as rRNA and tRNA; this makes mitochondrial genomes good candidates for comparative analyses between different species.
 
 During these three sessions, your main task will be to annotate the mitochondrial genome of one of the following organisms: *great apes, mouse, fruit fly or nematode Adapt depending on what we decide!!*. When you each have annotated the genome of your organism, you will compare and contrast your annotations with those from other students who worked on the other species. To complete this task, you will need what you learned during sessions 1 and 2, and you will use some parts of your annotated mitochondrial genome and that of your colleagues during sessions 6 to 8.
@@ -13,7 +12,7 @@ The steps you will follow in sessions 3 (assembling the genome) and 4 (annotatio
 
 ## Introduction / Background information to session 3
 
-You received a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in session 4!
+You will receive a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in session 4!
 
 The work flow described in this session could be followed for the four organisms mentioned in the introduction. However, the larger the genome of the organism and the longer the different steps will take. For that reason, you will work mostly on the genome of a nematode. The genome of the nematode Caenorhabditis elegans is ~100 Mbp long, while the human genome is ~3,000 Mbp long. For the last step, you will work on one of the four genomes (this will be decided at the beginning of the class).
 
@@ -144,11 +143,9 @@ We will take a little detour as it is the first time that you work with NCBI in 
 
 **Question 6.** Go back to the main page. Left of the search field, you have a drop-down menu listing the different databases. Again, which ones do you think will be relevant to us? And where did the input files you received in this lab come from? <!--Assembly, SRA, genomes.--> If you want to see the starting page for a given database, select it in the menu and click 'Search'.
 
-**Question 7.** Go back to the main page if you left it and find the BLAST page, then choose nucleotide blast.
+Go back to the main page if you left it and find the BLAST page, then choose nucleotide blast. Paste the chunk of sequence that you selected with the `grep` command above into the dialog box. Below the BLAST button, select 'Show results in a new window'. All other parameters can be kept as default. Perform the blast.
 
-Paste the chunk of sequence that you selected with the `grep` command above into the dialog box. Below the BLAST button, select 'Show results in a new window'. All other parameters can be kept as default. Perform the blast.
-
-**Question 8.** Does the fragment belong to a mitochondria? Does it belong to the species you are interested in?
+**Question 7.** Does the fragment belong to a mitochondria? Does it belong to the species you are interested in?
 
 Repeat this which each of the contigs that you identified at the previous step. Keep track of the contigs which do belong to the mitochondria of your species of interest.
 
@@ -176,15 +173,15 @@ You are ready to connect the different contigs! For that, you will use another r
 
 Your task now is to select a library of short reads for an individual of your species of interest. A good place to find that is NCBI. So, open the start page of NCBI again. In the 'All Databases' drop-down menu, choose 'SRA'. 'SRA' is short for Sequence Read Archive.
 
-**Question 9.** Search for your species of interest. How many results do you get?
+**Question 8.** Search for your species of interest. How many results do you get?
 
 Most likely your first search resulted in a lot of results. This is expected as you work with model organisms! On the left side of the result page, you have different categories of data and information about the number of results in each of these categories.
 
-**Question 10.** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? (write down the criteria you used) You can test different combinations of criteria. Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
+**Question 9.** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? (write down the criteria you used) You can test different combinations of criteria. Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
 
 As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/g2019029/private/DATA/sra/`.
 
-**Question 11.** What is the format of the file? Do you understand what the different lines are? How long are the reads? 
+**Question 10.** What is the format of the file? Do you understand what the different lines are? How long are the reads? 
 
 You are now ready to perform tiling. For that, you will select a short section of nucleotides from the end of your first contig (around 30 bp) and then use grep to find that short sequence in the short reads library. Adapt and run the following command:
 
@@ -210,7 +207,7 @@ Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial g
 
 Congratulations! You now have a circular mitochondrial genome. The last step today is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste your mitochondrial sequence.
 
-**Question 12.** To which organism does the best hits belong too?
+**Question 11.** To which organism do the best hits belong too?
 
 Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
 
@@ -225,19 +222,37 @@ Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find 
 
 In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. 
 
-**Question 13.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
+**Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
-Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Look at the information, in particular which translation table is used, and other details (particularly important for those of you working with the nematodes and the flies). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
-**Question 14.** Estimate the length of the *cox 1* coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
+**Question 13.** Estimate the length of the *cox 1* coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
 
-Now you are ready to orient the mitochondrial genome of your "study species" with the *cox1* gene you just obtained. Once again, go to NCBI webpage, choose BLAST and then 'tblastx'. Then choose "align two or more sequences". In the top dialog box, copy or upload the mitochondrial genome of your study species. In the bottom dialog box, copy or upload the *cox1* fasta file. Then choose the option "open results in new window" next to the BLAST button and blast. In the new window there are different tabs. Choose the tab dot-matrix
+Now you are ready to orient the mitochondrial genome of your "study species" with the *cox1* gene you just obtained. Once again, go to NCBI webpage, choose BLAST and then 'tblastx' (the tblastx option might not show up in the blast starting page - in that case choose one of the other types of blast and then you will find a tblastx tab). Then choose "align two or more sequences". In the top dialog box, copy or upload the mitochondrial genome of your study species. In the bottom dialog box, copy or upload the *cox1* fasta file. Then choose the option "open results in new window" next to the BLAST button and blast. In the new window there are different tabs. Choose the tab "Dot Plot". You should see a line (possibly fragmented) with an increasing or a decreasing slope.
 
-  
+If the slope is decreasing, you need to reverse complement your mitochondrial genome. Scroll up this page for instructions on how to reverse complement! Save your genome in a new fasta file and repeat the tblastx step.
+
+Now that you have a line with an increasing slope, look at it. Where does it start? Most likely it starts in the interior of the genome. You need to make that start position the new start of the genome. Now go the "Alignments" tab.
+
+The last part of these explanations are based on 'A guide to organellar genome assembly and annotation', Pogoda et al. as their explanations are very good!
+
+The top sequence is your species’ *cox1* amino acid sequence (or most of it), and the bottom is the *cox1* amino acid sequence of the reference you chose. Note that the amino acid sequences are very similar in some places (conserved), but diverge in other places in the protein. This is simply due to evolution of this protein over the millions of years since the common ancestor of these two different organisms. Some of this divergence may have occurred at the beginning amino acids of the protein, in which case the alignment position of the reference sequence may not start at amino acid number one, which corresponds to the bottom of these two sets of numbers being equal to one. Although *cox1* is highly conserved, tblastx may not have found an alignment that begins at the start methionine (M) of the protein. However, the alignment should start very near the beginning, within a couple of amino acids from the start methionine of the protein, which is encoded for by an ATG. If you are working with nematodes or flies, the start codong might be different (ATT, ATA, ATC, GTG, TTG). Look at the *cox1* sequence from your close relative to make a guess!
+
+While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Take the bottom number, multiple by three and subtract that from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. The start and end positions of a contig put together by the assembler are arbitrary within both the strand and the position along the circular genome. Therefore, it is up to us to orient the genome to the canonical *cox1* start.
+
+Once the start codon has been found, place your cursor before the first base pair in your text editor and hit enter. This will put the first nucleotide of the *cox1* gene as the first nucleotide of the genome. Because of the circular nature of this genome, the sequence that used to come before this start codon can simply be added onto the end for the genome to remain circular and complete.
+
+If you cannot find the start codon, perform the step above with the first position in the alignment.
+
+You now have a *cox1* oriented genome!
+
+**Question 14.** What is the position (in base pairs) of the start codon in your study of interest? (before you oriented it)
+
+---
 ## Report:
-
+Please sumbit a text file with the answers to the following questions: 4, 6, 7, 8, 12.
 
 ---
 
