@@ -216,9 +216,10 @@ Dictionaries have several inbuild methods. Some of these are:
 .pop() | Removes and returns an element from a dictionary having the given key
 
 
-### Loops
+### Conditionals
+Conditonals are, as you you probably are familiar with, fundimental building blocks in programing. Testing whether on condition is true 
 
-#### If
+#### if
 The most simple condition in Python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
 
 *Remember that Python uses white spaces to define blocks of code and new lines.*
@@ -230,7 +231,7 @@ if x > y:
   print("x is bigger than y")
 ```
 
-#### Elif
+#### elif
 elif is the pythonic way of saying "if the previous conditions were not true, then try this condition".
 
 ```
@@ -243,7 +244,7 @@ elif x == y:
 
 ```
 
-### Else
+### else
 An Else block is only entered if none of the preceeding blocks were entered (i.e. true):
 
 ```
@@ -257,6 +258,31 @@ else:
 	print("x is smaller than y")
 ```
 
+### for 
+The for loop is used for iterating over items in a list, dict or anything else that can be iterated over,
+consider the following example code:
+
+```
+x = [1,2,3,4,5,7,8,9,9]
+
+for y in x:
+    print(y)
+```
+
+Wich returns:
+
+```
+python test.py
+1
+2
+3
+4
+5
+7
+8
+9
+9
+```
 
 #### While 
 Execution stays within a block **while** the condition is true. Keep in mind that this can lead to the program becoming stuck in an endless loop. 
@@ -329,7 +355,7 @@ One of the strenghts of Python is the many libraries, both built in others that 
 
 How it import a library then. It's rather simple. You just type `import` followed by the name of the library.
 
-**Question**
+**Question 1**
 Run the code below, what happens? What do you think is the purpose of it?
 
 ``` 
@@ -348,7 +374,7 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
 FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
-**Task**:
+**Question 2**:
 Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the sequence is stored on a single line ("sequential"). 
 
 
@@ -357,11 +383,10 @@ Write a Python program that takes a file that contains a sequence like the one a
 A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it is basically random in which orientation your sequence is. Thus it is important to be able to reverse complement your sequence. 
 
 
-##### Question:
+#### Question 3:
 
 **Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output.** 
 
-You can take use [this example file as input](example_data/fasta_file.fasta).
 
 E.g.
 
@@ -375,7 +400,7 @@ GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTA
 ```
 
 ### Regular expressions
-If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
+If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers, signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
 
 
 `>\w*` 
@@ -411,7 +436,7 @@ Another useful way of doing regex matches is the `.search()` method. It returns 
 Method | Description
 ---|---
 .span()| returns a tuple containing the start-, and end positions of the match.|
-.string |returns the string passed into the function |
+.string() |returns the string passed into the function |
 .group() |[returns the part of the string where there was a match | 
 
 ```
@@ -430,11 +455,11 @@ Which returns:
 
 If you really want to dig down into `re` and regexes in python you can have a look at the [python3 documentation](https://docs.python.org/3/library/re.html). 
 
-Have a look at [this cheetsheet](https://www.debuggex.com/cheatsheet/regex/python). There are many more ways of matching with regexes. 
+Have a look at [this cheatsheet](https://www.debuggex.com/cheatsheet/regex/python). There are many more ways of matching with regexes. 
 
 Before writing code with regexes it's usually a good idea to actually check that the expression you wrote actually does what you think it does. Have a look at [https://regex101.com/](https://regex101.com/) for a place to test them out. 
 
-#### Your task:
+#### Question 4:
 
 Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.fasta) and saves the gene name (eg ATP6 ) as the key in a **dictionary** with the sequence as the value. 
 The script should then print out, with some nice padding text:
@@ -444,11 +469,11 @@ The script should then print out, with some nice padding text:
  * The name each gene followed by it's lenght.
 
 
-You can use wich ever method descibed in this lab. 
-
+You can use any of the methods that are described in this lab. 
+Submit the script as a separate file along with your answers. Fi
 
 --- 
 
-This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Upload the scripts that you were asked to submit to stundetportalen. In the original format, no `pdf` or word files!
+This is the end of the lab, please make sure that you comleted and wrote down the answers to all of the questions.
+Upload the scripts that you were asked to submit to studentportalen. In the original format, no `pdf` or word files!
 Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
