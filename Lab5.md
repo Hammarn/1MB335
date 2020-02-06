@@ -1,3 +1,5 @@
+OBS! Protocol is in progress.
+
 # Session 5 - compare with genomes from other species
 
 ## Introduction / Background information to Session 5
@@ -139,3 +141,7 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 
 *Possible extra steps: look into colinearity. Include questions which force students to read the program output (e.g. what is printed to screen while the program is running). Play with alignment options. Use another alignment software.*
 
+---
+
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
