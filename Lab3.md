@@ -9,7 +9,7 @@ In these three labs, you will work with mitochondrial genomes. Mitochondria are 
 
 During these three sessions, your main task will be to annotate the mitochondrial genome of one of the following organisms: great apes, mouse, fruit fly or nematode. When you each have annotated the genome of your organism, you will compare and contrast your annotations with those from other students who worked on the other species. To complete this task, you will need what you learned during sessions 1 and 2, and you will use some parts of your annotated mitochondrial genome and that of your colleagues during sessions 6 to 8.
 
-The steps you will follow in sessions 3 (assembling the genome) and 4 (annotation) are similar to what you would do if you were to annotate *de novo* an unknown mitochondrial genome. However, as the goal of these labs is mainly to familiarize yourself with bioinformatics rather than with annotation, we chose to work with model organisms (or close relatives of model organisms) for which annotated genomes are already available. This means that your task will be greatly simplified. However, you should be able to use the same tools to annotate a new mitochondrial genome if you wish too!
+The steps you will follow in sessions 3 (assembling the genome) and 4 (annotation) are similar to what you would do if you were to annotate *de novo* an unknown mitochondrial genome. However, as the goal of these labs is mainly to familiarize yourself with bioinformatics rather than with annotation, we chose to work with model organisms (or close relatives of model organisms) for which annotated genomes are already available. This means that your task will be greatly simplified. But you should be able to use the same tools to annotate a new mitochondrial genome if you wish too!
 
 ## Introduction / Background information to session 3
 
@@ -57,7 +57,7 @@ The course is accessible at: `/proj/g2019029/private/`
 
 You will find data in: `/proj/g2019029/private/DATA/` and scripts in `/proj/g2019029/private/SCRIPTS`.
 
-Create your own folder under: `/proj/g2019029/private/RESULTS` (for example: `firstname_lastname`). Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
+You should already have created your own folder under: `/proj/g2019029/private/RESULTS`. If you haven't, refer to session 1. Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
 
 ### Identify the mitochondrial contigs in your assembly    
 
