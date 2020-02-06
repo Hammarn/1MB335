@@ -2,7 +2,7 @@
 In this lab, you will get an introduction to the programming language Python. 
 ## Introduction 
 
-The Wikipedia article for python has the following to say about it:
+The Wikipedia article for Python has the following to say about it:
 
 ```
 Python is an interpreted, high-level, general-purpose programming language.
@@ -36,7 +36,7 @@ print "Answer"
 print "False"
 ```
 
-In many other programming languages (such as Java & C) `;` denotes a linebreak. While it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e. hitting enter on your keyboard. )
+In many other programming languages (such as Java & C) `;` denotes a linebreak. While it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e. hitting enter on your keyboard).
 
 
 ### Hello world
@@ -66,7 +66,7 @@ Complex number: A number with a real and imaginary component represented as x+yj
 
 Integer and float are the only two we need to care about right now.
 
-Open the python interpreter (type `python` in the terminal) and try the following out:
+Open the Python interpreter (type `python` in the terminal) and try the following out:
 
 ```
 >>> x = 4
@@ -95,7 +95,7 @@ List: A list object is an ordered collection of one or more data items, not nece
 Tuple: A Tuple object is an ordered collection of one or more data items, not necessarily of the same type, put in parentheses.
 ```
 
-Strings are, as you can see just characters, such as our "Hello world" example above. 
+Strings are, as you can see, just characters, such as our "Hello world" example above. 
 
 They can be assigned as such:
 
@@ -189,13 +189,13 @@ It's also possible and useful to create dictionaries with lists in them or lists
 >>> schedule
 >>> {'Rickard': ['Monday', 'Tuesday', 'Friday'], 'Gwenna': ['Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'Pedro': ['Wednesday', 'Thursday', 'Friday']}
 ```
-If we then want access the items:
+If we then want to access the items:
 
 ```
  schedule['Gwenna']
 ['Tuesday', 'Wednesday', 'Thursday', 'Friday']
 ```
-Since that is a list we can use methods that works on lists on that expression:
+Since it is a list we can use methods that work on lists on that expression:
 
 ```
 >>> schedule['Gwenna'][0]
@@ -205,7 +205,7 @@ Since that is a list we can use methods that works on lists on that expression:
 >>> len(schedule['Gwenna'])
 4
 ``` 
-`len()` returns the lenght of the provided object (string, list, dict etc.)
+`len()` returns the length of the provided object (string, list, dict etc.).
 
 Dictionaries have several inbuild methods. Some of these are:
 
@@ -217,7 +217,7 @@ Dictionaries have several inbuild methods. Some of these are:
 
 
 ### Conditionals
-Conditonals are, as you you probably are familiar with, fundimental building blocks in programing. Testing whether on condition is true 
+Conditonals are, as you probably are familiar with, fundamental building blocks in programing. Testing whether on condition is true 
 
 #### if
 The most simple condition in Python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
@@ -269,7 +269,7 @@ for y in x:
     print(y)
 ```
 
-Wich returns:
+Which returns:
 
 ```
 python test.py
@@ -300,13 +300,13 @@ Opening files in Python is done with the `open` function, it takes the file name
 ```
 fh = open("hello.txt", "r") 
 ```
-If you just want to print the contents of the file:
+If you just want to print the contents of the file use:
 
 ```
 Fh = open(“hello.txt”, “r”) 
 print(fh.read()) 
 ```
-and to read a line at a time use `readline`:
+And to read a line at a time use `readline`:
 
 ```
 fh = open("hello.txt", "r") 
@@ -327,7 +327,7 @@ fh.close()
 
 
 #### With open
-The `with open` syntax is generally recomended as you get a clear syntax and files will be automatically closed:
+The `with open` syntax is generally recommended as you get a clear syntax and files will be automatically closed:
 
 ```
 with open('output.txt', 'w') as file:  # Use file to refer to the file object
@@ -351,9 +351,9 @@ another_string.strip(",.")
 ```
 
 ### Importing libraries
-One of the strenghts of Python is the many libraries, both built in others that you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programing chances are quite high that someone else have had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be avare of are `numpy` for handling numbers and `pandas` for data analys, such as reading files and storing them in more clever formats that pythons built in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than useing just base python. 
+One of the strenghts of Python is the many libraries; some are built in, others you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programing chances are quite high that someone else have had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be aware of are `numpy` for handling numbers and `pandas` for data analys, such as reading files and storing them in more clever formats that Pythons built in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than using just base Python. 
 
-How it import a library then. It's rather simple. You just type `import` followed by the name of the library.
+How to import a library then? It is rather simple. You just type `import` followed by the name of the library.
 
 **Question 1**
 Run the code below, what happens? What do you think is the purpose of it?
@@ -364,7 +364,7 @@ import this
 ______
 
 ### Formating Fasta files
-The `.fasta` format is the most common format to handle nuclear and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. 
+The `.fasta` format is the most common format to handle nucleotide and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. It can contain several "header / sequence" lines.
 
 Example sequence:
 
@@ -400,22 +400,22 @@ GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTA
 ```
 
 ### Regular expressions
-If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers, signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc.
+If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers, signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc. For example:
 
 
 `>\w*` 
 
-matches `>NC_011137` in the title string from the fasta example above. > is just the character  > \w* means any "word" character repeating, without the star the match would be only `>N`.
+matches `>NC_011137` in the title string from the fasta example above. `>` is just the character `>`. `\w*` means any "word" character repeating, without the star the match would be only `>N`.
 
-Regular expressions or regex are in python handled my the built in `re` library it can be accessed as such:
+Regular expressions or regex are handled in Python by the built in `re` library. It can be accessed as such:
 
 ```
 import re
 ```
 
-To then actually use it you have to first compile the regex you want to use and then search it in a string.
+To then actually use it you have to first compile the regex you want to use and then search for it in a string.
 Then you use one of the matching options `.findall()`, `.search()` or `.match()`. 
-We can use `findall` to count the numer of 'PCA' in the PCA article from Lab1. Findall returns a list of all the matches(in this case just 'PCA'):
+We can use `findall` to count the numer of 'PCA' in the PCA article from session 1. `findall` returns a list of all the matches (in this case just 'PCA'):
 
 ```
 import re
@@ -437,7 +437,9 @@ Method | Description
 ---|---
 .span()| returns a tuple containing the start-, and end positions of the match.|
 .string() |returns the string passed into the function |
-.group() |[returns the part of the string where there was a match | 
+.group() |returns the part of the string where there was a match | 
+
+For example:
 
 ```
 import re
@@ -457,23 +459,23 @@ If you really want to dig down into `re` and regexes in python you can have a lo
 
 Have a look at [this cheatsheet](https://www.debuggex.com/cheatsheet/regex/python). There are many more ways of matching with regexes. 
 
-Before writing code with regexes it's usually a good idea to actually check that the expression you wrote actually does what you think it does. Have a look at [https://regex101.com/](https://regex101.com/) for a place to test them out. 
+Before writing code with regexes it's usually a good idea to check that the expression you wrote actually does what you think it does. Have a look at [https://regex101.com/](https://regex101.com/) for a place to test them out. 
 
 #### Question 4:
 
-Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.fasta) and saves the gene name (eg ATP6 ) as the key in a **dictionary** with the sequence as the value. 
+Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.fasta) and saves the gene name (eg ATP6) as the key in a **dictionary** with the sequence as the value. 
 The script should then print out, with some nice padding text:
 
  * The number of total sequences in the file.
  * The names of all genes/features in the file.
- * The name each gene followed by it's lenght.
+ * The name of each gene followed by its length.
 
 
 You can use any of the methods that are described in this lab. 
-Submit the script as a separate file along with your answers. Fi
+Submit the script as a separate file along with your answers.
 
 --- 
 
-This is the end of the lab, please make sure that you comleted and wrote down the answers to all of the questions.
-Upload the scripts that you were asked to submit to studentportalen. In the original format, no `pdf` or word files!
+This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
+Upload the scripts that you were asked to submit to studentportalen **in the original format**, no `pdf` or word files!
 Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
