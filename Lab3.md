@@ -1,3 +1,5 @@
+OBS! Protocol in progress.
+
 # Session 3 - Prepare your mitochondrial genome
 
 ## General introduction to sessions 3 to 5
@@ -239,3 +241,7 @@ Comment about NCBI: as you might start to notice, you can access a given page of
 
 TO DECIDE.
 
+---
+
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
