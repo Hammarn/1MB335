@@ -1,3 +1,5 @@
+OBS! Protocol is in progress.
+
 # Session 4 - annotate your mitochondrial genome
 
 ## Introduction / Background information to Session 4
@@ -103,3 +105,8 @@ Now, choose two more genes from the list of coding sequences that you downloaded
 **todo write** E.g. they could compare to the list of features we gave them. Same features in the four genomes, only difference is that C elegans does not have ATP8. So it's not really interesting to fill a comparison table.
 
 <!--Is this the step where they get the list of features?-->    
+
+---
+
+This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
