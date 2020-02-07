@@ -36,7 +36,7 @@ The text from this session is modified from "A guide to organellar genome assemb
 + [tRNAscan software](http://lowelab.ucsc.edu/tRNAscan-SE/)
 + web-based blast
 + [OGDraw software](https://chlorobox.mpimp-golm.mpg.de/OGDraw.html)
-+ [ORF finder](https://www.ncbi.nlm.nih.gov/orffinder/)
++ [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/)
 
 ## Steps
 
@@ -168,17 +168,45 @@ It would be nice to be able to visualize the result of your hard work, isn't it?
 
 ***Figure 1: An example output of OGDraw with a gap.** The black arrow indicates a gap in annotated features where undiscovored proteins may exist. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
 
-If you do see gaps of > 300 base pairs, write down the coordinates (you can for example look at the coordinates of the features on both ends of the gap) and proceed to the next step. Should you have no gap at all, save the output of OGDraw (you will need to submit it) and proceed to Step 7.
+If you do see gaps of > 300 base pairs, write down the coordinates (you can for example look at the coordinates of the features on both ends of the gap) and proceed to the next step. Should you have no gap at all, save the output of OGDraw (you will need to submit it).
 
-### Step 6: Look for open reading frames with ORF finder
+### Step 6: Look for open reading frames (ORF) with ORFfinder
 
-**todo write** For this step they need to select the right genetic code from 30 different! We could make a short list (e.g. with the ones they need and three extra) and have them choose from it. Summary here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi We could also have them compare the results using different genetic code. One of the output pages is a visual summary - they could look at it and guess which features are more likely (e.g. one long ORF more likely than several short ones).
+We are going to use a last annotation tool, [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/), to find putative genes (open reading frames). In particular, we are going to investigate the gaps that you identified in Step 6. If you did not identify any gap, you can perform the analysis on the entire mitochondria.
 
-### Conclude
+Go to [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/) and copy your mitochondrial sequence. In Search parameters, choose 300 for the minimal ORF length, as it is unlikely that protein coding genes will be shorter than 300 base pairs. You also need to specify the genetic code; select between codes 2 and 5 depending on your species. Finally, in the "ORF start codon to use", choose " 'ATG' and alternative initiation codons". If you had identified gaps in the previous step, you can specify where the program should search ("From" and "To"). Submit the job.
 
-**todo write** E.g. they could compare to the list of features we gave them. Same features in the four genomes, only difference is that C elegans does not have ATP8. So it's not really interesting to fill a comparison table.
+If ORFfinder did find ORFs, you should see a lot of information. On the top of the results window you have a representation of the mitochondria (or of the region you specified) with the predicted ORFs. Have a look at them. How do their length vary? Do they all have the same orientation? (look at the white arrows on the red background) Then, below on the right, you have a summary of the different ORFs. If you highlight one of the ORFs, its sequence (in amino acids) will be shown in the window on the left. Finally, below that left window, you can click on "SmartBLAST". This option can very quickly identify proteins in the ORFs. This is very useful and can help you decide whether an ORF is really a gene or not (if an ORF has no good hit, it suggests that maybe there is not really a gene there).
 
-<!--Is this the step where they get the list of features?-->    
+From now on, the instructions will differ whether you looked at a certain region of the mitochondria or if you looked at the entire mitochondria.
+
+#### If you looked at certain regions:
+
+Did ORFinder find anything? If it didn't, in any of the regions, run it again for the entire mitochondria and proceed to "If you looked at the entire mitochondria".
+
+If ORFfinder did find something, run SmartBLAST on the ORF(s). If the ORF has good hits, this suggest that there is really something in the gap. It is possible that ORFfinder identified several ORFs belonging to the same gene. You can add the new gene to your GeSeq output file. Copy the lines corresponding to an existing gene (both the "gene" and the "CDS" information) and paste it in the right location. Then modify the start and end of the gene, its name and, if you want, add the amino acids sequence. Repeat if you looked at more gaps. Finally, run OGDraw (see Step 5) on your modified GeSeq file. Save the output as you will need to submit it.
+
+**Question 7 (alternative 1). What are the new genes identified by ORFfinder?**
+
+#### If you looked at the entire mitochondria
+
+Choose three of the ORFs and perform SmartBLAST on them. Answer the question below for these three ORFs.
+
+**Question 7 (alternative 2). What are the genes identified by ORFfinder? Do the results match with your previous results, e.g. from GeSeq? (e.g. in terms of boundaries)**
+
+### Step 7: A bit of programming
+
+**Question 8. Write a Python script which takes as input a mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including the coordinates) and the sequence of the feature (i.e. the sequence between the start and the end positions.**
+
+---
+
+## Report:
+
+Please submit a text file with answers to Questions 1 through 7.
+
+Submit the visual representation of your annotated mitochondria.
+
+Submit the script from Question 8 as a .py file.
 
 ---
 
