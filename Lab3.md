@@ -30,8 +30,6 @@ The work flow described in this session could be followed for the four organisms
 
 ## Output(s)
 
-<!-- what do we consider to be an output? for example, is the blast output one? or only the circularized mitochondria?-->
-
   + a circularized, orientated mitochondria for your species of interest (format: `fasta`).
   
 ## Tools
@@ -163,7 +161,9 @@ Second, create a single fasta file with the different contigs fasta files. You c
 
 ### Tiling
 
-You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. Your contigs may come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of the tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this [webpage](https://www.bioinformatics.org/sms/rev_comp.html). Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
+You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. Your contigs may come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of the tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this [webpage](https://www.bioinformatics.org/sms/rev_comp.html). Alternatively, you can use the script that you wrote during session 2 (Question 3).
+
+If you use the web tool: Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
 
 You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure 1.
 
