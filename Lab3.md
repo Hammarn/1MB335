@@ -203,6 +203,8 @@ Congratulations! You now have a circular mitochondrial genome. The last step tod
 
 Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
 
+***Table 1. Pairs of study organisms / close relative.***
+
 Study organism ("start species") | Close relative 
 ---------------|---------------
 Caenorhabditis remanei (nematode) | Caenorhabditis elegans (nematode)
