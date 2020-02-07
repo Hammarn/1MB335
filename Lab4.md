@@ -17,6 +17,7 @@ The text from this session is modified from "A guide to organellar genome assemb
 + Annotate a mitochondrial genome.
 + Get familiar with some of the features of the mitochondria.
 + Get familiar with some annotation tools.
++ Continue to program in Python.
 
 ## Input(s)
 
