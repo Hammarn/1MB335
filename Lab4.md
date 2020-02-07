@@ -40,16 +40,17 @@ The text from this session is modified from "A guide to organellar genome assemb
 
 ## Steps
 
-+ Perform a first annotation with GeSeq
-+ Complete the annotation of tRNAs with tRNAscan
-+ Use web-based blast to confirm annotations and locate rRNA
-+ Draw a visual representation of your annotated mitochondria and identify unannotated regions
-+ Look for open reading frames with ORF finder
++ Step 1: Perform a first annotation with GeSeq
++ Step 2: Complete the annotation of tRNAs with tRNAscan
++ Step 3: Use web-based blast to confirm features boundaries
++ Step 4: Use web-based blast to improve the annotation of rRNA
++ Step 5: Draw a visual representation of your annotated mitochondria and identify unannotated regions
++ Step 6: Look for open reading frames with ORF finder
 + Conclude
 
 ## Details
 
-### First annotation with GeSeq
+### Step 1: Perform a first annotation with GeSeq
 
 Open [GeSeq](https://chlorobox.mpimp-golm.mpg.de/geseq.html) in your browser.
 On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3). Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. Next, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
@@ -88,7 +89,7 @@ Val
 
 **Question 1. How many of these features are found by GeSeq?**
 
-### Complete the annotation of the transfer RNAs (tRNAs) with tRNAscan
+### Step 2: Complete the annotation of tRNAs with tRNAscan
 
 To find tRNAs, GeSeq uses the program tRNAscan (Lowe & Eddy 1997). To ensure we have found all of the tRNAs, it is best to double check the lengths and identities of the tRNAs found in GeSeq by using the stand alone tRNAscan program, which has a very easy to use web interface. The program may be found [here](http://lowelab.ucsc.edu/tRNAscan-SE/). In the proper dialog box upload your sequence, change the dropdown box for 'Sequence source' to the right answer for your species and leave everything else as default. Hit submit.
 
@@ -127,7 +128,7 @@ To answer the last question, you can go to the NCBI page of the annotated genome
 
 If tRNAscan identified features that GeSeq did not find, add them to the GeSeq output as follow: For example, let’s say that tRNAscan found the tRNA for tyrosine, which GeSeq did not find. We will need to add it in the GeSeq output. tRNAscan will use the three-letter code "tyr", we see from our translation table that the one letter code is Y (Table 2). In addition, we see in tRNAscan output that the anti-codon for tyrosine is GTA. Therefore, the correct format for the gene name will be “trnY-GUA” (all T’s become U’s because we are dealing with RNA not DNA, and "trn" stands for tRNA). Refer back to tRNAscan for the boundaries of this tRNA. In the GenBank formatted text file enter the missing tRNAs using the same format as presented for the tRNAs that GeSeq did find.
 
-### Use blast to fine-tune the boundaries of your features
+### Step 3: Use web-based blast to confirm features boundaries
 
 The boundaries (i.e. start and end) identified by GeSeq for the different features might not be accurate. One way to verify the accuracy of the boundaries is to perform a blast. For that, you need to navigate to the GenBank entry of your close relative or reference (see Table 1 in Session 3 if you do not remember!). GenBank is the default format of the NCBI entry, e.g. [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_001328.1) for Caenorhabditis elegans). In the top right of your reference’s GenBank page is a dropdown box titled 'send'. Click on this and select 'coding sequences' in .fasta protein format, this will open the file on your computer. The file contains the amino acid sequence of all the protein coding features of your reference. We will use these sequences to finalize the boundaries of the protein features that we have imported from GeSeq by BLASTing the reference sequence against your own.
 
@@ -145,15 +146,31 @@ Now, choose two more genes from the list of coding sequences that you downloaded
 
 **Question 4. Which two genes did you choose? Do they have one or several exons? Do the boundaries match with the GeSeq boundaries? If not, list the GeSeq and the blast boundaries. Does the alignment start at position 1 of the subject? If not, make an hypothesis concerning the location of the start codon in your own genome.**
 
-### Locate rRNA
+### Step 4: Use web-based blast to improve the annotation of rRNA
 
-**todo write** In the manual they use that to validate the features boundaries. It is a long process, involving pairwise alignement, looking at the dot matrixes and possibly inverting the sequences if needed etc. The other reason they use it is to locate the rRNA - process similar to locating *cox 1*. Apparently there are methods to locate RNA genes (but not specifically rRNA) e.g. http://eddylab.org/infernal/ or http://rfam.xfam.org/, and see this too: http://ensemblgenomes.org/info/data/ncrna. Or NCBI local blast against Rfam. Or RNAmmer http://www.cbs.dtu.dk/services/RNAmmer/ (but from what I can read does not look for mitochondrial rRNA?). Lots of tools here too: https://services.healthtech.dtu.dk/ (including prediction of protein structure)   
+There are two rRNA genes in the mitochondria, a short and a long one. They are part of the assembly of the ribosomal sub-units (and the ribosomes are the structure responsible for protein synthesis). They are also very useful for phylogenetic studies, and we will work more with them in Session 5.
 
-### Draw a visual representation of your annotated mitochondria and identify unannotated regions
+GeSeq is not very efficient at localizing the location of rRNA, and at the moment there are no other good tools to annotate rRNA. Thus you will proceed like in Step 3, but this time you will use blastn because your "subject" sequence is in nucleotides not amino acids.
 
-**todo write** Straight forward, nice output; instructions in the manual are outdated. Once the students have the drawing, identify regions where there is nothing (look at the GeSeq output).
+In short: go to NCBI, find the sequence for the two rRNA genes in your reference genome, perform two blastn - one for each of the genes - between your study species (query) and your reference genome (subject). Look at the dot plot and the alignments.
 
-### Look for open reading frames with ORF finder
+**Question 5. Do the coordinates differ between GeSeq output and what blastn suggests?**
+
+If you trust the blastn result more, update the start and end coordinates in the GeSeq output. Good reasons to trust the blastn output is if GeSeq predicted the genes to be in several pieces; or if the genes predicted by GeSeq were very short (less than 500 base pairs would be short).
+
+### Step 5: Draw a visual representation of your annotated mitochondria and identify unannotated regions
+
+It would be nice to be able to visualize the result of your hard work, isn't it? Luckily, there is a tool that will do just that. Go to [OGDraw software](https://chlorobox.mpimp-golm.mpg.de/OGDraw.html). Upload your GeSeq output (which you should have updated in steps 2, 3 and 4). Check "Show full legend" in Map Options, and choose "PDF" as output format. Submit!
+
+**Question 6. Now, look at the output. Do you see regions devoid of annotated features? See the example below (Figure 1).**
+
+![](Figure_gap_in_OGDrawoutput_Pogodaetal.png)
+
+***Figure 1: An example output of OGDraw with a gap.** The black arrow indicates a gap in annotated features where undiscovored proteins may exist. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
+
+If you do see gaps of > 300 base pairs, write down the coordinates (you can for example look at the coordinates of the features on both ends of the gap) and proceed to the next step. Should you have no gap at all, save the output of OGDraw (you will need to submit it) and proceed to Step 7.
+
+### Step 6: Look for open reading frames with ORF finder
 
 **todo write** For this step they need to select the right genetic code from 30 different! We could make a short list (e.g. with the ones they need and three extra) and have them choose from it. Summary here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi We could also have them compare the results using different genetic code. One of the output pages is a visual summary - they could look at it and guess which features are more likely (e.g. one long ORF more likely than several short ones).
 
