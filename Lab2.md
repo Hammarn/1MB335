@@ -217,7 +217,7 @@ Dictionaries have several inbuild methods. Some of these are:
 
 
 ### Conditionals
-Conditonals are, as you probably are familiar with, fundamental building blocks in programing. Testing whether on condition is true 
+Conditonals are, as you probably are familiar with, fundamental building blocks in programing. Testing whether one condition is true or not is the basic behinf conditionals and loops, whether it's "is x true -> then do y" or "for all occurcences of x -> do y".
 
 #### if
 The most simple condition in Python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
