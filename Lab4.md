@@ -6,13 +6,13 @@ OBS! Protocol is in progress.
 
 <!--How much we write here depends on how much they learn about annotation during the lectures.-->
   
-During Session 3, you assembled a circular, orientated mitochondrial genome - basically a sequence of nucleotides. In this session you will make sense of these nucleotides. The mitochondrial genome, like the nuclear genome, codes for proteins, transfer RNA (tRNA) and ribosomal RNA (rRNA). These elements are necessary for the function of the mitochondria. For example, the proteins are involved in ATP synthesis and protein synthesis; the tRNA are necessary for the translation from RNA to protein; and the rRNA are necessary to assemble the ribosomes. Other elements also necessary to the mitochondria' function are coded for in the nucleus.
+During Session 3, you assembled a circular, orientated mitochondrial genome - basically a sequence of nucleotides. In this session you will make sense of these nucleotides. The mitochondrial genome, like the nuclear genome, codes for proteins, transfer RNA (tRNA) and ribosomal RNA (rRNA). These elements are necessary for the function of the mitochondria. For example, the proteins are involved in ATP synthesis and protein synthesis; the tRNA are necessary for the translation from RNA to protein; and the rRNA are necessary to assemble the ribosomes. Other elements also necessary for the mitochondria to function are coded for in the nuclear DNA.
 
-'Annotation' means finding the location of the different elements in the genomes. This can be done in different ways. For example, one can look for conserved sequences between different species. It is also possible to predict the location of protein coding gene by searching for start codon and promoters. <!--Add more background if needed.--> Once you have annotated the genome and know where a given gene is, it is easy to extract that gene and e.g. use it for comparative approaches (Session 5) or to build phylogenies (like you will do in the bioinformatics project: Sessions 6-8).
+'Annotation' means finding the location of the different elements in the genome. This can be done in different ways. For example, one can look for conserved sequences between different species. It is also possible to predict the location of protein coding genes by searching for start codons (such as ATG - remember the part about *cox1* in Session 3) and promoters. Once you have annotated the genome and know where a given gene is, it is easy to extract that gene and e.g. use it for comparative approaches (Session 5) or to build phylogenies (like you will do in the bioinformatics project: Sessions 6-8).
 
-Because you are working with model organisms - or close relatives of modern organisms - it will be quite easy to annotate the mitochondrial genome. However, you could follow the same steps if you were working with non-model organisms.
+Because you are working with close relatives of model organisms, it will be quite easy to annotate the mitochondrial genome. However, you could follow the same steps if you were working with non-model organisms.
 
-The text from this session is modified from A guide to organellar genome assembly and annotation, by Cloe Pogoda, Kyle Keepers, and Nolan Kane (A CURE-based approach to teaching genomics using mitochondrial genomes, CS Pogoda et al, CourseSource 2019).
+The text from this session is modified from "A guide to organellar genome assembly and annotation", by Cloe Pogoda, Kyle Keepers, and Nolan Kane, the accompanying document of "A CURE-based approach to teaching genomics using mitochondrial genomes", CS Pogoda et al, CourseSource 2019.
 
 ## Goals
 
@@ -23,14 +23,12 @@ The text from this session is modified from A guide to organellar genome assembl
 ## Input(s)
 
 + the circularized, orientated mitochondria for your species of interest (format: fasta), from Session 3.
-+ a list of the features that you should find in the mitochondrial genome.
++ a list of the features that are present in the mitochondrial genome.
 
 ## Output(s)
 
 + an annotated mitochondrial genome for your species of interest.
 + a graphical representation of the genome.
-
-<!--How are we going to extract information from the output?? And which format do we want the output in exactly? Not clear to me... Check this tool out: https://chlorobox.mpimp-golm.mpg.de/lola_doc.html (same webpage like GeSeq and OGDraw--> 
 
 ## Tools
 
@@ -40,11 +38,9 @@ The text from this session is modified from A guide to organellar genome assembl
 + [OGDraw software](https://chlorobox.mpimp-golm.mpg.de/OGDraw.html)
 + [ORF finder](https://www.ncbi.nlm.nih.gov/orffinder/)
 
-<!--GeSeq has a long page with alternative softwares: https://chlorobox.mpimp-golm.mpg.de/Alternative-Tools.html For example a recent one with apparently ample documentation on github: https://github.com/linzhi2013/MitoZ Maybe if we need more things to do we could try it (or another) - possibly including download from github etc, as this is very realistic for the students! -->
-
 ## Steps
 
-+ First annotation with GeSeq
++ Perform a first annotation with GeSeq
 + Complete the annotation of tRNAs with tRNAscan
 + Use web-based blast to confirm annotations and locate rRNA
 + Draw a visual representation of your annotated mitochondria and identify unannotated regions
@@ -56,10 +52,36 @@ The text from this session is modified from A guide to organellar genome assembl
 ### First annotation with GeSeq
 
 Open [GeSeq](https://chlorobox.mpimp-golm.mpg.de/geseq.html) in your browser.
-On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file). Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in session 3 to know which species to choose *Possibly give more details*. Leave the rest of the options in the middle section unselected. Next, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few minutes to run and will produce several files. We are currently interested in downloading the GenBank file.
-Next, open this file in your text editor and take a look at the file produced. At this time, we suggest deleting the notes that GeSeq automatically inserted. Search your document for “note=” and delete the entire line. We also suggest looking for duplicated entries. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3, both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). Delete any lines that say exon and intron and only save the lines that contain information for gene and CDS. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
+On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3). Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. Next, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
+Next, open this file in your text editor and take a look at the file produced. At this time, we suggest deleting the notes that GeSeq automatically inserted. Search your document for “note=” and delete the entire line. We also suggest looking for duplicated entries. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). Delete any lines that say exon and intron and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
 
-This is a list of the features that are most likely present in your mitochondrial genome. *TODO add the list!*
+This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants.
+
+tRNA | genes | rRNA
+--|--|--
+Ala | ATP6 | s-RNA
+Arg | ATP8** | l-RNA
+Asn | COX1 |
+Asp | COX2 |
+Cys | COX3 |
+Gln | CYTB |
+Glu | ND1 |
+Gly | ND2 |
+His | ND3 |
+Ile | ND4 |
+Leu* (twice, recognize two different codons) | ND4L |
+Lys | ND5 |
+Met | ND6 |
+Phe
+Pro
+Ser* (twice, recognize two different codons)
+Thr
+Trp
+Tyr
+Val
+
+* These tRNA might be present twice as two different codons can be translated into these amino acids.
+** The gene *ATP8* is not present in the mitochondria of Caenorhabditis remanei.
 
 **Question 1. How many of the features are found by GeSeq?**
 
