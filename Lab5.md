@@ -1,57 +1,78 @@
 OBS! Protocol is in progress.
 
-# Session 5 - compare with genomes from other species
+# Session 5 - Alignments of mitochondrial sequences
 
 ## Introduction / Background information to Session 5
 
-In this session you will focus on aligments. As you have seen in the lecture, it is possible to align two sequences (pairwise alignments) and multiple sequences (multiple alignments). You will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligments, you will go back to working with the mitochondrial genomes from sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences! Finally, you will write a script that will come in handy for the bioinformatic project.
+In this session you will focus on aligments. As you have seen in the lecture, yuo can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences! Finally, you will write a script that will come in handy for the bioinformatic project.
 
 ## Goals
 
   + Perform local and global pairwise alignments with different algorithms
   + Explore parameters of pairwise alignments
   + Perform multiple alignments with different softwares
+  + Continue to program in Python
 
 ## Input(s)
 
   + 14 complete mitochondrial genomes
-  + 13 sequences for the ribosomal large subunit
+  + 13 sequences for the ribosomal large subunit (l-rRNA)
 
 ## Output(s)
 
   + An alignment of 13 mitochondrial genome
   + A table of mitochondrial features for 13 genomes
-  + Some kind of visual representation of the alignment
+  + A visual representation of the alignment
 
 ## Tools
 
-  + Online alignment tools : https://www.ebi.ac.uk/Tools/psa/
-  + Online tool to randomly shuffle a protein sequence: http://www.bioinformatics.org/sms2/shuffle_protein.html
+  + [Online alignment tools](https://www.ebi.ac.uk/Tools/psa/)
+  + [Online tool to randomly shuffle a protein sequence](http://www.bioinformatics.org/sms2/shuffle_protein.html)
+  + Program mafft
+  + more programs?
 
 ## Steps
 
-  + Start by doing the pairwise alignment exercise.
-  + 
+  + Step 1: Pairwise alignment exercise
+  + Step 2: Multiple alignment exercise
+    + Step 2a: Identify the mitochondrial genomes
+    + Step 2b: Fill a table of mitochondrial features
+    + Step 2c: Prepare the input file for the alignment program (programming task)
+    + Step 2d: Align the entire mitochondria
+    + Step 2e: Align the sequence for the large mitochondrial ribosomal RNA (l-rRNA)
+    + Step 2f: Find a new l-rRNA sequence and align one more time
 
 ## Details
 
-### Pairwise alignment
+### Step 1: Pairwise alignment
 
-Please go through the tutorial on this page: http://teaching.bioinformatics.dtu.dk/teaching/index.php/Exercise:_Pairwise_alignment
+Please go through the tutorial on [this page](http://teaching.bioinformatics.dtu.dk/teaching/index.php/Exercise:_Pairwise_alignment).
 
-Questions are numbered from 1 to 14. For the report, you need to submit written answers to the following questions: 9, 11, 14, *more?*.
+Questions are numbered from 1 to 14. For the report, you need to submit written answers to the following questions: 9, 11, 14.
 
 ### Multiple alignment
 
-#### Step 1: Identify the mitochondrial genomes
+#### Step 2a: Identify the mitochondrial genomes
 
-Start by login in to Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named `Seq1.fasta` to `Seq13.fasta`. Your first task is to identify which species the sequences belong to. Look at the content of the files and think about tools you used in sessions 3 and 4. Once you have identified the species, copy the fasta files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`) to your own directory. Then modify the fasta header with the same information than in `Seq2.fasta` (in particular, sequence identification number and species name). *Should we include example of bash commands? Mention nano or sed?*
+Start by login in to Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes/` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named from `Seq1.fasta` to `Seq14.fasta`.
 
-**There is an odd sequence. Write down the name of the corresponding fasta file, the species name and the type of sequence. How did you identify it?** 
+Your first task is to identify which species the sequences belong to. Look at the content of the files and think about tools you used in sessions 3 and 4. Once you have identified the species, copy the fasta files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`) to your own directory. Then modify the fasta header with the same information than in `Seq2.fasta` (in particular, sequence identification number and species name).
 
-Possibly: Look up taxonomy information for at least two of the species (prepare bioinformatic project). *todo write*
+Hint: you can use `nano` to modify files in the command line.
 
-#### Step 2: Fill a table of mitochondrial features
+**Question 1. To which species do the different sequences belong to?** 
+
+**Question 2. There is an odd sequence. Write down the name of the corresponding fasta file, the species name and the type of sequence. How did you identify it?**
+
+How much do you know about the species that are in the dataset? Do you know how they are related? To start to answer these questions, [Wikipedia](https://en.wikipedia.org/) and the [taxonomy browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root) (yet another NCBI tool!) are very helpful.
+
+Start by looking up the species from Seq4 in Wikipedia. Which family does it belong to? (see the box on the right) Now, go to the taxonomy browser and look for that same species. One of the item on the page is the full "lineage" of that species, from the widest to the most specific category. Find the family name and click on it.
+
+**Question 3. What is the common name of this family of species? Which other species from the dataset belong to that same family? Perform the same thing (and answer the second part of the question) with species from Seq14.**
+
+Before you continue, look up quickly the species that you don't know about in wikipedia (or the tool you prefer).
+
+#### Step 2b: Fill a table of mitochondrial features
 
 Before aligning sequences, it is useful to have an idea of how much the sequences might differ. In this case, it is possible to take advantage of the fact that the sequences of interest are well annotated. Complete the following features table for the 13 species. In particular, we are interested in the presence / absence of certain genes and in the length of the mitochondrial genome. *Could they write a script to get the length of the genome? Or simply use wc -c*
 
@@ -124,7 +145,7 @@ You will receive an email when the job finishes (or fails). What normally would 
 
 Now, have a look at the alignment *Still need to decide how they will do that*. What do you see? Normally one of the sequences should stand out. **Which one?**
 
-#### Step 6: Find a new *16S* sequence and align one more time
+#### Step 6: Find a new l-rRNA sequence and align one more time
 
 The strange alignment from step 5 is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, was submitted.
 
@@ -139,7 +160,12 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 **Do you think that it was meaningful to align these 12 mitochondrial genomes? Would you remove some if you were to do it again? Which?** *Other questions?*
 
 
-*Possible extra steps: look into colinearity. Include questions which force students to read the program output (e.g. what is printed to screen while the program is running). Play with alignment options. Use another alignment software.*
+---
+## REPORT
+
+Pairwise alignment tutorial: submit answers to questions 9, 11, 14.
+Multiple alignment: 
+Script.
 
 ---
 
