@@ -46,7 +46,7 @@ The text from this session is modified from "A guide to organellar genome assemb
 + Step 4: Use web-based blast to improve the annotation of rRNA
 + Step 5: Draw a visual representation of your annotated mitochondria and identify unannotated regions
 + Step 6: Look for open reading frames with ORF finder
-+ Conclude
++ Step 7: A bit of programming
 
 ## Details
 
