@@ -69,11 +69,10 @@ The sets of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
 **Question 1.** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files?
 
 Comment: the assembly file is compressed; use for example `zcat` to visualize it.
-<!-- nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
 Before running BLAST, you need to make a database of the set of proteins. Because this is an intense process, you will work in an interactive window. Interactive windows are preferred to working in the login node (i.e. what you do when you log in to Uppmax) for all analyses that involve more computing power than e.g. `ls`. In fact, if you run heavy processes on the login node your session might be killed. When you ask for an interactive window, your request goes into the queue management system (SLURM) which might result in waiting times (usually a few minutes). Run the command below (which asks for a four-hours long interactive window with the smallest computing unit on rackham - the cluster we work on - a "node").
 
-If you have to wait more than five minutes, you might try again (or in a different window) with the tag `-M snowy`. If it still does not work, tell the teaching assistants and we will offer you another solution.
+If you have to wait more than five minutes, you might try again asking for less time (one hour should be enough: `-t 1:0:0`). If it still does not work, tell the teaching assistants and we will offer you another solution.
 
 ```
 interactive -A g2019029 -p core -n 1 -t 4:0:0
@@ -95,9 +94,9 @@ makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl
 
 <!-- the dbtype could also be prot -->
 
-**Question 2.** How many new files are created? Can you read them? <!-- three files: `.nhr`, `.nin`, `.nsq` All binary `.nhr` is the header, `.nin` the index and `.nsq` is  the sequence file, see here: https://www.biostars.org/p/111501/ . -->
+**Question 2.** How many new files are created? Can you read them?
 
-Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. It will take a bit of time to run, you can read the rest of the tutorial in the meantime. <!--Or we have them try different blast and compare results - e.g. `blastn` can be done with the same inputs. --> Adapt and run the following command, which might take a few minutes to complete:
+Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. It will take a bit of time to run, you can read the rest of the tutorial in the meantime. Adapt and run the following command, which might take a few minutes to complete:
 
 ```
 gzip -dc path_to_the_assembly/assembly.fna.gz | tblastx -query - -db path_to_the_protein_set/protein_set.fasta -outfmt 6 -out outfile_name.blast
@@ -105,7 +104,7 @@ gzip -dc path_to_the_assembly/assembly.fna.gz | tblastx -query - -db path_to_the
 
 Comment: the first part of the command (`gzip -dc`) is because we need to decompress the assembly file before running blast.
 
-**Question 3.** Open the output file. What do you see? Can you make sense of the different columns? <!-- col1: query contig; col2: match in the database; etc. See here for example: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6 -->
+**Question 3.** Open the output file. What do you see? Can you make sense of the different columns?
 
 We are interested in column 11, as the best hits will have a low e-value. Adapt and run the following command; can you describe what it does? Adapt the threshold and see what happens.
 
