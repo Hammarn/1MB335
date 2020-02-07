@@ -3,8 +3,6 @@ OBS! Protocol is in progress.
 # Session 4 - annotate your mitochondrial genome
 
 ## Introduction / Background information to Session 4
-
-<!--How much we write here depends on how much they learn about annotation during the lectures.-->
   
 During Session 3, you assembled a circular, orientated mitochondrial genome - basically a sequence of nucleotides. In this session you will make sense of these nucleotides. The mitochondrial genome, like the nuclear genome, codes for proteins, transfer RNA (tRNA) and ribosomal RNA (rRNA). These elements are necessary for the function of the mitochondria. For example, the proteins are involved in ATP synthesis and protein synthesis; the tRNA are necessary for the translation from RNA to protein; and the rRNA are necessary to assemble the ribosomes. Other elements also necessary for the mitochondria to function are coded for in the nuclear DNA.
 
@@ -23,12 +21,12 @@ The text from this session is modified from "A guide to organellar genome assemb
 ## Input(s)
 
 + the circularized, orientated mitochondria for your species of interest (format: fasta), from Session 3.
-+ a list of the features that are present in the mitochondrial genome.
 
 ## Output(s)
 
 + an annotated mitochondrial genome for your species of interest.
 + a graphical representation of the genome.
++ a Python script.
 
 ## Tools
 
