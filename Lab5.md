@@ -216,9 +216,9 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 ---
 ## REPORT
 
-Pairwise alignment tutorial: submit answers to euestions 9, 11, 14.
+Pairwise alignment tutorial: submit answers to questions 9, 11, 14.
 
-Multiple alignment: Submit answers to questions 1 through 10. For Question 9, submit the alignment only if you could not show it to a teaching assistant. Submit the completed Table 1.
+Multiple alignment: submit answers to questions 1 through 10. For Question 9, submit the alignment only if you could not show it to a teaching assistant. Submit the completed Table 1.
 
 Submit the script from Step 2c as a .py file.
 
