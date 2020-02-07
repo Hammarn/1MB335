@@ -57,7 +57,7 @@ Next, open this file in your text editor and take a look at the file produced. A
 
 This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants.
 
-***Table1. Features of the mitochondrial genome.***
+***Table 1. Features of the mitochondrial genome.***
 
 tRNA | genes | rRNA
 --|--|--
@@ -97,6 +97,7 @@ Obs! tRNAscan is a bit annoying with formatting and might complain about the hea
 After a short while, you will see a list of the tRNAs and their locations in your genome. Compare these results to what GeSeq found and note if anything is missing or locations are divergent. Refer to the table below for a list of all the amino acids that should be present in your genome and for any conversion that you need to make (more details after Question 2).
 
 ***Table 2. Amino acid names translation table.***
+
 Long name | tRNA name | One letter code
 --|--|--
 Alanine | Ala | A
