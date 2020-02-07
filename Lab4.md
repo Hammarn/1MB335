@@ -57,6 +57,8 @@ Next, open this file in your text editor and take a look at the file produced. A
 
 This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants.
 
+***Table1. Features of the mitochondrial genome.***
+
 tRNA | genes | rRNA
 --|--|--
 Ala | ATP6 | s-RNA
@@ -81,30 +83,62 @@ Tyr
 Val
 
 \* These tRNA might be present twice as two different codons can be translated into these amino acids.
+
 \** The gene *ATP8* is not present in the mitochondria of Caenorhabditis remanei.
 
-**Question 1. How many of the features are found by GeSeq?**
+**Question 1. How many of these features are found by GeSeq?**
 
 ### Complete the annotation of the transfer RNAs (tRNAs) with tRNAscan
 
-To find tRNAs, GeSeq uses the program tRNAscan (Lowe & Eddy 1997). To ensure we have found all of the tRNAs, it is best to double check the lengths and identities of the tRNAs found in GeSeq by using the stand alone tRNAscan program, which has a very easy to use web interface. The program may be found [here](http://lowelab.ucsc.edu/tRNAscan-SE/). In the proper dialog box upload your sequence, change the dropdown box for 'Sequence source' to the right answer for your species and leave everything else as default. Hit submit. tRNAscan is a bit annoying with formatting and might complain about the header of your fasta file (for example). In that case, copy your original fasta file and simplify the header before resubmitting. You can also paste the sequence in the search box.
-After a short while, you will see a list of the tRNAs and their locations in your genome. Compare these results to what GeSeq found and note if anything is missing or locations are divergent. Refer to the table for a list of all the amino acids that should be present in your genome and for any conversion that you need to make (Table 2.1). *Include the table*
+To find tRNAs, GeSeq uses the program tRNAscan (Lowe & Eddy 1997). To ensure we have found all of the tRNAs, it is best to double check the lengths and identities of the tRNAs found in GeSeq by using the stand alone tRNAscan program, which has a very easy to use web interface. The program may be found [here](http://lowelab.ucsc.edu/tRNAscan-SE/). In the proper dialog box upload your sequence, change the dropdown box for 'Sequence source' to the right answer for your species and leave everything else as default. Hit submit.
 
-**Question 2. How many tRNAs were identified? Were they already identified by GeSeq? Do the coordinates differ between the two softwares? If yes, write the two sets of coordinates down. Which do you think are the correct coordinates?** To answer the last question, you can go to the NCBI page of the annotated genome. You can look for example at the length of the tRNA. You can also try to compare directly the coordinates, but because you are working with an orientated genome that might not correspond.
+Obs! tRNAscan is a bit annoying with formatting and might complain about the header of your fasta file (for example). In that case, copy your original fasta file and simplify the header before resubmitting. You can also paste the sequence in the search box.
 
-If tRNAscan identified features that GeSeq did not find, add them to the GeSeq output as follow: For example, let’s say tRNAscan found the tRNA for tyrosine, which GeSeq did not find. We will need to add it in. tRNAscan will use the three-letter code tyr, we see from our translation table that the one letter code is Y *(Table 2.1)*. In addition, we see that the anti-codon for tyr is GTA. Therefore, the correct format for gene name will be “trnY-GUA” (all T’s become U’s because we are dealing with RNA not DNA). Refer back to tRNAscan for the boundaries of this tRNA. In the GenBank formatted text file enter the missing tRNAs using the same format as presented for the tRNAs that GeSeq did find.
+After a short while, you will see a list of the tRNAs and their locations in your genome. Compare these results to what GeSeq found and note if anything is missing or locations are divergent. Refer to the table below for a list of all the amino acids that should be present in your genome and for any conversion that you need to make (more details after Question 2).
+
+***Table 2. Amino acid names translation table.***
+Long name | tRNA name | One letter code
+--|--|--
+Alanine | Ala | A
+Cysteine | Cys | C
+Aspartic acid | Asp | D
+Glutamic acid | Glu | E
+Phenylalanine | Phe | F
+Glycine | Gly | G
+Histidine | His | H
+Isoleucine | Ile | I
+Lysine | Lys | K
+Leucine | Leu | L
+Methionine | Met | M
+Asparagine | Asn | N
+Proline | Pro | P
+Glutamine | Gln | Q
+Arginine | Arg | R
+Serine | Ser | S
+Threonine | Thr | T
+Valine | Val | V
+Tryptophan | Trp | W
+Tyrosine | Tyr | Y
+
+**Question 2. How many tRNAs were identified? Were they already identified by GeSeq? Do the coordinates differ between the two softwares? If yes, write the two sets of coordinates down. Which do you think are the correct coordinates?**
+
+To answer the last question, you can go to the NCBI page of the annotated genome. You can look for example at the length of the tRNA. You can also try to compare directly the coordinates, but because you are working with a genome orientated with *cox1* you will need to shift the coordinates.
+
+If tRNAscan identified features that GeSeq did not find, add them to the GeSeq output as follow: For example, let’s say that tRNAscan found the tRNA for tyrosine, which GeSeq did not find. We will need to add it in the GeSeq output. tRNAscan will use the three-letter code "tyr", we see from our translation table that the one letter code is Y (Table 2). In addition, we see in tRNAscan output that the anti-codon for tyrosine is GTA. Therefore, the correct format for the gene name will be “trnY-GUA” (all T’s become U’s because we are dealing with RNA not DNA, and "trn" stands for tRNA). Refer back to tRNAscan for the boundaries of this tRNA. In the GenBank formatted text file enter the missing tRNAs using the same format as presented for the tRNAs that GeSeq did find.
 
 ### Use blast to fine-tune the boundaries of your features
 
-The boundaries (i.e. start and end) identified by GeSeq for the different features might not be accurate. One way to verify the accuracy of the boundaries is to perform blast. For that, you need to navigate to the GenBank entry of your reference (this is the default format of the NCBI entry, e.g. [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_001328.1) for Caenorhabditis elegans). In the top right of your reference’s GenBank page is a dropdown box titled 'send'. Click on this and select 'coding sequences' in .fasta protein format, this will save onto your computer. This contains the amino acid sequence of all the protein coding features of your reference. We will use these sequences to finalize the boundaries of the protein features that we have imported from GeSeq by BLASTing the reference sequence against your own.
+The boundaries (i.e. start and end) identified by GeSeq for the different features might not be accurate. One way to verify the accuracy of the boundaries is to perform a blast. For that, you need to navigate to the GenBank entry of your close relative or reference (see Table 1 in Session 3 if you do not remember!). GenBank is the default format of the NCBI entry, e.g. [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_001328.1) for Caenorhabditis elegans). In the top right of your reference’s GenBank page is a dropdown box titled 'send'. Click on this and select 'coding sequences' in .fasta protein format, this will open the file on your computer. The file contains the amino acid sequence of all the protein coding features of your reference. We will use these sequences to finalize the boundaries of the protein features that we have imported from GeSeq by BLASTing the reference sequence against your own.
 
-First you will verify the boundaries of *cox2*. Then you will perform the same thing for two more genes of your choice. Here are the instructions for *cox2*: Open the `blastx` page of NCBI and select 'Align two or more sequences'. Within the text file you just downloaded from NCBI, search for the string “cox2” and copy the amino acid sequence for this gene. Return to your blastx window. Now paste your copied *cox2* sequence into the bottom of the two dialog windows. Now either paste in or upload your .fasta sequence into the top dialog window. Note that we chose a file rather than pasting a nucleotide sequence into the window. Also, note that you must choose the correct genetic code, otherwise your results will be inaccurate. This will vary according to the taxon and the locus. Depending on your species, you will choose from: Vertebrate mitochondrial or invertebrate mitochondrial. You can find more information about the different genetic code on this [wikipedia page](https://en.wikipedia.org/wiki/List_of_genetic_codes) (which suggests the alternative code 14 for nematodes - those of you working with nematodes can go ahead and try!).
+First you will verify the boundaries of *cox2*. Then you will perform the same thing for two more genes of your choice. This is similar to the work you did in Session 3 with *cox1*.
 
-Also, choose 'Show results in a new window' - this will allow you to change parameters more easily if you need to. Now, submit the blast. Like you did in session 3 when looking for the start of the mitochondria, go to the 'Dot plot' tab. If you have one solid large line spanning the entire vertical span (or most) of the dot matrix that is an indicator that the gene is complete and in one exon. *Here we could include Figure 3.4 from the tutorial.* Then look at the 'Alignments' tab.
+Here are the instructions for *cox2*: Open the `blastx` page of NCBI and select 'Align two or more sequences'. Within the text file you just downloaded from NCBI, search for the string “cox2” and copy the amino acid sequence for this gene. Return to your blastx window. Now paste your copied *cox2* sequence into the bottom of the two dialog windows. Now either paste in or upload your .fasta sequence into the top dialog window. Note that we chose a file rather than pasting a nucleotide sequence into the window. Also, note that you must choose the correct genetic code, otherwise your results will be inaccurate. This will vary according to the taxon and the locus. Depending on your species, you will choose from: Vertebrate mitochondrial or invertebrate mitochondrial. You can find more information about the different genetic code on this [wikipedia page](https://en.wikipedia.org/wiki/List_of_genetic_codes) (which suggests the alternative code 14 for nematodes - those of you working with nematodes can go ahead and try!).
+
+Also, choose 'Show results in a new window' - this will allow you to change parameters more easily if you need to. Now, submit the blast. Go to the 'Dot plot' tab. If you have one solid large line spanning the entire vertical span (or most) of the dot matrix that is an indicator that the gene is complete and in one exon. Then look at the 'Alignments' tab.
 
 **Question 3. Is the gene complete and in one exon? If not, how does it look like? About the alignment: what is the first amino acid position of the reference ('Sbjct') which align well to your mitochondrial genome?**
 
-If the first amino acid position which aligns well to the reference is not 1, it could be that the start amino acid (usually a methionine) is upstream of the corresponding position in your mitochondrial genome *Should we have the figure to make it easier to understand?*. Have a look at your mitochondrial genome and try to find a start codon (ATG for vertebrates, ATA for invertebrates). Look at the end of the alignment too. Does it correspond to the end position inferred by GeSeq? (there might be a difference due to incorporating or not the stop codon)
+If the first amino acid position which aligns well to the reference is not 1, it could be that the start amino acid (usually a methionine) is upstream of the corresponding position in your mitochondrial genome. Have a look at your mitochondrial genome and try to find a start codon (ATG is the most common, but other are possible: ATA, ATT, etc - you can check the wikipedia article mentioned above). Look at the end of the alignment too. Does it correspond to the end position inferred by GeSeq? (there might be a difference due to incorporating or not the stop codon)
 
 Now, choose two more genes from the list of coding sequences that you downloaded for your reference genome and repeat the steps you just performed for *cox2*.
 
