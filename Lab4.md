@@ -60,7 +60,7 @@ This is a list of the features that are most likely present in your mitochondria
 tRNA | genes | rRNA
 --|--|--
 Ala | ATP6 | s-RNA
-Arg | ATP8** | l-RNA
+Arg | ATP8\** | l-RNA
 Asn | COX1 |
 Asp | COX2 |
 Cys | COX3 |
@@ -69,19 +69,19 @@ Glu | ND1 |
 Gly | ND2 |
 His | ND3 |
 Ile | ND4 |
-Leu* (twice, recognize two different codons) | ND4L |
+Leu\* | ND4L |
 Lys | ND5 |
 Met | ND6 |
 Phe
 Pro
-Ser* (twice, recognize two different codons)
+Ser\*
 Thr
 Trp
 Tyr
 Val
 
-* These tRNA might be present twice as two different codons can be translated into these amino acids.
-** The gene *ATP8* is not present in the mitochondria of Caenorhabditis remanei.
+\* These tRNA might be present twice as two different codons can be translated into these amino acids.
+\** The gene *ATP8* is not present in the mitochondria of Caenorhabditis remanei.
 
 **Question 1. How many of the features are found by GeSeq?**
 
