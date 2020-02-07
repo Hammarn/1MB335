@@ -1,5 +1,3 @@
-OBS! Protocol in progress.
-
 # Session 3 - Prepare your mitochondrial genome
 
 ## General introduction to sessions 3 to 5
