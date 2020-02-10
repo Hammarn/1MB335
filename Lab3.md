@@ -1,5 +1,3 @@
-OBS! Protocol in progress.
-
 # Session 3 - Prepare your mitochondrial genome
 
 ## General introduction to sessions 3 to 5
@@ -29,8 +27,6 @@ The work flow described in this session could be followed for the four organisms
   <!--I choose to work with the coding sequences not the gene features for the protein set-->
 
 ## Output(s)
-
-<!-- what do we consider to be an output? for example, is the blast output one? or only the circularized mitochondria?-->
 
   + a circularized, orientated mitochondria for your species of interest (format: `fasta`).
   
@@ -71,11 +67,10 @@ The sets of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
 **Question 1.** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files?
 
 Comment: the assembly file is compressed; use for example `zcat` to visualize it.
-<!-- nucleotides for the assembly. For the set of proteins so far I have used nucleotides too. Fasta. -->
 
 Before running BLAST, you need to make a database of the set of proteins. Because this is an intense process, you will work in an interactive window. Interactive windows are preferred to working in the login node (i.e. what you do when you log in to Uppmax) for all analyses that involve more computing power than e.g. `ls`. In fact, if you run heavy processes on the login node your session might be killed. When you ask for an interactive window, your request goes into the queue management system (SLURM) which might result in waiting times (usually a few minutes). Run the command below (which asks for a four-hours long interactive window with the smallest computing unit on rackham - the cluster we work on - a "node").
 
-If you have to wait more than five minutes, you might try again (or in a different window) with the tag `-M snowy`. If it still does not work, tell the teaching assistants and we will offer you another solution.
+If you have to wait more than five minutes, you might try again asking for less time (one hour should be enough: `-t 1:0:0`). If it still does not work, tell the teaching assistants and we will offer you another solution.
 
 ```
 interactive -A g2019029 -p core -n 1 -t 4:0:0
@@ -97,9 +92,9 @@ makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl
 
 <!-- the dbtype could also be prot -->
 
-**Question 2.** How many new files are created? Can you read them? <!-- three files: `.nhr`, `.nin`, `.nsq` All binary `.nhr` is the header, `.nin` the index and `.nsq` is  the sequence file, see here: https://www.biostars.org/p/111501/ . -->
+**Question 2.** How many new files are created? Can you read them?
 
-Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. It will take a bit of time to run, you can read the rest of the tutorial in the meantime. <!--Or we have them try different blast and compare results - e.g. `blastn` can be done with the same inputs. --> Adapt and run the following command, which might take a few minutes to complete:
+Now we are going to blast. We are going to use `tblastx`, but you can also try other types of `blast` and see what happens. It will take a bit of time to run, you can read the rest of the tutorial in the meantime. Adapt and run the following command, which might take a few minutes to complete:
 
 ```
 gzip -dc path_to_the_assembly/assembly.fna.gz | tblastx -query - -db path_to_the_protein_set/protein_set.fasta -outfmt 6 -out outfile_name.blast
@@ -107,7 +102,7 @@ gzip -dc path_to_the_assembly/assembly.fna.gz | tblastx -query - -db path_to_the
 
 Comment: the first part of the command (`gzip -dc`) is because we need to decompress the assembly file before running blast.
 
-**Question 3.** Open the output file. What do you see? Can you make sense of the different columns? <!-- col1: query contig; col2: match in the database; etc. See here for example: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6 -->
+**Question 3.** Open the output file. What do you see? Can you make sense of the different columns?
 
 We are interested in column 11, as the best hits will have a low e-value. Adapt and run the following command; can you describe what it does? Adapt the threshold and see what happens.
 
@@ -123,14 +118,6 @@ awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
 
 **Question 4.** Write down the names of the contigs which came up.
 
-<!--Possible question: why do we blast against proteins? Answer: better similarity in the protein domain, particularly relevant for distantly related species. 
-Different BLAST:
--tblastx: translated nucleotide database against translated nucleotide query
--blastn: nucleotide-to-nucleotide blast
--blastx: protein subjects using a translated nucleotide query
--tblastn: translated nucleotide database using a protein query
--->
-
 ### Validate via web-based blast that the identified contigs are mitochondrial
 
 Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. Select a good chunk of the contig.
@@ -141,13 +128,13 @@ We will take a little detour as it is the first time that you work with NCBI in 
 
 **Question 5.** First, click on 'Analyze' in the middle of the page. Check the available tools and make a list of the tools that you think will be useful for this course.
 
-**Question 6.** Go back to the main page. Left of the search field, you have a drop-down menu listing the different databases. Again, which ones do you think will be relevant to us? And where did the input files you received in this lab come from? <!--Assembly, SRA, genomes.--> If you want to see the starting page for a given database, select it in the menu and click 'Search'.
+**Question 6.** Go back to the main page. Left of the search field, you have a drop-down menu listing the different databases. Again, which ones do you think will be relevant to us? And where did the input files you received in this lab come from? If you want to see the starting page for a given database, select it in the menu and click 'Search'.
 
 Go back to the main page if you left it and find the BLAST page, then choose nucleotide blast. Paste the chunk of sequence that you selected with the `grep` command above into the dialog box. Below the BLAST button, select 'Show results in a new window'. All other parameters can be kept as default. Perform the blast.
 
 **Question 7.** Does the fragment belong to a mitochondria? Does it belong to the species you are interested in?
 
-Repeat this which each of the contigs that you identified at the previous step. Keep track of the contigs which do belong to the mitochondria of your species of interest.
+Repeat this which each of the contigs that you identified at the previous step (if you have identified many contigs, you can focus on the six most frequent ones). Keep track of the contigs which do belong to the mitochondria of your species of interest.
 
 ### Create a new fasta file with mitochondrial contigs
 
@@ -163,7 +150,9 @@ Second, create a single fasta file with the different contigs fasta files. You c
 
 ### Tiling
 
-You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. Your contigs may come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of the tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this [webpage](https://www.bioinformatics.org/sms/rev_comp.html). Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
+You now need to connect the different contigs in your file to create a continuous circular sequence. This is the step called 'tiling'. Your contigs may come from different strands (+ or -). You won't be able to connect a contig from the + strand to a contig from the - strand. Thus the first step of the tiling is to obtain the reverse-complement for each of your contigs. You can do that by visiting this [webpage](https://www.bioinformatics.org/sms/rev_comp.html). Alternatively, you can use the script that you wrote during session 2 (Question 3).
+
+If you use the web tool: Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
 
 You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure 1.
 
@@ -201,7 +190,10 @@ If you have a single contig from the beginning, follow the instructions neverthe
 
 At this stage, make a copy of your fasta file to keep a record of what you did. Then clean up your fasta file, i.e. remove the headers and sequences of the fragments that you are not using (e.g. the reverse complements of contigs) and make a single sequence of all the contigs and extra bits which belong together (see Figure 1 - you only want the black and the blue segments).
 
-Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on. This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The ready fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes`.
+Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
+
+---
+This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes`.
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
@@ -210,6 +202,8 @@ Congratulations! You now have a circular mitochondrial genome. The last step tod
 **Question 11.** To which organism do the best hits belong too?
 
 Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, we are from now on going to use as a 'reference' a close relative of your species instead of your species itself. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your start species.
+
+***Table 1. Pairs of study organisms / close relative.***
 
 Study organism ("start species") | Close relative 
 ---------------|---------------
@@ -228,9 +222,9 @@ Then click on the identifier. You should be taken to a page that looks like that
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
-**Question 13.** Estimate the length of the *cox 1* coding sequence with the command `wc -m`. Does it match with the information in the fasta header? <!--I did it - for C remanei it is not exactly the same... Weird. 15 bp difference.-->
+**Question 13.** Estimate the length of the *cox 1* coding sequence with the command `wc -m`. Does it match with the information in the fasta header? If it does not, you can try to transform your record into a sequential fasta file; is the output of `wc -m` different? What do you think has happened?
 
-Now you are ready to orient the mitochondrial genome of your "study species" with the *cox1* gene you just obtained. Once again, go to NCBI webpage, choose BLAST and then 'tblastx' (the tblastx option might not show up in the blast starting page - in that case choose one of the other types of blast and then you will find a tblastx tab). Then choose "align two or more sequences". In the top dialog box, copy or upload the mitochondrial genome of your study species. In the bottom dialog box, copy or upload the *cox1* fasta file. Then choose the option "open results in new window" next to the BLAST button and blast. In the new window there are different tabs. Choose the tab "Dot Plot". You should see a line (possibly fragmented) with an increasing or a decreasing slope.
+Now you are ready to orient the mitochondrial genome of your "study species" with the *cox1* gene you just obtained. Once again, go to NCBI webpage, choose BLAST and then 'tblastx' (the tblastx option might not show up in the blast starting page - in that case choose one of the other types of blast and then you will find a tblastx tab). Then choose "align two or more sequences". In the top dialog box, copy or upload the mitochondrial genome of your study species. You need to choose which genetic code is going to be used to translate your nucleotide sequence. Choose between: "Vertebrate mitochondrial" and "Invertebrate mitochondrial". In the bottom dialog box, copy or upload the *cox1* fasta file. Then choose the option "open results in new window" next to the BLAST button and blast. In the new window there are different tabs. Choose the tab "Dot Plot". You should see a line (possibly fragmented) with an increasing or a decreasing slope.
 
 If the slope is decreasing, you need to reverse complement your mitochondrial genome. Scroll up this page for instructions on how to reverse complement! Save your genome in a new fasta file and repeat the tblastx step.
 
@@ -238,21 +232,21 @@ Now that you have a line with an increasing slope, look at it. Where does it sta
 
 The last part of these explanations are based on 'A guide to organellar genome assembly and annotation', Pogoda et al. as their explanations are very good!
 
-The top sequence is your species’ *cox1* amino acid sequence (or most of it), and the bottom is the *cox1* amino acid sequence of the reference you chose. Note that the amino acid sequences are very similar in some places (conserved), but diverge in other places in the protein. This is simply due to evolution of this protein over the millions of years since the common ancestor of these two different organisms. Some of this divergence may have occurred at the beginning amino acids of the protein, in which case the alignment position of the reference sequence may not start at amino acid number one, which corresponds to the bottom of these two sets of numbers being equal to one. Although *cox1* is highly conserved, tblastx may not have found an alignment that begins at the start methionine (M) of the protein. However, the alignment should start very near the beginning, within a couple of amino acids from the start methionine of the protein, which is encoded for by an ATG. If you are working with nematodes or flies, the start codong might be different (ATT, ATA, ATC, GTG, TTG). Look at the *cox1* sequence from your close relative to make a guess!
+The top sequence is your species’ *cox1* amino acid sequence (or most of it), and the bottom is the *cox1* amino acid sequence of the reference you chose (the close relative). Note that the amino acid sequences are very similar in some places (conserved), but diverge in other places in the protein. This is simply due to evolution of this protein over the millions of years since the common ancestor of these two different organisms. Some of this divergence may have occurred at the beginning amino acids of the protein, in which case the alignment position of the reference sequence may not start at amino acid number one, which corresponds to the bottom of these two sets of numbers being equal to one (or to 3, as the start codon might not be included in the *cox1* sequence you obtained for the reference sequence). Although *cox1* is highly conserved, tblastx may not have found an alignment that begins at the start methionine (M) of the protein. However, the alignment should start very near the beginning, within a couple of amino acids from the start methionine of the protein, which is encoded for by an ATG. If you are working with nematodes or flies, the start codon might be different (ATT, ATA, ATC, GTG, TTG).
 
-While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Take the bottom number, multiple by three and subtract that from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. The start and end positions of a contig put together by the assembler are arbitrary within both the strand and the position along the circular genome. Therefore, it is up to us to orient the genome to the canonical *cox1* start.
+While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Take the bottom number, multiple by three and subtract that from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. It is also possible that the alignment is broken in several pieces. In that case, scroll down the page (usually the top alignment is the longest and then come shorter ones) and see whether you can find another alignment which could complete the longest one. Caution! Make sure that the two (or more) alignments are in the same translation frame (right most information in the header of the alignment result).
 
-Once the start codon has been found, place your cursor before the first base pair in your text editor and hit enter. This will put the first nucleotide of the *cox1* gene as the first nucleotide of the genome. Because of the circular nature of this genome, the sequence that used to come before this start codon can simply be added onto the end for the genome to remain circular and complete.
+The start and end positions of a contig put together by the assembler are arbitrary within both the strand and the position along the circular genome. Therefore, it is up to us to orient the genome to the canonical *cox1* start. Once the start codon has been found, place your cursor before the first base pair in your text editor and hit enter. This will put the first nucleotide of the *cox1* gene as the first nucleotide of the genome. Because of the circular nature of this genome, the sequence that used to come before this start codon can simply be added onto the end for the genome to remain circular and complete.
 
 If you cannot find the start codon, perform the step above with the first position in the alignment.
 
 You now have a *cox1* oriented genome!
 
-**Question 14.** What is the position (in base pairs) of the start codon in your study of interest? (before you oriented it)
+**Question 14.** What is the position (in base pairs) of the first nucleotide of the start codon in your study species? (before you oriented it) You can validate your answer by finding on NCBI the page of the mitochondria of your study species.
 
 ---
 ## Report:
-Please sumbit a text file with the answers to the following questions: 4, 6, 7, 8, 12.
+Please sumbit a text file with the answers to the following questions: 4, 6, 7, 8, 12, 14.
 
 ---
 
