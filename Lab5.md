@@ -28,8 +28,8 @@ In this session you will focus on aligments. As you have seen in the lecture, yu
 
   + [Online alignment tools](https://www.ebi.ac.uk/Tools/psa/)
   + [Online tool to randomly shuffle a protein sequence](http://www.bioinformatics.org/sms2/shuffle_protein.html)
-  + Program mafft
-  + more programs?
+  + Alignment program: [mafft](https://mafft.cbrc.jp/alignment/software/)
+  + Alignment visualization (and alignment) program: clustalw / clustalx
 
 ## Steps
 
