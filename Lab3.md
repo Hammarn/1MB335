@@ -189,7 +189,9 @@ You should see in the terminal a series of reads which contain exactly that sequ
 
 Repeat this twice - but this time the 'word' in the grep command is from the end of the sequence you just added. 
 
-You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some. Now you can continue with the end of the second contig.
+You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some.
+
+**Edit for today you can stop here and jump to the next section (to "Disclaimer")** Now you can continue with the end of the second contig.
 
 If it does not connect, you have to continue a bit. Take about 30 bp from the end of the last sequence you added, and grep for it in the short reads library. Add the new piece of sequence, repeat two more times. Then grep in your fasta file. Does it connect? If yes, proceed as the previous paragraph. If not, repeat the process in this paragraph one last time. If it still does not connect, have a closer look at your data. Do you see many repeats?
 
