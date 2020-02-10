@@ -12,7 +12,7 @@ The steps you will follow in sessions 3 (assembling the genome) and 4 (annotatio
 
 You will receive a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in session 4!
 
-The work flow described in this session could be followed for the four organisms mentioned in the introduction. However, the larger the genome of the organism and the longer the different steps will take. For that reason, you will work mostly on the genome of a nematode. The genome of the nematode Caenorhabditis elegans is ~100 Mbp long, while the human genome is ~3,000 Mbp long. For the last step, you will work on one of the four genomes (this will be decided at the beginning of the class).
+The work flow described in this session could be followed for the four organisms mentioned in the introduction. However, the larger the genome of the organism and the longer the different steps will take. For that reason, you will work mostly on the genome of a nematode, Caenorhabditis remanei. The genome of the nematode Caenorhabditis elegans (a relative of Caenorhabditis remanei and a model organism) is ~100 Mbp long, while the human genome is ~3,000 Mbp long. For the last step, you will work on one of the four genomes (this will be decided at the beginning of the class).
 
 ## Goals
 
@@ -24,7 +24,6 @@ The work flow described in this session could be followed for the four organisms
   + an assembly (format: `fasta`) for Caenorhabditis remanei. This assembly consists of contigs which need to be assembled (in your case you are only interested in the mitochondria, so you will need to identify the mitochondrial contigs).
   + a set of proteins from a close relative of your species of interest (in this case, Caenorhabditis elegans). This will be used to identify the contigs belonging to the mitochondria in the assembly.
   + a library of short reads (format: `fastq`) for an individual for your species of interest (Caenorhabditis remanei). This will be used to bridge the mitochondrial contigs.
-  <!--I choose to work with the coding sequences not the gene features for the protein set-->
 
 ## Output(s)
 
@@ -60,13 +59,15 @@ You should already have created your own folder under: `/proj/g2019029/private/R
 
 For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavors, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
 
-The assemblies are in subfolders of: `/proj/g2019029/private/DATA/assemblies`
+The assembly is in a subfolder of: `/proj/g2019029/private/DATA/assemblies`
 
-The sets of proteins are in: `/proj/g2019029/private/DATA/coding_sequences`
+The set of proteins is in: `/proj/g2019029/private/DATA/coding_sequences`
+
+Start by copying the assembly and the set of proteins to your own folder.
 
 **Question 1.** Are the sequences for the assembly and the set of proteins in nucleotides or in amino acids? What is the format of these files?
 
-Comment: the assembly file is compressed; use for example `zcat` to visualize it.
+Comment: the assembly file is compressed; use for example `zcat` to visualize it. **OBS If you do not know how to use a bash command, you can type "man *command_name*" on the command line (or google it).**
 
 Before running BLAST, you need to make a database of the set of proteins. Because this is an intense process, you will work in an interactive window. Interactive windows are preferred to working in the login node (i.e. what you do when you log in to Uppmax) for all analyses that involve more computing power than e.g. `ls`. In fact, if you run heavy processes on the login node your session might be killed. When you ask for an interactive window, your request goes into the queue management system (SLURM) which might result in waiting times (usually a few minutes). Run the command below (which asks for a four-hours long interactive window with the smallest computing unit on rackham - the cluster we work on - a "node").
 
@@ -84,7 +85,7 @@ Then you should load module for the BLAST software. We are specifying version 2.
 module load bioinfo-tools blast/2.9.0+
 ```
 
-You are going to modify file so **you should make a copy to your own folder (of the set of proteins) and work on that copy**. Then, adapt and run the following command:
+You are going to modify file so **if you have not already done so, make a copy to your own folder (of the set of proteins) and work on that copy**. Then, adapt and run the following command:
 
 ```
 makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl 
@@ -110,7 +111,7 @@ We are interested in column 11, as the best hits will have a low e-value. Adapt 
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |wc -l
 ```
 
-Now you have to identify which contigs have many regions with good hits. To do this you run the following command (think about the previous command output to define the e-value threshold - you might need a higher or a smaller value). You can also come up with different strategies if you like.
+Now you have to identify which contigs have many regions with good hits. To do this you run the following command (think about the previous command output to define the e-value threshold - you might need a higher or a smaller value). **Take a minute to understand what this command does.** You can also come up with different strategies if you like.
 
 ```
 awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
@@ -120,9 +121,15 @@ awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
 
 ### Validate via web-based blast that the identified contigs are mitochondrial
 
-Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. Select a good chunk of the contig.
+Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. Select a good chunk of the contig. **Caution!** Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. First, you should uncompress it (for example with `gunzip`). Then, you should have a python script from sessions 1 and 2 that does just that.
 
-Caution! Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. Normally you should have a python script from sessions 1 and 2 that does just that. You will use the sequential fasta in the next step too. 
+If not, or if you script does not allow for multiple entries in the fasta file, you can use this file: `/proj/g2019029/private/SCRIPTS/interleaved_fasta_to_sequential.py` with the following syntax (replace *your_input* and *your_output*):
+
+```
+python /proj/g2019029/private/SCRIPTS/interleaved_fasta_to_sequential.py your_input your_output
+```
+
+You will use the sequential fasta in the next step too. 
 
 We will take a little detour as it is the first time that you work with NCBI in this course. Go to the [webpage](https://www.ncbi.nlm.nih.gov). It provides a lot of resources, databases, programs etc. It is easy to get lost... So before you start working with it you will perform a few tasks to get familiar with it and get an idea of what it can offer you.
 
@@ -218,7 +225,7 @@ In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Org
 
 **Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
-Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1). You should get two matches, one for the gene and one for the coding sequence (CDS). Look at the information, in particular which translation table is used, and other details (particularly important for those of you working with the nematodes and the flies). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1, or search for COI). You should get two matches, one for the gene and one for the coding sequence (CDS). Look at the information, in particular which translation table is used, and other details (particularly important for those of you working with the nematodes and the flies). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
