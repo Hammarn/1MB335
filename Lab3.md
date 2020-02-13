@@ -191,7 +191,11 @@ Repeat this twice - but this time the 'word' in the grep command is from the end
 
 You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some.
 
-**Edit for today you can stop here and jump to the next section (to "Disclaimer")** Now you can continue with the end of the second contig.
+---
+
+**The part below is what you would do to continue tiling. Edit for 1MB335 (year 2020): skip this part.**
+
+Now you can continue with the end of the second contig.
 
 If it does not connect, you have to continue a bit. Take about 30 bp from the end of the last sequence you added, and grep for it in the short reads library. Add the new piece of sequence, repeat two more times. Then grep in your fasta file. Does it connect? If yes, proceed as the previous paragraph. If not, repeat the process in this paragraph one last time. If it still does not connect, have a closer look at your data. Do you see many repeats?
 
@@ -202,11 +206,11 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
 
 ---
-This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes`.
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
-Congratulations! You now have a circular mitochondrial genome. The last step today is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste your mitochondrial sequence.
+You now have a circular mitochondrial genome. The last step is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste or upload your mitochondrial sequence.
 
 **Question 11.** To which organism do the best hits belong too?
 
@@ -223,11 +227,11 @@ Pongo abelii (orangutan) | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
-In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. 
+In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. Choose the genome with the oldest release data.
 
 **Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
-Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your species of interest. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1, or search for COI). You should get two matches, one for the gene and one for the coding sequence (CDS). Look at the information, in particular which translation table is used, and other details (particularly important for those of you working with the nematodes and the flies). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
+Then click on the identifier. You should be taken to a page that looks like that [one](https://www.ncbi.nlm.nih.gov/nuccore/NC_002008.4), except for your close relative. If that is not the case, try again or ask the teaching assistants. This page comprises a lot of information, including annotations. You want the sequence of the *cox 1* gene. Search for it on the page (you might have to change case, e.g. COX1, or search for COI). You should get two matches, one for the gene and one for the coding sequence (CDS). Look at the information, in particular which translation table is used, and other details (particularly important for those of you working with the nematodes and the flies). Click on the CDS link and open it in a new window. You should have something similar to the entire mitochondria but very reduced in length. To download the fasta file, click on 'FASTA' (under the name of the sequence). Once the page changed, click on 'Send to' in the top right of the page, make sure to choose 'Complete Record', and select 'File' as file destination. The format should be FASTA. This will open a text file with the sequence - save it in an appropriate location with an appropriate name.
 
 Comment about NCBI: as you might start to notice, you can access a given page of NCBI (e.g. the page of the mitochondrial genome) in several different ways, using different identifiers etc.
 
