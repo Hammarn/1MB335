@@ -191,7 +191,11 @@ Repeat this twice - but this time the 'word' in the grep command is from the end
 
 You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some.
 
-**Edit for today you can stop here and jump to the next section (to "Disclaimer")** Now you can continue with the end of the second contig.
+---
+
+**The part below is what you would do to continue tiling. Edit for 1MB335 (year 2020): skip this part.**
+
+Now you can continue with the end of the second contig.
 
 If it does not connect, you have to continue a bit. Take about 30 bp from the end of the last sequence you added, and grep for it in the short reads library. Add the new piece of sequence, repeat two more times. Then grep in your fasta file. Does it connect? If yes, proceed as the previous paragraph. If not, repeat the process in this paragraph one last time. If it still does not connect, have a closer look at your data. Do you see many repeats?
 
@@ -202,7 +206,7 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
 
 ---
-This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes`.
+This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
