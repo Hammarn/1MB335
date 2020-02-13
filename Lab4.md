@@ -59,26 +59,26 @@ This is a list of the features that are most likely present in your mitochondria
 
 tRNA | genes | rRNA
 --|--|--
-Ala | ATP6 | s-RNA
-Arg | ATP8\** | l-RNA
-Asn | COX1 |
-Asp | COX2 |
-Cys | COX3 |
-Gln | CYTB |
-Glu | ND1 |
-Gly | ND2 |
-His | ND3 |
-Ile | ND4 |
-Leu\* | ND4L |
-Lys | ND5 |
-Met | ND6 |
-Phe
-Pro
-Ser\*
-Thr
-Trp
-Tyr
-Val
+Ala (A) | ATP6 | s-RNA
+Arg (R) | ATP8\** | l-RNA
+Asn (N) | COX1 |
+Asp (D) | COX2 |
+Cys (C) | COX3 |
+Gln (Q) | CYTB |
+Glu (E)| ND1 |
+Gly (G) | ND2 |
+His (H) | ND3 |
+Ile (I) | ND4 |
+Leu\* (L) | ND4L |
+Lys (K) | ND5 |
+Met (M) | ND6 |
+Phe (F)
+Pro (P)
+Ser\* (S)
+Thr (T)
+Trp (W)
+Tyr (Y)
+Val (V)
 
 \* These tRNA might be present twice as two different codons can be translated into these amino acids.
 
