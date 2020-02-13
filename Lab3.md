@@ -206,11 +206,11 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
 
 ---
-This is the step when you start to work with one the four species that you were assigned at the beginning of the class. If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
-Congratulations! You now have a circular mitochondrial genome. The last step today is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste your mitochondrial sequence.
+You now have a circular mitochondrial genome. The last step is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste or upload your mitochondrial sequence.
 
 **Question 11.** To which organism do the best hits belong too?
 
@@ -227,7 +227,7 @@ Pongo abelii (orangutan) | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
-In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. 
+In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. Choose the genome with the oldest release data.
 
 **Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
