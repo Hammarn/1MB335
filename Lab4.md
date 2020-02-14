@@ -208,7 +208,22 @@ Choose three of the ORFs and perform SmartBLAST on them. Answer the question bel
 
 ### Step 7: A bit of programming
 
-**Question 8. Write a Python script which takes as input a mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including: the species name and / or identifier, the name of the feature, and the coordinates of the feature) and the sequence of the feature (i.e. the sequence between the start and the end positions).**
+**Question 8. Write a Python script which takes as input a whole mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including: the species name and / or identifier, the name of the feature, and the coordinates of the feature) and the sequence of the feature (i.e. the sequence between the start and the end positions).**
+
+
+You can use either parsing through the command line or `input()` or `sys.org` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), example of the first method below:
+
+```
+my_script.py gene_1 5001 5100 This is a cool gene
+
+## Output:
+gene_1.fasta
+>gene_1:5001-5100 This is a cool gene
+ATGACATATGCTTTGTTTCTGTTGAGTGTAATTTTAGTGATAGGGTTCGTGGGGTTTTCTTCTAAGCCCT
+
+```
+
+
 
 ---
 
