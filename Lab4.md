@@ -162,7 +162,7 @@ There are two rRNA genes in the mitochondria, a short and a long one. They are p
 
 GeSeq is not very efficient at localizing the location of rRNA, and at the moment there are no other good tools to annotate rRNA. Thus you will proceed like in Step 3, but this time you will use blastn because your "subject" sequence is in nucleotides not amino acids.
 
-In short: go to NCBI, find the sequence for the long tRNA gene in your reference genome (the name might differ: l-rRNA, rnl, 16S). Perform a blastn between your study species (query) and your reference genome (subject). Look at the dot plot and the alignments.
+In short: go to NCBI, find the sequence for the long rRNA gene in your reference genome (the name might differ: l-rRNA, rnl, 16S). Perform a blastn between your study species (query) and your reference genome (subject). Look at the dot plot and the alignments.
 
 **Question 5. Do the coordinates differ between GeSeq output and what blastn suggests?**
 
@@ -222,7 +222,6 @@ gene_1.fasta
 ATGACATATGCTTTGTTTCTGTTGAGTGTAATTTTAGTGATAGGGTTCGTGGGGTTTTCTTCTAAGCCCT
 
 ```
-
 
 
 ---
