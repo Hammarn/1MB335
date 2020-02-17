@@ -79,13 +79,13 @@ Another thing that is not visible in the figure from the review but which will i
 
 #### Step 2c: Prepare the input file for the alignment program
 
-Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the sequences. Try to use the command line: replace with your own files in the command below.
+Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the **mitochondrial** sequences. Try to use the command line: You can do it as below (or in a smarter way using `*` if you remember)
 
 ```
 cat file1 file2 file2 > threefiles
 ```
 
-Before you proceed with the alignment, you have one more task to do: modify the headers of the fasta file (i.e. the lines starting with `>`). As of now, your headers should look like that:
+Before you proceed with the alignment, you have one more task to do: modify the headers of the fasta file (i.e. the lines starting with `>`). As of now, your headers looks something like this:
 
 ```
 >NC_001328.1 Caenorhabditis elegans mitochondrion, complete genome
@@ -106,7 +106,7 @@ Once you have managed the task above, you can delete the fasta file with the lon
 
 #### Step 2d: Align the entire mitochondria
 
-Finally, it is time to align your 13 mitochondrial genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
+Finally, it is time to align your **13 mitochondrial** genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
 ```
 module spider mafft
 ```
