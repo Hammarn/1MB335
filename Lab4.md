@@ -50,7 +50,13 @@ The text from this session is modified from "A guide to organellar genome assemb
 ### Step 1: Perform a first annotation with GeSeq
 
 Open [GeSeq](https://chlorobox.mpimp-golm.mpg.de/geseq.html) in your browser.
-On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3). Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. Next, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
+On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3).
+
+Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. 
+ 
+Then, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
+
+
 Next, open this file in your text editor and take a look at the file produced. At this time, we suggest deleting the notes that GeSeq automatically inserted. Search your document for “note=” and delete the entire line. We also suggest looking for duplicated entries. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). Delete any lines that say exon and intron and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
 
 This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants.
@@ -127,11 +133,18 @@ If tRNAscan identified features that GeSeq did not find, add them to the GeSeq o
 
 ### Step 3: Use web-based blast to confirm features boundaries
 
-The boundaries (i.e. start and end) identified by GeSeq for the different features might not be accurate. One way to verify the accuracy of the boundaries is to perform a blast. For that, you need to navigate to the GenBank entry of your close relative or reference (see Table 1 in Session 3 if you do not remember!). GenBank is the default format of the NCBI entry, e.g. [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_001328.1) for Caenorhabditis elegans). In the top right of your reference’s GenBank page is a dropdown box titled 'send'. Click on this and select 'coding sequences' in .fasta protein format, this will open the file on your computer. The file contains the amino acid sequence of all the protein coding features of your reference. We will use these sequences to finalize the boundaries of the protein features that we have imported from GeSeq by BLASTing the reference sequence against your own.
+The boundaries (i.e. start and end) identified by GeSeq for the different features might not be accurate. One way to verify the accuracy of the boundaries is to perform a blast. For that, you need to navigate to the GenBank entry of your close relative or reference (see Table 1 in Session 3 if you do not remember!). 
 
-First you will verify the boundaries of *cox2*. This is similar to the work you did in Session 3 with *cox1*.
+GenBank is the default format of the NCBI entry, e.g. [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_001328.1) for Caenorhabditis elegans). In the top right of your reference’s GenBank page is a dropdown box titled 'send'. Click on this and select 'coding sequences' in .fasta protein format, this will open the file on your computer. The file contains the amino acid sequence of all the protein coding features of your reference. We will use these sequences to finalize the boundaries of the protein features that we have imported from GeSeq by BLASTing the reference sequence against your own.We will  start by verifying the boundaries of *cox2*. This is similar to the work you did in Session 3 with *cox1*.
 
-Here are the instructions for *cox2*: Open the `blastx` page of NCBI and select 'Align two or more sequences'. Within the text file you just downloaded from NCBI, search for the string “cox2” and copy the amino acid sequence for this gene. Return to your blastx window. Now paste your copied *cox2* sequence into the bottom of the two dialog windows. Now either paste in or upload your .fasta sequence into the top dialog window. Note that we chose a file rather than pasting a nucleotide sequence into the window. Also, note that you must choose the correct genetic code, otherwise your results will be inaccurate. This will vary according to the taxon and the locus. Depending on your species, you will choose from: Vertebrate mitochondrial or invertebrate mitochondrial. You can find more information about the different genetic code on this [wikipedia page](https://en.wikipedia.org/wiki/List_of_genetic_codes) (which suggests the alternative code 14 for nematodes - those of you working with nematodes can go ahead and try!).
+#### Here are the instructions for *cox2*:
+
+Open the `blastx` page of NCBI and select 'Align two or more sequences'. Within the text file you just downloaded from NCBI, search for the string “cox2” and copy the amino acid sequence for this gene. Return to your blastx window. Now paste your copied *cox2* sequence into the bottom of the two dialog windows. Now either paste in or upload your `.fasta` sequence into the top dialog window. _Note that we chose a file rather than pasting a nucleotide sequence into the window_. Also, **note that you must choose the correct genetic code, otherwise your results will be inaccurate**. This will vary according to the taxon and the locus. Depending on your species, you will choose from: 
+
+* Vertebrate mitochondrial
+* Invertebrate mitochondrial
+
+You can find more information about the different genetic code on this [wikipedia page](https://en.wikipedia.org/wiki/List_of_genetic_codes) (which suggests the alternative code 14 for nematodes - those of you working with nematodes can go ahead and try!).
 
 Also, choose 'Show results in a new window' - this will allow you to change parameters more easily if you need to. Now, submit the blast. Go to the 'Dot plot' tab. If you have one solid large line spanning the entire vertical span (or most) of the dot matrix that is an indicator that the gene is complete and in one exon. Then look at the 'Alignments' tab.
 
@@ -149,7 +162,7 @@ There are two rRNA genes in the mitochondria, a short and a long one. They are p
 
 GeSeq is not very efficient at localizing the location of rRNA, and at the moment there are no other good tools to annotate rRNA. Thus you will proceed like in Step 3, but this time you will use blastn because your "subject" sequence is in nucleotides not amino acids.
 
-In short: go to NCBI, find the sequence for the long tRNA gene in your reference genome (the name might differ: l-rRNA, rnl, 16S). Perform a blastn between your study species (query) and your reference genome (subject). Look at the dot plot and the alignments.
+In short: go to NCBI, find the sequence for the long rRNA gene in your reference genome (the name might differ: l-rRNA, rnl, 16S). Perform a blastn between your study species (query) and your reference genome (subject). Look at the dot plot and the alignments.
 
 **Question 5. Do the coordinates differ between GeSeq output and what blastn suggests?**
 
@@ -173,11 +186,13 @@ We are going to use a last annotation tool, [ORFfinder](https://www.ncbi.nlm.nih
 
 Go to [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/) and copy your mitochondrial sequence. In Search parameters, choose 300 for the minimal ORF length, as it is unlikely that protein coding genes will be shorter than 300 base pairs. You also need to specify the genetic code; select between codes 2 and 5 depending on your species. Finally, in the "ORF start codon to use", choose " 'ATG' and alternative initiation codons". If you had identified gaps in the previous step, you can specify where the program should search ("From" and "To"). Submit the job.
 
-If ORFfinder did find ORFs, you should see a lot of information. On the top of the results window you have a representation of the mitochondria (or of the region you specified) with the predicted ORFs. Have a look at them. How do their length vary? Do they all have the same orientation? (look at the white arrows on the red background) Then, below on the right, you have a summary of the different ORFs. If you highlight one of the ORFs, its sequence (in amino acids) will be shown in the window on the left. Finally, below that left window, you can click on "SmartBLAST". This option can very quickly identify proteins in the ORFs. This is very useful and can help you decide whether an ORF is really a gene or not (if an ORF has no good hit, it suggests that maybe there is not really a gene there).
+If ORFfinder did find ORFs, you should see a lot of information. On the top of the results window you have a representation of the mitochondria (or of the region you specified) with the predicted ORFs. Have a look at them. How do their length vary? Do they all have the same orientation? (look at the white arrows on the red background) 
 
-From now on, the instructions will differ whether you looked at a certain region of the mitochondria or if you looked at the entire mitochondria.
+Below on the right, you have a summary of the different ORFs. If you highlight one of the ORFs, its sequence (in amino acids) will be shown in the window on the left. Finally, below that left window, you can click on "SmartBLAST". This option can very quickly identify proteins in the ORFs. This is very useful and can help you decide whether an ORF is really a gene or not (if an ORF has no good hit, it suggests that maybe there is not really a gene there).
 
-#### If you looked at certain regions:
+**From now on, the instructions will differ whether you looked at a certain region of the mitochondria or if you looked at the entire mitochondria.**
+
+### If you looked at smaller regions:
 
 Did ORFinder find anything? If it didn't, in any of the regions, run it again for the entire mitochondria and proceed to "If you looked at the entire mitochondria".
 
@@ -185,7 +200,7 @@ If ORFfinder did find something, run SmartBLAST on the ORF(s). If the ORF has go
 
 **Question 7 (alternative 1). What are the new genes identified by ORFfinder?**
 
-#### If you looked at the entire mitochondria
+### If you looked at the entire mitochondria
 
 Choose three of the ORFs and perform SmartBLAST on them. Answer the question below for these three ORFs.
 
@@ -193,7 +208,21 @@ Choose three of the ORFs and perform SmartBLAST on them. Answer the question bel
 
 ### Step 7: A bit of programming
 
-**Question 8. Write a Python script which takes as input a mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including: the species name and / or identifier, the name of the feature, and the coordinates of the feature) and the sequence of the feature (i.e. the sequence between the start and the end positions).**
+**Question 8. Write a Python script which takes as input a whole mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including: the species name and / or identifier, the name of the feature, and the coordinates of the feature) and the sequence of the feature (i.e. the sequence between the start and the end positions).**
+
+
+You can use either parsing through the command line or `input()` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), example of the first method below:
+
+```
+my_script.py input_mitocondria.fasta gene_1 5001 5100 This is a cool gene
+
+## Output:
+gene_1.fasta
+>gene_1:5001-5100 This is a cool gene
+ATGACATATGCTTTGTTTCTGTTGAGTGTAATTTTAGTGATAGGGTTCGTGGGGTTTTCTTCTAAGCCCT
+
+```
+
 
 ---
 
