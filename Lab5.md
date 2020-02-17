@@ -95,14 +95,14 @@ This is very informative, but having long names and / or cryptic identification 
 ```
 >C_ele_mt
 ```
-You can choose a different format, but keep in mind that it should enable to recognize rapidly the species and also the type of sequence (in this case, the mitochondria).
+You can choose a different format, but keep in mind that it should enable to recognize rapidly the species and also the type of sequence (in this case, the mitochondria). If you want to write a script to do this instead of using a text editor, see **Optional**.
+
+Once you have managed the task above, you can delete the fasta file with the long headers, as you can easily recreate it from the separate fasta files and it is redundant with the fasta files with short headers.
 
 ---
 **Optional:** Alternatively, you can write a Python script that will shorten the headers. For example, it could be a script which takes as input a fasta file with long headers and outputs a fasta file with shortened headers. Moreover, the script should output a file which has both the long and the short header on the same line, to make sure that it is possible to go back to the long headers.
 
 ---
-
-Once you have managed the task above, you can delete the fasta file with the long headers, as you can easily recreate it from the separate fasta files and it is redundant with the fasta files with short headers.
 
 #### Step 2d: Align the entire mitochondria
 
@@ -134,7 +134,7 @@ Comment: It might be nice to have two terminal windows open, one with the intera
 
 Once you have chosen all the option, the corresponding command-line will be printed to screen.
 
-**Question 6. Write down the command.**
+**Question 5. Write down the command.**
 
 Now, launch the alignment. It will take a while. In the meantime, you can work on the next step, which is another alignment, of a single sequence. It is also a good time to take a break!
 
@@ -144,7 +144,7 @@ Nowadays there is an abundance of genomic data available, for organelles and for
 
 The  large mitochondrial ribosomal RNA (l-rRNA) which is part of the large subunit of the ribosome (in the mitochondria) is - and has been - used a lot in phylogenetic inferences, as it is a slowly evolving. Depending on the species you are working with, this RNA might have different names, for example 16S, rnl, l-RNA, 21S etc.
 
-For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In folder `/proj/g2019029/private/DATA/session5/XXX` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
+For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In folder `/proj/g2019029/private/DATA/session5/Ribosomal_large_subunit` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
 
 Then, prepare the alignment input in the same way like in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command like the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
 
@@ -160,20 +160,24 @@ You will receive an email when the job finishes (or fails). What normally would 
 
 Look at the output file (the .clustal). Do you understand the format?
 
-In order to have a better overview of the alignment, we are going to use the `clustalw` program. Like when you loaded `mafft`, look for the versions installed on rackham and load the module.
+In order to have a better overview of the alignment, we are going to use the `clustalw` program. Using a program with visual forwarding like this one involves a different kind of connection to Uppmax. Open a new tab in your terminal and type:
+
+```
+ssh -Y your_user_name@rackham.uppmax.uu.se
+```
+
+Like when you loaded `mafft`, look for the versions of `clustalw` installed on rackham and load the module.
 
 **Question 7. Which version of `clustalw` did you load?**
 
 `clustalw` can perform alignments. However, we already have an alignment and are only interested in the visualization part. The following command will open an interface - we add a `&` in the end, as this enables you to continue to use the command-line while having the interface opened.
-
-Comment: if your alignment of the entire mitochondria is done, you can perform this task in the interactive job. Otherwise, it should be fine to run it on the login node.
 
 ```
 clustalx
 ```
 In "File", choose "Load Sequences" and choose your alignment. Can you make sense of what you see? What do you think the bottom window shows?
 
-**Question 8. Normally one of the sequences should stand out. Which one?**
+**Question 7. Normally one of the sequences should stand out. Which one?**
 
 #### Step 2f: Find a new l-rRNA sequence and align one more time
 
@@ -181,7 +185,7 @@ The strange alignment from Step 2e is a genuine example, that was discovered by 
 
 Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again (see Step 2e). Visualize it. Is the issue solved? 
 
-**Question 9. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
+**Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
 
 The main take-home message from this step is that it is important to examine well your alignments. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
 
@@ -189,16 +193,14 @@ The main take-home message from this step is that it is important to examine wel
 
 By now the alignment of the entire mitochondria should be ready for you to look at! Open it with `clustalw` (see Step 2f). What do you see? Does it match your expectations after filling the feature table?
 
-**Question 10. Do you think that it was meaningful to align these 13 mitochondrial genomes? Would you remove some if you were to do it again? Which?**
+**Question 9. Do you think that it was meaningful to align these 13 mitochondrial genomes? Would you remove some if you were to do it again? Which?**
 
 ---
 ## REPORT
 
-Pairwise alignment tutorial: submit answers to questions 9, 11, 14.
+Pairwise alignment tutorial: submit answers to all questions (you can number them 1-1, 1-2 etc).
 
-Multiple alignment: submit answers to questions 1 through 10. For Question 9, submit the alignment only if you could not show it to a teaching assistant. Submit the completed Table 1.
-
-Submit the script from Step 2c as a .py file.
+Multiple alignment: submit answers to questions 1 through 9 (you can number them 2-1, 2-2 etc). For Question 9, submit the alignment only if you could not show it to a teaching assistant.
 
 ---
 
