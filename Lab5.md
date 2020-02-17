@@ -2,7 +2,7 @@
 
 ## Introduction / Background information to Session 5
 
-In this session you will focus on aligments. As you have seen in the lecture, yuo can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences.
+In this session you will focus on aligments. As you have seen in the lecture, you can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences.
 
 ## Goals
 
@@ -71,41 +71,18 @@ Before you continue, look up quickly the species that you don't know about in wi
 
 #### Step 2b: Fill a table of mitochondrial features
 
-Before aligning sequences, it is useful to have an idea of how much the sequences might differ. In this case, it is possible to take advantage of the fact that the sequences of interest are well annotated. Complete the following features table for the 13 species. In particular, we are interested in the presence / absence of certain genes and in the length (in base pairs) of the mitochondrial genome. You should also write whether the organism is multicellular or unicellular. You can find the information on NCBI - once you have the annotated mitochondrion of your choice, look for "CDS". A few comments:
-
-+ You will need to remove one row (see Question 2) and to add columns as you find new genes.
-+ The information for the species that were included in Session 4 is already completed - replace "SeqX" by the species name to make it easier for you! 
-+ You do not need to create new columns for hypothetical proteins (called "orfxx").
-+ Sometimes the same gene has different names in different annotations, e.g. NAD5 instead of ND5 - both stand for NADH dehydrogenase, subunit 5. Or COB instead of CYTB (both for cytochrome B).
-
-***Table 1. Mitochondrial features (protein coding genes).***
-
-Species | Multicellular? | ATP6 | ATP8 | COX1 | COX2 | COX3 | CYTB | ND1 | ND2 | ND3 | ND4 | ND4L | ND5 | ND6 | Length
--- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | --
-Seq1 | 
-Seq2 |	Y |	+	| -	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 13794
-Seq3 |	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 14972
-Seq4 |	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 16499
-Seq5 | 
-Seq6 |
-Seq7 |	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 16299
-Seq8 |	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 16569
-Seq9 | 	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 19524
-Seq10 |
-Seq11 |
-Seq12 |	Y |	+	| -	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 13610
-Seq13 |
-Seq14 |	Y |	+	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| +	| 16346
-
+Before aligning sequences, it is useful to have an idea of how much the sequences might differ. Have a look at Figure 3 in the review 'The Origin and Diversification of Mitochondria' Roger et al., Current Biology Review 2017 (you can find the review on Studentportalen, under Bioinformatics/Computer labs). Focus on the 'Opisthokonta'. You won't find information for all the species in the dataset - in particular, the only representative of the Metazoa (animals) in the table is 'Homo'. Look at the absence / presence of genes in these different mitochondrial genomes.
  
-**Question 4. What do you learn from this table? What can you expect from the alignment? (make at least two hypotheses)**
+**Question 4. What do you learn from this table? What can you expect from the alignment? (make at least one hypothesis)**
 
-#### Step 2c: Prepare the input file for the alignment program (programming task)
+Another thing that is not visible in the figure from the review but which will impact your alignment is the length of the mitochondrial sequences.
 
-Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the sequences. Remember that some of the files are in `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes` while the rest of the files should be in your own directory. Try to use the command line, for example:
+#### Step 2c: Prepare the input file for the alignment program
+
+Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the sequences. Try to use the command line: replace with your own files in the command below.
 
 ```
-cat file1 file2 file2 > threefiles.
+cat file1 file2 file2 > threefiles
 ```
 
 Before you proceed with the alignment, you have one more task to do: modify the headers of the fasta file (i.e. the lines starting with `>`). As of now, your headers should look like that:
@@ -113,13 +90,17 @@ Before you proceed with the alignment, you have one more task to do: modify the 
 ```
 >NC_001328.1 Caenorhabditis elegans mitochondrion, complete genome
 ```
-This is very informative, but having long names and / or cryptic identification numbers will make it difficult for you to identify the sequences when you visualize alignments (and later during the bioinformatic project, when you plot phylogenetic trees). Moreover, some programs (particularly older ones) have a limitation on the number of characters in headers. Your task is thus to write a Python script that will shorten the headers; one suggestion of shortened header is:
+This is very informative, but having long names and / or cryptic identification numbers will make it difficult for you to identify the sequences when you visualize alignments (and later during the bioinformatic project, when you plot phylogenetic trees). Moreover, some programs (particularly older ones) have a limitation on the number of characters in headers. You should thus shorten the headers before you proceed further (for example with the text editor `nano`). One suggestion of shortened header is:
+
 ```
 >C_ele_mt
 ```
 You can choose a different format, but keep in mind that it should enable to recognize rapidly the species and also the type of sequence (in this case, the mitochondria).
 
-**Question 5. Write a script which takes as input a fasta file with long headers and outputs a fasta file with shortened headers. Moreover, the script should output a file which has both the long and the short header on the same line, to make sure that it is possible to go back to the long headers. Submit this script.**
+---
+**Optional:** Alternatively, you can write a Python script that will shorten the headers. For example, it could be a script which takes as input a fasta file with long headers and outputs a fasta file with shortened headers. Moreover, the script should output a file which has both the long and the short header on the same line, to make sure that it is possible to go back to the long headers.
+
+---
 
 Once you have managed the task above, you can delete the fasta file with the long headers, as you can easily recreate it from the separate fasta files and it is redundant with the fasta files with short headers.
 
