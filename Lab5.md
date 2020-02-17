@@ -121,7 +121,7 @@ For the course on February 19, the reservation is: g2019029_19
 Ask for an interactive session with the following command (replace "name_of_reservation" by either g2019029_17 or g2019029_19):
 
 ```
-interactive -A g2019029 -p core -n 1 -t 4:0:0 -R name_of_reservation
+interactive -A g2019029 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
 ```
 
 Now, load mafft:
