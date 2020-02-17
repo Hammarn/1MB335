@@ -181,17 +181,17 @@ In "File", choose "Load Sequences" and choose your alignment. Can you make sense
 
 #### Step 2f: Find a new l-rRNA sequence and align one more time
 
-The strange alignment from Step 2e is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, was submitted since then.
+The strange alignment from Step 2e is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, has been submitted since then.
 
 Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again (see Step 2e). Visualize it. Is the issue solved? 
 
 **Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
 
-The main take-home message from this step is that it is important to examine well your alignments. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
+The main take-home message from this step is that it is important to examine your alignments well. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
 
 #### Back to Step 2d
 
-By now the alignment of the entire mitochondria should be ready for you to look at! Open it with `clustalw` (see Step 2f). What do you see? Does it match your expectations after filling the feature table?
+By now the alignment of the entire mitochondria should be ready for you to look at! Open it with `clustalx` (see Step 2f). What do you see? Does it match your expectations after filling the feature table?
 
 **Question 9. Do you think that it was meaningful to align these 13 mitochondrial genomes? Would you remove some if you were to do it again? Which?**
 
@@ -204,5 +204,4 @@ Multiple alignment: submit answers to questions 1 through 9 (you can number them
 
 ---
 
-This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
