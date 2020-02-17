@@ -18,7 +18,7 @@ In this session you will focus on aligments. As you have seen in the lecture, yo
 
 ## Output(s)
 
-  + An alignment of mitochondrial genome
+  + An alignment of mitochondrial genomes
   + Two alignments of the ribosomal large subunit
 
 ## Tools
