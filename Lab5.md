@@ -33,7 +33,7 @@ In this session you will focus on aligments. As you have seen in the lecture, yo
   + Step 1: Pairwise alignment exercise
   + Step 2: Multiple alignment exercise
     + Step 2a: Identify the mitochondrial genomes
-    + Step 2b: Make a prediction about the alingment
+    + Step 2b: Make a prediction about the alignment
     + Step 2c: Prepare the input file for the alignment program
     + Step 2d: Align the entire mitochondria
     + Step 2e: Align the sequence for the large mitochondrial ribosomal RNA (l-rRNA)
@@ -69,7 +69,7 @@ Start by looking up the species from Seq4 in Wikipedia. Which family does it bel
 
 Before you continue, look up quickly the species that you don't know about in wikipedia (or the tool you prefer).
 
-#### Step 2b: Fill a table of mitochondrial features
+#### Step 2b: Make a prediction about the alignment
 
 Before aligning sequences, it is useful to have an idea of how much the sequences might differ. Have a look at Figure 3 in the review 'The Origin and Diversification of Mitochondria' Roger et al., Current Biology Review 2017 (you can find the review on Studentportalen, under Bioinformatics/Computer labs). Focus on the 'Opisthokonta'. You won't find information for all the species in the dataset - in particular, the only representative of the Metazoa (animals) in the table is 'Homo'. Look at the absence / presence of genes in these different mitochondrial genomes.
  
@@ -168,12 +168,12 @@ ssh -Y your_user_name@rackham.uppmax.uu.se
 
 Like when you loaded `mafft`, look for the versions of `clustalw` installed on rackham and load the module.
 
-**Question 7. Which version of `clustalw` did you load?**
+**Question 6. Which version of `clustalw` did you load?**
 
 `clustalw` can perform alignments. However, we already have an alignment and are only interested in the visualization part. The following command will open an interface - we add a `&` in the end, as this enables you to continue to use the command-line while having the interface opened.
 
 ```
-clustalx
+clustalx &
 ```
 In "File", choose "Load Sequences" and choose your alignment. Can you make sense of what you see? What do you think the bottom window shows?
 
@@ -201,6 +201,8 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 Pairwise alignment tutorial: submit answers to all questions (you can number them 1-1, 1-2 etc).
 
 Multiple alignment: submit answers to questions 1 through 9 (you can number them 2-1, 2-2 etc). For Question 9, submit the alignment only if you could not show it to a teaching assistant.
+
+Please specify if you did the tutorial on February 19!
 
 ---
 
