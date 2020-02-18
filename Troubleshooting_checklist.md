@@ -24,10 +24,16 @@ When a command is not working, you are getting an unexpected output, etc, it mig
 ## Transfer files between your computer and Uppmax
 
 Open a new terminal window. Navigate to the folder where you want to work (i.e. either the folder containing the files you want to transfer to Uppmax, or the folder where you want to copy the files currently on Uppmax).
+
 Log in to Uppmax with the `sftp` protocol instead of `ssh`: `ssh your_user_name@rackham.uppmax.uu.se`
+
 Navigate to the right folder using `cd`.
+
 If you need to navigate on your own computer, use `lcd` (or `lpwd` to know where you are).
+
 To copy files FROM your computer TO Uppmax: use `put` and the name of the file.
+
 To copy files FROM Uppmax TO your computer: use `get` and the name of the file.
+
 If you wish to copy entire folders, use the `-r` flag.
 
