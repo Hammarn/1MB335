@@ -79,13 +79,13 @@ Another thing that is not visible in the figure from the review but which will i
 
 #### Step 2c: Prepare the input file for the alignment program
 
-Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the sequences. Try to use the command line: replace with your own files in the command below.
+Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the **mitochondrial** sequences. Try to use the command line: You can do it as below (or in a smarter way using `*` if you remember)
 
 ```
 cat file1 file2 file2 > threefiles
 ```
 
-Before you proceed with the alignment, you have one more task to do: modify the headers of the fasta file (i.e. the lines starting with `>`). As of now, your headers should look like that:
+Before you proceed with the alignment, you have one more task to do: modify the headers of the fasta file (i.e. the lines starting with `>`). As of now, your headers looks something like this:
 
 ```
 >NC_001328.1 Caenorhabditis elegans mitochondrion, complete genome
@@ -106,7 +106,7 @@ Once you have managed the task above, you can delete the fasta file with the lon
 
 #### Step 2d: Align the entire mitochondria
 
-Finally, it is time to align your 13 mitochondrial genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
+Finally, it is time to align your **13 mitochondrial** genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
 ```
 module spider mafft
 ```
@@ -121,7 +121,7 @@ For the course on February 19, the reservation is: g2019029_19
 Ask for an interactive session with the following command (replace "name_of_reservation" by either g2019029_17 or g2019029_19):
 
 ```
-interactive -A g2019029 -p core -n 1 -t 4:0:0 -R name_of_reservation
+interactive -A g2019029 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
 ```
 
 Now, load mafft:
@@ -181,17 +181,17 @@ In "File", choose "Load Sequences" and choose your alignment. Can you make sense
 
 #### Step 2f: Find a new l-rRNA sequence and align one more time
 
-The strange alignment from Step 2e is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, was submitted since then.
+The strange alignment from Step 2e is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, has been submitted since then.
 
 Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again (see Step 2e). Visualize it. Is the issue solved? 
 
 **Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
 
-The main take-home message from this step is that it is important to examine well your alignments. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
+The main take-home message from this step is that it is important to examine your alignments well. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
 
 #### Back to Step 2d
 
-By now the alignment of the entire mitochondria should be ready for you to look at! Open it with `clustalw` (see Step 2f). What do you see? Does it match your expectations after filling the feature table?
+By now the alignment of the entire mitochondria should be ready for you to look at! Open it with `clustalx` (see Step 2f). What do you see? Does it match your expectations after filling the feature table?
 
 **Question 9. Do you think that it was meaningful to align these 13 mitochondrial genomes? Would you remove some if you were to do it again? Which?**
 
@@ -204,5 +204,4 @@ Multiple alignment: submit answers to questions 1 through 9 (you can number them
 
 ---
 
-This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
