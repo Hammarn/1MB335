@@ -2,7 +2,7 @@
 
 ## Introduction / Background information to Session 5
 
-In this session you will focus on aligments. As you have seen in the lecture, you can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple aligment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences.
+In this session you will focus on alignments. As you have seen in the lecture, you can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple alignment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences.
 
 ## Goals
 
@@ -132,11 +132,11 @@ Then, just type `mafft`. You will be asked a number of questions, among others: 
 
 Comment: It might be nice to have two terminal windows open, one with the interactive job and one which you use to navigate to the right folder, check the file names, see whether something gets written to the output etc.
 
-Once you have chosen all the option, the corresponding command-line will be printed to screen.
+Once you have chosen all the options, the corresponding command-line will be printed to screen.
 
 **Question 5. Write down the command.**
 
-Now, launch the alignment. It will take a while. In the meantime, you can work on the next step, which is another alignment, of a single sequence. It is also a good time to take a break!
+Now, launch the alignment. It will take a while. In the meantime, you can work on the next step, which is another alignment, of a single gene. It is also a good time to take a break!
 
 #### Step 2e: Align the sequence for the large mitochondrial ribosomal RNA (l-rRNA)
 
