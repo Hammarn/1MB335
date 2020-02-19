@@ -385,10 +385,12 @@ A very common problem that arises when working with sequence files is that seque
 
 #### Question 3:
 
-**Write a program that takes a nucleotide fasta file as input and returns a reverse complemented files as output.** 
+**Write a program that takes a nucleotide fasta file as input and returns a new reverse complemented fasta file as output. It should be able to handle fasta files with more than one entry.** 
+
+Test that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
 
 
-E.g.
+The example below only has one entry to illustrate what reverse complement means:
 
 ```
 >NC_011137.1:5899-7440 Homo sapiens neanderthalensis mitochondrion, complete genome
