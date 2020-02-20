@@ -92,7 +92,7 @@ Once we have the alingment, we can get to infering which of all the posible tree
 
 The last two are the state-of-the-art methods for phylogenetic analysis, and have become more and more popular as computing power has scaled, as both methods are really demanding in that regard. 
 
-For our projects, we are going to use an implementation of the Maximum Likelihood approach called [IQ-TREE](http://www.iqtree.org/). This software offers several methods to speed up the analysis. To load the module:
+For our projects, we are going to use an implementation of the Maximum Likelihood approach called [IQ-TREE](http://www.iqtree.org/doc/Tutorial#first-running-example). This software offers several methods to speed up the analysis. To load the module:
 
 ```
 module load iqtree/1.6.5-omp-mpi
@@ -107,4 +107,26 @@ Now that we have a small picture of what we are doing, lets star working with IQ
 ```
 iqtree -s ALIGNMENT -o OUTGROUP -m MODEL -pre OUTPUT_PREFIX -bb 1000
 ```
-Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimate which is the one that fits our data better. *-bb 1000* means that we want our algorith to use [bootstraping](
+Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimate which is the one that fits our data better. *-bb 1000* means that we want our algorith to use [bootstraping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)). **Once the alignment of the whole mitochondrial dataset is done, run IQ-TREE on that dataset via *sbatch*.** Be carefull to not over-write your files. 
+
+All the questions bellow refer only to the CytB output.
+
+### Question 1: Which files do IQ-TREE output? Explain briefly what each of them is.
+
+Now lets look at the *.iqtree* file. 
+
+### Question 2: Which model did ModelFinder chose? From all the criteria calculated by this software, which was used to determine the best-fitting model?
+
+### Question 3: Briefly explain the best-fitting model.
+
+### Question 4: Now look at both your Maximum Likelihood tree and Consensus Tree. Are they the same? If not, where do they differ? 
+
+### Question 5: In both trees you can see a number at the base of each branch. That is the number of iterations that supported that branching during bootstraping. Which is your least supported branch? What does that mean to your question?
+
+# REPORT
+
+Submit a file with the answers to all the questions and the *.iqtree* file for the CytB run. 
+
+---
+
+This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
