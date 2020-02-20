@@ -1,5 +1,10 @@
 # Session 6 - project
-For the following labs you will work on a evolutionary biology project were you will try to answer one of the questions below using phylogenetic methods. You will be randomly assigned one of the questions. You will need to gather your own dataset for the analysis. We (the lab assistans) will help and guide you so that you end up with a suitable dataset, but ultimately the choise of samples is yours. 
+For the following three labs you will work on a bioinformatics project where you will try to answer one of the evolutionary biology questions below, using phylogenetic methods. You will be randomly assigned one of the questions. During the first lab, you will gather your own dataset for the analysis. During the second lab (session 7), you will align the dataset and create phylogenetic trees. During the third and last lab (session 8), you will plot the threes and wrap-up the project.
+
+We (the lab assistants) will help and guide you through the assembly of your dataset so that you end up with a suitable dataset, but ultimately the choice of samples is yours. 
+
+We made a checklist to help you when a command does not do what you expect it to do [here](Troubleshooting_checklist.md). It includes instructions to use `SFTP` to transfer files to and from Uppmax.
+
 
 ## Questions:
 1. Are bats more closely related to horses than to cows?
@@ -21,56 +26,53 @@ For the following labs you will work on a evolutionary biology project were you 
 
 ### Pointers
 
-When chosing your species you need to think about what species you want to test/compare i.e. your ingroup as well as your outgroup: 
+When choosing your species you need to think about what species you want to test/compare i.e. your ingroup as well as your outgroup. Including an outgroup is very important to root the phylogenetic trees. See the picture below: 
 
 ![](Outgroup.jpg)
 _By Ngilbert202 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=63950569_
 
-The test in the above figure would have been to see if `C` is more related to `B` or to `D`, and the answer would then be that `C` is closer to`D`. 
+The test in the above figure would have been to see if `C` is more related to `B` or to `D`, and the answer would then be that `C` is closer to`D` (they share one more common ancestor). 
 
-* 3 You will of course have to have some whales and dugongs but also several different clades of landliving mamals to determine the potential closest relatives.
+If you are unsure what would be an appropriate outgroup for your question, ask us!
 
-* 5  In order to be able to answer this question you will need to have species from _several_ different distinct lineages as well as a few squids/octopuses. 
+* **Question 3**: You will of course need some whales and dugongs but also several different clades of landliving mammals to determine the potential closest relatives.
 
-
-
-You will start with compiling your datasets in this lab. The following labs, 7 till 8, will introduce different phylogenetic methods, programs and tools that you will apply to the dataset you compiled. You will have to submit a few items along the way.
+* **Question 5**:  In order to be able to answer this question you will need to have species from _several_ different distinct lineages as well as a few squids/octopuses. 
 
 
-**N.B.** Since you are going to produce quite a lot of files, try to use self-explanatory files names and a good structure of folders. It will make your work easier. It might be a good idea to write a short description about how the archive is organized and where the files are (trees, scripts, alignments and so forth)
+**N.B.** Since you are going to produce quite a lot of files, try to use self-explanatory files names and a good structure of folders. It will make your work easier. It might be a good idea to write a short description about how the archive is organized and where the files are (trees, scripts, alignments and so forth).
 
 
-### Gathering your data
+## Gathering your data
 
-
-
-First start by actually selecting what species you should use. Think about what ingoups you need to answer the question and what could be a good outgroup. 
+First start by actually selecting what species you should use. Think about what ingroups you need to answer the question and what could be a good outgroup. 
 If you have a hard time coming up with good candidate species you can use the [taxonomy browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root).
 
+You should have around 15 species (15-20) in your dataset. 
 
-You should have around 15 species (15-20) in you dataset. 
+**Question 1**: Write down a few sentences on the selection of species and outgroup in your dataset. Which species did you choose and why?
 
+**Comment**: it is possible that you do not find data for some of the species. In that case, update your answer accordingly and add more species if needed.
 
-**Question1**: write down a few sentences on the selection of species and outgroup in your dataset. Which species did you go with an why?
-This will help you later to reflect upon the question and your results.
+This will help you later to reflect upon the question and your results. It also help us (the teaching assistants) to check that you will be able to answer the question you were given.
 
 
 ## Getting the sequences
-This should be familiar to you, since you have had to find and dowload sequences before.
-Your taks is to gather the full mitochondrial genomic sequences for your species as well as the gene ` CytB ` (Cytochrome b). You should thus have two fasta files per species! 
+This should be familiar to you, since you have had to find and download sequences before.
+Your task is to gather the full mitochondrial genomic sequences for your species as well as the gene *CytB* (Cytochrome b). You should thus have two fasta files per species!
 
-#### Method A - prefered
-* Go to the [NCBI browser for organell genomes](https://www.ncbi.nlm.nih.gov/genome/browse#!/organelles/). 
+#### Method A - preferred
+* Go to the [NCBI browser for organelles genomes](https://www.ncbi.nlm.nih.gov/genome/browse#!/organelles/). 
 
-* On the top right click filter and select `mitochondrion`. * 
-* Then search for your species. For the cytB part you need to make sure that you select a mitochodria that is annotated (scroll down and see if there are genes and coding sequences listed).
+* On the top right click filter and select `mitochondrion`.
+* Then search for your species. For the *cytB* part you need to make sure that you select a mitochodria that is annotated (scroll down and see if there are genes and coding sequences listed).
 
-* Click and dowload the fasta file for the entry as you have done several times before. 
+* Click and download the fasta file for the entry as you have done several times before. 
 
 
 #### Method B - if A doesn't get you what you want
 
-* Use BLAST to find sequences that are not in the curated "nice" list of organells. 
+* Use BLAST to find sequences that are not in the curated "nice" list of organelles. 
 
 * Start with one of the species for which you have the sequence. 
 
@@ -78,18 +80,34 @@ Your taks is to gather the full mitochondrial genomic sequences for your species
 
 OBS! Before choosing a sequence have a look at its length - the hits should not be much shorter than the query. Additionally, as a sanity check, you should see that all of your sequences have a relative similar position on the mitochondrial genome (except possibly your outgroup sequences).
 
+#### If you cannot find the two sequences (entire mitochondria and *cytB*) for some species
+
+Preferably you should get the two sequences for all species in your dataset. It might happen that you decided to include a species but could not find the two sequences for it. In that case, try again with a close relative. If it is really difficult for you to find enough species with the two sequences for your dataset, ask a teaching assistant and we will look for a solution together.
 
 Save your files with smart, distinguishable names.
 
+#### Create fasta files for the entire dataset
+
+Once you found all the sequences for your dataset, you will need to put them together in a single fasta file (OBS! One fasta file for the entire mitochondria and one for *cytB*) the same way you did in Session 5 (use the `cat` command for example).
+
 ## Create a name conversion file.
 
-Create a tab-delimited file with three columns. The file should contain one row for each sequence in your data set, including: 
+Create two tab-delimited files with three columns (one for the mitochondrial sequences and one for *cytB*). The files should contain one row for each sequence in your data set, including: 
 
- * a maximum 8-character short-name (enough for you to identify it: e.g. c_Vurs)
- * an easy-readable name (good for presentation to others: e.g. cytB_Vombat_ursinus)
+ * a maximum 8-character short-name (enough for you to identify it: e.g. c_Vurs or mt_Vurs)
+ * an easy-readable name (good for presentation to others: e.g. cytB_Vombat_ursinus mitoc_Vombat_ursinus)
  * a globally unique identifier (e.g. NC_026542.1:14178-15317).
 
 
-**Question 3** Now you should write a python script that takes a fasta file as input as well as your conversion table and then can switch between the three different header types.
+**Question 2** Now you should write a Python script that takes a fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types.
 
-Submit the script and the conversion file!
+Submit the script, the two conversion tables and one of the fasta files for *cytB*.
+
+---
+## REPORT
+
+Please submit the answer to Question 1 (text) and to Question 2 (a Python script, two conversion tables and a fasta file).
+
+---
+
+This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
