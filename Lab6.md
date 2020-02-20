@@ -99,7 +99,7 @@ Create two tab-delimited files with three columns (one for the mitochondrial seq
  * a globally unique identifier (e.g. NC\_026542.1:14178-15317).
 
 
-**Question 2** Now you should write a Python script that takes a fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should thus change the original file you send in, not create a new fasta file!
+**Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should thus change the original file you send in, not create a new fasta file!
 
 Submit the script, the two conversion tables and one of the fasta files for *cytB*.
 
@@ -108,7 +108,7 @@ Tip: When your script is reading the table remember that your columns are tab se
 
 ## REPORT
 
-Please submit the answer to Question 1 (text) and to Question 2 (a Python script, two conversion tables and a fasta file).
+Please submit the answer to Question 1 (text) and to Question 2 (a Python script, two conversion tables and the merged *cytB*-fasta file).
 
 ---
 
