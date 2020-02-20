@@ -86,7 +86,7 @@ Once we have the alingment, we can get to infering which of all the posible tree
 + [Neighbour-joining](https://academic.oup.com/mbe/article/4/4/406/1029664): Slightly more refined version of parsimony in which we chose the best tree by minimizing branch lengths in the tree. More computationaly intensive than parsimony, but still something that a modern computer can do fairly quick.
 + [Maximum Likelihood](http://ib.berkeley.edu/courses/ib200a/lect/ib200a_lect11_Will_likelihood.pdf): "Likelihood is defined to be a quantity proportional to the probability of observing the data given the model". This means that, by providing a model of how DNA sequences change, we can determine which tree is the most probable to be true. 
 + [Bayesian Inference](https://www.sciencemag.org/site/feature/data/1050262.pdf): This method uses Bayesian Statistics to combine prior information that we know about our data (also known as Prior Probability Distribution) with the likelyhood, in order to transform it into a more accurate probability distribution, known as the Posterior.
-![](https://www.ncbi.nlm.nih.gov/corecgi/tileshop/tileshop.fcgi?p=PMC3&id=749074&s=71&r=1&c=3)
+![](https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&p=PMC3&id=5624502_emss-73449-f001.jpg)
 
 *Prior, likelihood and posterior distribution for a two-parameter phylogenetic example in Nascimento et al. 2017: https://dx.doi.org/10.1038%2Fs41559-017-0280-x*
 
