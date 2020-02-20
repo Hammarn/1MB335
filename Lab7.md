@@ -10,7 +10,7 @@ With the dawn of genetic sequencing and the genomic era, we can now stablish tho
 Th basic idea behind it all is quite simple: as species diverge over time, they accumulate mutations that the other groups don't share. So, when comparing several sequences, the bigger the number of differences between them, the larger the time since their common ancestor. However, this simple idea gets really complicated quite soon, as we are working with really long sequences and, in some cases, long periods of time. This means that we will need to use robust statistical modelling in order to infer these relationships, that we will represent as a [phylogenetic tree](https://en.wikipedia.org/wiki/Phylogenetic_tree).
 
 ![Phylogenetic tree from Ersmark et al. 2016](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Phylogenetic_tree_for_wolves.jpg/468px-Phylogenetic_tree_for_wolves.jpg)
-
+*Phylogenetic tree from Ersmark et al. 2016: 10.3389/fevo.2016.00134*
 Each tree is a hypothesys of the relationship between our sequences, and our goal is to identify, from all the posible trees, the one that is most likely to be true according to our data. This may vary depending on the region you are looking at, the models that you use or how you preprocess and allign your sequences. 
 
 So, with this in our minds, lets get going. 
@@ -36,19 +36,46 @@ So, with this in our minds, lets get going.
 
 ## Details
 
-### Step 1:
+For this Session we are going to use the files that we created in the previous one. Make sure you followed the instructions properly and that you have all the files located. 
 
-The first step before starting anything is be sure that we have the data we need to perform our analysis. So log into Uppmax and navigate to your folder. Now, ask yourself the following questions:
+### Step 1a:
 
-+ Are the species relevant for the question we have to answer? The bigger the distance between species, the longer it will take for everything to run, so be sure you are getting species that are distant enough to be informative but not so much that they slow everything down. 
-+ Do I have an appropiate Outgroup to compare them with? This is quite important for the results.
-+ Do my sequences have a short and easy to identify header? We want to be able to see easily who is who in our results.
+The first step is to do a Multiple Alignment. As our mitochondrial sequences are considerably bigger than the single gene ones, we will submit them as an independent job to Rackham, as we did in Session 5. However, today we are going to use the other method to submit a job using *sbatch*: an scritp. It should look like this:
+```
+#!/bin/bash -l
+#SBATCH -A g2019029
+#SBATCH -p core
+#SBATCH -n 1
+#SBATCH -t 45:00
+#SBATCH -J align_mt 
+#SBATCH -o align_mt.output 
+#SBATCH -e align_mt.output 
+#SBATCH --mail-user youremailforUppmax 
+#SBATCH --mail-type=END,FAIL
 
-Once we are sure are sure we are ready, the first step is to concatenate our FASTa sequences. If you have them all in their own folder, you can do this like this:
+module load bioinfo-tools MAFFT/7.407
+
+YOUR MAFFT COMMAND
+exit 0
+```
+
+Now look at the *SBATCH* bits. Look familiar? Yes, they are the same (almost) parameters that we used in Session 5, but this time we are imputing them inside the script, instead of specifying them when we call *sbatch*. Remember to change *youremailforUppmax* and * YOUR MAFFT COMMAND* for your own email and command, respectively.
+
+Now, in order to submit the job, just use this code:
 
 ```
-cat *.fasta > 
+sbatch SCRIPT_NAME
 ```
 
+If you want to check that your job has been submited and in which state it is, use this command:
+```
+jobinfo -u YOUR_UPPMAX_USER
+```
+
+### Step 1b:
+
+Now open an interactive session and do the same with your CytB sequences. 
+
+### Step 3:
 
 
