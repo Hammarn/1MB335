@@ -1,5 +1,7 @@
 # Session 6 - project
-For the following labs you will work on a evolutionary biology project were you will try to answer one of the questions below using phylogenetic methods. You will be randomly assigned one of the questions. You will need to gather your own dataset for the analysis. We (the lab assistans) will help and guide you so that you end up with a suitable dataset, but ultimately the choise of samples is yours. 
+For the following three labs you will work on a bioinformatics project where you will try to answer one of the evolutionary biology questions below, using phylogenetic methods. You will be randomly assigned one of the questions. During the first lab, you will gather your own dataset for the analysis. During the second lab, you will align the dataset and create phylogenetic trees. During the third and last lab, you will plot the threes and wrap-up the project.
+
+We (the lab assistants) will help and guide you through the assembly of your dataset so that you end up with a suitable dataset, but ultimately the choice of samples is yours. 
 
 ## Questions:
 1. Are bats more closely related to horses than to cows?
