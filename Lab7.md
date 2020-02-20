@@ -115,13 +115,13 @@ All the questions bellow refer only to the CytB output.
 
 Now lets look at the *.iqtree* file. 
 
-**Question 2: Which model did ModelFinder chose? From all the criteria calculated by this software, which was used to determine the best-fitting model?
+**Question 2: Which model did ModelFinder chose? From all the criteria calculated by this software, which was used to determine the best-fitting model?**
 
-**Question 3: Briefly explain the best-fitting model.
+**Question 3: Briefly explain the best-fitting model.**
 
-**Question 4: Now look at both your Maximum Likelihood tree and Consensus Tree. Are they the same? If not, where do they differ? 
+**Question 4: Now look at both your Maximum Likelihood tree and Consensus Tree. Are they the same? If not, where do they differ?** 
 
-**Question 5: In both trees you can see a number at the base of each branch. That is the number of iterations that supported that branching during bootstraping. Which is your least supported branch? What does that mean to your question?
+**Question 5: In both trees you can see a number at the base of each branch. That is the number of iterations that supported that branching during bootstraping. Which is your least supported branch? What does that mean to your question?**
 
 # REPORT
 
