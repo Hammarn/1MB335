@@ -107,7 +107,7 @@ Now that we have a small picture of what we are doing, lets star working with IQ
 ```
 iqtree -s ALIGNMENT -o OUTGROUP -m MODEL -pre OUTPUT_PREFIX -bb 1000
 ```
-Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimate which is the one that fits our data better. *-bb 1000* means that we want our algorith to use [bootstraping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)). **Once the alignment of the whole mitochondrial dataset is done, run IQ-TREE on that dataset via *sbatch*.** Be carefull to not over-write your files. 
+Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimate which is the one that fits our data better. *-bb 1000* means that we want our algorith to use [bootstraping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)). **Once the alignment of the whole mitochondrial dataset is done, run IQ-TREE on that dataset via *sbatch*.** Remember to adapt the scritp above to run IQ-TREE (keep the module *bioino-tools*) and be carefull to not over-write your files. 
 
 All the questions bellow refer only to the CytB output.
 
