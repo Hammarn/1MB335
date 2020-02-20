@@ -166,6 +166,11 @@ In order to have a better overview of the alignment, we are going to use the `cl
 ssh -Y your_user_name@rackham.uppmax.uu.se
 ```
 
+**If you are using a Mac** , then you first need to install `Xquartz`: 
+
+[https://www.xquartz.org/](https://www.xquartz.org/)
+
+
 Like when you loaded `mafft`, look for the versions of `clustalw` installed on rackham and load the module.
 
 **Question 6. Which version of `clustalw` did you load?**
