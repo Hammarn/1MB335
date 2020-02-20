@@ -40,37 +40,36 @@ If you are unsure what would be an appropriate outgroup for your question, ask u
 **N.B.** Since you are going to produce quite a lot of files, try to use self-explanatory files names and a good structure of folders. It will make your work easier. It might be a good idea to write a short description about how the archive is organized and where the files are (trees, scripts, alignments and so forth).
 
 
-### Gathering your data
+## Gathering your data
 
-
-
-First start by actually selecting what species you should use. Think about what ingoups you need to answer the question and what could be a good outgroup. 
+First start by actually selecting what species you should use. Think about what ingroups you need to answer the question and what could be a good outgroup. 
 If you have a hard time coming up with good candidate species you can use the [taxonomy browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root).
 
+You should have around 15 species (15-20) in your dataset. 
 
-You should have around 15 species (15-20) in you dataset. 
+**Question 1**: Write down a few sentences on the selection of species and outgroup in your dataset. Which species did you choose and why?
 
+**Comment**: it is possible that you do not find data for some of the species. In that case, update your answer accordingly and add more species if needed.
 
-**Question1**: write down a few sentences on the selection of species and outgroup in your dataset. Which species did you go with an why?
-This will help you later to reflect upon the question and your results.
+This will help you later to reflect upon the question and your results. It also help us (the teaching assistants) to check that you will be able to answer the question you were given.
 
 
 ## Getting the sequences
-This should be familiar to you, since you have had to find and dowload sequences before.
-Your taks is to gather the full mitochondrial genomic sequences for your species as well as the gene ` CytB ` (Cytochrome b). You should thus have two fasta files per species! 
+This should be familiar to you, since you have had to find and download sequences before.
+Your task is to gather the full mitochondrial genomic sequences for your species as well as the gene ` *CytB* ` (Cytochrome b). You should thus have two fasta files per species!
 
-#### Method A - prefered
-* Go to the [NCBI browser for organell genomes](https://www.ncbi.nlm.nih.gov/genome/browse#!/organelles/). 
+#### Method A - preferred
+* Go to the [NCBI browser for organelles genomes](https://www.ncbi.nlm.nih.gov/genome/browse#!/organelles/). 
 
-* On the top right click filter and select `mitochondrion`. * 
-* Then search for your species. For the cytB part you need to make sure that you select a mitochodria that is annotated (scroll down and see if there are genes and coding sequences listed).
+* On the top right click filter and select `mitochondrion`.
+* Then search for your species. For the *cytB* part you need to make sure that you select a mitochodria that is annotated (scroll down and see if there are genes and coding sequences listed).
 
-* Click and dowload the fasta file for the entry as you have done several times before. 
+* Click and download the fasta file for the entry as you have done several times before. 
 
 
 #### Method B - if A doesn't get you what you want
 
-* Use BLAST to find sequences that are not in the curated "nice" list of organells. 
+* Use BLAST to find sequences that are not in the curated "nice" list of organelles. 
 
 * Start with one of the species for which you have the sequence. 
 
