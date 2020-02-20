@@ -90,3 +90,21 @@ Once we have the alingment, we can get to infering which of all the posible tree
 
 *Prior, likelihood and posterior distribution for a two-parameter phylogenetic example in Nascimento et al. 2017: https://dx.doi.org/10.1038%2Fs41559-017-0280-x*
 
+The last two are the state-of-the-art methods for phylogenetic analysis, and have become more and more popular as computing power has scaled, as both methods are really demanding in that regard. 
+
+For our projects, we are going to use an implementation of the Maximum Likelihood approach called [IQ-TREE](http://www.iqtree.org/). This software offers several methods to speed up the analysis. To load the module:
+
+```
+module load iqtree/1.6.5-omp-mpi
+```
+As we mentioned earlier, any Maximum Likelihood approach is based on a model. In phylogenetics, this model describes the probability of each substitution to happen. [Here](http://evomics.org/resources/substitution-models/nucleotide-substitution-models/) you can find a list of the more common models, and [here](http://www.iqtree.org/doc/Substitution-Models) the ones that are implemented in IQ-TREE. 
+![Substitution model representation](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnrg3186/MediaObjects/41576_2012_Article_BFnrg3186_Fig1_HTML.jpg?as=webp)
+
+*GRaphica representation of some substitution models from Yang & Rannala, 2012. Nature Reviews Genetics: https://doi.org/10.1038/nrg3186*
+
+Now that we have a small picture of what we are doing, lets star working with IQ-TREE. The basic syntax for this software is this:
+
+```
+iqtree -s ALIGNMENT -o OUTGROUP -m MODEL -pre OUTPUT_PREFIX -bb 1000
+```
+Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimate which is the one that fits our data better. *-bb 1000* means that we want our algorith to use [bootstraping](
