@@ -1,5 +1,5 @@
 # Session 6 - project
-For the following three labs you will work on a bioinformatics project where you will try to answer one of the evolutionary biology questions below, using phylogenetic methods. You will be randomly assigned one of the questions. During the first lab, you will gather your own dataset for the analysis. During the second lab, you will align the dataset and create phylogenetic trees. During the third and last lab, you will plot the threes and wrap-up the project.
+For the following three labs you will work on a bioinformatics project where you will try to answer one of the evolutionary biology questions below, using phylogenetic methods. You will be randomly assigned one of the questions. During the first lab, you will gather your own dataset for the analysis. During the second lab (session 7), you will align the dataset and create phylogenetic trees. During the third and last lab (session 8), you will plot the threes and wrap-up the project.
 
 We (the lab assistants) will help and guide you through the assembly of your dataset so that you end up with a suitable dataset, but ultimately the choice of samples is yours. 
 
@@ -23,23 +23,21 @@ We (the lab assistants) will help and guide you through the assembly of your dat
 
 ### Pointers
 
-When chosing your species you need to think about what species you want to test/compare i.e. your ingroup as well as your outgroup: 
+When choosing your species you need to think about what species you want to test/compare i.e. your ingroup as well as your outgroup. Including an outgroup is very important to root the phylogenetic trees. See the picture below: 
 
 ![](Outgroup.jpg)
 _By Ngilbert202 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=63950569_
 
-The test in the above figure would have been to see if `C` is more related to `B` or to `D`, and the answer would then be that `C` is closer to`D`. 
+The test in the above figure would have been to see if `C` is more related to `B` or to `D`, and the answer would then be that `C` is closer to`D` (they share one more common ancestor). 
 
-* 3 You will of course have to have some whales and dugongs but also several different clades of landliving mamals to determine the potential closest relatives.
+If you are unsure what would be an appropriate outgroup for your question, ask us!
 
-* 5  In order to be able to answer this question you will need to have species from _several_ different distinct lineages as well as a few squids/octopuses. 
+* **Question 3**: You will of course need some whales and dugongs but also several different clades of landliving mammals to determine the potential closest relatives.
 
-
-
-You will start with compiling your datasets in this lab. The following labs, 7 till 8, will introduce different phylogenetic methods, programs and tools that you will apply to the dataset you compiled. You will have to submit a few items along the way.
+* **Question 5**:  In order to be able to answer this question you will need to have species from _several_ different distinct lineages as well as a few squids/octopuses. 
 
 
-**N.B.** Since you are going to produce quite a lot of files, try to use self-explanatory files names and a good structure of folders. It will make your work easier. It might be a good idea to write a short description about how the archive is organized and where the files are (trees, scripts, alignments and so forth)
+**N.B.** Since you are going to produce quite a lot of files, try to use self-explanatory files names and a good structure of folders. It will make your work easier. It might be a good idea to write a short description about how the archive is organized and where the files are (trees, scripts, alignments and so forth).
 
 
 ### Gathering your data
