@@ -92,18 +92,25 @@ Once you found all the sequences for your dataset, you will need to put them tog
 
 ## Create a name conversion file.
 
-Create two tab-delimited files with three columns (one for the mitochondrial sequences and one for *cytB*). The files should contain one row for each sequence in your data set, including: 
+Create two (one for the mitochondrial sequences and one for *cytB*) **tab-delimited** files with three columns. The files should contain one row for each sequence in your data set, including: 
 
  * a maximum 8-character short-name (enough for you to identify it: e.g. c\_Vurs or mt\_Vurs)
  * an easy-readable name (good for presentation to others: e.g. cytB\_Vombat\_ursinus mitoc\_Vombat\_ursinus)
- * a globally unique identifier (e.g. NC\_026542.1:14178-15317).
+ * The header you got when dowloading it from NCBI
+  `>MN443013.1 Providencia stuartii strain PS11 subclass B1 metallo-beta-lactamase NDM-1 (blaNDM) gene, blaNDM-1 allele, partial cds`
 
 
-**Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should thus change the original file you send in, not create a new fasta file!
+**Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should for this taks change the original file you send in, not create a new fasta file!
+
+
+* Further clarification, it should be able to change wich types of header is saved by an option from the user, from one to another and back again.
+
+
 
 Submit the script, the two conversion tables and one of the fasta files for *cytB*.
 
 Tip: When your script is reading the table remember that your columns are tab separated, you can use that differentiate between your different columns. 
+Remember that you can `sys.argv` to get inputs from the commandline.
 
 
 ## REPORT
