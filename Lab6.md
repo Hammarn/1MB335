@@ -56,7 +56,7 @@ This will help you later to reflect upon the question and your results. It also 
 
 ## Getting the sequences
 This should be familiar to you, since you have had to find and download sequences before.
-Your task is to gather the full mitochondrial genomic sequences for your species as well as the gene ` *CytB* ` (Cytochrome b). You should thus have two fasta files per species!
+Your task is to gather the full mitochondrial genomic sequences for your species as well as the gene *CytB* (Cytochrome b). You should thus have two fasta files per species!
 
 #### Method A - preferred
 * Go to the [NCBI browser for organelles genomes](https://www.ncbi.nlm.nih.gov/genome/browse#!/organelles/). 
@@ -77,18 +77,25 @@ Your task is to gather the full mitochondrial genomic sequences for your species
 
 OBS! Before choosing a sequence have a look at its length - the hits should not be much shorter than the query. Additionally, as a sanity check, you should see that all of your sequences have a relative similar position on the mitochondrial genome (except possibly your outgroup sequences).
 
+#### If you cannot find the two sequences (entire mitochondria and *cytB*) for some species
+
+Preferably you should get the two sequences for all species in your dataset. It might happen that you decided to include a species but could not find the two sequences for it. In that case, try again with a close relative. If it is really difficult for you to find enough species with the two sequences for your dataset, ask a teaching assistant and we will look for a solution together.
 
 Save your files with smart, distinguishable names.
 
+#### Create fasta files for the entire dataset
+
+Once you found all the sequences for your dataset, you will need to put them together in a single fasta file (OBS! One fasta file for the entire mitochondria and one for *cytB*) the same way you did in Session 5 (use the `cat` command for example).
+
 ## Create a name conversion file.
 
-Create a tab-delimited file with three columns. The file should contain one row for each sequence in your data set, including: 
+Create two tab-delimited files with three columns (one for the mitochondrial sequences and one for *cytB*). The files should contain one row for each sequence in your data set, including: 
 
- * a maximum 8-character short-name (enough for you to identify it: e.g. c_Vurs)
- * an easy-readable name (good for presentation to others: e.g. cytB_Vombat_ursinus)
+ * a maximum 8-character short-name (enough for you to identify it: e.g. c_Vurs or mt_Vurs)
+ * an easy-readable name (good for presentation to others: e.g. cytB_Vombat_ursinus mitoc_Vombat_ursinus)
  * a globally unique identifier (e.g. NC_026542.1:14178-15317).
 
 
-**Question 3** Now you should write a python script that takes a fasta file as input as well as your conversion table and then can switch between the three different header types.
+**Question 2** Now you should write a Python script that takes a fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types.
 
-Submit the script and the conversion file!
+Submit the script, and the conversion table and one of the fasta files for *cytB*.
