@@ -3,6 +3,9 @@ For the following three labs you will work on a bioinformatics project where you
 
 We (the lab assistants) will help and guide you through the assembly of your dataset so that you end up with a suitable dataset, but ultimately the choice of samples is yours. 
 
+We made a checklist to help you when a command does not do what you expect it to do [here](Troubleshooting_checklist.md). It includes instructions to use `SFTP` to transfer files to and from Uppmax.
+
+
 ## Questions:
 1. Are bats more closely related to horses than to cows?
   
@@ -98,4 +101,13 @@ Create two tab-delimited files with three columns (one for the mitochondrial seq
 
 **Question 2** Now you should write a Python script that takes a fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types.
 
-Submit the script, and the conversion table and one of the fasta files for *cytB*.
+Submit the script, the two conversion tables and one of the fasta files for *cytB*.
+
+---
+## REPORT
+
+Please submit the answer to Question 1 (text) and to Question 2 (a Python script, two conversion tables and a fasta file).
+
+---
+
+This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
