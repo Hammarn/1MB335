@@ -11,7 +11,7 @@ Th basic idea behind it all is quite simple: as species diverge over time, they 
 
 ![Phylogenetic tree from Ersmark et al. 2016](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Phylogenetic_tree_for_wolves.jpg/468px-Phylogenetic_tree_for_wolves.jpg)
 
-*Phylogenetic tree from Ersmark et al. 2016: 10.3389/fevo.2016.00134*
+*Phylogenetic tree from Ersmark et al. 2016: https://doi.org/10.3389/fevo.2016.00134*
 
 Each tree is a hypothesys of the relationship between our sequences, and our goal is to identify, from all the posible trees, the one that is most likely to be true according to our data. This may vary depending on the region you are looking at, the models that you use or how you preprocess and allign your sequences. 
 
