@@ -78,7 +78,7 @@ jobinfo -u YOUR_UPPMAX_USER
 
 ### Step 1b:
 
-Now open an interactive session and do the same with your CytB sequences. 
+Now open an interactive session and run the same `mafft` command with your CytB sequences. You should thus not submit this as an `sbatch`-job as it will proably take less than a minute to run.
 
 ### Step 3:
 
