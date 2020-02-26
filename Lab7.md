@@ -42,7 +42,7 @@ For this Session, we are going to use the files that we created in the previous 
 
 ### Step 1a:
 
-The first step is to do a Multiple Alignment. As our mitochondrial sequences are considerably bigger than the single gene ones, we will submit them as an independent job to Rackham, as we did in Session 5. However, today we are going to use the other method to submit a job using `sbatch`: an script. It should look like this:
+The first step is to do a Multiple Alignment. As our mitochondrial sequences are considerably bigger than the single gene ones, we will submit them as an independent job to Rackham, as we did in Session 5. However, today we are going to use the other method to submit a job using `sbatch`: a script. It should look like this:
 
 ```
 #!/bin/bash -l
@@ -76,13 +76,15 @@ If you want to check that your job has been submitted and in which state it is, 
 jobinfo -u YOUR_UPPMAX_USER
 ```
 
+Comment: if the job has finished, you won't see anything. In that case, check your emails!
+
 ### Step 1b:
 
 Now open an interactive session and run the same `mafft` command with your CytB sequences. You should thus not submit this as an `sbatch`-job as it will proably take less than a minute to run.
 
-### Step 3:
+### Step 2:
 
-Once we have the alignment, we can get to inferring which of all the possible trees is the most likely. We have several methods to do this:
+Once we have the alignment, we can proceed to inferring which of all the possible trees is the most likely. We have several methods to do this:
 
 + [Parsimony](https://www.mun.ca/biology/scarr/2900_Parsimony_Analysis.htm): "the simplest explanation that can explain the data is to be preferred", so the hypothesis with the smallest number of changes is the most likely. However, this method has plenty of assumptions that we know are false, so it is not used anymore.
 + [Neighbour-joining](https://academic.oup.com/mbe/article/4/4/406/1029664): A slightly more refined version of parsimony in which we chose the best tree by minimizing branch lengths in the tree. More computationally intensive than parsimony, but still something that a modern computer can do fairly quickly.
@@ -92,9 +94,9 @@ Once we have the alignment, we can get to inferring which of all the possible tr
 
 *Prior, likelihood and posterior distribution for a two-parameter phylogenetic example in Nascimento et al. 2017: https://dx.doi.org/10.1038%2Fs41559-017-0280-x*
 
-The last two are the state-of-the-art methods for phylogenetic analysis, and have become more and more popular as computing power has scaled, as both methods are very demanding in that regard. 
+The last two are the state-of-the-art methods for phylogenetic analysis, and have become more and more popular as computing power has increased, as both methods are very demanding in that regard. 
 
-For our projects, we are going to use an implementation of the Maximum Likelihood approach called [IQ-TREE](http://www.iqtree.org/doc/Tutorial#first-running-example). This software offers several methods to speed up the analysis. To load the module:
+For our project, we are going to use an implementation of the Maximum Likelihood approach called [IQ-TREE](http://www.iqtree.org/doc/Tutorial#first-running-example). This software offers several methods to speed up the analysis. To load the module:
 
 ```
 module load iqtree/1.6.5-omp-mpi
@@ -110,7 +112,7 @@ Now that we have a small picture of what we are doing, lets start working with I
 iqtree -s ALIGNMENT -o OUTGROUP -m MODEL -pre OUTPUT_PREFIX -bb 1000
 ```
 
-Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and algorithm that automatically considers a list of substitution models and estimates which is the one that fits our data better. *-bb 1000* means that we want our algorithm to use [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)). **Once the alignment of the whole mitochondrial dataset is done, run IQ-TREE on that dataset via `sbatch`.** Remember to adapt the script above to run IQ-TREE (keep the module *bioinfo-tools*) and be careful to not over-write your files. 
+Now run IQ-TREE in your interactive session with the CytB data, and set your model to *-m MFP*. *MFP* stands for ModelFinder Plus, and is an algorithm that automatically considers a list of substitution models and estimates which is the one that fits our data better. *-bb 1000* means that we want our algorithm to use [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)). **Once the alignment of the whole mitochondrial dataset is done, run IQ-TREE on that dataset via `sbatch`.** Remember to adapt the script above to run IQ-TREE (keep the module *bioinfo-tools*) and be careful to not over-write your files. 
 
 All the questions below refer only to the CytB output.
 
