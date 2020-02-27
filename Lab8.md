@@ -60,42 +60,41 @@ Once you are done with those, you can play around with the other options (for ex
 
 Do not forget to export your trees as .pdf. You will have to show them during the presentation.
   
-### Step 3: Presentation
+### Step 3: Reflect on your results
 
-**Start here again**  
-  
-By now you should have generated all the trees listed here. That's a lot of trees! Now we want you to reflect on the different results and to answer your phylogenetic question. The preferred method for that is to do it orally towards the end of the X9 tutorial (or earlier, when you are done). If for some reason this is not feasible, you will have to do it in a written form.
+By now you have assembled a dataset to answer the question from Session 6; you found *cytB* sequences and entire mitochondrial genomes for all species in the dataset; you aligned the species; you perform a Maximum Likelihood analysis with IQTree and looked at some aspects of it, for example the model chosen; and you obtained a visual representation of your rooted trees.
 
-From all the trees generated in your group, choose two per person (so four in total if your are working in pair) that you find best answer the question. Choose at least one tree from respectively 16S and cytB (so you can have three of one and one of the other but not all of the same). Please think about the strengths of the different methods while you select - the trees can tell different stories but if you can make hypotheses about why they do we will appreciate.
+Now it is time to reflect on all that you have done and to answer your phylogenetic question. The preferred method for that is to do it orally during Session 8. If for some reason this is not feasible, you will have to do it in a written form (details for the format are below).
 
-We will expect you to:
+At this stage, you should have two Maximum Likelihood trees: one for *cytB* and one for the entire mitochondria. If you want, you can also look at the consensus trees. To prepare for the presentation, think about:
 
--remind us briefly of the question you worked with,
+- What is the answer to the question given these trees?
 
--list which species you chose to include and why,
+- Do the different trees give the same answer? If not, what could be the explanation?
 
--present your chosen trees. For each, tell us which trees they are and what they say about your question.
+- Which tree(s) do you think are most supported? What does the bootstrap analysis tell?
 
--summarize and conclude (for example, do all trees tell the same story? If not, what could be the explanation? Which trees do you think are the most supported? etc)
+- Are the substitution models different for *cytB* and the entire mitochondria? If yes, what could be an explanation?
 
-This is not a formal presentation (it will last 5-8 minutes in small groups) but if you can have explanatory names on your trees this will help us to follow.
+- Do you think your choice of species (including the outgroup) was appropriate to answer the question? If you were to redo the analysis, would you change something?
 
 
-Back-up submission: in case you could not finish in time, please let us know and then submit a written document with your four favourite trees (see above) and write 15-20 lines (or more if you are inspired) about why you chose these trees and how they answer your question. Exceptionally one submission by group is allowed - but remember to state the people involved.
+We will also expect you to remind us briefly of the question you worked with, and list which species you chose to include and why, so take a moment to prepare that too.
 
-
-
-
-### njplot
-
-Apparently we used njplot to look at the trees with bootstrap.
 
 ---
-## Presentation:
+## Presentation
 
-XXX
+Once you feel like you are ready to present (and not later than one hour before the end of the session), write your names on the board so the teaching assistants can come to listen to you. The presentation will last 5-10 minutes, at your desk.
+
+You do not have to submit anything for this session (if you present orally).
+
+---
+## Back-up submission: Written report
+
+In case you could not finish in time, please let the teaching assistants know and then submit a written document with your trees (the ones you made with FigTree) and write 15-30 lines (or more if you are inspired) answering the questions in **Step 3**. Do not forget to indicate which question you worked with and which species were included in the dataset. Exceptionally one submission by group is allowed - but remember to state the people involved.
 
 ---
 
 This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax. **Obs!** As this is the last session, this step is extra important. We won't delete anything before March 31 (from the Uppmax project), but afterwards we do not guarantee that the data will be kept. If for some reason you need access to the project after that date, please let the teaching assistants know.
