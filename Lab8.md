@@ -27,7 +27,7 @@ This is the last session of the bioinformatics project (and of the course). You 
 
 ### Step 1: Examine the IQTree outputs for the mitochondria
 
-In Session 7 you performed a Maximum Likelihood analysis with IQTree on two alignments: *cytB* and entire mitochondria. You answered five questions relative to the *cytB* run. Now, answer these same questions for the mitochondria run. You will be asked about these during the presentation.
+In Session 7 you performed a Maximum Likelihood analysis with IQTree on two alignments: *cytB* and entire mitochondria. You answered five questions relative to the *cytB* run. Now, answer these same questions for the mitochondria run. You might be asked about these during the presentation.
 
 **Question 1:** Which files do IQ-TREE output? Explain briefly what each of them is.
 
@@ -43,18 +43,18 @@ Now let's look at the .iqtree file.
 
 ### Step 2: Create a visual representation of your Maximum Likelihood trees
 
-In the .iqtree file, you have a representation of the trees. However, it is an unrooted tree. You can root the tree, and do many other things, with the program FigTree. can You have two options to work with FigTree:
+In the .iqtree file, you have a representation of the trees. However, it is an unrooted tree. You can root the tree, and do many other things, with the program FigTree. You have two options to work with FigTree:
 
   1. Work locally on the computers from the computer room. In that case, transfer your tree files from Uppmax to the local computer (e.g. using sftp, instructions [here](Troubleshooting_checklist.md)). Then call FigTree with `figtree`.
   2. Work with visual forwarding on Uppmax (log with `ssh -Y`, see [Session 5](Lab5.md). In that case, call FigTree like this: `java -Xms64m -Xmx512m -jar /proj/g2019029/private/SCRIPTS`
   
-When you call FigTree, a visual interface will open. In `File`, choose `Open` and select one of your maximum likelihood trees. If the software asks you to select a name for the labels on the tree, you can keep the default or choose a keyword, for example `bootstrap`.
+When you call FigTree, a visual interface will open. In `File`, choose `Open` and select one of your Maximum Likelihood trees. If the software asks you to select a name for the labels on the tree, you can keep the default or choose a keyword, for example `bootstrap`.
 
 The three important things you have to do are:
   
-  1. Root the tree with your outgroup (select the branch and then select Reroot)
+  1. Root the tree with your outgroup (select the branch and then select `Reroot`)
   2. Show the bootstrap values (using `Branch labels` or `Node labels` and selecting the right thing to display)
-  3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). **Todo write depending on how the script looks like XXXX**  
+  3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). **TODO write depending on how the script looks like.**  
 
 Once you are done with those, you can play around with the other options (for example Rotate & Different type of trees).
 
@@ -62,7 +62,7 @@ Do not forget to export your trees as .pdf. You will have to show them during th
   
 ### Step 3: Reflect on your results
 
-By now you have assembled a dataset to answer the question from Session 6; you found *cytB* sequences and entire mitochondrial genomes for all species in the dataset; you aligned the species; you perform a Maximum Likelihood analysis with IQTree and looked at some aspects of it, for example the model chosen; and you obtained a visual representation of your rooted trees.
+By now you have assembled a dataset to answer the question from Session 6; you collected *cytB* sequences and entire mitochondrial genomes for all species in the dataset; you aligned the species; you perform a Maximum Likelihood analysis with IQTree and looked at some aspects of it, for example the model chosen; and you obtained a visual representation of your rooted trees.
 
 Now it is time to reflect on all that you have done and to answer your phylogenetic question. The preferred method for that is to do it orally during Session 8. If for some reason this is not feasible, you will have to do it in a written form (details for the format are below).
 
@@ -92,7 +92,7 @@ You do not have to submit anything for this session (if you present orally).
 ---
 ## Back-up submission: Written report
 
-In case you could not finish in time, please let the teaching assistants know and then submit a written document with your trees (the ones you made with FigTree) and write 15-30 lines (or more if you are inspired) answering the questions in **Step 3**. Do not forget to indicate which question you worked with and which species were included in the dataset. Exceptionally one submission by group is allowed - but remember to state the people involved.
+In case you could not finish in time, please let the teaching assistants know and submit a written document with your trees (the ones you made with FigTree) and 15-30 lines (or more if you are inspired) answering the questions in **Step 3**. Do not forget to indicate which question you worked with and which species were included in the dataset. Exceptionally one submission by group is allowed - but remember to state the people involved.
 
 ---
 
