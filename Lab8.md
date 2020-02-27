@@ -21,7 +21,7 @@ This is the last session of the bioinformatics project (and of the course). You 
 
 ## Tool(s)
 
-  + FigTree, a phylogenetic trees visualization software
+  + FigTree, a phylogenetic tree visualization software
 
 ## Details
 
@@ -46,7 +46,7 @@ Now let's look at the .iqtree file.
 In the .iqtree file, you have a representation of the trees. However, it is an unrooted tree. You can root the tree, and do many other things, with the program FigTree. You have two options to work with FigTree:
 
   1. Work locally on the computers from the computer room. In that case, transfer your tree files from Uppmax to the local computer (e.g. using sftp, instructions [here](Troubleshooting_checklist.md)). Then call FigTree with `figtree`.
-  2. Work with visual forwarding on Uppmax (log with `ssh -Y`, see [Session 5](Lab5.md). In that case, call FigTree like this: `java -Xms64m -Xmx512m -jar /proj/g2019029/private/SCRIPTS`
+  2. Work with visual forwarding on Uppmax (log with `ssh -Y`, see [Session 5](Lab5.md). In that case, call FigTree like this: `java -Xms64m -Xmx512m -jar /proj/g2019029/private/SCRIPTS/figtree.jar`
   
 When you call FigTree, a visual interface will open. In `File`, choose `Open` and select one of your Maximum Likelihood trees. If the software asks you to select a name for the labels on the tree, you can keep the default or choose a keyword, for example `bootstrap`.
 
@@ -54,11 +54,32 @@ The three important things you have to do are:
   
   1. Root the tree with your outgroup (select the branch and then select `Reroot`)
   2. Show the bootstrap values (using `Branch labels` or `Node labels` and selecting the right thing to display)
-  3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). **TODO write depending on how the script looks like.**  
+  3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). 
+
+You can use this script to change the names in your treefiles:
+
+
+[treefile\_rename\_from\_conv\_table.py](python_scripts/treefile_rename_from_conv_table.py)
+ 
+Usage example:
+ 
+``` 
+python teefile_rename_from_conv_table.py -t CytB_iqTree.treefile -c con_tab_cytb.txt -f 1 -to 3
+
+```
+
+If you are wondering about the options then you can check the help:
+
+```
+python treefile_rename_from_conv_table.py -h 
+```
+
+_It might also be a good idea to look at the code itself to se how it works_
+  
 
 Once you are done with those, you can play around with the other options (for example Rotate & Different type of trees).
 
-Do not forget to export your trees as .pdf. You will have to show them during the presentation.
+**Do not forget to export your trees as `.pdf`. You will have to show them during the presentation.**
   
 ### Step 3: Reflect on your results
 
