@@ -57,11 +57,13 @@ The three important things you have to do are:
   3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). **Todo write depending on how the script looks like XXXX**  
 
 Once you are done with those, you can play around with the other options (for example Rotate & Different type of trees).
+
+Do not forget to export your trees as .pdf. You will have to show them during the presentation.
   
+### Step 3: Presentation
+
 **Start here again**  
   
-### What was on Sparrman
-
 By now you should have generated all the trees listed here. That's a lot of trees! Now we want you to reflect on the different results and to answer your phylogenetic question. The preferred method for that is to do it orally towards the end of the X9 tutorial (or earlier, when you are done). If for some reason this is not feasible, you will have to do it in a written form.
 
 From all the trees generated in your group, choose two per person (so four in total if your are working in pair) that you find best answer the question. Choose at least one tree from respectively 16S and cytB (so you can have three of one and one of the other but not all of the same). Please think about the strengths of the different methods while you select - the trees can tell different stories but if you can make hypotheses about why they do we will appreciate.
