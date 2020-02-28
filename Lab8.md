@@ -48,7 +48,7 @@ In the .iqtree file, you have a representation of the trees. However, it is an u
   1. Work locally on the computers from the computer room. In that case, transfer your tree files from Uppmax to the local computer (e.g. using sftp, instructions [here](Troubleshooting_checklist.md)). Then call FigTree with `figtree`.
   2. Work with visual forwarding on Uppmax (log with `ssh -Y`, see [Session 5](Lab5.md). In that case, call FigTree like this: `java -Xms64m -Xmx512m -jar /proj/g2019029/private/SCRIPTS/figtree.jar`
   
-When you call FigTree, a visual interface will open. In `File`, choose `Open` and select one of your Maximum Likelihood trees. If the software asks you to select a name for the labels on the tree, you can keep the default or choose a keyword, for example `bootstrap`.
+When you call FigTree, a visual interface will open. In `File`, choose `Open` and select one of your Maximum Likelihood trees. If the software asks you to select a name for the labels on the tree, you can keep the default or choose a keyword, for example `bootstrap`. **Note that you do *not* want the `.iqtree`, that file is more of a logfile than and actual tree.**
 
 The three important things you have to do are:
   
@@ -64,7 +64,7 @@ You can use this script to change the names in your treefiles:
 Usage example:
  
 ``` 
-python teefile_rename_from_conv_table.py -t CytB_iqTree.treefile -c con_tab_cytb.txt -f 1 -to 3
+python treefile_rename_from_conv_table.py -t CytB_iqTree.treefile -c con_tab_cytb.txt -f 1 -to 3
 
 ```
 
@@ -74,7 +74,7 @@ If you are wondering about the options then you can check the help:
 python treefile_rename_from_conv_table.py -h 
 ```
 
-_It might also be a good idea to look at the code itself to se how it works_
+_It might also be a good idea to look at the code itself to se how it works, you might learn something ;)_
   
 
 Once you are done with those, you can play around with the other options (for example Rotate & Different type of trees).
