@@ -128,7 +128,7 @@ tail - looks at the tail of a file, by default the 10 last lines.
 It turns out that the PCA article is quite big, how big?
 Counting is something that is hard and slow for humans, but easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
 
-**Question: What did you get? How many lines and words?**
+**Question 1: What did you get? How many lines and words?**
 
 Hmm, it's not that clear, is it? Have a look at the manual for `wc` to try and figure it out. 
 All core UNIX commands have an inbuilt manual you can access it through the `man` command:
@@ -170,19 +170,25 @@ grep PCA short_pca.txt | wc -l
 ```
 
 Try it for the full article as well!
-**Question:** Write down the answer to the occurrences of the phrase `PCA` in both the full `PCA.txt` and the `short_pca.txt`.
+**Question 2:** Write down the answer to the occurrences of the phrase `PCA` in both the full `PCA.txt` and the `short_pca.txt`.
 
 --
 
 ### Hidden word exercise 
-**Question:**
+**Question 3:**
 Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md).
+Submit the hidden word.
 
-Do not continue with the next part until you are done with it. 
-Make sure to report the answer to the question to one of the lab assistants. 
+Do not continue with the next part until you are done with the exercise. 
+
+--
+
+It's now time for a short lecture about Uppmax and HPCs in general
+
 --
 
 ### Working remotely 
+
 The next part of this exercise will take place on the computational cluster Rackham on UPPMAX (Uppsala Multidisciplinary Center for Advanced Computational Science). 
 To connect to a remote Unix server the protocol `ssh` is typically used.
 
@@ -247,14 +253,14 @@ ls -lh
 With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was 117 GB for reference.
 
 ##### The `.bam` file is just for a small part of the genome, which ones? 
-**Question:** use `samtools view` and `head` and `tail` to **figure out the first and last position in the file**. Also include the exact command you used!
+**Question 4:** use `samtools view` and `head` and `tail` to **figure out the first and last position in the file**. Also include the exact command you used!
  
 
 ##### Use `cut` to extract only the name and nucleotide sequence from the `.bam` file. 
 
 First, figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
-**Question:** Write down the command you used to extract the name and nucleotide sequence!
+**Question 5:** Write down the command you used to extract the name and nucleotide sequence!
 
 
 
@@ -296,7 +302,7 @@ You can use `sed` on piped output from another program or straight on a single f
 
 
 
-**Question:**
+**Question 6 :**
 You have been given a that has been exported from excel in an odd format (something that is all to commomn in the life of a bioinformatican). Your task is to transform the file [orange.csv](example_data/orange.csv) into a normally formated `.csv`-file. That is the decimal point should be a `.` and the delimiter (what separates one column from another) should be `,`. It also looks like someone has accidentally inserted some letters among the numbers, they also need to be removed.
 
 Submit what `sed` command(s) you used to clean the file. (Make sure that it looks correct)
