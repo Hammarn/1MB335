@@ -28,7 +28,7 @@ We made a checklist to help you when a command does not do what you expect it to
 
 When choosing your species you need to think about what species you want to test/compare i.e. your ingroup as well as your outgroup. Including an outgroup is very important to root the phylogenetic trees. See the picture below: 
 
-![](Outgroup.jpg)
+![](Figures/Outgroup.jpg)
 _By Ngilbert202 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=63950569_
 
 The test in the above figure would have been to see if `C` is more related to `B` or to `D`, and the answer would then be that `C` is closer to`D` (they share one more common ancestor). 

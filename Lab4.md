@@ -174,7 +174,7 @@ It would be nice to be able to visualize the result of your hard work, isn't it?
 
 **Question 6. Now, look at the output. Do you see regions devoid of annotated features? See the example below (Figure 1).**
 
-![](Figure_gap_in_OGDrawoutput_Pogodaetal.png)
+![](Figures/Figure_gap_in_OGDrawoutput_Pogodaetal.png)
 
 ***Figure 1: An example output of OGDraw with a gap.** The black arrow indicates a gap in annotated features where undiscovored proteins may exist. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
 

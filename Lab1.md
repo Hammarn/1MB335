@@ -1,5 +1,8 @@
 # Session 1 - basic command line tutorial
 
+
+
+
 ### What is UNIX?
 Unix is an operating system that was originally developed at Bell labs in the 1970s. It is based around a "modular design" where tools do very distinct and narrrow tasks. To complete more complex tasks multiple modules are then combined through the use of "pipes" - more about those later. 
 If you are interested in learing more about UNIX then you can have a look at the [wikipedia article](https://en.wikipedia.org/wiki/Unix) for UNIX, it's quite thorough and well written.  
@@ -8,8 +11,6 @@ While there is no strightforward answer to this question there are some things t
 While the original UNIX operating system is a comercial system there are many Unix-like operating systems such as Linux which are free and open source (_these are generally based on the Linux kernel_).
 The ecosystem of open source and free distribution suits the academic world very well. It is not really research if you aren't charing your findings and how you came to your conclusions - that generally includes your code. 
 
-
-
 #### Using UNIX
 Interaction with UNIX-style systems is typically done through a command-line interface (CLI) - a `terminal` of some sort. There is generally no GUI (graphical user interface), though there exist protocols to display graphics through the terminal such as `X11`.
 
@@ -17,6 +18,11 @@ To communicate with the system there needs something to interpret the user's com
 It's an interpreter and it's own (basic) programming language. 
 
 Enough exposition, let's get going. Open up the terminal and proceed with the exercise. 
+
+![Figure 1](Figures/Version_7_Unix_SIMH_PDP11_Emulation_DMR.png)
+**Terminal display for version 7 of Unix**
+
+*(By Huihermit - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=30560188)*
 
 #### Moving around
 When you connect to a system you usually end up in your home directory. To see the path to where you stand use the `pwd` command. Try it now:
@@ -170,7 +176,7 @@ grep PCA short_pca.txt | wc -l
 ```
 
 Try it for the full article as well!
-**Question 2:** Write down the answer to the occurrences of the phrase `PCA` in both the full `PCA.txt` and the `short_pca.txt`.
+**Question 2:** Write down how many times `PCA` appears in both the full `PCA.txt` and the `short_pca.txt` files.
 
 --
 

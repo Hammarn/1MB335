@@ -2,7 +2,16 @@
 
 ## General introduction to sessions 3 to 5
 
+
 In these three labs, you will work with mitochondrial genomes. Mitochondria are present in all eukaryotic cells (for a review, see 'Origin and diversification of mitochondria', Roger et al.), where among many other functions it supplies the cells with chemical energy (ATP). Here, we will focus on the genomes present in mitochondria; mitochondrial genomes present the advantage of being relatively small compared to nuclear genomes (e.g. 16,000 base pairs in humans), thus facilitating bioinformatic operations in the labs. They are also present in many copies in the cells, thus they are relatively easy to sequence even in extreme cases where DNA is often limited such as environmental DNA or ancient DNA studies. Although mitochondrial genomes can take many different forms depending on the species, they all contain a series of conserved protein-coding genes as well as rRNA and tRNA; this makes mitochondrial genomes good candidates for comparative analyses between different species.
+
+
+![](Figures/Mitochondrion_structure.svg)
+
+
+**Figure 1: Simplified structure of a mitochondrion.** 
+*By Kelvinsong; modified by Sowlos - Own work based on: Mitochondrion mini.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=27731882*
+
 
 During these three sessions, your main task will be to annotate the mitochondrial genome of one of the following organisms: *great apes, mouse, fruit fly or nematode Adapt depending on what we decide!!*. When you each have annotated the genome of your organism, you will compare and contrast your annotations with those from other students who worked on the other species. To complete this task, you will need what you learned during sessions 1 and 2, and you will use some parts of your annotated mitochondrial genome and that of your colleagues during sessions 6 to 8.
 
@@ -13,6 +22,10 @@ The steps you will follow in sessions 3 (assembling the genome) and 4 (annotatio
 You will receive a whole-genome assembly comprising nuclear and mitochondrial contigs of various sizes. Before you can start the annotation, you will need to reconstruct the mitochondrial genome, by identifying mitochondrial contigs and placing them in the right order so that they form a circular genome (we will work only with species with a circular mitochondrial genome). To do that, you will use different types of BLAST as well as a very useful command, `grep`. Moreover, you will need additional resources, which are described in the 'input' section. Once you have a circular genome, you will need to localize the canonical start (to orient the genome). After all of this is done, you will be all set for starting annotating in session 4!
 
 The work flow described in this session could be followed for the four organisms mentioned in the introduction. However, the larger the genome of the organism and the longer the different steps will take. For that reason, you will work mostly on the genome of a nematode, Caenorhabditis remanei. The genome of the nematode Caenorhabditis elegans (a relative of Caenorhabditis remanei and a model organism) is ~100 Mbp long, while the human genome is ~3,000 Mbp long. For the last step, you will work on one of the four genomes (this will be decided at the beginning of the class).
+
+![](https://upload.wikimedia.org/wikipedia/commons/1/15/Map_of_the_human_mitochondrial_genome.svg)
+**Figure 2: Map of the Human mitochondira**
+By Emmanuel Douzery - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=46726514
 
 ## Goals
 
@@ -163,9 +176,10 @@ If you use the web tool: Paste your contig sequence into the search box and reve
 
 You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure 1.
 
-![](Figure_Tiling_Pogodaetal.png)
+![](Figures/Figure_Tiling_Pogodaetal.png)
 
-***Figure 1: An illustration of tiling.** Let’s say you have three assembled contigs that you have identified as mitochondrial: Node 12, Node 26, and Node 83 (black lines). You will use reads from the .fastq file (purple lines) to bridge the gap between these three contigs. The blue lines are the sequence that you identified and used to attach the respective contigs to each other for a complete, but not yet circularized mitochondrial genome. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
+
+***Figure 3: An illustration of tiling.** Let’s say you have three assembled contigs that you have identified as mitochondrial: Node 12, Node 26, and Node 83 (black lines). You will use reads from the .fastq file (purple lines) to bridge the gap between these three contigs. The blue lines are the sequence that you identified and used to attach the respective contigs to each other for a complete, but not yet circularized mitochondrial genome. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
 
 Your task now is to select a library of short reads for an individual of your species of interest. A good place to find that is NCBI. So, open the start page of NCBI again. In the 'All Databases' drop-down menu, choose 'SRA'. 'SRA' is short for Sequence Read Archive.
 
