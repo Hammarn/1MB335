@@ -247,7 +247,7 @@ module load samtools/1.9
 The **BAM** file and corresponding **SAM** file can be found here:
 
 ```
-/proj/g2019029/private/DATA/BAM
+/proj/g2021007/private/DATA/BAM
 ```
 
 Before using it have a look at the file sizes of the two different formats.
@@ -315,6 +315,7 @@ Submit what `sed` command(s) you used to clean the file. (Make sure that it look
 
 _You will probably have to look up more information on how to do this. You can use `man sed` or `info sed` for mor information, or google your way to it. As long as you know what your command does_
 
+Note that if you want to upload the file to your Uppmax results you can use the `scp` command, you can find an example of how to use it at the bottom of the page.
 
 ### Basic bash scripting for future reference 
 Bash is a programming language in itself so it is possible to set up quite advanced workflows with it. The most simple bash script is just a normal command you would type on the command line saved to a file. Or more realistically you might want to run a couple of things that takes a few minutes or hours after each other.
