@@ -4,12 +4,12 @@
 
 
 ### What is UNIX?
-Unix is an operating system that was originally developed at Bell labs in the 1970s. It is based around a "modular design" where tools do very distinct and narrrow tasks. To complete more complex tasks multiple modules are then combined through the use of "pipes" - more about those later. 
-If you are interested in learing more about UNIX then you can have a look at the [wikipedia article](https://en.wikipedia.org/wiki/Unix) for UNIX, it's quite thorough and well written.  
+Unix is an operating system that was originally developed at Bell Labs in the 1970s. It is based around a "modular design" where tools do very distinct and narrow tasks. To complete more complex tasks multiple modules are then combined through the use of "pipes" - more about those later. 
+If you are interested in learning more about UNIX then you can have a look at the [wikipedia article](https://en.wikipedia.org/wiki/Unix) for UNIX, it's quite thorough and well written.  
 ### Why are Unix systems so popular in science?
-While there is no strightforward answer to this question there are some things that are often brought up. UNIX (and unix-like systems) in it's design is quite simple and is nowadays very portable. This has lead to it being used to run anything from massive high perfomance computer clusters to tiny single board computers such as arduinos & raspberry pis. This ubiquity and popularity is probably one reason to why it is still so popular. Since the year 2000 Mac computers are also running on apples own Unix system, another popular unix-like system is the Android mobile operating system. 
-While the original UNIX operating system is a comercial system there are many Unix-like operating systems such as Linux which are free and open source (_these are generally based on the Linux kernel_).
-The ecosystem of open source and free distribution suits the academic world very well. It is not really research if you aren't charing your findings and how you came to your conclusions - that generally includes your code. 
+While there is no straightforward answer to this question there are some things that are often brought up. UNIX (and Unix-like systems) in its design is quite simple and is nowadays very portable. This has lead to it being used to run anything from massive high-performance computer clusters to tiny single-board computers such as Arduino & raspberry pis. This ubiquity and popularity is probably one reason why it is still so popular. Since the year 2000 Mac computers are also running on Apple's own Unix system, another popular Unix-like system is the Android mobile operating system. 
+While the original UNIX operating system is a commercial system there are many Unix-like operating systems such as Linux which are free and open-source (_these are generally based on the Linux kernel_).
+The ecosystem of open source and free distribution suits the academic world very well. It is not science if you aren't charing your findings and how you came to your conclusions - that generally includes your code. 
 
 #### Using UNIX
 Interaction with UNIX-style systems is typically done through a command-line interface (CLI) - a `terminal` of some sort. There is generally no GUI (graphical user interface), though there exist protocols to display graphics through the terminal such as `X11`.
@@ -24,17 +24,49 @@ Enough exposition, let's get going. Open up the terminal and proceed with the ex
 
 *(By Huihermit - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=30560188)*
 
+#### For Mac users
+The macOS operating system is a Unix-system so modern Macs can natively interact with other Unix systems. macOS comes with an inbuilt terminal application called simply `Terminal`. 
+It is functional and gets the job down, we, however, recommend that you instead install `iTerm2`, which comes with several quality of life improvements.
+Download it from [https://iterm2.com/](https://iterm2.com/)
+
+MacOS comes with a very bare-bones version of Unix which lacks many tools that most Unix installations come with. Thus we recommend that you install [Homebrew](https://brew.sh/) which is a package manager for Mac which makes it super easy to install missing programs and tools.
+
+To installl `Homebrew`; open the terminal and run:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+*Note that this will take around 5 min to complete and you will be prompted for your user password. The installation requires around 10GB of space*
+
+Then you can install some useful tools:
+
+```
+ brew install wget
+ brew install w3m
+ brew install tree
+
+```
+
+#### For Windows users
+If you are on a Windows machine then the easiest option for you is to download `MomaXterm`.
+
+[https://mobaxterm.mobatek.net/](https://mobaxterm.mobatek.net/)
+
+Another option is to use the Ubuntu app from the Windows app store or to set up a dedicated Linux partition. If you know how to do that then go for it, if not stick to MobaXterm.
+
 #### Moving around
 When you connect to a system you usually end up in your home directory. To see the path to where you stand use the `pwd` command. Try it now:
 
 ```
 pwd
 ```
+
 it should return something like:
 
 ```
 /home/user_name
 ```
+
 As you move around in the systems directories this will of course change.
 
 To make a directory (called folders on other systems) use the command `mkdir`, try the following out:
@@ -42,11 +74,13 @@ To make a directory (called folders on other systems) use the command `mkdir`, t
 ```
 mkdir directory1
 ```
+
 To figure out what happened use the `ls` command which lists the content of the current working directory:
 
 ```
 ls
 ```
+
 As you can see `mkdir` makes directories, all (or at least most) UNIX commands are named after their function. 
 
 To go to your new directory use `cd` (change directory);
@@ -60,6 +94,7 @@ Now try to create another directory called `directory 2`
 ```
 mkdir directory 2
 ```
+
 Take a look at what you did using the `ls` command.
 
 Looks like you created two directories, one called `2` and another called `directory`. Since the basic syntax for UNIX commands is:
@@ -67,6 +102,7 @@ Looks like you created two directories, one called `2` and another called `direc
 ```
 command option1 option2 option3
 ```
+
 Each extra option to the command is separated by a space, which means that spaces and other white characters, such as tabs, are not allowed in file or directory names!
 
 To fix this issue use `rm` for, you guessed it - remove.
@@ -75,11 +111,13 @@ We can remove both at the same time:
 ```
 rm directory 2
 ```
+
 Ouch, `rm` by default only removes files, not directories. You need to tell `rm` that you want it to work recursively, using what's typically called a flag, in this case `-r`.
 
 ```
 rm -r directory 2
 ```
+
 Check that is worked using `ls`.
 
 
@@ -88,6 +126,7 @@ Ok, let's try and make a second directory again:
 ```
 mkdir directory2
 ```
+
 change into it using `cd` 
 
 ```
@@ -105,6 +144,7 @@ Check that it took you to the right place. Here are two need things to know abou
 ```
 cd -
 ```
+
 takes you back to the last place you were standing.
 Just `cd` with no options takes you to your home directory.
 
@@ -132,7 +172,7 @@ tail - looks at the tail of a file, by default the 10 last lines.
 ```
 
 It turns out that the PCA article is quite big, how big?
-Counting is something that is hard and slow for humans, but easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
+Counting is hard and slow for humans but easy for machines. Use the word count command `wc` on the file to figure out how many lines and words it contains. 
 
 **Question 1: What did you get? How many lines and words?**
 
@@ -159,17 +199,17 @@ grep PCA short_pca.txt
 ### Pipes and multiple commands
 One of the fundamental concepts behind UNIX from the beginning was an emphasis on small task-specific programs. These programs could then be chained together into pipelines to perform more complex tasks.
 
-Imagine that you have a machine that cuts down trees, de-barks them and cuts them into planks. If you have trees and wants planks then this is fine, but what happens if you want to cut down the tree and keep the whole log? Your big fancy machine only makes planks.
-In the UNIX world, your one machine would consist of smaller machines chained together. One that cuts down the tree, one that removed the bark and one that cuts into planks. 
+Imagine that you have a machine that cuts down trees, de-barks them, and cuts them into planks. If you have trees and want planks then this is fine, but what happens if you want to cut down the tree and keep the whole log? Your big fancy machine only makes planks.
+In the UNIX world, your one machine would consist of smaller machines chained together. One that cuts down the tree, one that removed the bark, and one that cuts into planks. 
 If you get a pile of logs from your neighbor then you can use one of your machines to make planks, etc.
 
-This type of chaining together is called piping in UNIX and is done by the pipe character `|`. E.g.
+This type of chaining together is called piping in UNIX and is done by the pipe character `|`. e.g.
 
 ```
 command 1 | command 2 | command3 > output_file
 ```
 
-By using `grep`, `pipe`, and `wc` we can now easily figure out how many lines of the Wikipedia article about Principle Component Analysis that contains the word `PCA`:
+By using `grep`, `pipe`, and `wc` we can now easily figure out how many lines of the Wikipedia article about Principle Component Analysis contains the word `PCA`:
 
 ```
 grep PCA short_pca.txt | wc -l
@@ -185,13 +225,8 @@ Try it for the full article as well!
 Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md).
 Submit the hidden word.
 
-Do not continue with the next part until you are done with the exercise. 
+Do not continue with the next part until you are done with the hidden word exercise. 
 
---
-
-It's now time for a short lecture about Uppmax and HPCs in general
-
---
 
 ### Working remotely 
 
@@ -204,7 +239,7 @@ Given that you have an account with Uppmax do the following to connect to Rackha
 ssh your_user_name@rackham.uppmax.uu.se
 ```
 
-After entering that you command you will be prompted to enter your password.
+After entering that command you will be prompted to enter your password.
 
 Our teaching project is called `g2019029`
 
@@ -215,11 +250,11 @@ to:
 /proj/g2019029/private/RESULTS
 ```
 
-There you need to make a directory for you to work in. Call it your firstname underscore your last name:
+There you need to make a directory for you to work in. Call it your first name underscore your last name:
 
 `FirstName_LastName`
 
-For the rest of your exercises you should be working in that directory. I.e copy data there and work on it. 
+For the rest of your exercises, you should be working in that directory. I.e copy data there and work on it. 
 
 ---
 
@@ -256,9 +291,9 @@ Before using it have a look at the file sizes of the two different formats.
 ls -lh 
 ```
 
-With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was 117 GB for reference.
+With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was **117 GB** for reference.
 
-##### The `.bam` file is just for a small part of the genome, which ones? 
+##### The `.bam` file is just for a small part of the genome, which one? 
 **Question 4:** use `samtools view` and `head` and `tail` to **figure out the first and last position in the file**. Also include the exact command you used!
  
 
@@ -274,7 +309,7 @@ First, figure out which fields it is that you want and then investigate `man cut
 ### sed and regex
 Regular expressions(regex) are used to catch and match certain words or phrases. E.g
 ^
-`^P[0-9]+` will match in the begining of a line(`^`) the letter P literally, any  number (`[0-9]`) repeating (`+`)
+`^P[0-9]+` will match at the beginning of a line(`^`) the letter P literally, any  number (`[0-9]`) repeating (`+`)
 it will thus catch the top line but not the second:
 
 ```
@@ -284,7 +319,7 @@ P674353
 These types of expression can be very useful and powerful 
 
 
-`sed` is a powerful tool for editing streams of files. It is a common way of using rexes in unix. It's often used to replace one thing with another:
+`sed` is a powerful tool for editing streams of files. It is a common way of using rexes in Unix. It's often used to replace one thing with another:
 
 if `My_file.txt ` contains:
 
@@ -304,22 +339,22 @@ cat cat cat
 ```
 
 
-You can use `sed` on piped output from another program or straight on a single file. For a short summary of some things that you can do with it have a look at [this link](https://github.com/tldr-pages/tldr/blob/master/pages/common/sed.md).
+You can use `sed` on piped output from another program or straight on a single file. For a summary of some things that you can do with it have a look at [this link](https://github.com/tldr-pages/tldr/blob/master/pages/common/sed.md).
 
 
 
 **Question 6 :**
-You have been given a that has been exported from excel in an odd format (something that is all to commomn in the life of a bioinformatican). Your task is to transform the file [orange.csv](example_data/orange.csv) into a normally formated `.csv`-file. That is the decimal point should be a `.` and the delimiter (what separates one column from another) should be `,`. It also looks like someone has accidentally inserted some letters among the numbers, they also need to be removed.
+You have been given a that has been exported from excel in an odd format (something that is all too common in the life of a bioinformatician). Your task is to transform the file [orange.csv](example_data/orange.csv) into a normally formatted `.csv`-file. That is the decimal point should be a `.` and the delimiter (what separates one column from another) should be `,`. It also looks like someone has accidentally inserted some letters among the numbers, they also need to be removed.
 
 Submit what `sed` command(s) you used to clean the file. (Make sure that it looks correct)
 
-_You will probably have to look up more information on how to do this. You can use `man sed` or `info sed` for mor information, or google your way to it. As long as you know what your command does_
+_You will probably have to look up more information on how to do this. You can use `man sed` or `info sed` for more information, or google your way to it. As long as you know what your command does_
 
 Note that if you want to upload the file to your Uppmax results you can use the `scp` command, you can find an example of how to use it at the bottom of the page.
 
 ### Basic bash scripting for future reference 
-Bash is a programming language in itself so it is possible to set up quite advanced workflows with it. The most simple bash script is just a normal command you would type on the command line saved to a file. Or more realistically you might want to run a couple of things that takes a few minutes or hours after each other.
-This is something that you definetly will do in your future bioinformatic career.
+Bash is a programming language in itself so it is possible to set up quite advanced workflows with it. The most simple bash script is just a normal command you would type on the command line saved to a file. Or more realistically you might want to run a couple of things that take a few minutes or hours after each other.
+This is something that you definitely will do in your future bioinformatics career.
 
 An example of something like that:
 
@@ -331,7 +366,7 @@ echo “Completed”
 
 ```
 
-Add the above text to a file called `sleep.sh` and the execute it with
+Add the above text to a file called `sleep.sh` and execute it with:
 
 ```
 bash sleep.sh
@@ -339,7 +374,7 @@ bash sleep.sh
 
 You can see that the code is executed sequentially, it does not progress to the next line until the previous one has finished.
 
-An example of use case could be that you have data on a local server that you want to transfere to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
+An example of a use case could be that you have data on a local server that you want to transfer to a remote server where you want to perform some kind of analysis and then transfer the results back to your local server. That would look something like this:
 
 
 ```
@@ -355,8 +390,6 @@ scp output_file my_user@remote_server:
 ---
 
 This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
-
-
+Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them.
 
 
