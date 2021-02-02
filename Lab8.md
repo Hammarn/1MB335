@@ -117,5 +117,8 @@ In case you could not finish in time, please let the teaching assistants know an
 
 ---
 
-This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax. **Obs!** As this is the last session, this step is extra important. We won't delete anything before March 31 (from the Uppmax project), but afterwards we do not guarantee that the data will be kept. If for some reason you need access to the project after that date, please let the teaching assistants know.
+This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
+Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
+Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.
+
+ **Obs!** As this is the last session, this step is extra important. We won't delete anything before March 31 (from the Uppmax project), but afterwards we do not guarantee that the data will be kept. If for some reason you need access to the project after that date, please let the teaching assistants know.

@@ -119,4 +119,6 @@ Please submit the answer to Question 1 (text) and to Question 2 (a Python script
 
 ---
 
-This is the end of the lab, make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
+Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
+Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.

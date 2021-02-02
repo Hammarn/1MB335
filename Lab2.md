@@ -90,7 +90,7 @@ The next type of data are booleans, i.e. `True` or `False` (note the capital let
 Next, we have sequence types:
 
 ```
-String: A string value is a collection of one or more characters put in single, double or triple quotes. 
+String: A string value is a collection of one or more characters put in single, double, or triple quotes. 
 List: A list object is an ordered collection of one or more data items, not necessarily of the same type, put in square brackets.
 Tuple: A Tuple object is an ordered collection of one or more data items, not necessarily of the same type, put in parentheses.
 ```
@@ -207,7 +207,7 @@ Since it is a list we can use methods that work on lists on that expression:
 ``` 
 `len()` returns the length of the provided object (string, list, dict etc.).
 
-Dictionaries have several inbuild methods. Some of these are:
+Dictionaries have several inbuilt methods. Some of these are:
 
 |Method | Description|
 ---|---
@@ -217,7 +217,7 @@ Dictionaries have several inbuild methods. Some of these are:
 
 
 ### Conditionals
-Conditonals are, as you probably are familiar with, fundamental building blocks in programing. Testing whether one condition is true or not is the basic behinf conditionals and loops, whether it's "is x true -> then do y" or "for all occurcences of x -> do y".
+Conditionals are, as you probably are familiar with, fundamental building blocks in programming. Testing whether one condition is true or not is the basic behind conditionals and loops, whether it's "is x true -> then do y" or "for all occurrences of x -> do y".
 
 #### if
 The most simple condition in Python, test **if** something is true. If it is true enter the loop and do what is contained within the block. 
@@ -334,15 +334,15 @@ with open('output.txt', 'w') as file:  # Use file to refer to the file object
     file.write('Hi there!')
 ```
 
-In the above code the filehandle is only open during the loop, so there is no risk of leaving a file open. This is ususally not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could possibly cause a problem.
+In the above code, the filehandle is only open during the loop, so there is no risk of leaving a file open. This is usually not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could cause a problem.
 
 
-Something that might be of use to you while doing the exercises below is the `.strip()` method. If invoked on a string it will by default remove white spaces from the begining and end of strings:
+Something that might be of use to you while doing the exercises below is the `.strip()` method. If invoked on a string it will by default remove white spaces from the beginning and end of strings:
 
 ```
 >>>some_string = "   hello this is a string    "
 >>>some_string.strip()
-'hello this is a string'
+'Hello this is a string'
 ## Can be used to remove other characters as well:
 another_string = ",,,,,Lorem ipsum dolor sit amet, consectetur adipiscing elit...."
 another_string.strip(",.")
@@ -351,7 +351,7 @@ another_string.strip(",.")
 ```
 
 ### Importing libraries
-One of the strenghts of Python is the many libraries; some are built in, others you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programing chances are quite high that someone else have had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be aware of are `numpy` for handling numbers and `pandas` for data analys, such as reading files and storing them in more clever formats that Pythons built in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than using just base Python. 
+One of the strengths of Python is the many libraries; some are built-in, others you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programming chances are quite high that someone else has had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be aware of are `numpy` for handling numbers and `pandas` for data analysis, such as reading files and storing them in more clever formats than Python's built-in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than using just base Python. 
 
 How to import a library then? It is rather simple. You just type `import` followed by the name of the library.
 
@@ -364,7 +364,7 @@ import this
 ______
 
 ### Formating Fasta files
-The `.fasta` format is the most common format to handle nucleotide and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) is the sequence. It can contain several "header / sequence" lines.
+The `.fasta` format is the most common format to handle nucleotide and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) in the sequence. It can contain several "header/sequence" lines.
 
 Example sequence:
 
@@ -402,14 +402,14 @@ GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTA
 ```
 
 ### Regular expressions
-If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers, signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames etc. For example:
+If you need a reminder about regular expressions from the first lab, they are pattern matching for characters (letters, numbers, signs & whole words). They are very useful for extracting bits of text from larger chunks, or ordering filenames, etc. For example:
 
 
 `>\w*` 
 
 matches `>NC_011137` in the title string from the fasta example above. `>` is just the character `>`. `\w*` means any "word" character repeating, without the star the match would be only `>N`.
 
-Regular expressions or regex are handled in Python by the built in `re` library. It can be accessed as such:
+Regular expressions or regex are handled in Python by the built-in `re` library. It can be accessed as such:
 
 ```
 import re
@@ -417,7 +417,7 @@ import re
 
 To then actually use it you have to first compile the regex you want to use and then search for it in a string.
 Then you use one of the matching options `.findall()`, `.search()` or `.match()`. 
-We can use `findall` to count the numer of 'PCA' in the PCA article from session 1. `findall` returns a list of all the matches (in this case just 'PCA'):
+We can use `findall` to count the number of 'PCA' in the PCA article from session 1. `findall` returns a list of all the matches (in this case just 'PCA'):
 
 ```
 import re
@@ -431,7 +431,7 @@ print("There are {} instances of the word 'PCA' in the wikipedia article about P
 ```
 If you run it then it returns:
 
-`There are 162 instances of the word 'PCA' in the wikipedia article about PCA`
+`There are 162 instances of the word 'PCA' in the Wikipedia article about PCA`
  
 Another useful way of doing regex matches is the `.search()` method. It returns a `Match` object which can be used to get out information about the match such as position:
 
@@ -478,20 +478,20 @@ Submit the script as a separate file along with your answers.
 
 ### Code review
 The answers you submit to this lab will be review by another student in the class.
-All serious buisnesses/work places that involves some form of code review. This is to make sure that new code that is developed does not cause problems for the company as well as give feedback to the coder on how they might simplyfy their code or make it more robust.
+All serious businesses/workplaces that involve work with coding should have some form of code review. This is to make sure that new code that is developed does not cause problems for the company. In addition, it gives feedback to the coder on how they might simplify their code or make it more robust.
 
-As a reviwer your job is to asses the following things:
+As a reviewer your job is to assess the following things:
 
 1) Does the code run?
 
 2) Does the code perform the task that was specified in the instructions?
 
-You are free to leave other feedback on other things such as style, if the code could be simplified etc.
+You are free to leave other feedback on other things such as style if the code could be simplified etc.
 
-To make the reviers job easier it might be a good idea to leave comments describing the code!
+To make the reviewer's job easier it might be a good idea to leave comments describing the code!
 
 --- 
 
 This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
-Upload the **scripts** (code) that you were asked to submit to studentportalen **in the original format** (i.e. .py or .sh), no `pdf` or word files!
-Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
+Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
+Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.
