@@ -241,13 +241,13 @@ ssh your_user_name@rackham.uppmax.uu.se
 
 After entering that command you will be prompted to enter your password.
 
-Our teaching project is called `g2019029`
+Our teaching project is called `g2021007`
 
 Navigate to the RESULTS folder (using `cd`):
 to:
 
 ```
-/proj/g2019029/private/RESULTS
+/proj/g2021007/private/RESULTS
 ```
 
 There you need to make a directory for you to work in. Call it your first name underscore your last name:
