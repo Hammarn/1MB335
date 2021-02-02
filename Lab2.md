@@ -476,8 +476,22 @@ The script should then print out, with some nice padding text:
 You can use any of the methods that are described in this lab. 
 Submit the script as a separate file along with your answers.
 
+### Code review
+The answers you submit to this lab will be review by another student in the class.
+All serious buisnesses/work places that involves some form of code review. This is to make sure that new code that is developed does not cause problems for the company as well as give feedback to the coder on how they might simplyfy their code or make it more robust.
+
+As a reviwer your job is to asses the following things:
+
+1) Does the code run?
+
+2) Does the code perform the task that was specified in the instructions?
+
+You are free to leave other feedback on other things such as style, if the code could be simplified etc.
+
+To make the reviers job easier it might be a good idea to leave comments describing the code!
+
 --- 
 
 This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
-Upload the scripts that you were asked to submit to studentportalen **in the original format**, no `pdf` or word files!
+Upload the **scripts** (code) that you were asked to submit to studentportalen **in the original format** (i.e. .py or .sh), no `pdf` or word files!
 Also make sure to delete any files that you no longer need - you can copy it somewhere else if you want to keep it. This goes for both the Unix computers and Uppmax.
