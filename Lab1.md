@@ -54,6 +54,13 @@ If you are on a Windows machine then the easiest option for you is to download `
 
 Another option is to use the Ubuntu app from the Windows app store or to set up a dedicated Linux partition. If you know how to do that then go for it, if not stick to MobaXterm.
 
+Open a local terminal and run the following command to install `w3m` which we will use in today's lab:
+
+```
+
+apt-get install -y w3m-img
+```
+
 #### Moving around
 When you connect to a system you usually end up in your home directory. To see the path to where you stand use the `pwd` command. Try it now:
 
