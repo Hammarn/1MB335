@@ -61,6 +61,10 @@ Open a local terminal and run the following command to install `w3m` which we wi
 apt-get install -y w3m-img
 ```
 
+### Before starting
+If you have problem with missing software on your installation of Unix/Linux you can choose to work on Uppmax directly. You can read the instructions under Working remotely then continue for here.
+
+
 #### Moving around
 When you connect to a system you usually end up in your home directory. To see the path to where you stand use the `pwd` command. Try it now:
 
