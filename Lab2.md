@@ -375,8 +375,16 @@ FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
 **Question 2**:
-Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the sequence is stored on a single line ("sequential"). 
+Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the **sequence** is stored on a single line ("sequential"). 
 
+Output would then look like this:
+
+```
+>MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken
+ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQMMTAK*
+```
+
+Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
 
 ### Reverse complement
