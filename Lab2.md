@@ -386,6 +386,8 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTD
 
 Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
+The script is only _required_ to handle a file like the example above but it is _preferable_ if it can handle a file with multiple entries as in question 3. 
+
 
 ### Reverse complement
 A very common problem that arises when working with sequence files is that sequence information can be encoded on either strand of the DNA molecule. So when the DNA is sequenced it is basically random in which orientation your sequence is. Thus it is important to be able to reverse complement your sequence. 
