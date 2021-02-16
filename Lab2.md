@@ -330,8 +330,8 @@ fh.close()
 The `with open` syntax is generally recommended as you get a clear syntax and files will be automatically closed:
 
 ```
-with open('output.txt', 'w') as file:  # Use file to refer to the file object
-    file.write('Hi there!')
+with open('output.txt', 'w') as f:  # Use f to refer to the file object
+    f.write('Hi there!')
 ```
 
 In the above code, the filehandle is only open during the loop, so there is no risk of leaving a file open. This is usually not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could cause a problem.
@@ -349,6 +349,21 @@ another_string.strip(",.")
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
 
 ```
+
+#### For line in File
+A useful syntax that you can use in several of the questions for this lab is the `for line in f` syntax.
+
+
+``` 
+stuff_to_save = []
+
+with open('input.txt', 'r') as f:  # Use f to refer to the file object
+    for line in f:  # Line will now be a string containg the contents of each line in the file as you iterate through it
+        if line.startswith("Hej"):
+            stuff_to_save.append(line)
+```
+The code above will look thorugh the file `input.txt` and save all lines that begins with "Hej" 
+and save them to the list `stuff_to_save`.
 
 ### Importing libraries
 One of the strengths of Python is the many libraries; some are built-in, others you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programming chances are quite high that someone else has had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be aware of are `numpy` for handling numbers and `pandas` for data analysis, such as reading files and storing them in more clever formats than Python's built-in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than using just base Python. 
