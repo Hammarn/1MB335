@@ -295,7 +295,7 @@ while counter < 5:
 ```
 
 #### Opening and writing files
-Opening files in Python is done with the `open` function, it takes the file name and a 'mode' as input, depending on whether you want to read (`'r'`) or write(`'w'`)  from/to the file. It creates a file object.
+Opening files in Python is done with the `open` function, it takes the file name and a 'mode' as input, depending on whether you want to read (`'r'`) or write(`'w'`)  from/to the file. It creates a **file object** also called a **file handle** (fh). 
 
 ```
 fh = open("hello.txt", "r") 
@@ -313,6 +313,15 @@ fh = open("hello.txt", "r")
 print fh.readline() 
 ```
 
+**In almost all cases you will want to save the contents of the file to a variable so that you can actually work with the file contents**. I.e.
+
+```
+fh = open("hello.txt", "r")
+contents =  fh.read() ## contents is now a string with all the contents of the file 
+
+```
+
+
 Writing is then done with `.write()`
 
 
@@ -326,7 +335,7 @@ fh.close()
 ```
 
 
-#### With open
+#### With open - The recommened way of working with files!
 The `with open` syntax is generally recommended as you get a clear syntax and files will be automatically closed:
 
 ```
@@ -334,7 +343,7 @@ with open('output.txt', 'w') as f:  # Use f to refer to the file object
     f.write('Hi there!')
 ```
 
-In the above code, the filehandle is only open during the loop, so there is no risk of leaving a file open. This is usually not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could cause a problem.
+In the above code, the **filehandle** (f) is only open during the loop, so there is no risk of leaving a file open. This is usually not a problem for small scripts, but as you write more complex code and are opening and writing to multiple files it could cause a problem.
 
 
 Something that might be of use to you while doing the exercises below is the `.strip()` method. If invoked on a string it will by default remove white spaces from the beginning and end of strings:
@@ -515,8 +524,8 @@ You are free to leave other feedback on other things such as style if the code c
 
 To make the reviewer's job easier it might be a good idea to leave comments describing the code!
 
---- 
+#### What to had in
+Please submit the answers (scripts) to questions 2, 3 and 4.
+You don't need to hand in the answer to question 1!
 
-This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
-Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
-Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.
+
