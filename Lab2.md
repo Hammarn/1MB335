@@ -259,7 +259,7 @@ else:
 ```
 
 ### for 
-The for loop is used for iterating over items in a list, dict or anything else that can be iterated over,
+The for loop is used for iterating over items in a list, dict, or anything else that can be iterated over,
 consider the following example code:
 
 ```
@@ -335,7 +335,7 @@ fh.close()
 ```
 
 
-#### With open - The recommened way of working with files!
+#### With open - The recommended way of working with files!
 The `with open` syntax is generally recommended as you get a clear syntax and files will be automatically closed:
 
 ```
@@ -367,11 +367,11 @@ A useful syntax that you can use in several of the questions for this lab is the
 stuff_to_save = []
 
 with open('input.txt', 'r') as f:  # Use f to refer to the file object
-    for line in f:  # Line will now be a string containg the contents of each line in the file as you iterate through it
+    for line in f:  # Line will now be a string containing the contents of each line in the file as you iterate through it
         if line.startswith("Hej"):
             stuff_to_save.append(line)
 ```
-The code above will look thorugh the file `input.txt` and save all lines that begins with "Hej" 
+The code above will look through the file `input.txt` and save all lines that begin with "Hej" 
 and save them to the list `stuff_to_save`.
 
 ### Importing libraries
@@ -410,9 +410,9 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTD
 
 Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
-If you want to test on fasta above then navigate to were you are running your code, open nano (you learned about nano in lab 1) and paste the input and save the file as input.fasta.
+If you want to test on fasta above then navigate to where you are running your code, open nano (you learned about nano in lab 1) and paste the input and save the file as input.fasta.
 
-The script is only _required_ to handle a file like the example above but it is _preferable_ if it can handle a file with multiple entries as in question 3. 
+The script is the only _required_ to handle a file like the example above but it is _preferable_ if it can handle a file with multiple entries as in question 3. 
 
 
 ### Reverse complement
@@ -514,7 +514,7 @@ Submit the script as a separate file along with your answers.
 
 ### Code review
 The answers you submit to this lab will be review by another student in the class.
-All serious businesses/workplaces that involve work with coding should have some form of code review. This is to make sure that new code that is developed does not cause problems for the company. In addition, it gives feedback to the coder on how they might simplify their code or make it more robust.
+All serious businesses/workplaces that involve work with coding should have some form of code review. This is to make sure that the new code that is developed does not cause problems for the company. In addition, it gives feedback to the coder on how they might simplify their code or make it more robust.
 
 As a reviewer your job is to assess the following things:
 
@@ -526,8 +526,6 @@ You are free to leave other feedback on other things such as style if the code c
 
 To make the reviewer's job easier it might be a good idea to leave comments describing the code!
 
-#### What to had in
-Please submit the answers (scripts) to questions 2, 3 and 4.
+#### What to hand in
+Please submit the answers (scripts) to questions 2, 3, and 4.
 You don't need to hand in the answer to question 1!
-
-
