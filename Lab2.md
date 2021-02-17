@@ -410,6 +410,8 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTD
 
 Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
+If you want to test on fasta above then navigate to were you are running your code, open nano (you learned about nano in lab 1) and paste the input and save the file as input.fasta.
+
 The script is only _required_ to handle a file like the example above but it is _preferable_ if it can handle a file with multiple entries as in question 3. 
 
 
