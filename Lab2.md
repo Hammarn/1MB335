@@ -505,7 +505,7 @@ Write a script that reads the [C\_elegans\_mt.fasta](example_data/C_elegans_mt.f
 The script should then print out, with some nice padding text:
 
  * The number of total sequences in the file.
- * The names of all genes/features in the file.
+ * The names of all genes in the file.
  * The name of each gene followed by its length.
 
 
