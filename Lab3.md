@@ -62,19 +62,19 @@ By Emmanuel Douzery - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/in
 
 If you have not done so before, now is a good time to set up your working space on the cluster.
 
-The course is accessible at: `/proj/g2019029/private/`
+The course is accessible at: `/proj/g2021007/private/`
 
-You will find data in: `/proj/g2019029/private/DATA/` and scripts in `/proj/g2019029/private/SCRIPTS`.
+You will find data in: `/proj/g2021007/private/DATA/` and scripts in `/proj/g2021007/private/SCRIPTS`.
 
-You should already have created your own folder under: `/proj/g2019029/private/RESULTS`. If you haven't, refer to session 1. Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
+You should already have created your own folder under: `/proj/g2021007/private/RESULTS`. If you haven't, refer to session 1. Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
 
 ### Identify the mitochondrial contigs in your assembly    
 
 For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavors, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
 
-The assembly is in a subfolder of: `/proj/g2019029/private/DATA/assemblies`
+The assembly is in a subfolder of: `/proj/g2021007/private/DATA/assemblies`
 
-The set of proteins is in: `/proj/g2019029/private/DATA/coding_sequences`
+The set of proteins is in: `/proj/g2021007/private/DATA/coding_sequences`
 
 Start by copying the assembly and the set of proteins to your own folder.
 
@@ -87,7 +87,7 @@ Before running BLAST, you need to make a database of the set of proteins. Becaus
 If you have to wait more than five minutes, you might try again asking for less time (one hour should be enough: `-t 1:0:0`). If it still does not work, tell the teaching assistants and we will offer you another solution.
 
 ```
-interactive -A g2019029 -p core -n 1 -t 4:0:0
+interactive -A g2021007 -p core -n 1 -t 4:0:0
 ```
 
 For later: Once you have done everything you needed to do in the interactive window, you can exit by simply typing `exit`.
@@ -136,10 +136,10 @@ awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
 
 Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. Select a good chunk of the contig. **Caution!** Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. First, you should uncompress it (for example with `gunzip`). Then, you should have a python script from sessions 1 and 2 that does just that.
 
-If not, or if you script does not allow for multiple entries in the fasta file, you can use this file: `/proj/g2019029/private/SCRIPTS/interleaved_fasta_to_sequential.py` with the following syntax (replace *your_input* and *your_output*):
+If not, or if you script does not allow for multiple entries in the fasta file, you can use this file: `/proj/g2021007/private/SCRIPTS/interleaved_fasta_to_sequential.py` with the following syntax (replace *your_input* and *your_output*):
 
 ```
-python /proj/g2019029/private/SCRIPTS/interleaved_fasta_to_sequential.py your_input your_output
+python /proj/g2021007/private/SCRIPTS/interleaved_fasta_to_sequential.py your_input your_output
 ```
 
 You will use the sequential fasta in the next step too. 
@@ -189,7 +189,7 @@ Most likely your first search resulted in a lot of results. This is expected as 
 
 **Question 9.** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? (write down the criteria you used) You can test different combinations of criteria. Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
 
-As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/g2019029/private/DATA/sra/`.
+As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/g2021007/private/DATA/sra/`.
 
 **Question 10.** What is the format of the file? Do you understand what the different lines are? How long are the reads? 
 
@@ -220,7 +220,7 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
 
 ---
-This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2019029/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2021007/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
