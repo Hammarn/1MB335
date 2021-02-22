@@ -205,9 +205,11 @@ Repeat this twice - but this time the 'word' in the grep command is from the end
 
 You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some.
 
+**This is just an illustration to see how tiling works, you should not spen more than a few minutes doing it!**
+
 ---
 
-**The part below is what you would do to continue tiling. Edit for 1MB335 (year 2020): skip this part.**
+**The part below is what you would do to continue tiling. You should not do it!**
 
 Now you can continue with the end of the second contig.
 
@@ -220,11 +222,19 @@ At this stage, make a copy of your fasta file to keep a record of what you did. 
 Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
 
 ---
-This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. The mitochondrial fasta files are here: `/proj/g2021007/private/DATA/mitochondrial_genomes` and also in [Studentportalen](https://studentportalen.uu.se/portal/authsec/portal/uusp/admin-courses/filearea/filearea-window?mode=view&webwork.portlet.eventAction=true&webwork.portlet.action=%2Ffilearea%2Fview%2Fexplore&action=e&location=%2Fexplore.ftl&windowstate=normal&webwork.portlet.mode=view).
+
+## Part 2 - working on your study species
+
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. 
+
+In the real world you would have to start going through the procces of tiling and circularizing your mitochondrial seqeuences. In the interest of time we have, as any cooking show, prepared this step alread.
+You can find the prepared mitochondrial fasta files here: `/proj/g2021007/private/DATA/mitochondrial_genomes`
+
+Copy over the correct one to you working directory!
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
-You now have a circular mitochondrial genome. The last step is to orient it to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence too. Open an NCBI blast window and select nucleotide blast. Paste or upload your mitochondrial sequence.
+We now have a circular mitochondrial genome (thanks to all that hard tiling work we did). The last step is to orient the sequence according to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence to. Open an NCBI blast window and select nucleotide blast. Paste or upload your mitochondrial sequence.
 
 **Question 11.** To which organism do the best hits belong too?
 
@@ -241,7 +251,7 @@ Pongo abelii (orangutan) | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
-In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. Choose the genome with the oldest release data.
+In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. Choose the genome with the **oldest** release data.
 
 **Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
@@ -261,9 +271,9 @@ The last part of these explanations are based on 'A guide to organellar genome a
 
 The top sequence is your species’ *cox1* amino acid sequence (or most of it), and the bottom is the *cox1* amino acid sequence of the reference you chose (the close relative). Note that the amino acid sequences are very similar in some places (conserved), but diverge in other places in the protein. This is simply due to evolution of this protein over the millions of years since the common ancestor of these two different organisms. Some of this divergence may have occurred at the beginning amino acids of the protein, in which case the alignment position of the reference sequence may not start at amino acid number one, which corresponds to the bottom of these two sets of numbers being equal to one (or to 3, as the start codon might not be included in the *cox1* sequence you obtained for the reference sequence). Although *cox1* is highly conserved, tblastx may not have found an alignment that begins at the start methionine (M) of the protein. However, the alignment should start very near the beginning, within a couple of amino acids from the start methionine of the protein, which is encoded for by an ATG. If you are working with nematodes or flies, the start codon might be different (ATT, ATA, ATC, GTG, TTG).
 
-It is also possible that the alignment is broken in several pieces. In that case, scroll down the page (usually the top alignment is the longest and then come shorter ones) and see whether you can find another alignment which could complete the longest one. Caution! Make sure that the two (or more) alignments are in the same translation frame (right most information in the header of the alignment result). **Edit February 2020: try to find the alignment with the position closest to the start of the *cox1* gene to perform the step describe in the next paragraph.**
+It is also possible that the alignment is broken in several pieces. In that case, scroll down the page (usually the top alignment is the longest and then come shorter ones) and see whether you can find another alignment which could complete the longest one. Caution! Make sure that the two (or more) alignments are in the same translation frame (right most information in the header of the alignment result). If not then try to find the alignment with the position closest to the start of the *cox1* gene to perform the step describe in the next paragraph.
 
-While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). **Edit February 2020: correct "formula".** Take the bottom number, and subtract it from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. 
+While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Take the bottom number, and subtract it from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. 
 
 The start and end positions of a contig put together by the assembler are arbitrary within both the strand and the position along the circular genome. Therefore, it is up to us to orient the genome to the canonical *cox1* start. Once the start codon has been found, place your cursor before the first base pair in your text editor and hit enter. This will put the first nucleotide of the *cox1* gene as the first nucleotide of the genome. Because of the circular nature of this genome, the sequence that used to come before this start codon can simply be added onto the end for the genome to remain circular and complete.
 
@@ -280,5 +290,4 @@ Please sumbit a text file with the answers to the following questions: 4, 6, 7, 
 ---
 
 This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
-Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
 Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.
