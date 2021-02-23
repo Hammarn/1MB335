@@ -174,6 +174,9 @@ You now need to connect the different contigs in your file to create a continuou
 
 If you use the web tool: Paste your contig sequence into the search box and reverse-complement it. Now add that new sequence to your fasta file (do not forget to add an informative header!). Repeat for each of your contigs.
 
+## Part 2 - working on your study species
+
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant.
 You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure 1.
 
 ![](Figures/Figure_Tiling_Pogodaetal.png)
@@ -223,9 +226,7 @@ Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial g
 
 ---
 
-## Part 2 - working on your study species
-
-This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant. 
+ 
 
 In the real world you would have to start going through the procces of tiling and circularizing your mitochondrial seqeuences. In the interest of time we have, as any cooking show, prepared this step alread.
 You can find the prepared mitochondrial fasta files here: `/proj/g2021007/private/DATA/mitochondrial_genomes`
