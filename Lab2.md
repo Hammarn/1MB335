@@ -38,6 +38,7 @@ print "False"
 
 In many other programming languages (such as Java & C) `;` denotes a linebreak. While it is possible to use it in Python the preferred way of denoting a new line is simply a text line break (i.e. hitting enter on your keyboard).
 
+If you feel confident in your python skills then you can skip straight to question 1 below, if not then have a read through of the short introduction to python below:
 
 ### Hello world
 
@@ -377,10 +378,20 @@ and save them to the list `stuff_to_save`.
 ### Importing libraries
 One of the strengths of Python is the many libraries; some are built-in, others you have to install yourself. These libraries provide great utilities. We will encounter some in these labs but there are too many to even list. If you have a problem in programming chances are quite high that someone else has had the same problem before you and already solved it. Why constantly try to re-invent the wheel? Two of these libraries that you should probably be aware of are `numpy` for handling numbers and `pandas` for data analysis, such as reading files and storing them in more clever formats than Python's built-in ones. An added benefit of these is that they are written in C, and thus are generally orders of magnitude faster than using just base Python. 
 
+
 How to import a library then? It is rather simple. You just type `import` followed by the name of the library.
 
-**Question 1**
-Run the code below, what happens? What do you think is the purpose of it?
+#### Quick info on what we expect of your code
+
+You will need to use the scripts you write in this session in some of the following labs, thus make sure that they work as intended!
+
+Your code is expected to run as standalone scripts on the command line. I.e. `python myscript.py` should (maybe with some options) produce the answer to the questions.
+It's a great idea to make use of module but you also need to make sure the script actually invokes them!
+
+You are free to write your code in `spyder`, `visual code study` or any other `IDE` if that's what you are comfortable with. Vim or other unix based texteditors are also an option. The important thing is that you test that your code can run in the terminal, so testing it on Uppmax might be a good practise.
+
+#### Question 1:
+Run the code below, what happens? What do you think is the purpose behind it and why do you think we want you to read it?
 
 ``` 
 import this
@@ -390,7 +401,7 @@ ______
 ### Formating Fasta files
 The `.fasta` format is the most common format to handle nucleotide and/or amino acid sequences. It gets its name from the FASTA sequence alignment software, which is now obsolete, but the format lives on. It is a plain text format where the greater-than sign (`>`) indicates the start of the header and the following line(s) in the sequence. It can contain several "header/sequence" lines.
 
-Example sequence:
+Example protein sequence:
 
 ```
 >MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken
@@ -398,7 +409,7 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
 FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
 DIDGDGQVNYEEFVQMMTAK*
 ```
-**Question 2**:
+#### Question 2:
 Write a Python program that takes a file that contains a sequence like the one above where the sequence spans over multiple lines ("interleaved fasta file") and convert it into a file where the **sequence** is stored on a single line ("sequential"). 
 
 Output would then look like this:
@@ -407,12 +418,13 @@ Output would then look like this:
 >MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken
 ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQMMTAK*
 ```
+Test that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
+
+You can use [this code skeleton](example_data/code_skeleton_question2.py) to get started.
 
 Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
-If you want to test on fasta above then navigate to where you are running your code, open nano (you learned about nano in lab 1) and paste the input and save the file as input.fasta.
-
-The script is the only _required_ to handle a file like the example above but it is _preferable_ if it can handle a file with multiple entries as in question 3. 
+You can get input to the script either parsing through the command line thorugh `argparse` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), or interactively using `input()`
 
 
 ### Reverse complement
@@ -423,10 +435,10 @@ A very common problem that arises when working with sequence files is that seque
 
 **Write a program that takes a nucleotide fasta file as input and returns a new reverse complemented fasta file as output. It should be able to handle fasta files with more than one entry.** 
 
-Test that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
+Again make sure that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
 
 
-The example below only has one entry to illustrate what reverse complement means:
+The example below only has one entry to illustrate what **reverse complement** means:
 
 ```
 >NC_011137.1:5899-7440 Homo sapiens neanderthalensis mitochondrion, complete genome
@@ -508,8 +520,7 @@ The script should then print out, with some nice padding text:
  * The names of all genes in the file.
  * The name of each gene followed by its length.
 
-
-You can use any of the methods that are described in this lab. 
+ 
 Submit the script as a separate file along with your answers.
 
 ### Code review
