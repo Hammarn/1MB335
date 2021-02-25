@@ -52,14 +52,16 @@ The text from this session is modified from "A guide to organellar genome assemb
 Open [GeSeq](https://chlorobox.mpimp-golm.mpg.de/geseq.html) in your browser.
 On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3).
 
-Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (mitochondrial). We suggest leaving the rest of the options available on the left hand side at their default settings. Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. 
+Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (**mitochondrial**). We suggest leaving the rest of the options available on the left hand side at their default settings. 
+
+Next, in the middle section of the page under “BLAT Reference Sequences” click “Add NCBI refseq(s)” which will open a new tab where you can select species that are similar to the one you are annotating (closely related species are the best). Refer to the table in Session 3 to know which species to choose. Leave the rest of the options in the middle section unselected. 
  
 Then, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
 
 
-Next, open this file in your text editor and take a look at the file produced. At this time, we suggest deleting the notes that GeSeq automatically inserted. Search your document for “note=” and delete the entire line. We also suggest looking for duplicated entries. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). Delete any lines that say exon and intron and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
+Next, open this file in your text editor and take a look at the file produced.  We suggest you look for duplicated entries in your file. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). **Delete any lines that say exon and intron** and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
 
-This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants.
+This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants. Depending on your species all or very few of them might be present at this stage.
 
 ***Table 1. Features of the mitochondrial genome.***
 
@@ -96,7 +98,7 @@ Val (V)
 
 To find tRNAs, GeSeq uses the program tRNAscan (Lowe & Eddy 1997). To ensure we have found all of the tRNAs, it is best to double check the lengths and identities of the tRNAs found in GeSeq by using the stand alone tRNAscan program, which has a very easy to use web interface. The program may be found [here](http://lowelab.ucsc.edu/tRNAscan-SE/). In the proper dialog box upload your sequence, change the dropdown box for 'Sequence source' to the right answer for your species and leave everything else as default. Hit submit.
 
-Obs! tRNAscan is a bit annoying with formatting and might complain about the header of your fasta file (for example). In that case, copy your original fasta file and simplify the header before resubmitting. You can also paste the sequence in the search box.
+Obs! tRNAscan is a bit annoying with formatting and might complain about the header of your fasta file (for example). In that case, copy your original fasta file and simplify the header before resubmitting. You can also paste the sequence in the search box, if you leave out the header you have to instead click on "Raw sequence" instead of "Formated fasta file".
 
 After a short while, you will see a list of the tRNAs and their locations in your genome. Compare these results to what GeSeq found and note if anything is missing or locations are divergent. Refer to the table below for a list of all the amino acids that should be present in your genome and for any conversion that you need to make (more details after Question 2).
 
@@ -170,13 +172,14 @@ If you trust the blastn result more, update the start and end coordinates in the
 
 ### Step 5: Draw a visual representation of your annotated mitochondria and identify unannotated regions
 
-It would be nice to be able to visualize the result of your hard work, isn't it? Luckily, there is a tool that will do just that. Go to [OGDraw software](https://chlorobox.mpimp-golm.mpg.de/OGDraw.html). Upload your GeSeq output (which you should have updated in steps 2, 3 and 4). Check "Show full legend" in Map Options, and choose "PDF" as output format. Submit!
+It would be nice to be able to visualize the result of your hard work, isn't it? Luckily, there is a tool that will do just that. Go to [OGDraw software](https://chlorobox.mpimp-golm.mpg.de/OGDraw.html). Make sure to set the `Sequence source` as Mitochondria!
+Upload your GeSeq output (which you should have updated in steps 2, 3 and 4). Check "Show full legend" in Map Options, and choose "PDF" as output format. Submit!
 
 **Question 6. Now, look at the output. Do you see regions devoid of annotated features? See the example below (Figure 1).**
 
 ![](Figures/Figure_gap_in_OGDrawoutput_Pogodaetal.png)
 
-***Figure 1: An example output of OGDraw with a gap.** The black arrow indicates a gap in annotated features where undiscovored proteins may exist. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
+**Figure 1: An example output of OGDraw with a gap.** *The black arrow indicates a gap in annotated features where undiscovored proteins may exist. Taken from Pogoda et al. A guide to organellar genome assembly and annotation.*
 
 If you do see gaps of > 300 base pairs, write down the coordinates (you can for example look at the coordinates of the features on both ends of the gap) and proceed to the next step. Should you have no gap at all, save the output of OGDraw (you will need to submit it).
 
@@ -211,14 +214,18 @@ Choose three of the ORFs and perform SmartBLAST on them. Answer the question bel
 **Question 8. Write a Python script which takes as input a whole mitochondria fasta file and the coordinates of a feature (start and end) and outputs a fasta file with a informative header (including: the species name and / or identifier, the name of the feature, and the coordinates of the feature) and the sequence of the feature (i.e. the sequence between the start and the end positions).**
 
 
-You can use either parsing through the command line or `input()` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), example of the first method below:
+You can use either parsing through the command line thorugh `argparse` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), or interactively using `input()`.
+An example of the first method below
+
+`my_script.py input_mitocondria.fasta Gene_name start stop Extra annotation`
 
 ```
-my_script.py input_mitocondria.fasta gene_1 5001 5100 This is a cool gene
+my_script.py input_mitocondria.fasta TGH_4 5001 5100 This is a cool gene
 
 ## Output:
-gene_1.fasta
->gene_1:5001-5100 This is a cool gene
+cat gene_1.fasta
+
+>TGH_4:5001-5100 This is a cool gene
 ATGACATATGCTTTGTTTCTGTTGAGTGTAATTTTAGTGATAGGGTTCGTGGGGTTTTCTTCTAAGCCCT
 
 ```
