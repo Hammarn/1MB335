@@ -2,7 +2,7 @@
 
 ## Introduction / Background information to Session 5
 
-In this session you will focus on alignments. As you have seen in the lecture, you can align two sequences (pairwise alignment) or multiple sequences (multiple alignment). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developped by Rasmus Wernersson. For the multiple alignment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatic project, as one of the first steps of the project will be to align sequences.
+In this session, you will focus on alignments. As you have seen in the lecture, you can align two sequences (pairwise alignment) or multiple sequences (multiple alignments). Today, you will do a bit of both. For the pairwise alignment part, you will follow a tutorial that was developed by Rasmus Wernersson. For the multiple alignment part, you will continue to work with the mitochondrial genomes from Sessions 3 and 4. You will also work with additional mitochondrial genomes. This will prepare you for the bioinformatics project, as one of the first steps of the project will be to align sequences.
 
 ## Goals
 
@@ -45,33 +45,33 @@ In this session you will focus on alignments. As you have seen in the lecture, y
 
 Please go through the tutorial on [this page](http://teaching.bioinformatics.dtu.dk/teaching/index.php/Exercise:_Pairwise_alignment).
 
-Questions are numbered from 1 to 14. Submit answers to all the questions (you can number them 1-1, 1-2 etc to distinguish them from the answers to the next part).
+Questions are numbered from 1 to 14. Submit answers to all the questions (you can number them 1-1, 1-2, etc to distinguish them from the answers to the next part).
 
-### Step 2: Multiple alignment
+### Step 2: Multiple alignments
 
 #### Step 2a: Identify the mitochondrial genomes
 
-Start by login in to Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes/` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named from `Seq1.fasta` to `Seq14.fasta`. Copy all the files to your own directory.
+Start by login into Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes/` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named from `Seq1.fasta` to `Seq14.fasta`. Copy all the files to your own directory.
 
-Your first task is to identify which species the sequences belong to. Look at the content of the files and think about tools you used in sessions 3 and 4. Once you have identified the species, complete the headers of the files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`): they should have the same information than in `Seq2.fasta` (in particular, sequence identification number and species name).
+Your first task is to identify which species the sequences belong to. Look at the content of the files and think about the tools and resources you used in sessions 3 and 4. Once you have identified the species, complete the headers of the files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`): they should have the same information as in `Seq2.fasta` (in particular, sequence identification number and species name).
 
 Hint: you can use `nano` to modify files in the command line.
 
-**Question 1. To which species do the different sequences belong to?** 
+**Question 1. To which species do the different sequences belong?** 
 
-**Question 2. There is an odd sequence. Write down the name of the corresponding fasta file, the species name and the type of sequence. How did you identify it?**
+**Question 2. There one sequence that should stand out from the others. Write down the name of the corresponding fasta file, the species name, and the type of sequence. How did you identify it?**
 
 How much do you know about the species that are in the dataset? Do you know how they are related? To start to answer these questions, [Wikipedia](https://en.wikipedia.org/) and the [taxonomy browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root) (yet another NCBI tool!) are very helpful.
 
-Start by looking up the species from Seq4 in Wikipedia. Which family does it belong to? (see the box on the right) Now, go to the taxonomy browser and look for that same species. One of the item on the page is the full "lineage" of that species, from the widest to the most specific category. Find the family name and click on it.
+Start by looking up the species from Seq4 in Wikipedia. Which family does it belong to? (inspect the box on the right). Now, go to the taxonomy browser and look for that species. One of the items on the page is the full "lineage" of that species, from the widest to the most specific category. Find the family name and click on it.
 
-**Question 3. What is the common name of this family of species? Which other species from the dataset belong to that same family? Perform the same thing (and answer the second part of the question) with species from Seq14.**
+**Question 3. What is the common name of this family of species? Which other species from the dataset belong to that same family? Perform the same thing (and answer the second part of the question) with the species from Seq14.**
 
 Before you continue, look up quickly the species that you don't know about in wikipedia (or the tool you prefer).
 
 #### Step 2b: Make a prediction about the alignment
 
-Before aligning sequences, it is useful to have an idea of how much the sequences might differ. Have a look at Figure 3 in the review 'The Origin and Diversification of Mitochondria' Roger et al., Current Biology Review 2017 (you can find the review on Studentportalen, under Bioinformatics/Computer labs). Focus on the 'Opisthokonta'. You won't find information for all the species in the dataset - in particular, the only representative of the Metazoa (animals) in the table is 'Homo'. Look at the absence / presence of genes in these different mitochondrial genomes.
+Before aligning sequences, it is useful to have an idea of how much the sequences might differ. Have a look at Figure 3 in the review [The Origin and Diversification of Mitochondria](https://www.sciencedirect.com/science/article/pii/S096098221731179X?via%3Dihub) Roger et al., Current Biology Review 20170. Focus on the 'Opisthokonta'. You won't find information for all the species in the dataset - in particular, the only representative of the Metazoa (animals) in the table is 'Homo'. Look at the absence/presence of genes in these different mitochondrial genomes.
  
 **Question 4. What do you learn from this table? What can you expect from the alignment? (make at least one hypothesis)**
 
@@ -79,7 +79,7 @@ Another thing that is not visible in the figure from the review but which will i
 
 #### Step 2c: Prepare the input file for the alignment program
 
-Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need a fasta file with all the **mitochondrial** sequences. Try to use the command line: You can do it as below (or in a smarter way using `*` if you remember)
+Now that you have a better idea of the sequences you are working with, it is time to prepare the input for the alignment program. For that, you will need **one** fasta file with **all the mitochondrial sequences**. Try to use the command line: You can do it as below (or in a smarter way using `*` if you remember)
 
 ```
 cat file1 file2 file2 > threefiles
@@ -90,7 +90,7 @@ Before you proceed with the alignment, you have one more task to do: modify the 
 ```
 >NC_001328.1 Caenorhabditis elegans mitochondrion, complete genome
 ```
-This is very informative, but having long names and / or cryptic identification numbers will make it difficult for you to identify the sequences when you visualize alignments (and later during the bioinformatic project, when you plot phylogenetic trees). Moreover, some programs (particularly older ones) have a limitation on the number of characters in headers. You should thus shorten the headers before you proceed further (for example with the text editor `nano`). One suggestion of shortened header is:
+This is very informative, but having long names and/or cryptic identification numbers will make it difficult for you to identify the sequences when you visualize alignments (and later during the bioinformatic project, when you plot phylogenetic trees). Moreover, some programs (particularly older ones) have a limitation on the number of characters in headers. You should thus shorten the headers before you proceed further (for example with the text editor `nano`). One suggestion for a shortened header is:
 
 ```
 >C_ele_mt
@@ -100,39 +100,42 @@ You can choose a different format, but keep in mind that it should enable to rec
 Once you have managed the task above, you can delete the fasta file with the long headers, as you can easily recreate it from the separate fasta files and it is redundant with the fasta files with short headers.
 
 ---
-**Optional:** Alternatively, you can write a Python script that will shorten the headers. For example, it could be a script which takes as input a fasta file with long headers and outputs a fasta file with shortened headers. Moreover, the script should output a file which has both the long and the short header on the same line, to make sure that it is possible to go back to the long headers.
+**Optional:** Alternatively, you can write a Python script that will shorten the headers. For example, it could be a script that takes as input a fasta file with long headers and outputs a fasta file with shortened headers. Moreover, the script should output a file that has both the long and the short header on the same line, to make sure that it is possible to go back to the long headers.
 
 ---
 
 #### Step 2d: Align the entire mitochondria
 
 Finally, it is time to align your **13 mitochondrial** genomes! We are going to use a software called `mafft`. Look for it on rackham. How many versions are available?
+
 ```
 module spider mafft
 ```
 We will work with version `MAFFT/7.407`.
 
-Reminder about computation on Uppmax: Aligning this set of mitochondrial genomes is a computationally intensive task. Thus, you should not run anything on the login node! Running heavy processes on the login nodes result in slower performances for everyone, and if you exceed certain limits your processes will be killed. Thus, you should avoid it as much as possibly, either by working in a interactive job or by submitting your jobs through the queue. In the exploratory stage, it is a good solution to work with an interactive job. **To avoid queueing, we asked for reservation for this tutorial.**
+Reminder about computation on Uppmax: Aligning this set of mitochondrial genomes is a computationally intensive task. Thus, you should not run anything on the login node! Running heavy processes on the login nodes result in slower performances for everyone, and if you exceed certain limits your processes will be killed. Thus, you should avoid it as much as possible, either by working in an interactive job or by submitting your jobs through the queue. In the exploratory stage, it is a good solution to work with an interactive job. **To avoid queueing, we asked for a reservation for this tutorial.**
 
-For the course on February 17, the reservation is: g2019029_17
+For the course on 1:th of March, the reservation is:
+g2021007_01
+For the course on the 2:nd of March, the reservation is: g2021007_02
 
-For the course on February 19, the reservation is: g2019029_19
-
-Ask for an interactive session with the following command (replace "name_of_reservation" by either g2019029_17 or g2019029_19):
+Ask for an interactive session with the following command (replace "name_of_reservation" by either g2021007_01 or g2021007_02):
 
 ```
-interactive -A g2019029 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
+interactive -A g2021007 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
 ```
 
 Now, load mafft:
+
 ```
 module load bioinfo-tools MAFFT/7.407
 ```
-Then, just type `mafft`. You will be asked a number of questions, among others: input file name, output file name (include the file extension, `.clustal` in this case), output file format, algorithm. For the output file format, choose clustal (sorted). For the algorithm, choose `FFT-NS-1 (fast)`.
 
-Comment: It might be nice to have two terminal windows open, one with the interactive job and one which you use to navigate to the right folder, check the file names, see whether something gets written to the output etc.
+Then, just type `mafft`. You will be asked several questions, among others: input file name, the output file name (include the file extension, `.clustal` in this case), output file format, algorithm. For the output file format, choose `clustal` (sorted). For the algorithm, choose `FFT-NS-1 (fast)`.
 
-Once you have chosen all the options, the corresponding command-line will be printed to screen.
+Comment: It might be nice to have two terminal windows open, one with the interactive job and one which you use to navigate to the right folder, check the file names, see whether something gets written to the output, etc.
+
+Once you have chosen all the options, the corresponding command-line will be printed on the screen.
 
 **Question 5. Write down the command.**
 
@@ -140,13 +143,13 @@ Now, launch the alignment. It will take a while. In the meantime, you can work o
 
 #### Step 2e: Align the sequence for the large mitochondrial ribosomal RNA (l-rRNA)
 
-Nowadays there is an abundance of genomic data available, for organelles and for entire genomes, for a large number of species. This is why in this session and in the bioinformatic project, you are aligning the entire mitochondria. However for a long time, it was more common to work with alignments of single genes (and in some cases, for example when exploring the diversity in a given environment, it is still a common approach). Aligning single genes might also be a good approach when working with diverse species. And of course, it is much faster!
+Nowadays there is an abundance of genomic data available, for organelles and entire genomes, for a large number of species. This is why in this session and the bioinformatics project, you are aligning the entire mitochondria. However, for a long time, it was more common to work with alignments of single genes (and in some cases, for instance when exploring the diversity in a given environment, it is still a common approach). Aligning single genes might also be a good approach when working with diverse species. And of course, it is much faster!
 
-The  large mitochondrial ribosomal RNA (l-rRNA) which is part of the large subunit of the ribosome (in the mitochondria) is - and has been - used a lot in phylogenetic inferences, as it is a slowly evolving. Depending on the species you are working with, this RNA might have different names, for example 16S, rnl, l-RNA, 21S etc.
+The large mitochondrial ribosomal RNA (l-rRNA) which is part of the large subunit of the ribosome (in the mitochondria) is - and has been - used a lot in phylogenetic inferences, as it is one of the most conserved genes. Depending on the species you are working with, this RNA might have different names, for example, 16S, rnl, l-RNA, 21S, etc.
 
-For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In folder `/proj/g2019029/private/DATA/session5/Ribosomal_large_subunit` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
+For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In the folder `/proj/g2021007/private/DATA/session5/Ribosomal_large_subunit` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
 
-Then, prepare the alignment input in the same way like in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command like the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
+Then, prepare the alignment input in the same way as in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command as the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
 
 ```
 (echo '#!/bin/bash -l'
@@ -160,13 +163,13 @@ You will receive an email when the job finishes (or fails). What normally would 
 
 Look at the output file (the .clustal). Do you understand the format?
 
-In order to have a better overview of the alignment, we are going to use the `clustalw` program. Using a program with visual forwarding like this one involves a different kind of connection to Uppmax. Open a new tab in your terminal and type:
+To have a better overview of the alignment, we are going to use the `clustalw` program. Using a program with visual forwarding like this one involves a different kind of connection to Uppmax. Open a new tab in your terminal and type:
 
 ```
 ssh -Y your_user_name@rackham.uppmax.uu.se
 ```
 
-**If you are using a Mac** , then you first need to install `Xquartz`: 
+**If you are using a Mac**, then you first need to install `Xquartz`: 
 
 [https://www.xquartz.org/](https://www.xquartz.org/)
 
@@ -192,7 +195,7 @@ Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1.
 
 **Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
 
-The main take-home message from this step is that it is important to examine your alignments well. Sometimes some sequences will genuinely be longer or shorter than other sequences; however it might also be due to some errors!
+The main take-home message from this step is that it is important to examine your alignments well. Sometimes some sequences will genuinely be longer or shorter than other sequences; however, it might also be due to some errors!
 
 #### Back to Step 2d
 
@@ -203,12 +206,8 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 ---
 ## REPORT
 
-Pairwise alignment tutorial: submit answers to all questions (you can number them 1-1, 1-2 etc).
+Pairwise alignment tutorial: submit answers to all questions (you can number them 1-1, 1-2, etc).
 
 Multiple alignment: submit answers to questions 1 through 9 (you can number them 2-1, 2-2 etc). For Question 9, submit the alignment only if you could not show it to a teaching assistant.
 
 ---
-
-This is the end of the lab, please make sure that you completed and wrote down the answers to all of the questions.
-Upload the **scripts** (code) that you were asked to submit to studium **in the original format** (i.e. .py or .sh), no `pdf` or word files! Any answers that are not code should of course be in text formats such as `.pdf, .txt & .docx`.
-Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them. This goes for both the Unix computers and Uppmax.
