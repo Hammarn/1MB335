@@ -51,7 +51,7 @@ Questions are numbered from 1 to 14. Submit answers to all the questions (you ca
 
 #### Step 2a: Identify the mitochondrial genomes
 
-Start by login into Uppmax (rackham). In `/proj/g2019029/private/DATA/session5/Mitochondrial_genomes/` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named from `Seq1.fasta` to `Seq14.fasta`. Copy all the files to your own directory.
+Start by login into Uppmax (rackham). In `/proj/g2021007/private/DATA/session5/Mitochondrial_genomes/` you will find 14 complete mitochondrial genomes that were downloaded from NCBI. They are named from `Seq1.fasta` to `Seq14.fasta`. Copy all the files to your own directory.
 
 Your first task is to identify which species the sequences belong to. Look at the content of the files and think about the tools and resources you used in sessions 3 and 4. Once you have identified the species, complete the headers of the files which have an incomplete header (for an example of a complete header, see `Seq2.fasta`): they should have the same information as in `Seq2.fasta` (in particular, sequence identification number and species name).
 
