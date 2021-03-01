@@ -46,7 +46,7 @@ The first step is to do a Multiple Alignment. As our mitochondrial sequences are
 
 ```
 #!/bin/bash -l
-#SBATCH -A g2019029
+#SBATCH -A g2021007
 #SBATCH -p core
 #SBATCH -n 1
 #SBATCH -t 45:00
