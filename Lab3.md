@@ -103,6 +103,7 @@ You are going to modify file so **if you have not already done so, make a copy t
 ```
 makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl 
 ```
+*Hint, `.fna` just mins fasta nuclear, so it's also a fasta file. Give the program the name of the file you actually have. *
 
 <!-- the dbtype could also be prot -->
 

@@ -50,7 +50,7 @@ The text from this session is modified from "A guide to organellar genome assemb
 ### Step 1: Perform a first annotation with GeSeq
 
 Open [GeSeq](https://chlorobox.mpimp-golm.mpg.de/geseq.html) in your browser.
-On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your error-corrected, circularized, reoriented .fasta file from Session 3).
+On the left hand side of the page under 'FASTA file(s) to annotate' click 'Upload files', and select the appropriate file (your COX1 reoriented .fasta file from Session 3).
 
 Next, click the appropriate boxes to indicate that this is a circular genome and select the correct sequence source (**mitochondrial**). We suggest leaving the rest of the options available on the left hand side at their default settings. 
 
@@ -59,7 +59,7 @@ Next, in the middle section of the page under “BLAT Reference Sequences” cli
 Then, click the button to indicate you have read the disclaimer and hit “Submit”. The program should only take a few moments to run and will produce several files. We are currently interested in downloading the GenBank file.
 
 
-Next, open this file in your text editor and take a look at the file produced.  We suggest you look for duplicated entries in your file. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). **Delete any lines that say exon and intron** and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
+Next, **open this file in your text editor** and take a look at the file produced.  We suggest you look for duplicated entries in your file. GeSeq uses multiple references and depending on how the researcher’s annotated their genomes there might be features named rps3 and RPS3 (for example), both of which are the same feature but GeSeq treats them as separate. Go ahead and delete any redundant features that are duplicated, as again, this is the easiest stage of the annotation to perform this action. You might notice that you have gene, CDS, exon and intron lines for a given feature (i.e., cox1). **Delete any lines that say exon and intron, if there are any** and only save the lines that contain information for gene, CDS, tRNA or rRNA. If you were to submit your annotation to NCBI, having all of these duplicated entries would be causing issues.
 
 This is a list of the features that are most likely present in your mitochondrial genome. Sometimes the names of the genes might differ (for example for the rRNA). In that case you can google or search on NCBI before asking the teaching assistants. Depending on your species all or very few of them might be present at this stage.
 
@@ -101,6 +101,7 @@ To find tRNAs, GeSeq uses the program tRNAscan (Lowe & Eddy 1997). To ensure we 
 Obs! tRNAscan is a bit annoying with formatting and might complain about the header of your fasta file (for example). In that case, copy your original fasta file and simplify the header before resubmitting. You can also paste the sequence in the search box, if you leave out the header you have to instead click on "Raw sequence" instead of "Formated fasta file".
 
 After a short while, you will see a list of the tRNAs and their locations in your genome. Compare these results to what GeSeq found and note if anything is missing or locations are divergent. Refer to the table below for a list of all the amino acids that should be present in your genome and for any conversion that you need to make (more details after Question 2).
+Note that depening on your organizm tRNA-Scan might find 3-25 different tRNAs.
 
 ***Table 2. Amino acid names translation table.***
 
@@ -132,6 +133,9 @@ Tyrosine | Tyr | Y
 To answer the last question, you can go to the NCBI page of the annotated genome. You can look for example at the length of the tRNA. You can also try to compare directly the coordinates, but because you are working with a genome orientated with *cox1* you will need to shift the coordinates.
 
 If tRNAscan identified features that GeSeq did not find, add them to the GeSeq output as follow: For example, let’s say that tRNAscan found the tRNA for tyrosine, which GeSeq did not find. We will need to add it in the GeSeq output. tRNAscan will use the three-letter code "tyr", we see from our translation table that the one letter code is Y (Table 2). In addition, we see in tRNAscan output that the anti-codon for tyrosine is GTA. Therefore, the correct format for the gene name will be “trnY-GUA” (all T’s become U’s because we are dealing with RNA not DNA, and "trn" stands for tRNA). Refer back to tRNAscan for the boundaries of this tRNA. In the GenBank formatted text file enter the missing tRNAs using the same format as presented for the tRNAs that GeSeq did find.
+
+
+*Note: If you are adding something from a source that does not privide a score (such as tRNA scan) then you of course don't have to add a score line.*
 
 ### Step 3: Use web-based blast to confirm features boundaries
 
