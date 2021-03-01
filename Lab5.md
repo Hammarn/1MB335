@@ -156,7 +156,7 @@ Then, prepare the alignment input in the same way as in Step 2c: create a fasta 
 echo '
 module load bioinfo-tools MAFFT/7.407
 YOUR COMMAND
-exit 0') | sbatch -p core -n 1 -t 15:00 -A g2019029 -J align_rRNA -o align_rRNA.output -e align_rRNA.output --mail-user youremailforUppmax --mail-type=END,FAIL
+exit 0') | sbatch -p core -n 1 -t 15:00 -A g2021007 -J align_rRNA -o align_rRNA.output -e align_rRNA.output --mail-user youremailforUppmax --mail-type=END,FAIL
 ```
 
 You will receive an email when the job finishes (or fails). What normally would have been printed to the screen will be printed to align_rRNA.output. Have a look at it!
