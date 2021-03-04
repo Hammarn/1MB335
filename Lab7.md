@@ -62,7 +62,14 @@ YOUR MAFFT COMMAND
 exit 0
 ```
 
-Now, look at the `sbatch` bits. Look familiar? Yes, they are the same (almost) parameters that we used in Session 5, but this time we are imputing them inside the script, instead of specifying them when we call `sbatch`. Remember to change *youremailforUppmax* and **YOUR MAFFT COMMAND** for your own email and command, respectively.
+Now, look at the `sbatch` bits. Look familiar? Yes, they are the same (almost) parameters that we used in Session 5, but this time we are imputing them inside the script, instead of specifying them when we call `sbatch`. Remember to change **youremailforUppmax** and **YOUR MAFFT COMMAND** for your own email and command, respectively.
+
+```
+#SBATCH -o align_mt.output 
+#SBATCH -e align_mt.output 
+```
+Will tell slurm to take anything that would normally be printed to the screen and save it to the file `align_mt.output`.
+IF you want to reuse this script later it might be a good idea to change this variable.
 
 Now, in order to submit the job, just use this code:
 
