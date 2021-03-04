@@ -149,7 +149,7 @@ The large mitochondrial ribosomal RNA (l-rRNA) which is part of the large subuni
 
 For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In the folder `/proj/g2021007/private/DATA/session5/Ribosomal_large_subunit` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
 
-Then, prepare the alignment input in the same way as in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones (remember to modify the part of the short header about the type of sequence). Now, proceed to the alignment with `mafft`. You can take the same command as the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
+Then, prepare the alignment input in the same way as in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones, **remember to modify the part of the short header about the type of sequence**. Now, proceed to the alignment with `mafft`. You can take the same command as the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
 
 ```
 (echo '#!/bin/bash -l'
@@ -183,6 +183,7 @@ Like when you loaded `mafft`, look for the versions of `clustalw` installed on r
 ```
 clustalx &
 ```
+
 In "File", choose "Load Sequences" and choose your alignment. Can you make sense of what you see? What do you think the bottom window shows?
 
 **Question 7. Normally one of the sequences should stand out. Which one?**
