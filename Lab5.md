@@ -116,10 +116,10 @@ We will work with version `MAFFT/7.407`.
 Reminder about computation on Uppmax: Aligning this set of mitochondrial genomes is a computationally intensive task. Thus, you should not run anything on the login node! Running heavy processes on the login nodes result in slower performances for everyone, and if you exceed certain limits your processes will be killed. Thus, you should avoid it as much as possible, either by working in an interactive job or by submitting your jobs through the queue. In the exploratory stage, it is a good solution to work with an interactive job. **To avoid queueing, we asked for a reservation for this tutorial.**
 
 For the course on 1:th of March, the reservation is:
-g2021007_01
-For the course on the 2:nd of March, the reservation is: g2021007_02
+g2021007\_01
+For the course on the 2:nd of March, the reservation is: g2021007\_02
 
-Ask for an interactive session with the following command (replace "name_of_reservation" by either g2021007_01 or g2021007_02):
+Ask for an interactive session with the following command (replace "name_of_reservation" by either g2021007\_01 or g2021007\_02):
 
 ```
 interactive -A g2021007 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
@@ -149,7 +149,7 @@ The large mitochondrial ribosomal RNA (l-rRNA) which is part of the large subuni
 
 For this step, we will focus on the multicellular eukaryotic organisms ('Metazoans') in our dataset. In the folder `/proj/g2021007/private/DATA/session5/Ribosomal_large_subunit` you will find seven fasta files, corresponding to the sequence of interest for seven of the species from the previous step. Start by finding the corresponding sequence for three extra species: Seq8, Seq9, and Seq14 (go to NCBI, find the annotated mitochondria, and look for rRNA; be careful, there are two rRNA per mitochondrial genome! Choose the larger one). We will not use the other genomes for this and the following step.
 
-Then, prepare the alignment input in the same way as in Step 2c: create a fasta file with the 10 sequences and change the headers to short ones, **remember to modify the part of the short header about the type of sequence**. Now, proceed to the alignment with `mafft`. You can take the same command as the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
+Then, prepare the alignment input in the same way as in Step 2c: create a fasta file with the **10** sequences and change the headers to short ones, **remember to modify the part of the short header about the type of sequence**. Now, proceed to the alignment with `mafft`. You can take the same command as the one you created when submitting the alignment for the entire genome - remember to modify the input and output file name. Submit it as a job like this - replace YOURCOMMAND, and youremailforUppmax:
 
 ```
 (echo '#!/bin/bash -l'
@@ -192,7 +192,7 @@ In "File", choose "Load Sequences" and choose your alignment. Can you make sense
 
 The strange alignment from Step 2e is a genuine example, that was discovered by students who took this course previously. It results from a mis-annotation in the reference mitochondrial genome for the cheetah. A new genome, with the proper annotation, has been submitted since then.
 
-Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again (see Step 2e). Visualize it. Is the issue solved? 
+Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again with the new replacement cheetah sequence (see Step 2e). Visualize it. Is the issue solved? 
 
 **Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
 
