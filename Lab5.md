@@ -194,7 +194,7 @@ The strange alignment from Step 2e is a genuine example, that was discovered by 
 
 Find the *16S* sequence for the mitochondrial genome with identifier AY463959.1. Perform the alignment again with the new replacement cheetah sequence (see Step 2e). Visualize it. Is the issue solved? 
 
-**Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment.**
+**Question 8. Show your new alignment to a teaching assistant. If you cannot show it, submit the corresponding alignment file (.clustal).**
 
 The main take-home message from this step is that it is important to examine your alignments well. Sometimes some sequences will genuinely be longer or shorter than other sequences; however, it might also be due to some errors!
 
@@ -209,6 +209,6 @@ By now the alignment of the entire mitochondria should be ready for you to look 
 
 Pairwise alignment tutorial: submit answers to all questions (you can number them 1-1, 1-2, etc).
 
-Multiple alignment: submit answers to questions 1 through 9 (you can number them 2-1, 2-2 etc). For Question 9, submit the alignment only if you could not show it to a teaching assistant.
+Multiple alignment: submit answers to questions 1 through 9 (you can number them 2-1, 2-2 etc). For Question 8, submit the alignment (clustal file) only if you could not show it to a teaching assistant.
 
 ---
