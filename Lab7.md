@@ -42,7 +42,8 @@ For this Session, we are going to use the files that we created in the previous 
 
 ### Step 1a:
 
-The first step is to do a Multiple Alignment. As our mitochondrial sequences are considerably bigger than the single gene ones, we will submit them as an independent job to Rackham, as we did in Session 5. However, today we are going to use the other method to submit a job using `sbatch`: a script. It should look like this:
+The first step is to do a Multiple Alignment. As our mitochondrial sequences are considerably bigger than the single gene ones, we will submit them as an independent job to Rackham, as we did in Session 5. However, today we are going to use the other method to submit a job using `sbatch`: a script.
+It should look like this:
 
 ```
 #!/bin/bash -l
@@ -61,6 +62,11 @@ module load bioinfo-tools MAFFT/7.407
 YOUR MAFFT COMMAND
 exit 0
 ```
+
+
+Open nano (or another text editor on Uppmax) and paste in the text above (with the correct changes of course) then save it to a good filename, such as `run_mafft.sh`.
+`.sh` is often use for shell commands, such as sbatch.
+
 
 Now, look at the `sbatch` bits. Look familiar? Yes, they are the same (almost) parameters that we used in Session 5, but this time we are imputing them inside the script, instead of specifying them when we call `sbatch`. Remember to change **youremailforUppmax** and **YOUR MAFFT COMMAND** for your own email and command, respectively.
 
