@@ -92,12 +92,19 @@ Once you found all the sequences for your dataset, you will need to put them tog
 
 ## Create a name conversion file.
 
-Create two (one for the mitochondrial sequences and one for *cytB*) **tab-delimited** files with three columns. The files should contain one row for each sequence in your data set, including: 
+Create two (one for the mitochondrial sequences and one for *cytB*) **tab-separated** files with three columns. I.e. there should be a tab charachter `\t` between each column.
+The files should contain one row for each sequence in your data set, including: 
 
  * a maximum 8-character short-name (enough for you to identify it: e.g. c\_Vurs or mt\_Vurs)
  * an easy-readable name (good for presentation to others: e.g. cytB\_Vombat\_ursinus mitoc\_Vombat\_ursinus)
  * The header you got when dowloading it from NCBI (or if you have changed it already your own long header)
   `MN443013.1 Providencia stuartii strain PS11 subclass B1 metallo-beta-lactamase NDM-1 (blaNDM) gene, blaNDM-1 allele, partial cds`
+  
+  ```
+  c_Vurs cytB_Vombat_ursinus MN443013.1 Providencia stuartii strain PS11 subclass B1 metallo-beta-lactamase NDM-1 (blaNDM) gene, blaNDM-1 allele, partial cds
+  H_sapeins cytb_Homo_Sapiens 
+  
+  ```
 
 
 **Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should for this taks change the original file you send in, not create a new fasta file!
