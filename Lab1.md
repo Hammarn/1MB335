@@ -293,7 +293,7 @@ module load samtools/1.9
 The **BAM** file and corresponding **SAM** file can be found here:
 
 ```
-/proj/g2021007/private/DATA/BAM
+/proj/uppmax2022-2-2/private/DATA/BAM
 ```
 
 Before using it have a look at the file sizes of the two different formats.
