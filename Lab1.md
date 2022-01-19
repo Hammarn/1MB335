@@ -233,7 +233,7 @@ Try it for the full article as well!
 
 ### Hidden word exercise 
 **Question 3:**
-Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md).
+Now that you have some basic UNIX tools at your disposal go and do the [hidden word_exercise](hidden_word_exercise_instructions.md). (*Note*: You will need to download a file for this exercise. When working remotely, you can download it to your local computer first and then use `scp` (Description at the bottom of this page) to copy it to the remote computer.)
 Submit the hidden word.
 
 Do not continue with the next part until you are done with the hidden word exercise. 
