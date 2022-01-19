@@ -9,7 +9,7 @@ If you are interested in learning more about UNIX then you can have a look at th
 ### Why are Unix systems so popular in science?
 While there is no straightforward answer to this question there are some things that are often brought up. UNIX (and Unix-like systems) in its design is quite simple and is nowadays very portable. This has lead to it being used to run anything from massive high-performance computer clusters to tiny single-board computers such as Arduino & raspberry pis. This ubiquity and popularity is probably one reason why it is still so popular. Since the year 2000 Mac computers are also running on Apple's own Unix system, another popular Unix-like system is the Android mobile operating system. 
 While the original UNIX operating system is a commercial system there are many Unix-like operating systems such as Linux which are free and open-source (_these are generally based on the Linux kernel_).
-The ecosystem of open source and free distribution suits the academic world very well. It is not science if you aren't charing your findings and how you came to your conclusions - that generally includes your code. 
+The ecosystem of open source and free distribution suits the academic world very well. It is not science if you aren't sharing your findings and how you came to your conclusions - that generally includes your code. 
 
 #### Using UNIX
 Interaction with UNIX-style systems is typically done through a command-line interface (CLI) - a `terminal` of some sort. There is generally no GUI (graphical user interface), though there exist protocols to display graphics through the terminal such as `X11`.
@@ -144,7 +144,7 @@ change into it using `cd`
 cd directory2
 ```
 
-So now your current directory should be `home/your_usename/directory1/dirextory2`, to find out use `pwd`. If you want to go one directory up, in our case from directory2 to directory1 you can use `..` notation:
+So now your current directory should be `home/your_usename/directory1/directory2`, to find out use `pwd`. If you want to go one directory up, in our case from directory2 to directory1 you can use `..` notation:
 
 ```
 cd ..
