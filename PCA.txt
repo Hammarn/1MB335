@@ -1,0 +1,2217 @@
+Principal component analysis
+
+From Wikipedia, the free encyclopedia
+Jump to navigation Jump to search
+Conversion of observations of possibly-correlated variables into values of
+fewer, uncorrelated variables
+[300px-GaussianScatterPCA]
+ 
+PCA of a multivariate Gaussian distribution centered at (1,3) with a standard
+deviation of 3 in roughly the (0.866, 0.5) direction and of 1 in the orthogonal
+direction. The vectors shown are the eigenvectors of the covariance matrix
+scaled by the square root of the corresponding eigenvalue, and shifted so their
+tails are at the mean.
+
+The principal components of a collection of points in a real coordinate space
+are a sequence of p {\displaystyle p} p unit vectors, where the i {\
+displaystyle i} i-th vector is the direction of a line that best fits the data
+while being orthogonal to the first i − 1 {\displaystyle i-1} i-1 vectors.
+Here, a best-fitting line is defined as one that minimizes the average squared
+distance from the points to the line. These directions constitute an
+orthonormal basis in which different individual dimensions of the data are
+linearly uncorrelated. Principal component analysis (PCA) is the process of
+computing the principal components and using them to perform a change of basis
+on the data, sometimes using only the first few principal components and
+ignoring the rest.
+
+PCA is used in exploratory data analysis and for making predictive models. It
+is commonly used for dimensionality reduction by projecting each data point
+onto only the first few principal components to obtain lower-dimensional data
+while preserving as much of the data's variation as possible. The first
+principal component can equivalently be defined as a direction that maximizes
+the variance of the projected data. The i {\displaystyle i} i-th principal
+component can be taken as a direction orthogonal to the first i − 1 {\
+displaystyle i-1} i-1 principal components that maximizes the variance of the
+projected data.
+
+From either objective, it can be shown that the principal components are
+eigenvectors of the data's covariance matrix. Thus, the principal components
+are often computed by eigendecomposition of the data covariance matrix or
+singular value decomposition of the data matrix. PCA is the simplest of the
+true eigenvector-based multivariate analyses and is closely related to factor
+analysis. Factor analysis typically incorporates more domain specific
+assumptions about the underlying structure and solves eigenvectors of a
+slightly different matrix. PCA is also related to canonical correlation
+analysis (CCA). CCA defines coordinate systems that optimally describe the
+cross-covariance between two datasets while PCA defines a new orthogonal
+coordinate system that optimally describes variance in a single dataset.^[1]^
+[2]^[3]^[4] Robust and L1-norm-based variants of standard PCA have also been
+proposed.^[5]^[6]^[4]
+
+[ ]
+
+Contents
+
+  • 1 History
+  • 2 Intuition
+  • 3 Details
+      □ 3.1 First component
+      □ 3.2 Further components
+      □ 3.3 Covariances
+      □ 3.4 Dimensionality reduction
+      □ 3.5 Singular value decomposition
+  • 4 Further considerations
+  • 5 Table of symbols and abbreviations
+  • 6 Properties and limitations of PCA
+      □ 6.1 Properties
+      □ 6.2 Limitations
+      □ 6.3 PCA and information theory
+  • 7 Computing PCA using the covariance method
+  • 8 Derivation of PCA using the covariance method
+  • 9 Covariance-free computation
+      □ 9.1 Iterative computation
+      □ 9.2 The NIPALS method
+      □ 9.3 Online/sequential estimation
+  • 10 PCA and qualitative variables
+  • 11 Applications
+      □ 11.1 Quantitative finance
+      □ 11.2 Neuroscience
+  • 12 Relation with other methods
+      □ 12.1 Correspondence analysis
+      □ 12.2 Factor analysis
+      □ 12.3 K-means clustering
+      □ 12.4 Non-negative matrix factorization
+      □ 12.5 Iconography of correlations
+  • 13 Generalizations
+      □ 13.1 Sparse PCA
+      □ 13.2 Nonlinear PCA
+      □ 13.3 Robust PCA
+  • 14 Similar techniques
+      □ 14.1 Independent component analysis
+      □ 14.2 Network component analysis
+      □ 14.3 Discriminant analysis of principal components
+  • 15 Software/source code
+  • 16 See also
+  • 17 References
+  • 18 Further reading
+  • 19 External links
+
+History[edit]
+
+PCA was invented in 1901 by Karl Pearson,^[7] as an analogue of the principal
+axis theorem in mechanics; it was later independently developed and named by
+Harold Hotelling in the 1930s.^[8] Depending on the field of application, it is
+also named the discrete Karhunen–Loève transform (KLT) in signal processing,
+the Hotelling transform in multivariate quality control, proper orthogonal
+decomposition (POD) in mechanical engineering, singular value decomposition
+(SVD) of X (invented in the last quarter of the 19th century^[9]), eigenvalue
+decomposition (EVD) of X^TX in linear algebra, factor analysis (for a
+discussion of the differences between PCA and factor analysis see Ch. 7 of
+Jolliffe's Principal Component Analysis),^[10] Eckart–Young theorem (Harman,
+1960), or empirical orthogonal functions (EOF) in meteorological science,
+empirical eigenfunction decomposition (Sirovich, 1987), empirical component
+analysis (Lorenz, 1956), quasiharmonic modes (Brooks et al., 1988), spectral
+decomposition in noise and vibration, and empirical modal analysis in
+structural dynamics.
+
+Intuition[edit]
+
+PCA can be thought of as fitting a p-dimensional ellipsoid to the data, where
+each axis of the ellipsoid represents a principal component. If some axis of
+the ellipsoid is small, then the variance along that axis is also small.
+
+To find the axes of the ellipsoid, we must first center the values of each
+variable in the dataset on 0 by subtracting the mean of the variable's observed
+values from each of those values. These transformed values are used instead of
+the original observed values for each of the variables. Then, we compute the
+covariance matrix of the data and calculate the eigenvalues and corresponding
+eigenvectors of this covariance matrix. Then we must normalize each of the
+orthogonal eigenvectors to turn them into unit vectors. Once this is done, each
+of the mutually orthogonal unit eigenvectors can be interpreted as an axis of
+the ellipsoid fitted to the data. This choice of basis will transform our
+covariance matrix into a diagonalised form with the diagonal elements
+representing the variance of each axis. The proportion of the variance that
+each eigenvector represents can be calculated by dividing the eigenvalue
+corresponding to that eigenvector by the sum of all eigenvalues.
+
+Biplots and scree plots (degree of explained variance) are used to explain
+findings of the PCA.
+
+Details[edit]
+
+PCA is defined as an orthogonal linear transformation that transforms the data
+to a new coordinate system such that the greatest variance by some scalar
+projection of the data comes to lie on the first coordinate (called the first
+principal component), the second greatest variance on the second coordinate,
+and so on.^[10]^[page needed]
+
+Consider an n × p {\displaystyle n\times p} n\times p data matrix, X, with
+column-wise zero empirical mean (the sample mean of each column has been
+shifted to zero), where each of the n rows represents a different repetition of
+the experiment, and each of the p columns gives a particular kind of feature
+(say, the results from a particular sensor).
+
+Mathematically, the transformation is defined by a set of size l {\displaystyle
+l} l of p-dimensional vectors of weights or coefficients w ( k ) = ( w 1 , … ,
+w p ) ( k ) {\displaystyle \mathbf {w} _{(k)}=(w_{1},\dots ,w_{p})_{(k)}} \
+mathbf {w} _{(k)}=(w_{1},\dots ,w_{p})_{(k)} that map each row vector x ( i )
+{\displaystyle \mathbf {x} _{(i)}} \mathbf{x}_{(i)} of X to a new vector of
+principal component scores t ( i ) = ( t 1 , … , t l ) ( i ) {\displaystyle \
+mathbf {t} _{(i)}=(t_{1},\dots ,t_{l})_{(i)}} {\displaystyle \mathbf {t} _{(i)}
+=(t_{1},\dots ,t_{l})_{(i)}}, given by
+
+    t k ( i ) = x ( i ) ⋅ w ( k ) f o r i = 1 , … , n k = 1 , … , l {\
+    displaystyle {t_{k}}_{(i)}=\mathbf {x} _{(i)}\cdot \mathbf {w} _{(k)}\qquad
+    \mathrm {for} \qquad i=1,\dots ,n\qquad k=1,\dots ,l} {\displaystyle {t_
+    {k}}_{(i)}=\mathbf {x} _{(i)}\cdot \mathbf {w} _{(k)}\qquad \mathrm {for} \
+    qquad i=1,\dots ,n\qquad k=1,\dots ,l}
+
+in such a way that the individual variables t 1 , … , t l {\displaystyle t_{1},
+\dots ,t_{l}} {\displaystyle t_{1},\dots ,t_{l}} of t considered over the data
+set successively inherit the maximum possible variance from X, with each
+coefficient vector w constrained to be a unit vector (where l {\displaystyle l}
+l is usually selected to be strictly less than p {\displaystyle p} p to reduce
+dimensionality).
+
+First component[edit]
+
+In order to maximize variance, the first weight vector w[(1)] thus has to
+satisfy
+
+    w ( 1 ) = arg ⁡ max ‖ w ‖ = 1 { ∑ i ( t 1 ) ( i ) 2 } = arg ⁡ max ‖ w ‖ = 1
+    { ∑ i ( x ( i ) ⋅ w ) 2 } {\displaystyle \mathbf {w} _{(1)}=\arg \max _{\
+    Vert \mathbf {w} \Vert =1}\,\left\{\sum _{i}(t_{1})_{(i)}^{2}\right\}=\arg
+    \max _{\Vert \mathbf {w} \Vert =1}\,\left\{\sum _{i}\left(\mathbf {x} _
+    {(i)}\cdot \mathbf {w} \right)^{2}\right\}} {\displaystyle \mathbf {w} _
+    {(1)}=\arg \max _{\Vert \mathbf {w} \Vert =1}\,\left\{\sum _{i}(t_{1})_
+    {(i)}^{2}\right\}=\arg \max _{\Vert \mathbf {w} \Vert =1}\,\left\{\sum _{i}
+    \left(\mathbf {x} _{(i)}\cdot \mathbf {w} \right)^{2}\right\}}
+
+Equivalently, writing this in matrix form gives
+
+    w ( 1 ) = arg ⁡ max ‖ w ‖ = 1 { ‖ X w ‖ 2 } = arg ⁡ max ‖ w ‖ = 1 { w T X T
+    X w } {\displaystyle \mathbf {w} _{(1)}=\arg \max _{\left\|\mathbf {w} \
+    right\|=1}\left\{\left\|\mathbf {Xw} \right\|^{2}\right\}=\arg \max _{\left
+    \|\mathbf {w} \right\|=1}\left\{\mathbf {w} ^{\mathsf {T}}\mathbf {X} ^{\
+    mathsf {T}}\mathbf {Xw} \right\}} {\displaystyle \mathbf {w} _{(1)}=\arg \
+    max _{\left\|\mathbf {w} \right\|=1}\left\{\left\|\mathbf {Xw} \right\|^{2}
+    \right\}=\arg \max _{\left\|\mathbf {w} \right\|=1}\left\{\mathbf {w} ^{\
+    mathsf {T}}\mathbf {X} ^{\mathsf {T}}\mathbf {Xw} \right\}}
+
+Since w[(1)] has been defined to be a unit vector, it equivalently also
+satisfies
+
+    w ( 1 ) = arg ⁡ max { w T X T X w w T w } {\displaystyle \mathbf {w} _{(1)}
+    =\arg \max \left\{{\frac {\mathbf {w} ^{\mathsf {T}}\mathbf {X} ^{\mathsf
+    {T}}\mathbf {Xw} }{\mathbf {w} ^{\mathsf {T}}\mathbf {w} }}\right\}} {\
+    displaystyle \mathbf {w} _{(1)}=\arg \max \left\{{\frac {\mathbf {w} ^{\
+    mathsf {T}}\mathbf {X} ^{\mathsf {T}}\mathbf {Xw} }{\mathbf {w} ^{\mathsf
+    {T}}\mathbf {w} }}\right\}}
+
+The quantity to be maximised can be recognised as a Rayleigh quotient. A
+standard result for a positive semidefinite matrix such as X^TX is that the
+quotient's maximum possible value is the largest eigenvalue of the matrix,
+which occurs when w is the corresponding eigenvector.
+
+With w[(1)] found, the first principal component of a data vector x[(i)] can
+then be given as a score t[1(i)] = x[(i)] ⋅ w[(1)] in the transformed
+co-ordinates, or as the corresponding vector in the original variables, {x[(i)]
+⋅ w[(1)]} w[(1)].
+
+Further components[edit]
+
+The k-th component can be found by subtracting the first k − 1 principal
+components from X:
+
+    X ^ k = X − ∑ s = 1 k − 1 X w ( s ) w ( s ) T {\displaystyle \mathbf {\hat
+    {X}} _{k}=\mathbf {X} -\sum _{s=1}^{k-1}\mathbf {X} \mathbf {w} _{(s)}\
+    mathbf {w} _{(s)}^{\mathsf {T}}} {\displaystyle \mathbf {\hat {X}} _{k}=\
+    mathbf {X} -\sum _{s=1}^{k-1}\mathbf {X} \mathbf {w} _{(s)}\mathbf {w} _
+    {(s)}^{\mathsf {T}}}
+
+and then finding the weight vector which extracts the maximum variance from
+this new data matrix
+
+    w ( k ) = a r g m a x ‖ w ‖ = 1 ⁡ { ‖ X ^ k w ‖ 2 } = arg ⁡ max { w T X ^ k
+    T X ^ k w w T w } {\displaystyle \mathbf {w} _{(k)}=\mathop {\operatorname
+    {arg\,max} } _{\left\|\mathbf {w} \right\|=1}\left\{\left\|\mathbf {\hat
+    {X}} _{k}\mathbf {w} \right\|^{2}\right\}=\arg \max \left\{{\tfrac {\mathbf
+    {w} ^{\mathsf {T}}\mathbf {\hat {X}} _{k}^{\mathsf {T}}\mathbf {\hat {X}} _
+    {k}\mathbf {w} }{\mathbf {w} ^{T}\mathbf {w} }}\right\}} {\displaystyle \
+    mathbf {w} _{(k)}=\mathop {\operatorname {arg\,max} } _{\left\|\mathbf {w}
+    \right\|=1}\left\{\left\|\mathbf {\hat {X}} _{k}\mathbf {w} \right\|^{2}\
+    right\}=\arg \max \left\{{\tfrac {\mathbf {w} ^{\mathsf {T}}\mathbf {\hat
+    {X}} _{k}^{\mathsf {T}}\mathbf {\hat {X}} _{k}\mathbf {w} }{\mathbf {w} ^
+    {T}\mathbf {w} }}\right\}}
+
+It turns out that this gives the remaining eigenvectors of X^TX, with the
+maximum values for the quantity in brackets given by their corresponding
+eigenvalues. Thus the weight vectors are eigenvectors of X^TX.
+
+The k-th principal component of a data vector x[(i)] can therefore be given as
+a score t[k(i)] = x[(i)] ⋅ w[(k)] in the transformed coordinates, or as the
+corresponding vector in the space of the original variables, {x[(i)] ⋅ w[(k)]}
+w[(k)], where w[(k)] is the kth eigenvector of X^TX.
+
+The full principal components decomposition of X can therefore be given as
+
+    T = X W {\displaystyle \mathbf {T} =\mathbf {X} \mathbf {W} } \mathbf{T} =
+    \mathbf{X} \mathbf{W}
+
+where W is a p-by-p matrix of weights whose columns are the eigenvectors of X^T
+X. The transpose of W is sometimes called the whitening or sphering
+transformation. Columns of W multiplied by the square root of corresponding
+eigenvalues, that is, eigenvectors scaled up by the variances, are called
+loadings in PCA or in Factor analysis.
+
+Covariances[edit]
+
+X^TX itself can be recognized as proportional to the empirical sample
+covariance matrix of the dataset X^T.^[10]^: 30–31 
+
+The sample covariance Q between two of the different principal components over
+the dataset is given by:
+
+    Q ( P C ( j ) , P C ( k ) ) ∝ ( X w ( j ) ) T ( X w ( k ) ) = w ( j ) T X T
+    X w ( k ) = w ( j ) T λ ( k ) w ( k ) = λ ( k ) w ( j ) T w ( k ) {\
+    displaystyle {\begin{aligned}Q(\mathrm {PC} _{(j)},\mathrm {PC} _{(k)})&\
+    propto (\mathbf {X} \mathbf {w} _{(j)})^{\mathsf {T}}(\mathbf {X} \mathbf
+    {w} _{(k)})\\&=\mathbf {w} _{(j)}^{\mathsf {T}}\mathbf {X} ^{\mathsf {T}}\
+    mathbf {X} \mathbf {w} _{(k)}\\&=\mathbf {w} _{(j)}^{\mathsf {T}}\lambda _
+    {(k)}\mathbf {w} _{(k)}\\&=\lambda _{(k)}\mathbf {w} _{(j)}^{\mathsf {T}}\
+    mathbf {w} _{(k)}\end{aligned}}} {\displaystyle {\begin{aligned}Q(\mathrm
+    {PC} _{(j)},\mathrm {PC} _{(k)})&\propto (\mathbf {X} \mathbf {w} _{(j)})^
+    {\mathsf {T}}(\mathbf {X} \mathbf {w} _{(k)})\\&=\mathbf {w} _{(j)}^{\
+    mathsf {T}}\mathbf {X} ^{\mathsf {T}}\mathbf {X} \mathbf {w} _{(k)}\\&=\
+    mathbf {w} _{(j)}^{\mathsf {T}}\lambda _{(k)}\mathbf {w} _{(k)}\\&=\lambda
+    _{(k)}\mathbf {w} _{(j)}^{\mathsf {T}}\mathbf {w} _{(k)}\end{aligned}}}
+
+where the eigenvalue property of w[(k)] has been used to move from line 2 to
+line 3. However eigenvectors w[(j)] and w[(k)] corresponding to eigenvalues of
+a symmetric matrix are orthogonal (if the eigenvalues are different), or can be
+orthogonalised (if the vectors happen to share an equal repeated value). The
+product in the final line is therefore zero; there is no sample covariance
+between different principal components over the dataset.
+
+Another way to characterise the principal components transformation is
+therefore as the transformation to coordinates which diagonalise the empirical
+sample covariance matrix.
+
+In matrix form, the empirical covariance matrix for the original variables can
+be written
+
+    Q ∝ X T X = W Λ W T {\displaystyle \mathbf {Q} \propto \mathbf {X} ^{\
+    mathsf {T}}\mathbf {X} =\mathbf {W} \mathbf {\Lambda } \mathbf {W} ^{\
+    mathsf {T}}} {\displaystyle \mathbf {Q} \propto \mathbf {X} ^{\mathsf {T}}\
+    mathbf {X} =\mathbf {W} \mathbf {\Lambda } \mathbf {W} ^{\mathsf {T}}}
+
+The empirical covariance matrix between the principal components becomes
+
+    W T Q W ∝ W T W Λ W T W = Λ {\displaystyle \mathbf {W} ^{\mathsf {T}}\
+    mathbf {Q} \mathbf {W} \propto \mathbf {W} ^{\mathsf {T}}\mathbf {W} \,\
+    mathbf {\Lambda } \,\mathbf {W} ^{\mathsf {T}}\mathbf {W} =\mathbf {\Lambda
+    } } {\displaystyle \mathbf {W} ^{\mathsf {T}}\mathbf {Q} \mathbf {W} \
+    propto \mathbf {W} ^{\mathsf {T}}\mathbf {W} \,\mathbf {\Lambda } \,\mathbf
+    {W} ^{\mathsf {T}}\mathbf {W} =\mathbf {\Lambda } }
+
+where Λ is the diagonal matrix of eigenvalues λ[(k)] of X^TX. λ[(k)] is equal
+to the sum of the squares over the dataset associated with each component k,
+that is, λ[(k)] = Σ[i] t[k]^2[(i)] = Σ[i] (x[(i)] ⋅ w[(k)])^2.
+
+Dimensionality reduction[edit]
+
+The transformation T = X W maps a data vector x[(i)] from an original space of
+p variables to a new space of p variables which are uncorrelated over the
+dataset. However, not all the principal components need to be kept. Keeping
+only the first L principal components, produced by using only the first L
+eigenvectors, gives the truncated transformation
+
+    T L = X W L {\displaystyle \mathbf {T} _{L}=\mathbf {X} \mathbf {W} _{L}} \
+    mathbf{T}_L = \mathbf{X} \mathbf{W}_L
+
+where the matrix T[L] now has n rows but only L columns. In other words, PCA
+learns a linear transformation t = W L T x , x ∈ R p , t ∈ R L , {\displaystyle
+t=W_{L}^{\mathsf {T}}x,x\in R^{p},t\in R^{L},} {\displaystyle t=W_{L}^{\mathsf
+{T}}x,x\in R^{p},t\in R^{L},} where the columns of p × L matrix W L {\
+displaystyle W_{L}} {\displaystyle W_{L}} form an orthogonal basis for the L
+features (the components of representation t) that are decorrelated.^[11] By
+construction, of all the transformed data matrices with only L columns, this
+score matrix maximises the variance in the original data that has been
+preserved, while minimising the total squared reconstruction error ‖ T W T − T
+L W L T ‖ 2 2 {\displaystyle \|\mathbf {T} \mathbf {W} ^{T}-\mathbf {T} _{L}\
+mathbf {W} _{L}^{T}\|_{2}^{2}} \|\mathbf {T} \mathbf {W} ^{T}-\mathbf {T} _{L}\
+mathbf {W} _{L}^{T}\|_{2}^{2} or ‖ X − X L ‖ 2 2 {\displaystyle \|\mathbf {X} -
+\mathbf {X} _{L}\|_{2}^{2}} \|\mathbf {X} -\mathbf {X} _{L}\|_{2}^{2}.
+
+[220px-PCA_of_Haplogroup_J_]
+ 
+A principal components analysis scatterplot of Y-STR haplotypes calculated from
+repeat-count values for 37 Y-chromosomal STR markers from 354 individuals.
+PCA has successfully found linear combinations of the markers that separate out
+different clusters corresponding to different lines of individuals'
+Y-chromosomal genetic descent.
+
+Such dimensionality reduction can be a very useful step for visualising and
+processing high-dimensional datasets, while still retaining as much of the
+variance in the dataset as possible. For example, selecting L = 2 and keeping
+only the first two principal components finds the two-dimensional plane through
+the high-dimensional dataset in which the data is most spread out, so if the
+data contains clusters these too may be most spread out, and therefore most
+visible to be plotted out in a two-dimensional diagram; whereas if two
+directions through the data (or two of the original variables) are chosen at
+random, the clusters may be much less spread apart from each other, and may in
+fact be much more likely to substantially overlay each other, making them
+indistinguishable.
+
+Similarly, in regression analysis, the larger the number of explanatory
+variables allowed, the greater is the chance of overfitting the model,
+producing conclusions that fail to generalise to other datasets. One approach,
+especially when there are strong correlations between different possible
+explanatory variables, is to reduce them to a few principal components and then
+run the regression against them, a method called principal component regression
+.
+
+Dimensionality reduction may also be appropriate when the variables in a
+dataset are noisy. If each column of the dataset contains independent
+identically distributed Gaussian noise, then the columns of T will also contain
+similarly identically distributed Gaussian noise (such a distribution is
+invariant under the effects of the matrix W, which can be thought of as a
+high-dimensional rotation of the co-ordinate axes). However, with more of the
+total variance concentrated in the first few principal components compared to
+the same noise variance, the proportionate effect of the noise is less—the
+first few components achieve a higher signal-to-noise ratio. PCA thus can have
+the effect of concentrating much of the signal into the first few principal
+components, which can usefully be captured by dimensionality reduction; while
+the later principal components may be dominated by noise, and so disposed of
+without great loss. If the dataset is not too large, the significance of the
+principal components can be tested using parametric bootstrap, as an aid in
+determining how many principal components to retain.^[12]
+
+Singular value decomposition[edit]
+
+Main article: Singular value decomposition
+
+The principal components transformation can also be associated with another
+matrix factorization, the singular value decomposition (SVD) of X,
+
+    X = U Σ W T {\displaystyle \mathbf {X} =\mathbf {U} \mathbf {\Sigma } \
+    mathbf {W} ^{T}} \mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{W}^T
+
+Here Σ is an n-by-p rectangular diagonal matrix of positive numbers σ[(k)],
+called the singular values of X; U is an n-by-n matrix, the columns of which
+are orthogonal unit vectors of length n called the left singular vectors of X;
+and W is a p-by-p whose columns are orthogonal unit vectors of length p and
+called the right singular vectors of X.
+
+In terms of this factorization, the matrix X^TX can be written
+
+    X T X = W Σ T U T U Σ W T = W Σ T Σ W T = W Σ ^ 2 W T {\displaystyle {\
+    begin{aligned}\mathbf {X} ^{T}\mathbf {X} &=\mathbf {W} \mathbf {\Sigma } ^
+    {\mathsf {T}}\mathbf {U} ^{\mathsf {T}}\mathbf {U} \mathbf {\Sigma } \
+    mathbf {W} ^{\mathsf {T}}\\&=\mathbf {W} \mathbf {\Sigma } ^{\mathsf {T}}\
+    mathbf {\Sigma } \mathbf {W} ^{\mathsf {T}}\\&=\mathbf {W} \mathbf {\hat {\
+    Sigma }} ^{2}\mathbf {W} ^{\mathsf {T}}\end{aligned}}} {\displaystyle {\
+    begin{aligned}\mathbf {X} ^{T}\mathbf {X} &=\mathbf {W} \mathbf {\Sigma } ^
+    {\mathsf {T}}\mathbf {U} ^{\mathsf {T}}\mathbf {U} \mathbf {\Sigma } \
+    mathbf {W} ^{\mathsf {T}}\\&=\mathbf {W} \mathbf {\Sigma } ^{\mathsf {T}}\
+    mathbf {\Sigma } \mathbf {W} ^{\mathsf {T}}\\&=\mathbf {W} \mathbf {\hat {\
+    Sigma }} ^{2}\mathbf {W} ^{\mathsf {T}}\end{aligned}}}
+
+where Σ ^ {\displaystyle \mathbf {\hat {\Sigma }} } {\displaystyle \mathbf {\
+hat {\Sigma }} } is the square diagonal matrix with the singular values of X 
+and the excess zeros chopped off that satisfies Σ ^ 2 = Σ T Σ {\displaystyle \
+mathbf {{\hat {\Sigma }}^{2}} =\mathbf {\Sigma } ^{\mathsf {T}}\mathbf {\Sigma
+} } {\displaystyle \mathbf {{\hat {\Sigma }}^{2}} =\mathbf {\Sigma } ^{\mathsf
+{T}}\mathbf {\Sigma } }. Comparison with the eigenvector factorization of X^TX
+establishes that the right singular vectors W of X are equivalent to the
+eigenvectors of X^TX, while the singular values σ[(k)] of X {\displaystyle \
+mathbf {X} } {\displaystyle \mathbf {X} } are equal to the square-root of the
+eigenvalues λ[(k)] of X^TX.
+
+Using the singular value decomposition the score matrix T can be written
+
+    T = X W = U Σ W T W = U Σ {\displaystyle {\begin{aligned}\mathbf {T} &=\
+    mathbf {X} \mathbf {W} \\&=\mathbf {U} \mathbf {\Sigma } \mathbf {W} ^{\
+    mathsf {T}}\mathbf {W} \\&=\mathbf {U} \mathbf {\Sigma } \end{aligned}}} {\
+    displaystyle {\begin{aligned}\mathbf {T} &=\mathbf {X} \mathbf {W} \\&=\
+    mathbf {U} \mathbf {\Sigma } \mathbf {W} ^{\mathsf {T}}\mathbf {W} \\&=\
+    mathbf {U} \mathbf {\Sigma } \end{aligned}}}
+
+so each column of T is given by one of the left singular vectors of X
+multiplied by the corresponding singular value. This form is also the polar
+decomposition of T.
+
+Efficient algorithms exist to calculate the SVD of X without having to form the
+matrix X^TX, so computing the SVD is now the standard way to calculate a
+principal components analysis from a data matrix^[citation needed], unless only
+a handful of components are required.
+
+As with the eigen-decomposition, a truncated n × L score matrix T[L] can be
+obtained by considering only the first L largest singular values and their
+singular vectors:
+
+    T L = U L Σ L = X W L {\displaystyle \mathbf {T} _{L}=\mathbf {U} _{L}\
+    mathbf {\Sigma } _{L}=\mathbf {X} \mathbf {W} _{L}} \mathbf{T}_L = \mathbf
+    {U}_L\mathbf{\Sigma}_L = \mathbf{X} \mathbf{W}_L
+
+The truncation of a matrix M or T using a truncated singular value
+decomposition in this way produces a truncated matrix that is the nearest
+possible matrix of rank L to the original matrix, in the sense of the
+difference between the two having the smallest possible Frobenius norm, a
+result known as the Eckart–Young theorem [1936].
+
+Further considerations[edit]
+
+Given a set of points in Euclidean space, the first principal component
+corresponds to a line that passes through the multidimensional mean and
+minimizes the sum of squares of the distances of the points from the line^[
+disputed – discuss]. The second principal component corresponds to the same
+concept after all correlation with the first principal component has been
+subtracted from the points. The singular values (in Σ) are the square roots of
+the eigenvalues of the matrix X^TX. Each eigenvalue is proportional to the
+portion of the "variance" (more correctly of the sum of the squared distances
+of the points from their multidimensional mean) that is associated with each
+eigenvector. The sum of all the eigenvalues is equal to the sum of the squared
+distances of the points from their multidimensional mean. PCA essentially
+rotates the set of points around their mean in order to align with the
+principal components. This moves as much of the variance as possible (using an
+orthogonal transformation) into the first few dimensions. The values in the
+remaining dimensions, therefore, tend to be small and may be dropped with
+minimal loss of information (see below). PCA is often used in this manner for
+dimensionality reduction. PCA has the distinction of being the optimal
+orthogonal transformation for keeping the subspace that has largest "variance"
+(as defined above). This advantage, however, comes at the price of greater
+computational requirements if compared, for example, and when applicable, to
+the discrete cosine transform, and in particular to the DCT-II which is simply
+known as the "DCT". Nonlinear dimensionality reduction techniques tend to be
+more computationally demanding than PCA.
+
+PCA is sensitive to the scaling of the variables. If we have just two variables
+and they have the same sample variance and are positively correlated, then the
+PCA will entail a rotation by 45° and the "weights" (they are the cosines of
+rotation) for the two variables with respect to the principal component will be
+equal. But if we multiply all values of the first variable by 100, then the
+first principal component will be almost the same as that variable, with a
+small contribution from the other variable, whereas the second component will
+be almost aligned with the second original variable. This means that whenever
+the different variables have different units (like temperature and mass), PCA
+is a somewhat arbitrary method of analysis. (Different results would be
+obtained if one used Fahrenheit rather than Celsius for example.) Pearson's
+original paper was entitled "On Lines and Planes of Closest Fit to Systems of
+Points in Space" – "in space" implies physical Euclidean space where such
+concerns do not arise. One way of making the PCA less arbitrary is to use
+variables scaled so as to have unit variance, by standardizing the data and
+hence use the autocorrelation matrix instead of the autocovariance matrix as a
+basis for PCA. However, this compresses (or expands) the fluctuations in all
+dimensions of the signal space to unit variance.
+
+Mean subtraction (a.k.a. "mean centering") is necessary for performing
+classical PCA to ensure that the first principal component describes the
+direction of maximum variance. If mean subtraction is not performed, the first
+principal component might instead correspond more or less to the mean of the
+data. A mean of zero is needed for finding a basis that minimizes the mean
+square error of the approximation of the data.^[13]
+
+Mean-centering is unnecessary if performing a principal components analysis on
+a correlation matrix, as the data are already centered after calculating
+correlations. Correlations are derived from the cross-product of two standard
+scores (Z-scores) or statistical moments (hence the name: Pearson
+Product-Moment Correlation). Also see the article by Kromrey & Foster-Johnson
+(1998) on "Mean-centering in Moderated Regression: Much Ado About Nothing".
+
+PCA is a popular primary technique in pattern recognition. It is not, however,
+optimized for class separability.^[14] However, it has been used to quantify
+the distance between two or more classes by calculating center of mass for each
+class in principal component space and reporting Euclidean distance between
+center of mass of two or more classes.^[15] The linear discriminant analysis is
+an alternative which is optimized for class separability.
+
+Table of symbols and abbreviations[edit]
+
+      Symbol                    Meaning              Dimensions     Indices
+X = { X i j } {\                                                 i = 1 … n {\
+displaystyle \                                                   displaystyle i
+mathbf {X} =\{X_    data matrix, consisting of the  n × p {\     =1\ldots n} i
+{ij}\}} {\          set of all data vectors, one    displaystyle = 1 \ldots n
+displaystyle \      vector per row                  n\times p} n j = 1 … p {\
+mathbf {X} =\{X_                                    \times p     displaystyle j
+{ij}\}}                                                          =1\ldots p} j
+                                                                 = 1 \ldots p
+                                                    1 × 1 {\
+n {\displaystyle n} the number of row vectors in    displaystyle scalar
+n                   the data set                    1\times 1} 1
+                                                    \times 1
+                                                    1 × 1 {\
+p {\displaystyle p} the number of elements in each  displaystyle scalar
+p                   row vector (dimension)          1\times 1} 1
+                                                    \times 1
+                    the number of dimensions in the 1 × 1 {\
+L {\displaystyle L} dimensionally reduced subspace, displaystyle scalar
+L                   1 ≤ L ≤ p {\displaystyle 1\leq  1\times 1} 1
+                    L\leq p} 1 \le L \le p          \times 1
+u = { u j } {\
+displaystyle \      vector of empirical means, one  p × 1 {\     j = 1 … p {\
+mathbf {u} =\{u_{j} mean for each column j of the   displaystyle displaystyle j
+\}} {\displaystyle  data matrix                     p\times 1} p =1\ldots p} j
+\mathbf {u} =\{u_                                   \times 1     = 1 \ldots p
+{j}\}}
+s = { s j } {\
+displaystyle \      vector of empirical standard    p × 1 {\     j = 1 … p {\
+mathbf {s} =\{s_{j} deviations, one standard        displaystyle displaystyle j
+\}} {\displaystyle  deviation for each column j of  p\times 1} p =1\ldots p} j
+\mathbf {s} =\{s_   the data matrix                 \times 1     = 1 \ldots p
+{j}\}}
+h = { h i } {\
+displaystyle \                                      1 × n {\     i = 1 … n {\
+mathbf {h} =\{h_{i} vector of all 1's               displaystyle displaystyle i
+\}} {\displaystyle                                  1\times n} 1 =1\ldots n} i
+\mathbf {h} =\{h_                                   \times n     = 1 \ldots n
+{i}\}}
+B = { B i j } {\                                                 i = 1 … n {\
+displaystyle \                                                   displaystyle i
+mathbf {B} =\{B_    deviations from the mean of     n × p {\     =1\ldots n} i
+{ij}\}} {\          each column j of the data       displaystyle = 1 \ldots n
+displaystyle \      matrix                          n\times p} n j = 1 … p {\
+mathbf {B} =\{B_                                    \times p     displaystyle j
+{ij}\}}                                                          =1\ldots p} j
+                                                                 = 1 \ldots p
+Z = { Z i j } {\                                                 i = 1 … n {\
+displaystyle \                                                   displaystyle i
+mathbf {Z} =\{Z_    z-scores, computed using the    n × p {\     =1\ldots n} i
+{ij}\}} {\          mean and standard deviation for displaystyle = 1 \ldots n
+displaystyle \      each row m of the data matrix   n\times p} n j = 1 … p {\
+mathbf {Z} =\{Z_                                    \times p     displaystyle j
+{ij}\}}                                                          =1\ldots p} j
+                                                                 = 1 \ldots p
+                                                                 j = 1 … p {\
+C = { C j j ′ } {\                                               displaystyle j
+displaystyle \                                      p × p {\     =1\ldots p} j
+mathbf {C} =\{C_                                    displaystyle = 1 \ldots p
+{jj'}\}} {\         covariance matrix               p\times p} p j ′ = 1 … p {\
+displaystyle \                                      \times p     displaystyle
+mathbf {C} =\{C_                                                 j'=1\ldots p} 
+{jj'}\}}                                                         {\displaystyle
+                                                                 j'=1\ldots p}
+                                                                 j = 1 … p {\
+R = { R j j ′ } {\                                               displaystyle j
+displaystyle \                                      p × p {\     =1\ldots p} j
+mathbf {R} =\{R_                                    displaystyle = 1 \ldots p
+{jj'}\}} {\         correlation matrix              p\times p} p j ′ = 1 … p {\
+displaystyle \                                      \times p     displaystyle
+mathbf {R} =\{R_                                                 j'=1\ldots p} 
+{jj'}\}}                                                         {\displaystyle
+                                                                 j'=1\ldots p}
+                                                                 j = 1 … p {\
+V = { V j j ′ } {\                                               displaystyle j
+displaystyle \                                      p × p {\     =1\ldots p} j
+mathbf {V} =\{V_    matrix consisting of the set of displaystyle = 1 \ldots p
+{jj'}\}} {\         all eigenvectors of C, one      p\times p} p j ′ = 1 … p {\
+displaystyle \      eigenvector per column          \times p     displaystyle
+mathbf {V} =\{V_                                                 j'=1\ldots p} 
+{jj'}\}}                                                         {\displaystyle
+                                                                 j'=1\ldots p}
+                    diagonal matrix consisting of                j = 1 … p {\
+D = { D j j ′ } {\  the set of all eigenvalues of C              displaystyle j
+displaystyle \      along its principal diagonal,   p × p {\     =1\ldots p} j
+mathbf {D} =\{D_    and 0 for all other elements (  displaystyle = 1 \ldots p
+{jj'}\}} {\         note Λ {\displaystyle \mathbf   p\times p} p j ′ = 1 … p {\
+displaystyle \      {\Lambda } } {\displaystyle \   \times p     displaystyle
+mathbf {D} =\{D_    mathbf {\Lambda } } used above               j'=1\ldots p} 
+{jj'}\}}            )                                            {\displaystyle
+                                                                 j'=1\ldots p}
+                                                                 j = 1 … p {\
+W = { W j l } {\    matrix of basis vectors, one                 displaystyle j
+displaystyle \      vector per column, where each   p × L {\     =1\ldots p} j
+mathbf {W} =\{W_    basis vector is one of the      displaystyle = 1 \ldots p
+{jl}\}} {\          eigenvectors of C, and where    p\times L} p l = 1 … L {\
+displaystyle \      the vectors in W are a sub-set  \times L     displaystyle l
+mathbf {W} =\{W_    of those in V                                =1\ldots L} {\
+{jl}\}}                                                          displaystyle l
+                                                                 =1\ldots L}
+                                                                 i = 1 … n {\
+T = { T i l } {\    matrix consisting of n row                   displaystyle i
+displaystyle \      vectors, where each vector is   n × L {\     =1\ldots n} i
+mathbf {T} =\{T_    the projection of the           displaystyle = 1 \ldots n
+{il}\}} {\          corresponding data vector from  n\times L} n l = 1 … L {\
+displaystyle \      matrix X onto the basis vectors \times L     displaystyle l
+mathbf {T} =\{T_    contained in the columns of                  =1\ldots L} {\
+{il}\}}             matrix W.                                    displaystyle l
+                                                                 =1\ldots L}
+
+Properties and limitations of PCA[edit]
+
+Properties[edit]
+
+Some properties of PCA include:^[10]^[page needed]
+
+    Property 1: For any integer q, 1 ≤ q ≤ p, consider the orthogonal linear
+    transformation
+
+        y = B ′ x {\displaystyle y=\mathbf {B'} x} y =\mathbf{B'}x
+
+    where y {\displaystyle y} y is a q-element vector and B ′ {\displaystyle \
+    mathbf {B'} } \mathbf{B'} is a (q × p) matrix, and let Σ y = B ′ Σ B {\
+    displaystyle \mathbf {\Sigma } _{y}=\mathbf {B'} \mathbf {\Sigma } \mathbf
+    {B} } {\mathbf {{\Sigma }}}_{y}={\mathbf {B'}}{\mathbf {\Sigma }}{\mathbf
+    {B}} be the variance-covariance matrix for y {\displaystyle y} y. Then the
+    trace of Σ y {\displaystyle \mathbf {\Sigma } _{y}} {\mathbf {\Sigma }}_{y}
+    , denoted tr ⁡ ( Σ y ) {\displaystyle \operatorname {tr} (\mathbf {\Sigma }
+    _{y})} {\displaystyle \operatorname {tr} (\mathbf {\Sigma } _{y})}, is
+    maximized by taking B = A q {\displaystyle \mathbf {B} =\mathbf {A} _{q}} \
+    mathbf{B} = \mathbf{A}_q, where A q {\displaystyle \mathbf {A} _{q}} \
+    mathbf{A}_q consists of the first q columns of A {\displaystyle \mathbf {A}
+    } \mathbf {A} ( B ′ {\displaystyle (\mathbf {B'} } (\mathbf{B'} is the
+    transposition of B ) {\displaystyle \mathbf {B} )} \mathbf{B}).
+
+    Property 2: Consider again the orthonormal transformation
+
+        y = B ′ x {\displaystyle y=\mathbf {B'} x} y = \mathbf{B'}x
+
+    with x , B , A {\displaystyle x,\mathbf {B} ,\mathbf {A} } x,{\mathbf {B}},
+    {\mathbf {A}} and Σ y {\displaystyle \mathbf {\Sigma } _{y}} {\mathbf {\
+    Sigma }}_{y} defined as before. Then tr ⁡ ( Σ y ) {\displaystyle \
+    operatorname {tr} (\mathbf {\Sigma } _{y})} {\displaystyle \operatorname
+    {tr} (\mathbf {\Sigma } _{y})} is minimized by taking B = A q ∗ , {\
+    displaystyle \mathbf {B} =\mathbf {A} _{q}^{*},} {\mathbf {B}}={\mathbf
+    {A}}_{q}^{*}, where A q ∗ {\displaystyle \mathbf {A} _{q}^{*}} \mathbf{A}_q
+    ^* consists of the last q columns of A {\displaystyle \mathbf {A} } \mathbf
+    {A} .
+
+The statistical implication of this property is that the last few PCs are not
+simply unstructured left-overs after removing the important PCs. Because these
+last PCs have variances as small as possible they are useful in their own
+right. They can help to detect unsuspected near-constant linear relationships
+between the elements of x, and they may also be useful in regression, in
+selecting a subset of variables from x, and in outlier detection.
+
+    Property 3: (Spectral decomposition of Σ)
+
+        Σ = λ 1 α 1 α 1 ′ + ⋯ + λ p α p α p ′ {\displaystyle \mathbf {\Sigma }
+        =\lambda _{1}\alpha _{1}\alpha _{1}'+\cdots +\lambda _{p}\alpha _{p}\
+        alpha _{p}'} {\displaystyle \mathbf {\Sigma } =\lambda _{1}\alpha _{1}\
+        alpha _{1}'+\cdots +\lambda _{p}\alpha _{p}\alpha _{p}'}
+
+Before we look at its usage, we first look at diagonal elements,
+
+    Var ⁡ ( x j ) = ∑ k = 1 P λ k α k j 2 {\displaystyle \operatorname {Var}
+    (x_{j})=\sum _{k=1}^{P}\lambda _{k}\alpha _{kj}^{2}} {\displaystyle \
+    operatorname {Var} (x_{j})=\sum _{k=1}^{P}\lambda _{k}\alpha _{kj}^{2}}
+
+Then, perhaps the main statistical implication of the result is that not only
+can we decompose the combined variances of all the elements of x into
+decreasing contributions due to each PC, but we can also decompose the whole
+covariance matrix into contributions λ k α k α k ′ {\displaystyle \lambda _{k}\
+alpha _{k}\alpha _{k}'} {\displaystyle \lambda _{k}\alpha _{k}\alpha _{k}'}
+from each PC. Although not strictly decreasing, the elements of λ k α k α k ′
+{\displaystyle \lambda _{k}\alpha _{k}\alpha _{k}'} {\displaystyle \lambda _{k}
+\alpha _{k}\alpha _{k}'} will tend to become smaller as k {\displaystyle k} k
+increases, as λ k α k α k ′ {\displaystyle \lambda _{k}\alpha _{k}\alpha _{k}'}
+{\displaystyle \lambda _{k}\alpha _{k}\alpha _{k}'} is nonincreasing for
+increasing k {\displaystyle k} k, whereas the elements of α k {\displaystyle \
+alpha _{k}} \alpha _{k} tend to stay about the same size because of the
+normalization constraints: α k ′ α k = 1 , k = 1 , … , p {\displaystyle \alpha
+_{k}'\alpha _{k}=1,k=1,\dots ,p} {\displaystyle \alpha _{k}'\alpha _{k}=1,k=1,\
+dots ,p}.
+
+Limitations[edit]
+
+As noted above, the results of PCA depend on the scaling of the variables. This
+can be cured by scaling each feature by its standard deviation, so that one
+ends up with dimensionless features with unital variance.^[16]
+
+The applicability of PCA as described above is limited by certain (tacit)
+assumptions^[17] made in its derivation. In particular, PCA can capture linear
+correlations between the features but fails when this assumption is violated
+(see Figure 6a in the reference). In some cases, coordinate transformations can
+restore the linearity assumption and PCA can then be applied (see kernel PCA).
+
+Another limitation is the mean-removal process before constructing the
+covariance matrix for PCA. In fields such as astronomy, all the signals are
+non-negative, and the mean-removal process will force the mean of some
+astrophysical exposures to be zero, which consequently creates unphysical
+negative fluxes,^[18] and forward modeling has to be performed to recover the
+true magnitude of the signals.^[19] As an alternative method, non-negative
+matrix factorization focusing only on the non-negative elements in the
+matrices, which is well-suited for astrophysical observations.^[20]^[21]^[22]
+See more at Relation between PCA and Non-negative Matrix Factorization.
+
+PCA is at a disadvantage if the data has not been standardized before applying
+the algorithm to it. PCA transforms original data into data that is relevant to
+the principal components of that data, which means that the new data variables
+cannot be interpreted in the same ways that the originals were. They are linear
+interpretations of the original variables. Also, if PCA is not performed
+properly, there is a high likelihood of information loss.^[23]
+
+PCA relies on a linear model. If a dataset has a pattern hidden inside it that
+is nonlinear, then PCA can actually steer the analysis in the complete opposite
+direction of progress.^[24]^[page needed] Researchers at Kansas State
+University discovered that the sampling error in their experiments impacted the
+bias of PCA results. "If the number of subjects or blocks is smaller than 30,
+and/or the researcher is interested in PC's beyond the first, it may be better
+to first correct for the serial correlation, before PCA is conducted".^[25] The
+researchers at Kansas State also found that PCA could be "seriously biased if
+the autocorrelation structure of the data is not correctly handled".^[25]
+
+PCA and information theory[edit]
+
+Dimensionality reduction results in a loss of information, in general.
+PCA-based dimensionality reduction tends to minimize that information loss,
+under certain signal and noise models.
+
+Under the assumption that
+
+    x = s + n , {\displaystyle \mathbf {x} =\mathbf {s} +\mathbf {n} ,} {\
+    displaystyle \mathbf {x} =\mathbf {s} +\mathbf {n} ,}
+
+that is, that the data vector x {\displaystyle \mathbf {x} } \mathbf {x} is the
+sum of the desired information-bearing signal s {\displaystyle \mathbf {s} } \
+mathbf {s} and a noise signal n {\displaystyle \mathbf {n} } \mathbf {n} one
+can show that PCA can be optimal for dimensionality reduction, from an
+information-theoretic point-of-view.
+
+In particular, Linsker showed that if s {\displaystyle \mathbf {s} } \mathbf
+{s} is Gaussian and n {\displaystyle \mathbf {n} } \mathbf {n} is Gaussian
+noise with a covariance matrix proportional to the identity matrix, the PCA
+maximizes the mutual information I ( y ; s ) {\displaystyle I(\mathbf {y} ;\
+mathbf {s} )} I(\mathbf{y};\mathbf{s}) between the desired information s {\
+displaystyle \mathbf {s} } \mathbf {s} and the dimensionality-reduced output y
+= W L T x {\displaystyle \mathbf {y} =\mathbf {W} _{L}^{T}\mathbf {x} } \mathbf
+{y}=\mathbf{W}_L^T\mathbf{x}.^[26]
+
+If the noise is still Gaussian and has a covariance matrix proportional to the
+identity matrix (that is, the components of the vector n {\displaystyle \mathbf
+{n} } \mathbf {n} are iid), but the information-bearing signal s {\displaystyle
+\mathbf {s} } \mathbf {s} is non-Gaussian (which is a common scenario), PCA at
+least minimizes an upper bound on the information loss, which is defined as^
+[27]^[28]
+
+    I ( x ; s ) − I ( y ; s ) . {\displaystyle I(\mathbf {x} ;\mathbf {s} )-I(\
+    mathbf {y} ;\mathbf {s} ).} {\displaystyle I(\mathbf {x} ;\mathbf {s} )-I(\
+    mathbf {y} ;\mathbf {s} ).}
+
+The optimality of PCA is also preserved if the noise n {\displaystyle \mathbf
+{n} } \mathbf {n} is iid and at least more Gaussian (in terms of the
+Kullback–Leibler divergence) than the information-bearing signal s {\
+displaystyle \mathbf {s} } \mathbf {s} .^[29] In general, even if the above
+signal model holds, PCA loses its information-theoretic optimality as soon as
+the noise n {\displaystyle \mathbf {n} } \mathbf {n} becomes dependent.
+
+Computing PCA using the covariance method[edit]
+
+The following is a detailed description of PCA using the covariance method (see
+also here) as opposed to the correlation method.^[30]
+
+The goal is to transform a given data set X of dimension p to an alternative
+data set Y of smaller dimension L. Equivalently, we are seeking to find the
+matrix Y, where Y is the Karhunen–Loève transform (KLT) of matrix X:
+
+    Y = K L T { X } {\displaystyle \mathbf {Y} =\mathbb {KLT} \{\mathbf {X} \}}
+    \mathbf{Y} = \mathbb{KLT} \{ \mathbf{X} \}
+
+Organize the data set
+
+Suppose you have data comprising a set of observations of p variables, and you
+want to reduce the data so that each observation can be described with only L
+variables, L < p. Suppose further, that the data are arranged as a set of n
+data vectors x 1 … x n {\displaystyle \mathbf {x} _{1}\ldots \mathbf {x} _{n}} 
+\mathbf{x}_1 \ldots \mathbf{x}_n with each x i {\displaystyle \mathbf {x} _{i}}
+\mathbf {x} _{i} representing a single grouped observation of the p variables.
+
+  • Write x 1 … x n {\displaystyle \mathbf {x} _{1}\ldots \mathbf {x} _{n}} \
+    mathbf{x}_1 \ldots \mathbf{x}_n as row vectors, each with p elements.
+  • Place the row vectors into a single matrix X of dimensions n × p.
+
+Calculate the empirical mean
+
+  • Find the empirical mean along each column j = 1, ..., p.
+  • Place the calculated mean values into an empirical mean vector u of
+    dimensions p × 1.
+
+        u j = 1 n ∑ i = 1 n X i j {\displaystyle u_{j}={\frac {1}{n}}\sum _{i=
+        1}^{n}X_{ij}} {\displaystyle u_{j}={\frac {1}{n}}\sum _{i=1}^{n}X_{ij}}
+
+Calculate the deviations from the mean
+
+Mean subtraction is an integral part of the solution towards finding a
+principal component basis that minimizes the mean square error of approximating
+the data.^[31] Hence we proceed by centering the data as follows:
+
+  • Subtract the empirical mean vector u T {\displaystyle \mathbf {u} ^{T}} {\
+    displaystyle \mathbf {u} ^{T}} from each row of the data matrix X.
+  • Store mean-subtracted data in the n × p matrix B.
+
+        B = X − h u T {\displaystyle \mathbf {B} =\mathbf {X} -\mathbf {h} \
+        mathbf {u} ^{T}} {\displaystyle \mathbf {B} =\mathbf {X} -\mathbf {h} \
+        mathbf {u} ^{T}}
+        where h is an n × 1 column vector of all 1s:
+
+            h i = 1 for  i = 1 , … , n {\displaystyle h_{i}=1\,\qquad \qquad {\
+            text{for }}i=1,\ldots ,n} {\displaystyle h_{i}=1\,\qquad \qquad {\
+            text{for }}i=1,\ldots ,n}
+
+In some applications, each variable (column of B) may also be scaled to have a
+variance equal to 1 (see Z-score).^[32] This step affects the calculated
+principal components, but makes them independent of the units used to measure
+the different variables.
+
+Find the covariance matrix
+
+  • Find the p × p empirical covariance matrix C from matrix B:
+    C = 1 n − 1 B ∗ B {\displaystyle \mathbf {C} ={1 \over {n-1}}\mathbf {B} ^
+    {*}\mathbf {B} }
+    {\displaystyle \mathbf {C} ={1 \over {n-1}}\mathbf {B} ^{*}\mathbf {B} }
+    where ∗ {\displaystyle *} * is the conjugate transpose operator. If B
+    consists entirely of real numbers, which is the case in many applications,
+    the "conjugate transpose" is the same as the regular transpose.
+  • The reasoning behind using n − 1 instead of n to calculate the covariance
+    is Bessel's correction.
+
+Find the eigenvectors and eigenvalues of the covariance matrix
+
+  • Compute the matrix V of eigenvectors which diagonalizes the covariance
+    matrix C:
+    V − 1 C V = D {\displaystyle \mathbf {V} ^{-1}\mathbf {C} \mathbf {V} =\
+    mathbf {D} }
+    {\displaystyle \mathbf {V} ^{-1}\mathbf {C} \mathbf {V} =\mathbf {D} }
+    where D is the diagonal matrix of eigenvalues of C. This step will
+    typically involve the use of a computer-based algorithm for computing
+    eigenvectors and eigenvalues. These algorithms are readily available as
+    sub-components of most matrix algebra systems, such as SAS,^[33] R, MATLAB,
+    ^[34]^[35] Mathematica,^[36] SciPy, IDL (Interactive Data Language), or GNU
+    Octave as well as OpenCV.
+  • Matrix D will take the form of an p × p diagonal matrix, where
+    D k ℓ = λ k for  k = ℓ {\displaystyle D_{k\ell }=\lambda _{k}\qquad {\text
+    {for }}k=\ell }
+    {\displaystyle D_{k\ell }=\lambda _{k}\qquad {\text{for }}k=\ell }
+    is the jth eigenvalue of the covariance matrix C, and
+    D k ℓ = 0 for  k ≠ ℓ . {\displaystyle D_{k\ell }=0\qquad {\text{for }}k\neq
+    \ell .}
+    {\displaystyle D_{k\ell }=0\qquad {\text{for }}k\neq \ell .}
+  • Matrix V, also of dimension p × p, contains p column vectors, each of
+    length p, which represent the p eigenvectors of the covariance matrix C.
+  • The eigenvalues and eigenvectors are ordered and paired. The jth eigenvalue
+    corresponds to the jth eigenvector.
+  • Matrix V denotes the matrix of right eigenvectors (as opposed to left
+    eigenvectors). In general, the matrix of right eigenvectors need not be the
+    (conjugate) transpose of the matrix of left eigenvectors.
+
+Rearrange the eigenvectors and eigenvalues
+
+  • Sort the columns of the eigenvector matrix V and eigenvalue matrix D in
+    order of decreasing eigenvalue.
+  • Make sure to maintain the correct pairings between the columns in each
+    matrix.
+
+Compute the cumulative energy content for each eigenvector
+
+  • The eigenvalues represent the distribution of the source data's energy^[
+    clarification needed] among each of the eigenvectors, where the
+    eigenvectors form a basis for the data. The cumulative energy content g for
+    the jth eigenvector is the sum of the energy content across all of the
+    eigenvalues from 1 through j:
+
+        g j = ∑ k = 1 j D k k for  j = 1 , … , p {\displaystyle g_{j}=\sum _{k=
+        1}^{j}D_{kk}\qquad {\text{for }}j=1,\dots ,p} {\displaystyle g_{j}=\sum
+        _{k=1}^{j}D_{kk}\qquad {\text{for }}j=1,\dots ,p}^[citation needed]
+
+Select a subset of the eigenvectors as basis vectors
+
+  • Save the first L columns of V as the p × L matrix W:
+    W k l = V k ℓ for  k = 1 , … , p ℓ = 1 , … , L {\displaystyle W_{kl}=V_{k\
+    ell }\qquad {\text{for }}k=1,\dots ,p\qquad \ell =1,\dots ,L}
+    {\displaystyle W_{kl}=V_{k\ell }\qquad {\text{for }}k=1,\dots ,p\qquad \ell
+    =1,\dots ,L}
+    where
+    1 ≤ L ≤ p . {\displaystyle 1\leq L\leq p.}
+    {\displaystyle 1\leq L\leq p.}
+  • Use the vector g as a guide in choosing an appropriate value for L. The
+    goal is to choose a value of L as small as possible while achieving a
+    reasonably high value of g on a percentage basis. For example, you may want
+    to choose L so that the cumulative energy g is above a certain threshold,
+    like 90 percent. In this case, choose the smallest value of L such that
+    g L g p ≥ 0.9 {\displaystyle {\frac {g_{L}}{g_{p}}}\geq 0.9}
+    {\displaystyle {\frac {g_{L}}{g_{p}}}\geq 0.9}
+
+Project the data onto the new basis
+
+  • The projected data points are the rows of the matrix
+    T = B ⋅ W {\displaystyle \mathbf {T} =\mathbf {B} \cdot \mathbf {W} }
+    {\displaystyle \mathbf {T} =\mathbf {B} \cdot \mathbf {W} }
+
+That is, the first column of T {\displaystyle \mathbf {T} } \mathbf {T} is the
+projection of the data points onto the first principal component, the second
+column is the projection onto the second principal component, etc.
+
+Derivation of PCA using the covariance method[edit]
+
+Let X be a d-dimensional random vector expressed as column vector. Without loss
+of generality, assume X has zero mean.
+
+We want to find ( ∗ ) {\displaystyle (\ast )} {\displaystyle (\ast )} a d × d
+orthonormal transformation matrix P so that PX has a diagonal covariance matrix
+(that is, PX is a random vector with all its distinct components pairwise
+uncorrelated).
+
+A quick computation assuming P {\displaystyle P} P were unitary yields:
+
+    cov ⁡ ( P X ) = E ⁡ [ P X   ( P X ) ∗ ] = E ⁡ [ P X   X ∗ P ∗ ] = P E ⁡ [ X
+    X ∗ ] P ∗ = P cov ⁡ ( X ) P − 1 {\displaystyle {\begin{aligned}\
+    operatorname {cov} (PX)&=\operatorname {E} [PX~(PX)^{*}]\\&=\operatorname
+    {E} [PX~X^{*}P^{*}]\\&=P\operatorname {E} [XX^{*}]P^{*}\\&=P\operatorname
+    {cov} (X)P^{-1}\\\end{aligned}}} {\displaystyle {\begin{aligned}\
+    operatorname {cov} (PX)&=\operatorname {E} [PX~(PX)^{*}]\\&=\operatorname
+    {E} [PX~X^{*}P^{*}]\\&=P\operatorname {E} [XX^{*}]P^{*}\\&=P\operatorname
+    {cov} (X)P^{-1}\\\end{aligned}}}
+
+Hence ( ∗ ) {\displaystyle (\ast )} {\displaystyle (\ast )} holds if and only
+if cov ⁡ ( X ) {\displaystyle \operatorname {cov} (X)} \operatorname {cov}(X)
+were diagonalisable by P {\displaystyle P} P.
+
+This is very constructive, as cov(X) is guaranteed to be a non-negative
+definite matrix and thus is guaranteed to be diagonalisable by some unitary
+matrix.
+
+Covariance-free computation[edit]
+
+In practical implementations, especially with high dimensional data (large p),
+the naive covariance method is rarely used because it is not efficient due to
+high computational and memory costs of explicitly determining the covariance
+matrix. The covariance-free approach avoids the np^2 operations of explicitly
+calculating and storing the covariance matrix X^TX, instead utilizing one of
+matrix-free methods, for example, based on the function evaluating the product 
+X^T(X r) at the cost of 2np operations.
+
+Iterative computation[edit]
+
+One way to compute the first principal component efficiently^[37] is shown in
+the following pseudo-code, for a data matrix X with zero mean, without ever
+computing its covariance matrix.
+
+r = a random vector of length p
+r = r / norm(r)
+do c times:
+      s = 0 (a vector of length p)
+      for each row x in X
+            s = s + (x ⋅ r) x
+      λ = r^Ts // λ is the eigenvalue
+      error = |λ ⋅ r − s|
+      r = s / norm(s)
+      exit if error < tolerance
+return λ, r
+
+This power iteration algorithm simply calculates the vector X^T(X r),
+normalizes, and places the result back in r. The eigenvalue is approximated by 
+r^T (X^TX) r, which is the Rayleigh quotient on the unit vector r for the
+covariance matrix X^TX . If the largest singular value is well separated from
+the next largest one, the vector r gets close to the first principal component
+of X within the number of iterations c, which is small relative to p, at the
+total cost 2cnp. The power iteration convergence can be accelerated without
+noticeably sacrificing the small cost per iteration using more advanced
+matrix-free methods, such as the Lanczos algorithm or the Locally Optimal Block
+Preconditioned Conjugate Gradient (LOBPCG) method.
+
+Subsequent principal components can be computed one-by-one via deflation or
+simultaneously as a block. In the former approach, imprecisions in already
+computed approximate principal components additively affect the accuracy of the
+subsequently computed principal components, thus increasing the error with
+every new computation. The latter approach in the block power method replaces
+single-vectors r and s with block-vectors, matrices R and S. Every column of R
+approximates one of the leading principal components, while all columns are
+iterated simultaneously. The main calculation is evaluation of the product X^T
+(X R). Implemented, for example, in LOBPCG, efficient blocking eliminates the
+accumulation of the errors, allows using high-level BLAS matrix-matrix product
+functions, and typically leads to faster convergence, compared to the
+single-vector one-by-one technique.
+
+The NIPALS method[edit]
+
+Non-linear iterative partial least squares (NIPALS) is a variant the classical
+power iteration with matrix deflation by subtraction implemented for computing
+the first few components in a principal component or partial least squares
+analysis. For very-high-dimensional datasets, such as those generated in the
+*omics sciences (for example, genomics, metabolomics) it is usually only
+necessary to compute the first few PCs. The non-linear iterative partial least
+squares (NIPALS) algorithm updates iterative approximations to the leading
+scores and loadings t[1] and r[1]^T by the power iteration multiplying on every
+iteration by X on the left and on the right, that is, calculation of the
+covariance matrix is avoided, just as in the matrix-free implementation of the
+power iterations to X^TX, based on the function evaluating the product X^T(X r)
+= ((X r)^TX)^T.
+
+The matrix deflation by subtraction is performed by subtracting the outer
+product, t[1]r[1]^T from X leaving the deflated residual matrix used to
+calculate the subsequent leading PCs.^[38] For large data matrices, or matrices
+that have a high degree of column collinearity, NIPALS suffers from loss of
+orthogonality of PCs due to machine precision round-off errors accumulated in
+each iteration and matrix deflation by subtraction.^[39] A Gram–Schmidt
+re-orthogonalization algorithm is applied to both the scores and the loadings
+at each iteration step to eliminate this loss of orthogonality.^[40] NIPALS
+reliance on single-vector multiplications cannot take advantage of high-level
+BLAS and results in slow convergence for clustered leading singular values—both
+these deficiencies are resolved in more sophisticated matrix-free block
+solvers, such as the Locally Optimal Block Preconditioned Conjugate Gradient (
+LOBPCG) method.
+
+Online/sequential estimation[edit]
+
+In an "online" or "streaming" situation with data arriving piece by piece
+rather than being stored in a single batch, it is useful to make an estimate of
+the PCA projection that can be updated sequentially. This can be done
+efficiently, but requires different algorithms.^[41]
+
+PCA and qualitative variables[edit]
+
+In PCA, it is common that we want to introduce qualitative variables as
+supplementary elements. For example, many quantitative variables have been
+measured on plants. For these plants, some qualitative variables are available
+as, for example, the species to which the plant belongs. These data were
+subjected to PCA for quantitative variables. When analyzing the results, it is
+natural to connect the principal components to the qualitative variable species
+. For this, the following results are produced.
+
+  • Identification, on the factorial planes, of the different species, for
+    example, using different colors.
+  • Representation, on the factorial planes, of the centers of gravity of
+    plants belonging to the same species.
+  • For each center of gravity and each axis, p-value to judge the significance
+    of the difference between the center of gravity and origin.
+
+These results are what is called introducing a qualitative variable as
+supplementary element. This procedure is detailed in and Husson, Lê & Pagès
+2009 and Pagès 2013. Few software offer this option in an "automatic" way. This
+is the case of SPAD that historically, following the work of Ludovic Lebart,
+was the first to propose this option, and the R package FactoMineR.
+
+Applications[edit]
+
+Quantitative finance[edit]
+
+See also: Portfolio optimization
+
+In quantitative finance, principal component analysis can be directly applied
+to the risk management of interest rate derivative portfolios.^[42] Trading
+multiple swap instruments which are usually a function of 30–500 other market
+quotable swap instruments is sought to be reduced to usually 3 or 4 principal
+components, representing the path of interest rates on a macro basis.
+Converting risks to be represented as those to factor loadings (or multipliers)
+provides assessments and understanding beyond that available to simply
+collectively viewing risks to individual 30–500 buckets.
+
+PCA has also been applied to equity portfolios in a similar fashion,^[43] both
+to portfolio risk and to risk return. One application is to reduce portfolio
+risk, where allocation strategies are applied to the "principal portfolios"
+instead of the underlying stocks.^[44] A second is to enhance portfolio return,
+using the principal components to select stocks with upside potential.^[
+citation needed]
+
+Neuroscience[edit]
+
+A variant of principal components analysis is used in neuroscience to identify
+the specific properties of a stimulus that increase a neuron's probability of
+generating an action potential.^[45] This technique is known as spike-triggered
+covariance analysis. In a typical application an experimenter presents a white
+noise process as a stimulus (usually either as a sensory input to a test
+subject, or as a current injected directly into the neuron) and records a train
+of action potentials, or spikes, produced by the neuron as a result.
+Presumably, certain features of the stimulus make the neuron more likely to
+spike. In order to extract these features, the experimenter calculates the
+covariance matrix of the spike-triggered ensemble, the set of all stimuli
+(defined and discretized over a finite time window, typically on the order of
+100 ms) that immediately preceded a spike. The eigenvectors of the difference
+between the spike-triggered covariance matrix and the covariance matrix of the
+prior stimulus ensemble (the set of all stimuli, defined over the same length
+time window) then indicate the directions in the space of stimuli along which
+the variance of the spike-triggered ensemble differed the most from that of the
+prior stimulus ensemble. Specifically, the eigenvectors with the largest
+positive eigenvalues correspond to the directions along which the variance of
+the spike-triggered ensemble showed the largest positive change compared to the
+variance of the prior. Since these were the directions in which varying the
+stimulus led to a spike, they are often good approximations of the sought after
+relevant stimulus features.
+
+In neuroscience, PCA is also used to discern the identity of a neuron from the
+shape of its action potential. Spike sorting is an important procedure because
+extracellular recording techniques often pick up signals from more than one
+neuron. In spike sorting, one first uses PCA to reduce the dimensionality of
+the space of action potential waveforms, and then performs clustering analysis
+to associate specific action potentials with individual neurons.
+
+PCA as a dimension reduction technique is particularly suited to detect
+coordinated activities of large neuronal ensembles. It has been used in
+determining collective variables, that is, order parameters, during phase
+transitions in the brain.^[46]
+
+Relation with other methods[edit]
+
+Correspondence analysis[edit]
+
+Correspondence analysis (CA) was developed by Jean-Paul Benzécri^[47] and is
+conceptually similar to PCA, but scales the data (which should be non-negative)
+so that rows and columns are treated equivalently. It is traditionally applied
+to contingency tables. CA decomposes the chi-squared statistic associated to
+this table into orthogonal factors.^[48] Because CA is a descriptive technique,
+it can be applied to tables for which the chi-squared statistic is appropriate
+or not. Several variants of CA are available including detrended correspondence
+analysis and canonical correspondence analysis. One special extension is
+multiple correspondence analysis, which may be seen as the counterpart of
+principal component analysis for categorical data.^[49]
+
+Factor analysis[edit]
+
+Principal component analysis creates variables that are linear combinations of
+the original variables. The new variables have the property that the variables
+are all orthogonal. The PCA transformation can be helpful as a pre-processing
+step before clustering. PCA is a variance-focused approach seeking to reproduce
+the total variable variance, in which components reflect both common and unique
+variance of the variable. PCA is generally preferred for purposes of data
+reduction (that is, translating variable space into optimal factor space) but
+not when the goal is to detect the latent construct or factors.
+
+Factor analysis is similar to principal component analysis, in that factor
+analysis also involves linear combinations of variables. Different from PCA,
+factor analysis is a correlation-focused approach seeking to reproduce the
+inter-correlations among variables, in which the factors "represent the common
+variance of variables, excluding unique variance".^[50] In terms of the
+correlation matrix, this corresponds with focusing on explaining the
+off-diagonal terms (that is, shared co-variance), while PCA focuses on
+explaining the terms that sit on the diagonal. However, as a side result, when
+trying to reproduce the on-diagonal terms, PCA also tends to fit relatively
+well the off-diagonal correlations.^[10]^: 158  Results given by PCA and factor
+analysis are very similar in most situations, but this is not always the case,
+and there are some problems where the results are significantly different.
+Factor analysis is generally used when the research purpose is detecting data
+structure (that is, latent constructs or factors) or causal modeling. If the
+factor model is incorrectly formulated or the assumptions are not met, then
+factor analysis will give erroneous results.^[51]
+
+K-means clustering[edit]
+
+It has been asserted that the relaxed solution of k-means clustering, specified
+by the cluster indicators, is given by the principal components, and the PCA
+subspace spanned by the principal directions is identical to the cluster
+centroid subspace.^[52]^[53] However, that PCA is a useful relaxation of k
+-means clustering was not a new result,^[54] and it is straightforward to
+uncover counterexamples to the statement that the cluster centroid subspace is
+spanned by the principal directions.^[55]
+
+Non-negative matrix factorization[edit]
+
+[page1-500px-Fractional_Residual_Variances_comparison]
+ 
+Fractional residual variance (FRV) plots for PCA and NMF;^[22] for PCA, the
+theoretical values are the contribution from the residual eigenvalues. In
+comparison, the FRV curves for PCA reaches a flat plateau where no signal are
+captured effectively; while the NMF FRV curves are declining continuously,
+indicating a better ability to capture signal. The FRV curves for NMF also
+converges to higher levels than PCA, indicating the less-overfitting property
+of NMF.
+
+Non-negative matrix factorization (NMF) is a dimension reduction method where
+only non-negative elements in the matrices are used, which is therefore a
+promising method in astronomy,^[20]^[21]^[22] in the sense that astrophysical
+signals are non-negative. The PCA components are orthogonal to each other,
+while the NMF components are all non-negative and therefore constructs a
+non-orthogonal basis.
+
+In PCA, the contribution of each component is ranked based on the magnitude of
+its corresponding eigenvalue, which is equivalent to the fractional residual
+variance (FRV) in analyzing empirical data.^[18] For NMF, its components are
+ranked based only on the empirical FRV curves.^[22] The residual fractional
+eigenvalue plots, that is, 1 − ∑ i = 1 k λ i / ∑ j = 1 n λ j {\displaystyle 1-\
+sum _{i=1}^{k}\lambda _{i}{\Big /}\sum _{j=1}^{n}\lambda _{j}} {\displaystyle
+1-\sum _{i=1}^{k}\lambda _{i}{\Big /}\sum _{j=1}^{n}\lambda _{j}} as a function
+of component number k {\displaystyle k} k given a total of n {\displaystyle n} 
+n components, for PCA has a flat plateau, where no data is captured to remove
+the quasi-static noise, then the curves dropped quickly as an indication of
+over-fitting and captures random noise.^[18] The FRV curves for NMF is
+decreasing continuously^[22] when the NMF components are constructed
+sequentially,^[21] indicating the continuous capturing of quasi-static noise;
+then converge to higher levels than PCA,^[22] indicating the less over-fitting
+property of NMF.
+
+Iconography of correlations[edit]
+
+It is often difficult to interpret the principal components when the data
+include many variables of various origins, or when some variables are
+qualitative. This leads the PCA user to a delicate elimination of several
+variables. If observations or variables have an excessive impact on the
+direction of the axes, they should be removed and then projected as
+supplementary elements. In addition, it is necessary to avoid interpreting the
+proximities between the points close to the center of the factorial plane.
+
+[220px-AirMerIconographyCor]
+ 
+Iconography of correlations - Geochemistry of marine aerosols
+
+The iconography of correlations, on the contrary, which is not a projection on
+a system of axes, does not have these drawbacks. We can therefore keep all the
+variables.
+
+The principle of the diagram is to underline the "remarkable" correlations of
+the correlation matrix, by a solid line (positive correlation) or dotted line
+(negative correlation).
+
+A strong correlation is not "remarkable" if it is not direct, but caused by the
+effect of a third variable. Conversely, weak correlations can be "remarkable".
+For example, if a variable Y depends on several independent variables, the
+correlations of Y with each of them are weak and yet "remarkable".
+
+Generalizations[edit]
+
+Sparse PCA[edit]
+
+Main article: Sparse PCA
+
+A particular disadvantage of PCA is that the principal components are usually
+linear combinations of all input variables. Sparse PCA overcomes this
+disadvantage by finding linear combinations that contain just a few input
+variables. It extends the classic method of principal component analysis (PCA)
+for the reduction of dimensionality of data by adding sparsity constraint on
+the input variables. Several approaches have been proposed, including
+
+  • a regression framework,^[56]
+  • a convex relaxation/semidefinite programming framework,^[57]
+  • a generalized power method framework^[58]
+  • an alternating maximization framework^[59]
+  • forward-backward greedy search and exact methods using branch-and-bound
+    techniques,^[60]
+  • Bayesian formulation framework.^[61]
+
+The methodological and theoretical developments of Sparse PCA as well as its
+applications in scientific studies were recently reviewed in a survey paper.^
+[62]
+
+Nonlinear PCA[edit]
+
+[300px-Elmap_breastcancer_wiki]
+ 
+Linear PCA versus nonlinear Principal Manifolds^[63] for visualization of
+breast cancer microarray data: a) Configuration of nodes and 2D Principal
+Surface in the 3D PCA linear manifold. The dataset is curved and cannot be
+mapped adequately on a 2D principal plane; b) The distribution in the internal
+2D non-linear principal surface coordinates (ELMap2D) together with an
+estimation of the density of points; c) The same as b), but for the linear 2D
+PCA manifold (PCA2D). The "basal" breast cancer subtype is visualized more
+adequately with ELMap2D and some features of the distribution become better
+resolved in comparison to PCA2D. Principal manifolds are produced by the
+elastic maps algorithm. Data are available for public competition.^[64]
+Software is available for free non-commercial use.^[65]
+
+Most of the modern methods for nonlinear dimensionality reduction find their
+theoretical and algorithmic roots in PCA or K-means. Pearson's original idea
+was to take a straight line (or plane) which will be "the best fit" to a set of
+data points. Trevor Hastie expanded on this concept by proposing Principal 
+curves^[66] as the natural extension for the geometric interpretation of PCA,
+which explicitly constructs a manifold for data approximation followed by
+projecting the points onto it, as is illustrated by Fig. See also the elastic
+map algorithm and principal geodesic analysis.^[67] Another popular
+generalization is kernel PCA, which corresponds to PCA performed in a
+reproducing kernel Hilbert space associated with a positive definite kernel.
+
+In multilinear subspace learning,^[68] PCA is generalized to multilinear PCA
+(MPCA) that extracts features directly from tensor representations. MPCA is
+solved by performing PCA in each mode of the tensor iteratively. MPCA has been
+applied to face recognition, gait recognition, etc. MPCA is further extended to
+uncorrelated MPCA, non-negative MPCA and robust MPCA.
+
+N-way principal component analysis may be performed with models such as Tucker
+decomposition, PARAFAC, multiple factor analysis, co-inertia analysis, STATIS,
+and DISTATIS.
+
+Robust PCA[edit]
+
+While PCA finds the mathematically optimal method (as in minimizing the squared
+error), it is still sensitive to outliers in the data that produce large
+errors, something that the method tries to avoid in the first place. It is
+therefore common practice to remove outliers before computing PCA. However, in
+some contexts, outliers can be difficult to identify. For example, in data
+mining algorithms like correlation clustering, the assignment of points to
+clusters and outliers is not known beforehand. A recently proposed
+generalization of PCA^[69] based on a weighted PCA increases robustness by
+assigning different weights to data objects based on their estimated relevancy.
+
+Outlier-resistant variants of PCA have also been proposed, based on L1-norm
+formulations (L1-PCA).^[5]^[3]
+
+Robust principal component analysis (RPCA) via decomposition in low-rank and
+sparse matrices is a modification of PCA that works well with respect to
+grossly corrupted observations.^[70]^[71]^[72]
+
+Similar techniques[edit]
+
+Independent component analysis[edit]
+
+Independent component analysis (ICA) is directed to similar problems as
+principal component analysis, but finds additively separable components rather
+than successive approximations.
+
+Network component analysis[edit]
+
+Given a matrix E {\displaystyle E} E, it tries to decompose it into two
+matrices such that E = A P {\displaystyle E=AP} E=AP . A key difference from
+techniques such as PCA and ICA is that some of the entries of A {\displaystyle
+A} A are constrained to be 0. Here P {\displaystyle P} P is termed the
+regulatory layer. While in general such a decomposition can have multiple
+solutions, they prove that if the following conditions are satisfied :
+
+ 1. A {\displaystyle A} A has full column rank
+ 2. Each column of A {\displaystyle A} A must have at least L − 1 {\
+    displaystyle L-1} L-1 zeroes where L {\displaystyle L} L is the number of
+    columns of A {\displaystyle A} A (or alternatively the number of rows of P
+    {\displaystyle P} P). The justification for this criterion is that if a
+    node is removed from the regulatory layer along with all the output nodes
+    connected to it, the result must still be characterized by a connectivity
+    matrix with full column rank.
+ 3. P {\displaystyle P} P must have full row rank.
+
+then the decomposition is unique up to multiplication by a scalar.^[73]
+
+Discriminant analysis of principal components[edit]
+
+Discriminant analysis of principal components (DAPC) is a multivariate method
+used to identify and describe clusters of genetically related individuals.
+Genetic variation is partitioned into two components: variation between groups
+and within groups, and it maximizes the former. Linear discriminants are linear
+combinations of alleles which best separate the clusters. Alleles that most
+contribute to this discrimination are therefore those that are the most
+markedly different across groups. The contributions of alleles to the groupings
+identified by DAPC can allow identifying regions of the genome driving the
+genetic divergence among groups^[74] In DAPC, data is first transformed using a
+principal components analysis (PCA) and subsequently clusters are identified
+using discriminant analysis (DA).
+
+A DAPC can be realized on R using the package Adegenet. (more info: https://
+adegenet.r-forge.r-project.org/)
+
+Software/source code[edit]
+
+  • ALGLIB - a C++ and C# library that implements PCA and truncated PCA
+  • Analytica – The built-in EigenDecomp function computes principal
+    components.
+  • ELKI – includes PCA for projection, including robust variants of PCA, as
+    well as PCA-based clustering algorithms.
+  • Gretl – principal component analysis can be performed either via the pca
+    command or via the princomp() function.
+  • Julia – Supports PCA with the pca function in the MultivariateStats package
+  • KNIME – A java based nodal arranging software for Analysis, in this the
+    nodes called PCA, PCA compute, PCA Apply, PCA inverse make it easily.
+  • Mathematica – Implements principal component analysis with the
+    PrincipalComponents command using both covariance and correlation methods.
+  • MathPHP – PHP mathematics library with support for PCA.
+  • MATLAB Statistics Toolbox – The functions princomp and pca (R2012b) give
+    the principal components, while the function pcares gives the residuals and
+    reconstructed matrix for a low-rank PCA approximation.
+  • Matplotlib – Python library have a PCA package in the .mlab module.
+  • mlpack – Provides an implementation of principal component analysis in C++.
+  • NAG Library – Principal components analysis is implemented via the g03aa
+    routine (available in both the Fortran versions of the Library).
+  • NMath – Proprietary numerical library containing PCA for the .NET Framework
+    .
+  • GNU Octave – Free software computational environment mostly compatible with
+    MATLAB, the function princomp gives the principal component.
+  • OpenCV
+  • Oracle Database 12c – Implemented via DBMS_DATA_MINING.SVDS_SCORING_MODE by
+    specifying setting value SVDS_SCORING_PCA
+  • Orange (software) – Integrates PCA in its visual programming environment.
+    PCA displays a scree plot (degree of explained variance) where user can
+    interactively select the number of principal components.
+  • Origin – Contains PCA in its Pro version.
+  • Qlucore – Commercial software for analyzing multivariate data with instant
+    response using PCA.
+  • R – Free statistical package, the functions princomp and prcomp can be used
+    for principal component analysis; prcomp uses singular value decomposition
+    which generally gives better numerical accuracy. Some packages that
+    implement PCA in R, include, but are not limited to: ade4, vegan,
+    ExPosition, dimRed, and FactoMineR.
+  • SAS – Proprietary software; for example, see^[75]
+  • Scikit-learn – Python library for machine learning which contains PCA,
+    Probabilistic PCA, Kernel PCA, Sparse PCA and other techniques in the
+    decomposition module.
+  • Weka – Java library for machine learning which contains modules for
+    computing principal components.
+
+See also[edit]
+
+  • Correspondence analysis (for contingency tables)
+  • Multiple correspondence analysis (for qualitative variables)
+  • Factor analysis of mixed data (for quantitative and qualitative variables)
+  • Canonical correlation
+  • CUR matrix approximation (can replace of low-rank SVD approximation)
+  • Detrended correspondence analysis
+  • Dynamic mode decomposition
+  • Eigenface
+  • Exploratory factor analysis (Wikiversity)
+  • Factorial code
+  • Functional principal component analysis
+  • Geometric data analysis
+  • Independent component analysis
+  • Kernel PCA
+  • L1-norm principal component analysis
+  • Low-rank approximation
+  • Matrix decomposition
+  • Non-negative matrix factorization
+  • Nonlinear dimensionality reduction
+  • Oja's rule
+  • Point distribution model (PCA applied to morphometry and computer vision)
+  • Principal component analysis (Wikibooks)
+  • Principal component regression
+  • Singular spectrum analysis
+  • Singular value decomposition
+  • Sparse PCA
+  • Transform coding
+  • Weighted least squares
+
+References[edit]
+
+ 1. ^ Barnett, T. P. & R. Preisendorfer. (1987). "Origins and levels of monthly
+    and seasonal forecast skill for United States surface air temperatures
+    determined by canonical correlation analysis". Monthly Weather Review. 115
+    (9): 1825. Bibcode:1987MWRv..115.1825B. doi:10.1175/1520-0493(1987)115
+    <1825:oaloma>2.0.co;2.
+ 2. ^ Hsu, Daniel; Kakade, Sham M.; Zhang, Tong (2008). A spectral algorithm
+    for learning hidden markov models. arXiv:0811.4413. Bibcode:
+    2008arXiv0811.4413H.
+ 3. ^ ^a ^b Markopoulos, Panos P.; Kundu, Sandipan; Chamadia, Shubham; Pados,
+    Dimitris A. (15 August 2017). "Efficient L1-Norm Principal-Component
+    Analysis via Bit Flipping". IEEE Transactions on Signal Processing. 65
+    (16): 4252–4264. arXiv:1610.01959. Bibcode:2017ITSP...65.4252M. doi:10.1109
+    /TSP.2017.2708023. S2CID 7931130.
+ 4. ^ ^a ^b Chachlakis, Dimitris G.; Prater-Bennette, Ashley; Markopoulos,
+    Panos P. (22 November 2019). "L1-norm Tucker Tensor Decomposition". IEEE
+    Access. 7: 178454–178465. arXiv:1904.06455. doi:10.1109/ACCESS.2019.2955134
+    .
+ 5. ^ ^a ^b Markopoulos, Panos P.; Karystinos, George N.; Pados, Dimitris A.
+    (October 2014). "Optimal Algorithms for L1-subspace Signal Processing".
+    IEEE Transactions on Signal Processing. 62 (19): 5046–5058. arXiv:1405.6785
+    . Bibcode:2014ITSP...62.5046M. doi:10.1109/TSP.2014.2338077. S2CID 1494171.
+ 6. ^ Kanade, T.; Ke, Qifa (June 2005). Robust L1 Norm Factorization in the
+    Presence of Outliers and Missing Data by Alternative Convex Programming.
+    2005 IEEE Computer Society Conference on Computer Vision and Pattern
+    Recognition (CVPR'05). 1. IEEE. p. 739. CiteSeerX 10.1.1.63.4605. doi:
+    10.1109/CVPR.2005.309. ISBN 978-0-7695-2372-9. S2CID 17144854.
+ 7. ^ Pearson, K. (1901). "On Lines and Planes of Closest Fit to Systems of
+    Points in Space". Philosophical Magazine. 2 (11): 559–572. doi:10.1080/
+    14786440109462720.
+ 8. ^ Hotelling, H. (1933). Analysis of a complex of statistical variables into
+    principal components. Journal of Educational Psychology, 24, 417–441, and
+    498–520.
+    Hotelling, H (1936). "Relations between two sets of variates". Biometrika.
+    28 (3/4): 321–377. doi:10.2307/2333955. JSTOR 2333955.
+ 9. ^ Stewart, G. W. (1993). "On the early history of the singular value
+    decomposition". SIAM Review. 35 (4): 551–566. doi:10.1137/1035134.
+10. ^ ^a ^b ^c ^d ^e Jolliffe, I. T. (2002). Principal Component Analysis.
+    Springer Series in Statistics. New York: Springer-Verlag. doi:10.1007/
+    b98835. ISBN 978-0-387-95442-4.
+11. ^ Bengio, Y.; et al. (2013). "Representation Learning: A Review and New
+    Perspectives". IEEE Transactions on Pattern Analysis and Machine
+    Intelligence. 35 (8): 1798–1828. arXiv:1206.5538. doi:10.1109/TPAMI.2013.50
+    . PMID 23787338. S2CID 393948.
+12. ^ Forkman J., Josse, J., Piepho, H. P. (2019). "Hypothesis tests for
+    principal component analysis when variables are standardized". Journal of
+    Agricultural, Biological, and Environmental Statistics. 24 (2): 289–308.
+    doi:10.1007/s13253-019-00355-5.CS1 maint: multiple names: authors list (
+    link)
+13. ^ A. A. Miranda, Y. A. Le Borgne, and G. Bontempi. New Routes from Minimal
+    Approximation Error to Principal Components, Volume 27, Number 3 / June,
+    2008, Neural Processing Letters, Springer
+14. ^ Fukunaga, Keinosuke (1990). Introduction to Statistical Pattern
+    Recognition. Elsevier. ISBN 978-0-12-269851-4.
+15. ^ Alizadeh, Elaheh; Lyons, Samanthe M; Castle, Jordan M; Prasad, Ashok
+    (2016). "Measuring systematic changes in invasive cancer cell shape using
+    Zernike moments". Integrative Biology. 8 (11): 1183–1193. doi:10.1039/
+    C6IB00100A. PMID 27735002.
+16. ^ Leznik, M; Tofallis, C. 2005 Estimating Invariant Principal Components
+    Using Diagonal Regression.
+17. ^ Jonathon Shlens, A Tutorial on Principal Component Analysis.
+18. ^ ^a ^b ^c Soummer, Rémi; Pueyo, Laurent; Larkin, James (2012). "Detection
+    and Characterization of Exoplanets and Disks Using Projections on
+    Karhunen-Loève Eigenimages". The Astrophysical Journal Letters. 755 (2):
+    L28. arXiv:1207.4197. Bibcode:2012ApJ...755L..28S. doi:10.1088/2041-8205/
+    755/2/L28. S2CID 51088743.
+19. ^ Pueyo, Laurent (2016). "Detection and Characterization of Exoplanets
+    using Projections on Karhunen Loeve Eigenimages: Forward Modeling". The
+    Astrophysical Journal. 824 (2): 117. arXiv:1604.06097. Bibcode:
+    2016ApJ...824..117P. doi:10.3847/0004-637X/824/2/117. S2CID 118349503.
+20. ^ ^a ^b Blanton, Michael R.; Roweis, Sam (2007). "K-corrections and filter
+    transformations in the ultraviolet, optical, and near infrared". The
+    Astronomical Journal. 133 (2): 734–754. arXiv:astro-ph/0606170. Bibcode:
+    2007AJ....133..734B. doi:10.1086/510127. S2CID 18561804.
+21. ^ ^a ^b ^c Zhu, Guangtun B. (2016-12-19). "Nonnegative Matrix Factorization
+    (NMF) with Heteroscedastic Uncertainties and Missing data". arXiv:
+    1612.06037 [astro-ph.IM].
+22. ^ ^a ^b ^c ^d ^e ^f Ren, Bin; Pueyo, Laurent; Zhu, Guangtun B.; Duchêne,
+    Gaspard (2018). "Non-negative Matrix Factorization: Robust Extraction of
+    Extended Structures". The Astrophysical Journal. 852 (2): 104. arXiv:
+    1712.10317. Bibcode:2018ApJ...852..104R. doi:10.3847/1538-4357/aaa1f2.
+    S2CID 3966513.
+23. ^ "What are the Pros and cons of the PCA?". i2tutorials. September 1, 2019.
+    Retrieved June 4, 2021.
+24. ^ Abbott, Dean (May 2014). Applied Predictive Analytics. Wiley. ISBN 
+    9781118727966.
+25. ^ ^a ^b Jiang, Hong; Eskridge, Kent M. (2000). "Bias in Principal
+    Components Analysis Due to Correlated Observations". Conference on Applied
+    Statistics in Agriculture. doi:10.4148/2475-7772.1247. ISSN 2475-7772.
+26. ^ Linsker, Ralph (March 1988). "Self-organization in a perceptual network".
+    IEEE Computer. 21 (3): 105–117. doi:10.1109/2.36. S2CID 1527671.
+27. ^ Deco & Obradovic (1996). An Information-Theoretic Approach to Neural
+    Computing. New York, NY: Springer. ISBN 9781461240167.
+28. ^ Plumbley, Mark (1991). Information theory and unsupervised neural
+    networks.Tech Note
+29. ^ Geiger, Bernhard; Kubin, Gernot (January 2013). "Signal Enhancement as
+    Minimization of Relevant Information Loss". Proc. ITG Conf. On Systems,
+    Communication and Coding. arXiv:1205.6935. Bibcode:2012arXiv1205.6935G.
+30. ^ "Engineering Statistics Handbook Section 6.5.5.2". Retrieved 19 January
+    2015.
+31. ^ A.A. Miranda, Y.-A. Le Borgne, and G. Bontempi. New Routes from Minimal
+    Approximation Error to Principal Components, Volume 27, Number 3 / June,
+    2008, Neural Processing Letters, Springer
+32. ^ Abdi. H. & Williams, L.J. (2010). "Principal component analysis". Wiley
+    Interdisciplinary Reviews: Computational Statistics. 2 (4): 433–459. arXiv:
+    1108.4372. doi:10.1002/wics.101.
+33. ^ "SAS/STAT(R) 9.3 User's Guide".
+34. ^ eig function Matlab documentation
+35. ^ MATLAB PCA-based Face recognition software
+36. ^ Eigenvalues function Mathematica documentation
+37. ^ Roweis, Sam. "EM Algorithms for PCA and SPCA." Advances in Neural
+    Information Processing Systems. Ed. Michael I. Jordan, Michael J. Kearns,
+    and Sara A. Solla The MIT Press, 1998.
+38. ^ Geladi, Paul; Kowalski, Bruce (1986). "Partial Least Squares Regression:A
+    Tutorial". Analytica Chimica Acta. 185: 1–17. doi:10.1016/0003-2670(86)
+    80028-9.
+39. ^ Kramer, R. (1998). Chemometric Techniques for Quantitative Analysis. New
+    York: CRC Press. ISBN 9780203909805.
+40. ^ Andrecut, M. (2009). "Parallel GPU Implementation of Iterative PCA
+    Algorithms". Journal of Computational Biology. 16 (11): 1593–1599. arXiv:
+    0811.1081. doi:10.1089/cmb.2008.0221. PMID 19772385. S2CID 1362603.
+41. ^ Warmuth, M. K.; Kuzmin, D. (2008). "Randomized online PCA algorithms with
+    regret bounds that are logarithmic in the dimension" (PDF). Journal of
+    Machine Learning Research. 9: 2287–2320.
+42. ^ The Pricing and Hedging of Interest Rate Derivatives: A Practical Guide
+    to Swaps, J H M Darbyshire, 2016, ISBN 978-0995455511
+43. ^ Giorgia Pasini (2017); Principal Component Analysis for Stock Portfolio
+    Management. International Journal of Pure and Applied Mathematics. Volume
+    115 No. 1 2017, 153–167
+44. ^ Libin Yang. An Application of Principal Component Analysis to Stock
+    Portfolio Management. Department of Economics and Finance, University of
+    Canterbury, January 2015.
+45. ^ Brenner, N., Bialek, W., & de Ruyter van Steveninck, R.R. (2000).
+46. ^ Jirsa, Victor; Friedrich, R; Haken, Herman; Kelso, Scott (1994). "A
+    theoretical model of phase transitions in the human brain". Biological
+    Cybernetics. 71 (1): 27–35. doi:10.1007/bf00198909. PMID 8054384. S2CID 
+    5155075.
+47. ^ Benzécri, J.-P. (1973). L'Analyse des Données. Volume II. L'Analyse des
+    Correspondances. Paris, France: Dunod.
+48. ^ Greenacre, Michael (1983). Theory and Applications of Correspondence
+    Analysis. London: Academic Press. ISBN 978-0-12-299050-2.
+49. ^ Le Roux; Brigitte and Henry Rouanet (2004). Geometric Data Analysis, From
+    Correspondence Analysis to Structured Data Analysis. Dordrecht: Kluwer.
+    ISBN 9781402022357.
+50. ^ Timothy A. Brown. Confirmatory Factor Analysis for Applied Research
+    Methodology in the social sciences. Guilford Press, 2006
+51. ^ Meglen, R.R. (1991). "Examining Large Databases: A Chemometric Approach
+    Using Principal Component Analysis". Journal of Chemometrics. 5 (3):
+    163–179. doi:10.1002/cem.1180050305. S2CID 120886184.
+52. ^ H. Zha; C. Ding; M. Gu; X. He; H.D. Simon (Dec 2001). "Spectral
+    Relaxation for K-means Clustering" (PDF). Neural Information Processing
+    Systems Vol.14 (NIPS 2001): 1057–1064.
+53. ^ Chris Ding; Xiaofeng He (July 2004). "K-means Clustering via Principal
+    Component Analysis" (PDF). Proc. Of Int'l Conf. Machine Learning (ICML
+    2004): 225–232.
+54. ^ Drineas, P.; A. Frieze; R. Kannan; S. Vempala; V. Vinay (2004).
+    "Clustering large graphs via the singular value decomposition" (PDF).
+    Machine Learning. 56 (1–3): 9–33. doi:10.1023/b:mach.0000033113.59016.96.
+    S2CID 5892850. Retrieved 2012-08-02.
+55. ^ Cohen, M.; S. Elder; C. Musco; C. Musco; M. Persu (2014). Dimensionality
+    reduction for k-means clustering and low rank approximation (Appendix B).
+    arXiv:1410.6801. Bibcode:2014arXiv1410.6801C.
+56. ^ Hui Zou; Trevor Hastie; Robert Tibshirani (2006). "Sparse principal
+    component analysis" (PDF). Journal of Computational and Graphical
+    Statistics. 15 (2): 262–286. CiteSeerX 10.1.1.62.580. doi:10.1198/
+    106186006x113430. S2CID 5730904.
+57. ^ Alexandre d'Aspremont; Laurent El Ghaoui; Michael I. Jordan; Gert R. G.
+    Lanckriet (2007). "A Direct Formulation for Sparse PCA Using Semidefinite
+    Programming" (PDF). SIAM Review. 49 (3): 434–448. arXiv:cs/0406021. doi:
+    10.1137/050645506. S2CID 5490061.
+58. ^ Michel Journee; Yurii Nesterov; Peter Richtarik; Rodolphe Sepulchre
+    (2010). "Generalized Power Method for Sparse Principal Component Analysis" 
+    (PDF). Journal of Machine Learning Research. 11: 517–553. arXiv:0811.4724.
+    Bibcode:2008arXiv0811.4724J. CORE Discussion Paper 2008/70.
+59. ^ Peter Richtarik; Martin Takac; S. Damla Ahipasaoglu (2012). "Alternating
+    Maximization: Unifying Framework for 8 Sparse PCA Formulations and
+    Efficient Parallel Codes". arXiv:1212.4137 [stat.ML].
+60. ^ Baback Moghaddam; Yair Weiss; Shai Avidan (2005). "Spectral Bounds for
+    Sparse PCA: Exact and Greedy Algorithms" (PDF). Advances in Neural
+    Information Processing Systems. 18. MIT Press.
+61. ^ Yue Guan; Jennifer Dy (2009). "Sparse Probabilistic Principal Component
+    Analysis" (PDF). Journal of Machine Learning Research Workshop and
+    Conference Proceedings. 5: 185.
+62. ^ Hui Zou; Lingzhou Xue (2018). "A Selective Overview of Sparse Principal
+    Component Analysis". Proceedings of the IEEE. 106 (8): 1311–1320. doi:
+    10.1109/JPROC.2018.2846588.
+63. ^ A. N. Gorban, A. Y. Zinovyev, Principal Graphs and Manifolds, In:
+    Handbook of Research on Machine Learning Applications and Trends:
+    Algorithms, Methods and Techniques, Olivas E.S. et al Eds. Information
+    Science Reference, IGI Global: Hershey, PA, USA, 2009. 28–59.
+64. ^ Wang, Y.; Klijn, J. G.; Zhang, Y.; Sieuwerts, A. M.; Look, M. P.; Yang,
+    F.; Talantov, D.; Timmermans, M.; Meijer-van Gelder, M. E.; Yu, J.; et al.
+    (2005). "Gene expression profiles to predict distant metastasis of
+    lymph-node-negative primary breast cancer". The Lancet. 365 (9460):
+    671–679. doi:10.1016/S0140-6736(05)17947-1. PMID 15721472. S2CID 16358549.
+    Data online
+65. ^ Zinovyev, A. "ViDaExpert – Multidimensional Data Visualization Tool".
+    Institut Curie. Paris. (free for non-commercial use)
+66. ^ Hastie, T.; Stuetzle, W. (June 1989). "Principal Curves" (PDF). Journal
+    of the American Statistical Association. 84 (406): 502–506. doi:10.1080/
+    01621459.1989.10478797.
+67. ^ A.N. Gorban, B. Kegl, D.C. Wunsch, A. Zinovyev (Eds.), Principal
+    Manifolds for Data Visualisation and Dimension Reduction, LNCSE 58,
+    Springer, Berlin – Heidelberg – New York, 2007. ISBN 978-3-540-73749-0
+68. ^ Lu, Haiping; Plataniotis, K.N.; Venetsanopoulos, A.N. (2011). "A Survey
+    of Multilinear Subspace Learning for Tensor Data" (PDF). Pattern
+    Recognition. 44 (7): 1540–1551. Bibcode:2011PatRe..44.1540L. doi:10.1016/
+    j.patcog.2011.01.004.
+69. ^ Kriegel, H. P.; Kröger, P.; Schubert, E.; Zimek, A. (2008). A General
+    Framework for Increasing the Robustness of PCA-Based Correlation Clustering
+    Algorithms. Scientific and Statistical Database Management. Lecture Notes
+    in Computer Science. 5069. pp. 418–435. CiteSeerX 10.1.1.144.4864. doi:
+    10.1007/978-3-540-69497-7_27. ISBN 978-3-540-69476-2.
+70. ^ Emmanuel J. Candes; Xiaodong Li; Yi Ma; John Wright (2011). "Robust
+    Principal Component Analysis?". Journal of the ACM. 58 (3): 11. arXiv:
+    0912.3599. doi:10.1145/1970392.1970395. S2CID 7128002.
+71. ^ T. Bouwmans; E. Zahzah (2014). "Robust PCA via Principal Component
+    Pursuit: A Review for a Comparative Evaluation in Video Surveillance".
+    Computer Vision and Image Understanding. 122: 22–34. doi:10.1016/
+    j.cviu.2013.11.009.
+72. ^ T. Bouwmans; A. Sobral; S. Javed; S. Jung; E. Zahzah (2015).
+    "Decomposition into Low-rank plus Additive Matrices for Background/
+    Foreground Separation: A Review for a Comparative Evaluation with a
+    Large-Scale Dataset". Computer Science Review. 23: 1–71. arXiv:1511.01245.
+    Bibcode:2015arXiv151101245B. doi:10.1016/j.cosrev.2016.11.001. S2CID 
+    10420698.
+73. ^ Liao, J. C.; Boscolo, R.; Yang, Y.-L.; Tran, L. M.; Sabatti, C.;
+    Roychowdhury, V. P. (2003). "Network component analysis: Reconstruction of
+    regulatory signals in biological systems". Proceedings of the National
+    Academy of Sciences. 100 (26): 15522–15527. Bibcode:2003PNAS..10015522L.
+    doi:10.1073/pnas.2136632100. PMC 307600. PMID 14673099.
+74. ^ Liao, T.; Jombart, S.; Devillard, F.; Balloux (2010). "Discriminant
+    analysis of principal components: a new method for the analysis of
+    genetically structured populations". BMC Genetics. 11: 11:94. doi:10.1186/
+    1471-2156-11-94. PMC 2973851. PMID 20950446.
+75. ^ "Principal Components Analysis". Institute for Digital Research and
+    Education. UCLA. Retrieved 29 May 2018.
+
+Further reading[edit]
+
+  • Jackson, J.E. (1991). A User's Guide to Principal Components (Wiley).
+  • Jolliffe, I. T. (1986). Principal Component Analysis. Springer Series in
+    Statistics. Springer-Verlag. pp. 487. CiteSeerX 10.1.1.149.8828. doi:
+    10.1007/b98835. ISBN 978-0-387-95442-4.
+  • Jolliffe, I. T. (2002). Principal Component Analysis. Springer Series in
+    Statistics. New York: Springer-Verlag. doi:10.1007/b98835. ISBN 
+    978-0-387-95442-4.
+  • Husson François, Lê Sébastien & Pagès Jérôme (2009). Exploratory
+    Multivariate Analysis by Example Using R. Chapman & Hall/CRC The R Series,
+    London. 224p. ISBN 978-2-7535-0938-2
+  • Pagès Jérôme (2014). Multiple Factor Analysis by Example Using R. Chapman &
+    Hall/CRC The R Series London 272 p
+
+External links[edit]
+
+● Wikimedia Commons has media related to Principal component analysis.
+
+  • University of Copenhagen video by Rasmus Bro on YouTube
+  • Stanford University video by Andrew Ng on YouTube
+  • A Tutorial on Principal Component Analysis
+  • A layman's introduction to principal component analysis on YouTube (a video
+    of less than 100 seconds.)
+  • StatQuest: Principal Component Analysis (PCA) clearly explained on YouTube
+  • See also the list of Software implementations
+
+                                       • v
+                                       • t
+                                       • e
+
+                                  Statistics
+  • Outline
+  • Index
+
+                 Descriptive statistics
+                             • Mean
+                                 □ arithmetic
+                                 □ geometric
+                                 □ harmonic
+                  Center         □ cubic
+                                 □ generalized/power
+                             • Median
+                             • Mode
+
+                             • Variance
+                             • Standard deviation
+Continuous data              • Average absolute deviation
+                Dispersion   • Coefficient of variation
+                             • Percentile
+                             • Range
+                             • Interquartile range
+
+                             • Central limit theorem
+                             • Moments
+                  Shape          □ Skewness
+                                 □ Kurtosis
+                                 □ L-moments
+
+  Count data      • Index of dispersion
+
+                  • Grouped data
+Summary tables    • Frequency distribution
+                  • Contingency table
+
+                  • Pearson product-moment correlation
+                  • Rank correlation
+                      □ Spearman's ρ
+  Dependence          □ Kendall's τ
+                  • Partial correlation
+                  • Scatter plot
+
+                  • Bar chart
+                  • Biplot
+                  • Box plot
+                  • Control chart
+                  • Correlogram
+                  • Fan chart
+                  • Forest plot
+   Graphics       • Histogram
+                  • Pie chart
+                  • Q–Q plot
+                  • Run chart
+                  • Scatter plot
+                  • Stem-and-leaf display
+                  • Radar chart
+                  • Violin plot
+
+                    Data collection
+                         • Population
+                         • Statistic
+                         • Effect size
+                         • Statistical power
+     Study design        • Optimal design
+                         • Sample size determination
+                         • Replication
+                         • Missing data
+
+                         • Sampling
+                             □ stratified
+                             □ cluster
+  Survey methodology     • Standard error
+                         • Opinion poll
+                         • Questionnaire
+
+                         • Scientific control
+                         • Randomized experiment
+                         • Randomized controlled trial
+Controlled experiments   • Random assignment
+                         • Blocking
+                         • Interaction
+                         • Factorial experiment
+
+                         • Adaptive clinical trial
+   Adaptive Designs      • Up-and-Down Designs
+                         • Stochastic approximation
+
+                         • Cross-sectional study
+Observational Studies    • Cohort study
+                         • Natural experiment
+                         • Quasi-experiment
+
+                             Statistical inference
+                      • Population
+                      • Statistic
+                      • Probability distribution
+                      • Sampling distribution
+                          □ Order statistic
+                      • Empirical distribution
+                          □ Density estimation
+                      • Statistical model
+                          □ Model specification
+                          □ L^p space
+                      • Parameter
+                          □ location
+                          □ scale
+                          □ shape
+                      • Parametric family
+Statistical theory        □ Likelihood (monotone)
+                          □ Location–scale family
+                          □ Exponential family
+                      • Completeness
+                      • Sufficiency
+                      • Statistical functional
+                          □ Bootstrap
+                          □ U
+                          □ V
+                      • Optimal decision
+                          □ loss function
+                      • Efficiency
+                      • Statistical distance
+                          □ divergence
+                      • Asymptotics
+                      • Robustness
+
+                                          • Estimating equations
+                                              □ Maximum likelihood
+                                              □ Method of moments
+                                              □ M-estimator
+                                              □ Minimum distance
+                     Point estimation     • Unbiased estimators
+                                              □ Mean-unbiased minimum-variance
+                                                  ☆ Rao–Blackwellization
+                                                  ☆ Lehmann–Scheffé theorem
+                                              □ Median unbiased
+                                          • Plug-in
+
+                                          • Confidence interval
+                                          • Pivot
+                                          • Likelihood interval
+    Frequentist                           • Prediction interval
+     inference      Interval estimation   • Tolerance interval
+                                          • Resampling
+                                              □ Bootstrap
+                                              □ Jackknife
+
+                                          • 1- & 2-tails
+                                          • Power
+                                              □ Uniformly most powerful test
+                    Testing hypotheses    • Permutation test
+                                              □ Randomization test
+                                          • Multiple comparisons
+
+                                          • Likelihood-ratio
+                     Parametric tests     • Score/Lagrange multiplier
+                                          • Wald
+
+                      • Z-test (normal)
+                      • Student's t-test
+                      • F-test
+
+                                     • Chi-squared
+                                     • G-test
+                                     • Kolmogorov–Smirnov
+                                     • Anderson–Darling
+                                     • Lilliefors
+                     Goodness of     • Jarque–Bera
+                         fit         • Normality (Shapiro–Wilk)
+                                     • Likelihood-ratio test
+                                     • Model selection
+  Specific tests                         □ Cross validation
+                                         □ AIC
+                                         □ BIC
+
+                                     • Sign
+                                         □ Sample median
+                                     • Signed rank (Wilcoxon)
+                                         □ Hodges–Lehmann estimator
+                         Rank        • Rank sum (Mann–Whitney)
+                      statistics     • Nonparametric anova
+                                         □ 1-way (Kruskal–Wallis)
+                                         □ 2-way (Friedman)
+                                         □ Ordered alternative 
+                                           (Jonckheere–Terpstra)
+
+                      • Bayesian probability
+                          □ prior
+                          □ posterior
+Bayesian inference    • Credible interval
+                      • Bayes factor
+                      • Bayesian estimator
+                          □ Maximum posterior estimator
+
+                                  • Correlation
+                              • Regression analysis
+
+                          • Pearson product-moment
+                          • Partial correlation
+      Correlation         • Confounding variable
+                          • Coefficient of determination
+
+                          • Errors and residuals
+                          • Regression validation
+  Regression analysis     • Mixed effects models
+                          • Simultaneous equations models
+                          • Multivariate adaptive regression splines (MARS)
+
+                          • Simple linear regression
+                          • Ordinary least squares
+   Linear regression      • General linear model
+                          • Bayesian regression
+
+                          • Nonlinear regression
+                          • Nonparametric
+                          • Semiparametric
+Non-standard predictors   • Isotonic
+                          • Robust
+                          • Heteroscedasticity
+                          • Homoscedasticity
+
+                          • Exponential families
+  Generalized linear      • Logistic (Bernoulli) / Binomial / Poisson
+         model              regressions
+
+                          • Analysis of variance (ANOVA, anova)
+ Partition of variance    • Analysis of covariance
+                          • Multivariate ANOVA
+                          • Degrees of freedom
+
+         Categorical / Multivariate / Time-series / Survival analysis
+               • Cohen's kappa
+               • Contingency table
+               • Graphical model
+Categorical    • Log-linear model
+               • McNemar's test
+               • Cochran-Mantel-Haenszel statistics
+
+               • Regression
+               • Manova
+               • Principal components
+               • Canonical correlation
+               • Discriminant analysis
+               • Cluster analysis
+Multivariate   • Classification
+               • Structural equation model
+                   □ Factor analysis
+               • Multivariate distributions
+                   □ Elliptical distributions
+                       ☆ Normal
+
+                              • Decomposition
+                              • Trend
+                              • Stationarity
+                              • Seasonal adjustment
+                General       • Exponential smoothing
+                              • Cointegration
+                              • Structural break
+                              • Granger causality
+
+                              • Dickey–Fuller
+                              • Johansen
+             Specific tests   • Q-statistic (Ljung–Box)
+                              • Durbin–Watson
+                              • Breusch–Godfrey
+Time-series
+                              • Autocorrelation (ACF)
+                                  □ partial (PACF)
+                              • Cross-correlation (XCF)
+                              • ARMA model
+              Time domain     • ARIMA model (Box–Jenkins)
+                              • Autoregressive conditional heteroskedasticity
+                                (ARCH)
+                              • Vector autoregression (VAR)
+
+                              • Spectral density estimation
+               Frequency      • Fourier analysis
+                 domain       • Wavelet
+                              • Whittle likelihood
+
+                                 • Kaplan–Meier estimator (product limit)
+                                 • Proportional hazards models
+             Survival function   • Accelerated failure time (AFT) model
+  Survival                       • First hitting time
+
+              Hazard function    • Nelson–Aalen estimator
+
+                   Test          • Log-rank test
+
+                      Applications
+                         • Bioinformatics
+                         • Clinical trials / studies
+    Biostatistics        • Epidemiology
+                         • Medical statistics
+
+                         • Chemometrics
+                         • Methods engineering
+                         • Probabilistic design
+Engineering statistics   • Process / quality control
+                         • Reliability
+                         • System identification
+
+                         • Actuarial science
+                         • Census
+                         • Crime statistics
+                         • Demography
+                         • Econometrics
+  Social statistics      • Jurimetrics
+                         • National accounts
+                         • Official statistics
+                         • Population statistics
+                         • Psychometrics
+
+                         • Cartography
+                         • Environmental statistics
+  Spatial statistics     • Geographic information system
+                         • Geostatistics
+                         • Kriging
+
+  • ●Category
+  • Nuvola apps edu mathematics blue-p.svg Mathematics portal
+  • ●Commons
+  • ● WikiProject
+
+         Authority control Edit this at Wikidata
+     General         • Integrated Authority File (Germany)
+
+National libraries   • France (data)
+                     • United States
+
+*
+Retrieved from "https://en.wikipedia.org/w/index.php?title=
+Principal_component_analysis&oldid=1065607570"
+Categories:
+
+  • Matrix decompositions
+  • Dimension reduction
+
+Hidden categories:
+
+  • CS1 maint: multiple names: authors list
+  • Articles with short description
+  • Articles with long short description
+  • Short description is different from Wikidata
+  • Wikipedia articles needing page number citations from November 2020
+  • All articles with unsourced statements
+  • Articles with unsourced statements from August 2014
+  • All accuracy disputes
+  • Articles with disputed statements from December 2021
+  • Wikipedia articles needing page number citations from June 2021
+  • Wikipedia articles needing clarification from March 2011
+  • Articles with unsourced statements from March 2011
+  • Articles with unsourced statements from November 2019
+  • Commons category link from Wikidata
+  • Articles with GND identifiers
+  • Articles with BNF identifiers
+  • Articles with LCCN identifiers
+
+Navigation menu
+
+Personal tools
+
+  • Not logged in
+  • Talk
+  • Contributions
+  • Create account
+  • Log in
+
+Namespaces
+
+  • Article
+  • Talk
+
+[ ]
+
+Variants expanded collapsed
+
+Views
+
+  • Read
+  • Edit
+  • View history
+
+[ ]
+
+More expanded collapsed
+
+Search
+
+[                    ] [Search] [Go]
+ 
+
+Navigation
+
+  • Main page
+  • Contents
+  • Current events
+  • Random article
+  • About Wikipedia
+  • Contact us
+  • Donate
+
+Contribute
+
+  • Help
+  • Learn to edit
+  • Community portal
+  • Recent changes
+  • Upload file
+
+Tools
+
+  • What links here
+  • Related changes
+  • Upload file
+  • Special pages
+  • Permanent link
+  • Page information
+  • Cite this page
+  • Wikidata item
+
+Print/export
+
+  • Download as PDF
+  • Printable version
+
+In other projects
+
+  • Wikimedia Commons
+
+Languages
+
+  • العربية
+  • Asturianu
+  • Català
+  • Čeština
+  • Deutsch
+  • Eesti
+  • Español
+  • Esperanto
+  • Euskara
+  • فارسی
+  • Français
+  • Galego
+  • 한국어
+  • Bahasa Indonesia
+  • Íslenska
+  • Italiano
+  • עברית
+  • Magyar
+  • Nederlands
+  • 日本語
+  • Polski
+  • Português
+  • Русский
+  • Slovenčina
+  • Српски / srpski
+  • Suomi
+  • Svenska
+  • Tagalog
+  • Türkçe
+  • Українська
+  • Tiếng Việt
+  • 粵語
+  • 中文
+
+Edit links
+
+  • This page was last edited on 14 January 2022, at 11:43 (UTC).
+  • Text is available under the Creative Commons Attribution-ShareAlike License
+     ; additional terms may apply. By using this site, you agree to the Terms
+    of Use and Privacy Policy. Wikipedia® is a registered trademark of the
+    Wikimedia Foundation, Inc., a non-profit organization.
+
+  • Privacy policy
+  • About Wikipedia
+  • Disclaimers
+  • Contact Wikipedia
+  • Mobile view
+  • Developers
+  • Statistics
+  • Cookie statement
+
+  • Wikimedia Foundation
+  • Powered by MediaWiki
+
