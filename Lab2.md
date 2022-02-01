@@ -420,11 +420,18 @@ ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTD
 ```
 Test that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
 
-You can use [this code skeleton](example_data/code_skeleton_question2.py) to get started.
+You can use [this code skeleton](example_data/code_skeleton_question2.py) to get started. The code skeleton uses `sys.argv` to take input from the commandline. `sys.argv` contains the full command that you used to execute the file. 
+
+```
+python code_skeleton_question2.py my_input_file.txt
+```
+In the script `sys.argv[1]` will then contain the string "my_input_file.txt". 
+
+
 
 Tip, it's probably a good idea to look at each line of the input and figure out if it's a header or a sequence line.
 
-You can get input to the script either parsing through the command line thorugh `argparse` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), or interactively using `input()`
+You can get input to the script either parsing through the command line thorugh `argparse` or `sys.argv` from the `sys` library [example here](https://www.pythonforbeginners.com/system/python-sys-argv), or interactively using `input()` or any other method that you prefer. 
 
 
 ### Reverse complement
@@ -433,7 +440,8 @@ A very common problem that arises when working with sequence files is that seque
 
 #### Question 3:
 
-**Write a program that takes a nucleotide fasta file as input and returns a new reverse complemented fasta file as output. It should be able to handle fasta files with more than one entry.** 
+**Write a program that takes a nucleotide fasta file as input and returns a new reverse complemented fasta file as output. It should be able to handle fasta files with more than one entry.**
+ You don't need to change the header as in the example code below.
 
 Again make sure that your code works on [this file](example_data/C_elegans_NC_001328.1_mt_codingsequences.fna)
 
@@ -445,7 +453,7 @@ The example below only has one entry to illustrate what **reverse complement** m
 ATGTTCGCCGACCGTTGACTATTCTCTACAAACCACAAAGACATTGGAACACTATACCTACTATTCGGCGCATGAGCTGGAGTCCTAGGCACAGCTCTAAGCCTCC
 ```
 ```
-> NC_011137.1 Reversed
+>Reverse complemented
 GGAGGCTTAGAGCTGTGCCTAGGACTCCAGCTCATGCGCCGAATAGTAGGTATAGTGTTCCAATGTCTTTGTGGTTTGTAGAGAATAGTCAACGGTCGGCGAACAT
 ```
 
@@ -479,7 +487,7 @@ print("There are {} instances of the word 'PCA' in the wikipedia article about P
 ```
 If you run it then it returns:
 
-`There are 162 instances of the word 'PCA' in the Wikipedia article about PCA`
+`There are 167 instances of the word 'PCA' in the Wikipedia article about PCA`
  
 Another useful way of doing regex matches is the `.search()` method. It returns a `Match` object which can be used to get out information about the match such as position:
 
