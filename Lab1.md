@@ -227,7 +227,8 @@ grep PCA short_pca.txt | wc -l
 ```
 
 Try it for the full article as well!
-**Question 2:** Write down how many times `PCA` appears in both the full `PCA.txt` and the `short_pca.txt` files.
+
+**Question 2:** **Write down how many times the term`"PCA"` appears in both the full `PCA.txt` and the `short_pca.txt` files.** Remember that there can be more than one hit per line so you need to account for that!
 
 --
 
@@ -305,7 +306,7 @@ ls -lh
 With that information, you can probably see why it's a generally good idea to store data in binary formats as much as possible. The original full file was **117 GB** for reference.
 
 ##### The `.bam` file is just for a small part of the genome, which one? 
-**Question 4:** use `samtools view` and `head` and `tail` to **figure out the first and last position in the file**. Also include the exact command you used!
+**Question 4:** use `samtools view` and `head` and `tail` to **figure out the first and last basepair position in the file**. Also include the exact command you used!
  
 
 ##### Use `cut` to extract only the name and nucleotide sequence from the `.bam` file. 
@@ -313,6 +314,7 @@ With that information, you can probably see why it's a generally good idea to st
 First, figure out which fields it is that you want and then investigate `man cut` to figure out how to access them.
 
 **Question 5:** Write down the command you used to extract the name and nucleotide sequence!
+This should be done in **one** command.
 
 
 
@@ -357,7 +359,7 @@ You can use `sed` on piped output from another program or straight on a single f
 **Question 6 :**
 You have been given a that has been exported from excel in an odd format (something that is all too common in the life of a bioinformatician). Your task is to transform the file [orange.csv](example_data/orange.csv) into a normally formatted `.csv`-file. That is the decimal point should be a `.` and the delimiter (what separates one column from another) should be `,`. It also looks like someone has accidentally inserted some letters among the numbers, they also need to be removed.
 
-Submit what `sed` command(s) you used to clean the file. (Make sure that it looks correct)
+Submit what `sed` command(s) you used to clean the file. (Make sure that it looks correct, i.e. **all** columns are separated with a comma)
 
 _You will probably have to look up more information on how to do this. You can use `man sed` or `info sed` for more information, or google your way to it. As long as you know what your command does_
 
@@ -399,6 +401,14 @@ scp output_file my_user@remote_server:
 
 
 ---
+
+
+You can chain any typ of program/script that you can run on the commandline like this, even those you have written yuorself like the `perl` programs you ran in the hidden word excercise or the scripts you will write in Lab 2:
+
+```
+python my_python_script.py inputfile.txt
+
+```
 
 This is the end of the lab, please make sure that you did and wrote down the answers to all of the questions.
 Also, make sure to delete any files that you no longer need - you can copy them somewhere else if you want to keep them.
