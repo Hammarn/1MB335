@@ -62,19 +62,19 @@ By Emmanuel Douzery - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/in
 
 If you have not done so before, now is a good time to set up your working space on the cluster.
 
-The course is accessible at: `/proj/g2021007/private/`
+The course is accessible at: `/proj/uppmax2022-2-2/private/`
 
-You will find data in: `/proj/g2021007/private/DATA/` and scripts in `/proj/g2021007/private/SCRIPTS`.
+You will find data in: `/proj/uppmax2022-2-2/private/DATA/` and scripts in `/proj/uppmax2022-2-2/private/SCRIPTS`.
 
-You should already have created your own folder under: `/proj/g2021007/private/RESULTS`. If you haven't, refer to session 1. Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
+You should already have created your own folder under: `/proj/uppmax2022-2-2/private/RESULTS`. If you haven't, refer to session 1. Think about how you want to organize this folder. For example you might want a folder for each tutorial; you might also want to reproduce the DATA / SCRIPTS / RESULTS structure; etc.
 
 ### Identify the mitochondrial contigs in your assembly    
 
 For this step you need two inputs: the assembly (.fna) and a set of proteins from a species related to your species of interest. The assembly contains many contigs from both mitochondrial and nuclear DNA. You need to identify the mitochondrial contig(s). For this you will use command-line BLAST between your assembly and a set of mitochondrial proteins from a related species. BLAST comes in different flavors, and thus it matters whether the sequences are coded as nucleotides or as amino acids.
 
-The assembly is in a subfolder of: `/proj/g2021007/private/DATA/assemblies`
+The assembly is in a subfolder of: `/proj/uppmax2022-2-2/private/DATA/assemblies`
 
-The set of proteins is in: `/proj/g2021007/private/DATA/coding_sequences`
+The set of proteins is in: `/proj/uppmax2022-2-2/private/DATA/coding_sequences`
 
 Start by copying the assembly and the set of proteins to your own folder.
 
@@ -87,7 +87,7 @@ Before running BLAST, you need to make a database of the set of proteins. Becaus
 If you have to wait more than five minutes, you might try again asking for less time (one hour should be enough: `-t 1:0:0`). If it still does not work, tell the teaching assistants and we will offer you another solution.
 
 ```
-interactive -A g2021007 -p core -n 1 -t 4:0:0
+interactive -A uppmax2022-2-2 -p core -n 1 -t 4:0:0
 ```
 
 For later: Once you have done everything you needed to do in the interactive window, you can exit by simply typing `exit`.
@@ -103,7 +103,7 @@ You are going to modify file so **if you have not already done so, make a copy t
 ```
 makeblastdb -in path_to_the_protein_set/protein_set.fasta -dbtype nucl 
 ```
-*Hint, `.fna` just mins fasta nuclear, so it's also a fasta file. Give the program the name of the file you actually have. *
+*Hint, `.fna` just mins fasta nuclear, so it's also a fasta file. Give the program the name of the file you actually have.*
 
 <!-- the dbtype could also be prot -->
 
@@ -137,10 +137,10 @@ awk '$11 < 0.0001 {print}'  < outfile_name.blast |cut -f1 | sort | uniq -c
 
 Now you have to validate that these contigs really belong to the mitochondria. You will use online blast and submit a fragment of the configs that you identified at the previous step. To select the fragments, use the bash command `grep` to find the contig in the assembly file. You will need the `-A` tag as well. Select a good chunk of the contig. **Caution!** Check whether your assembly file is an interleaved (i.e. the sequence is on multiple lines) or a sequential (i.e. the sequence is on a single line) fasta file. If it is interleaved, you need to convert it to a sequential fasta before using the `grep` command above. First, you should uncompress it (for example with `gunzip`). Then, you should have a python script from sessions 1 and 2 that does just that.
 
-If not, or if you script does not allow for multiple entries in the fasta file, you can use this file: `/proj/g2021007/private/SCRIPTS/interleaved_fasta_to_sequential.py` with the following syntax (replace *your_input* and *your_output*):
+If not, or if you script does not allow for multiple entries in the fasta file, you can use this file: `/proj/uppmax2022-2-2/private/SCRIPTS/interleaved_fasta_to_sequential.py` with the following syntax (replace *your_input* and *your_output*):
 
 ```
-python /proj/g2021007/private/SCRIPTS/interleaved_fasta_to_sequential.py your_input your_output
+python /proj/uppmax2022-2-2/private/SCRIPTS/interleaved_fasta_to_sequential.py your_input your_output
 ```
 
 You will use the sequential fasta in the next step too. 
@@ -193,52 +193,22 @@ Most likely your first search resulted in a lot of results. This is expected as 
 
 **Question 9.** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? (write down the criteria you used) You can test different combinations of criteria. Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
 
-As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/g2021007/private/DATA/sra/`.
+As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/uppmax2022-2-2/private/DATA/sra/`.
 
 **Question 10.** What is the format of the file? Do you understand what the different lines are? How long are the reads? 
 
-You are now ready to perform tiling. For that, you will select a short section of nucleotides from the end of your first contig (around 30 bp) and then use grep to find that short sequence in the short reads library. Adapt and run the following command:
+Now a days doing tiling has become less and less common as long read sequencing has becom more common place. If your read are longer than the mitochodria you are sequencing it's quite easy thing to assemble it!
 
-```
-grep AATTTGGGTTTACTAG path_to_short_reads_library/library.fastq
-```
+In the real world you would have now to start going through this procces of tiling and circularizing your mitochondrial seqeuences, but the interest of time we have, as any good cooking show, prepared this step in advance.
+You can find the prepared mitochondrial fasta files here: `/proj/uppmax2022-2-2/private/DATA/mitochondrial_genomes`
 
-You should see in the terminal a series of reads which contain exactly that sequence. If everything went right, the sequence just after your short sequence (which should be highlighted in the results) is the continuation of your contig. See whether it seems to be the same sequence in all or most of the selected reads. If it is the case, choose one hit where the search 'word' is towards the beginning (caution! invert if you choose a word at the beginning, not at the end of the contig) and select the sequence that comes after the highlighted word. Copy that sequence into your fasta file below the entry of the contig that you selected the word from. Don't forget to add a header!
-
-Repeat this twice - but this time the 'word' in the grep command is from the end of the sequence you just added. 
-
-You should now have three new, short fragments after the contigs in your fasta file. It is time to check whether the newest sequence connects to one of your contigs. Select about 30 base pairs at the end of the newest sequence and search for it within your fasta file. If you are lucky, it will connect to one of your contigs. Reorganize your fasta file so that it goes: first contig; new sequences 1 to 3; contig which connects to the new sequence. Remove the overlap if there are some.
-
-**This is just an illustration to see how tiling works, you should not spen more than a few minutes doing it!**
-
----
-
-**The part below is what you would do to continue tiling. You should not do it!**
-
-Now you can continue with the end of the second contig.
-
-If it does not connect, you have to continue a bit. Take about 30 bp from the end of the last sequence you added, and grep for it in the short reads library. Add the new piece of sequence, repeat two more times. Then grep in your fasta file. Does it connect? If yes, proceed as the previous paragraph. If not, repeat the process in this paragraph one last time. If it still does not connect, have a closer look at your data. Do you see many repeats?
-
-If you have a single contig from the beginning, follow the instructions nevertheless. Does the beginning and end of your contig connect or do you need to add sequences from the short reads?
-
-At this stage, make a copy of your fasta file to keep a record of what you did. Then clean up your fasta file, i.e. remove the headers and sequences of the fragments that you are not using (e.g. the reverse complements of contigs) and make a single sequence of all the contigs and extra bits which belong together (see Figure 1 - you only want the black and the blue segments).
-
-Disclaimer: most likely, tiling did not work. Thus we downloaded mitochondrial genomes in fasta format for you to continue working on.
-
----
-
- 
-
-In the real world you would have to start going through the procces of tiling and circularizing your mitochondrial seqeuences. In the interest of time we have, as any cooking show, prepared this step alread.
-You can find the prepared mitochondrial fasta files here: `/proj/g2021007/private/DATA/mitochondrial_genomes`
-
-Copy over the correct one to you working directory!
+Copy over the correct one to your working directory!
 
 ### Orient to the canonical start location in the mitochondrial genome (*cox1*).
 
 We now have a circular mitochondrial genome (thanks to all that hard tiling work we did). The last step is to orient the sequence according to the canonical start location. By convention, non-model organisms' mitochondria are oriented with the *cox1* gene as the first gene of the genome. To do that, you will do a pairwise alignment. But first, you have to find a sequence to compare your mitochondrial sequence to. Open an NCBI blast window and select nucleotide blast. Paste or upload your mitochondrial sequence.
 
-**Question 11.** To which organism do the best hits belong too?
+**Question 11.** To which organism does the best hits belong?
 
 Since you are working with well studied organisms, most likely the first hit will align perfectly to the mitochondrial genome of your species. To make it a bit more interesting, **we are from now on going to  a close relative of your species instead of your species itself**, this is called using a 'reference', that is using a known species to gather information about an unkown one. You are going to recover the appropriate sequence from NCBI. Use the table below to see which species you should be looking for depending on your starting species.
 
@@ -283,7 +253,7 @@ If you cannot find the start codon, perform the step above with the first positi
 
 You now have a *cox1* oriented genome!
 
-**Question 14.** What is the position (in base pairs) of the first nucleotide of the start codon in your study species? (before you oriented it) You can validate your answer by finding on NCBI the page of the mitochondria of your study species.
+**Question 14.** What is the position (in base pairs) of the first nucleotide of the start codon in your study species? (before you oriented it) You can validate your answer by finding it on NCBI the page of the mitochondria of your study species.
 
 ---
 ## Report:
