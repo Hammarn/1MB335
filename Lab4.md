@@ -129,6 +129,7 @@ Tryptophan | Trp | W
 Tyrosine | Tyr | Y
 
 **Question 2. How many tRNAs were identified? Were they already identified by GeSeq? Do the coordinates differ between the two softwares? If yes, write the two sets of coordinates down. Which do you think are the correct coordinates?**
+If you did not find all/most of the tRNA's (depending on which study species you had this might be the case) then please write a few sentences about why that might be!
 
 To answer the last question, you can go to the NCBI page of the annotated genome. You can look for example at the length of the tRNA. You can also try to compare directly the coordinates, but because you are working with a genome orientated with *cox1* you will need to shift the coordinates.
 
