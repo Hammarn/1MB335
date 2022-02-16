@@ -198,11 +198,12 @@ Most likely your first search resulted in a lot of results. This is expected as 
 
 **Question 9.** Narrow down the search by selecting some of the categories of data. Think about what you learned about the different sequencing technologies. How many results do you get once you narrowed the search? (write down the criteria you used) You can test different combinations of criteria. Now that you narrowed down your search, open a few of the results and read the information that is provided. For example, what is the size of the file? When was it published? What do you know about the particular sequencing strategy that was used to generate the data?
 
-As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species. You will find it in a subfolder of: `/proj/uppmax2022-2-2/private/DATA/sra/`.
+As you might have noticed, there is a bit of everything in the results. To make it easier for you, we already selected a library of short reads for your species,
+well we actually only have the files for C remanei, but you can use that one no matter which study species you had. You will find it in a subfolder of: `/proj/uppmax2022-2-2/private/DATA/sra/`. 
 
 **Question 10.** What is the format of the file? Do you understand what the different lines are? How long are the reads? 
 
-Now a days doing tiling has become less and less common as long read sequencing has becom more common place. If your read are longer than the mitochodria you are sequencing it's quite easy thing to assemble it!
+Nowadays doing tiling has become less and less common as long read sequencing has becom more common place. If your read are longer than the mitochodria you are sequencing it's quite easy thing to assemble it!
 
 In the real world you would have now to start going through this procces of tiling and circularizing your mitochondrial seqeuences, but the interest of time we have, as any good cooking show, prepared this step in advance.
 You can find the prepared mitochondrial fasta files here: `/proj/uppmax2022-2-2/private/DATA/mitochondrial_genomes`
