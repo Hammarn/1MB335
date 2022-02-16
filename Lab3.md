@@ -87,7 +87,7 @@ Before running BLAST, you need to make a database of the set of proteins. Becaus
 If you have to wait more than five minutes, you might try again asking for less time (one hour should be enough: `-t 1:0:0`). If it still does not work, tell the teaching assistants and we will offer you another solution.
 
 ```
-interactive -A uppmax2022-2-2 -M snowy -p core -n 1 -t 4:0:0 --reservation=uppmax2022-2-2_2
+interactive -A uppmax2022-2-2 -M snowy -p core -n 1 -t 4:0:0 --reservation=uppmax2022-2-2_1
 ```
 
 For later: Once you have done everything you needed to do in the interactive window, you can exit by simply typing `exit`.
