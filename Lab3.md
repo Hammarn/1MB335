@@ -155,7 +155,7 @@ Go back to the main page if you left it and find the BLAST page, then choose nuc
 
 **Question 7.** Does the fragment belong to a mitochondria? Does it belong to the species you are interested in?
 
-Repeat this which each of the contigs that you identified at the previous step (if you have identified many contigs, you can focus on the six most frequent ones). Keep track of the contigs which do belong to the mitochondria of your species of interest.
+Repeat this with each of the contigs that you identified at the previous step (if you have identified many contigs, you can focus on the six most frequent ones). Keep track of the contigs which do belong to the mitochondria of your species of interest.
 
 ### Create a new fasta file with mitochondrial contigs
 
@@ -177,7 +177,12 @@ If you use the web tool: Paste your contig sequence into the search box and reve
 
 ## Part 2 - working on your study species
 
-This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with, ask a teaching assistant.
+
+This is the step when you start to work with one of the four species that you were assigned at the beginning of the class (see Table 1 below, left column). If you forgot which species you were supposed to work with,check under groups in Studium.
+
+For this exercise, you can imagine that you are the first researcher working with the mitochondria of a newly sequenced organism. Your task is to figure out where all the important protein-coding genes, tRNAs, and rRNAs. Since this is the first time someone is working with this species there is nothing known but you can use a closely related species that is already sequences as a reference to fill in the blanks. 
+
+
 You are ready to connect the different contigs! For that, you will use another resource: short reads data from an individual of your species of interest. Indeed, there may be gaps between the contigs that you have now. To get a continuous molecule, you need to fill these gaps. This is schematized in Figure 1.
 
 ![](Figures/Figure_Tiling_Pogodaetal.png)
@@ -253,7 +258,7 @@ If you cannot find the start codon, perform the step above with the first positi
 
 You now have a *cox1* oriented genome!
 
-**Question 14.** What is the position (in base pairs) of the first nucleotide of the start codon in your study species? (before you oriented it) You can validate your answer by finding it on NCBI the page of the mitochondria of your study species.
+**Question 14.** What is the position (in base pairs) of the first nucleotide of the start codon in your study species? (before you oriented it) You can validate your answer by finding it on NCBI on the page of the mitochondria of your study species.
 
 ---
 ## Report:
