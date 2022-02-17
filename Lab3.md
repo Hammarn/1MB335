@@ -229,7 +229,7 @@ Pongo abelii (orangutan) | Homo sapiens
 
 Go to your new favorite webpage (i.e. NCBI ;) ). We will detail one way to find the mitochondrial genome of the close relative. There are more ways, feel free to explore!
 
-In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar. Choose the genome with the **oldest** release data.
+In 'All Databases' choose 'Genome' and then under 'Custom resources' choose 'Organelles'. On the new start page, under 'Using organelles resources', choose 'Browse by organism'. Write the name of the species in the search bar then pick the genome with the **oldest** release date for the species!
 
 **Question 12.** What is the size of the mitochondrial genome? What is the identifier of the sequence? (there might be several identifiers)
 
@@ -251,7 +251,7 @@ The top sequence (Query) is your species’ *cox1* amino acid sequence (or most 
 
 It is also possible that the alignment is broken in several pieces. In that case, scroll down the page (usually the top alignment is the longest and then come shorter ones) and see whether you can find another alignment which could complete the longest one. Caution! Make sure that the two (or more) alignments are in the same translation frame (right most information in the header of the alignment result). If not then try to find the alignment with the position closest to the start of the *cox1* gene to perform the step describe in the next paragraph.
 
-While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. 
+While there are likely to be many start codons throughout your *cox1* gene sequence, the one we are looking for should be very near the position given by the top number in the alignment (the top number is the nucleotide position in your genome). Just how near will be roughly three times the number of amino acids from the start of the alignment as given by the bottom number (this is because there are three nucleotides for every one amino acid). Take the bottom number, and subtract it from the top number. Go to this nucleotide position in your text editor and search for one of the start codons very nearby. This should be the new start of your genome. 
 
 The start and end positions of a contig put together by the assembler are arbitrary within both the strand and the position along the circular genome. Therefore, it is up to us to orient the genome to the canonical *cox1* start. Once the start codon has been found, place your cursor before the first base pair in your text editor and hit enter. This will put the first nucleotide of the *cox1* gene as the first nucleotide of the genome. Because of the circular nature of this genome, the sequence that used to come before this start codon can simply be added onto the end for the genome to remain circular and complete.
 
