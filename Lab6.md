@@ -1,6 +1,8 @@
 # Session 6 - project
 For the following three labs you will work on a bioinformatics project where you will try to answer one of the evolutionary biology questions below, using phylogenetic methods. You will be randomly assigned one of the questions. During the first lab, you will gather your own dataset for the analysis. During the second lab (session 7), you will align the dataset and create phylogenetic trees. During the third and last lab (session 8), you will plot the threes and wrap-up the project.
 
+Note that this is meant to be done in pairs, so find a partner in the group you were assigned to!
+
 We (the lab assistants) will help and guide you through the assembly of your dataset so that you end up with a suitable dataset, but ultimately the choice of samples is yours. 
 
 We made a checklist to help you when a command does not do what you expect it to do [here](Troubleshooting_checklist.md). It includes instructions to use `SFTP` to transfer files to and from Uppmax.
