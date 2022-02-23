@@ -118,7 +118,7 @@ Reminder about computation on Uppmax: Aligning this set of mitochondrial genomes
 Ask for an interactive session with the following command (replace "name_of_reservation" with the correct reservation, as the TA's.
 
 ```
-interactive -A uppmax2022-2-2 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
+interactive -A uppmax2022-2-2 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation -M snowy
 ```
 
 Now, load mafft:
@@ -152,7 +152,7 @@ Then, prepare the alignment input in the same way as in Step 2c: create a fasta 
 echo '
 module load bioinfo-tools MAFFT/7.407
 YOUR COMMAND
-exit 0') | sbatch -p core -n 1 -t 15:00 -A uppmax2022-2-2 -J align_rRNA -o align_rRNA.output -e align_rRNA.output --mail-user youremailforUppmax --mail-type=END,FAIL
+exit 0') | sbatch -p core -n 1 -t 15:00 -M snowy -A uppmax2022-2-2 -J align_rRNA -o align_rRNA.output -e align_rRNA.output --mail-user youremailforUppmax --mail-type=END,FAIL
 ```
 
 You will receive an email when the job finishes (or fails). What normally would have been printed to the screen will be printed to align_rRNA.output. Have a look at it!
