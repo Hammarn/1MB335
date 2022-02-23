@@ -82,9 +82,9 @@ OBS! Before choosing a sequence have a look at its length - the hits should not 
 
 #### If you cannot find the two sequences (entire mitochondria and *cytB*) for some species
 
-Preferably you should get the two sequences for all species in your dataset. It might happen that you decided to include a species but could not find the two sequences for it. In that case, try again with a close relative. If it is really difficult for you to find enough species with the two sequences for your dataset, ask a teaching assistant and we will look for a solution together.
+Preferably you should get the two types of sequences for all species in your dataset. It might be that you decided to include a species but could not find both sequences for it. In that case, try again with a close relative. If it is really difficult for you to find enough species with the two sequences for your dataset, ask a teaching assistant and we will look for a solution together.
 
-Save your files with smart, distinguishable names.
+Save your files with clever, distinguishable names.
 
 #### Create fasta files for the entire dataset
 
@@ -107,7 +107,7 @@ The files should contain one row for each sequence in your data set, including:
   ```
 
 
-**Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should for this taks change the original file you send in, not create a new fasta file!
+**Question 2** Now you should write a Python script that takes one of your merged fasta file as input (which has one of the three types of headers in the conversion table), as well as your conversion table, and then can switch between the three different header types. Your script should for this task change the original file you send in, not create a new fasta file!
 
 
 * Further clarification, it should be able to change wich types of header is saved by an option from the user, from one to another and back again.
