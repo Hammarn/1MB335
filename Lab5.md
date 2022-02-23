@@ -115,11 +115,7 @@ We will work with version `MAFFT/7.407`.
 
 Reminder about computation on Uppmax: Aligning this set of mitochondrial genomes is a computationally intensive task. Thus, you should not run anything on the login node! Running heavy processes on the login nodes result in slower performances for everyone, and if you exceed certain limits your processes will be killed. Thus, you should avoid it as much as possible, either by working in an interactive job or by submitting your jobs through the queue. In the exploratory stage, it is a good solution to work with an interactive job. **To avoid queueing, we asked for a reservation for this tutorial.**
 
-For the course on 1:th of March, the reservation is:
-uppmax2022-2-2\_01
-For the course on the 2:nd of March, the reservation is: uppmax2022-2-2\_02
-
-Ask for an interactive session with the following command (replace "name_of_reservation" by either uppmax2022-2-2\_01 or uppmax2022-2-2\_02):
+Ask for an interactive session with the following command (replace "name_of_reservation" with the correct reservation, as the TA's.
 
 ```
 interactive -A uppmax2022-2-2 -p core -n 1 -t 4:0:0 --reservation=name_of_reservation
