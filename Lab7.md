@@ -50,7 +50,7 @@ It should look like this:
 
 ```
 #!/bin/bash -l
-#SBATCH -A g2021007
+#SBATCH -A uppmax2022-2-2
 #SBATCH -p core
 #SBATCH -n 1
 #SBATCH -t 45:00
@@ -83,13 +83,13 @@ IF you want to reuse this script later it might be a good idea to change this va
 Now, in order to submit the job, just use this code:
 
 ```
-sbatch SCRIPT_NAME
+sbatch -M snowy SCRIPT_NAME
 ```
 
 If you want to check that your job has been submitted and in which state it is, use this command:
 
 ```
-jobinfo -u YOUR_UPPMAX_USER
+jobinfo -M snowy -u YOUR_UPPMAX_USER
 ```
 
 Comment: if the job has finished, you won't see anything. In that case, check your emails!
