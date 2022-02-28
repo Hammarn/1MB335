@@ -56,7 +56,7 @@ The three important things you have to do are:
   2. Show the bootstrap values (using `Branch labels` or `Node labels` and selecting the right thing to display)
   3. Make sure the tree can be easily understood. For example, you might need to change the name of the species, if you are using the short names that you created in [Session 6](Lab6.md). 
 
-You can use this script to change the names in your treefiles:
+You can use this script to change the names in your treefiles: (its's also under `SCRIPTS` on Rackham.)
 
 
 [treefile\_rename\_from\_conv\_table.py](python_scripts/treefile_rename_from_conv_table.py)
