@@ -103,9 +103,9 @@ The files should contain one row for each sequence in your data set, including:
   `MN443013.1 Providencia stuartii strain PS11 subclass B1 metallo-beta-lactamase NDM-1 (blaNDM) gene, blaNDM-1 allele, partial cds`
   
   ```
-  c_Vurs cytB_Vombat_ursinus MN443013.1 Providencia stuartii strain PS11 subclass B1 metallo-beta-lactamase NDM-1 (blaNDM) gene, blaNDM-1 allele, partial cds
-  H_sapeins cytb_Homo_Sapiens 
-  
+c_Vurs	cytB_Vombat_ursinus	NC_003322.1 Vombatus ursinus mitochondrion, complete genome
+H_sapiens	cytb_Homo_Sapiens	NC_003562.2 Homo Sapiens mitochondrion, complete genome
+N_nean	cytB_Homo_Neanderthalensis	NC_004571.2 Homo Neanderthalensis mitochondrion, complete genome	
   ```
 
 
